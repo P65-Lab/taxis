@@ -1,0 +1,5199 @@
+*{box-sizing:border-box}body{margin:0;background:#f3f5f8;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.app{max-width:620px;margin:auto;padding:24px 16px 40px}.hero{display:flex;gap:16px;align-items:center;margin:10px 2px 22px}.logo{width:64px;height:64px;border-radius:18px;background:#111827;color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:.08em;box-shadow:0 12px 28px #11182733}.kicker{font-size:12px;letter-spacing:.13em;font-weight:800;color:#6b7280}.hero h1{margin:3px 0 5px;font-size:30px;letter-spacing:-.03em}.hero p{margin:0;color:#6b7280;line-height:1.45}.card{background:#fff;border:1px solid #e5e7eb;border-radius:24px;padding:20px;box-shadow:0 18px 45px #11182712;margin-bottom:16px}.field{margin-bottom:18px}label{font-size:14px;font-weight:800;display:block;margin-bottom:8px}select,input,textarea{width:100%;border:1px solid #d1d5db;border-radius:14px;background:#fff;padding:14px 15px;font-size:16px;color:#111827;outline:none}select:focus,input:focus,textarea:focus{border-color:#111827;box-shadow:0 0 0 4px #11182710}.detail{margin-top:7px;padding-left:2px;color:#6b7280;font-size:12px;line-height:1.4}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.labelrow{display:flex;justify-content:space-between;align-items:center;gap:12px}.counter{display:flex;align-items:center;gap:8px}.counter button{width:38px;height:38px;border:0;border-radius:11px;background:#e5e7eb;font-size:22px}.counter strong{min-width:25px;text-align:center}.agents{display:grid;gap:10px}.agentbox{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:12px}.agentbox label{font-size:12px;color:#6b7280;margin-bottom:6px}.agentbox input{background:#fff}.primary,.secondary{width:100%;border:0;border-radius:15px;font-weight:800;font-size:16px}.primary{height:56px;background:#111827;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 18px}.secondary{height:48px;background:transparent;color:#6b7280;margin-top:8px}.preview h2{margin:4px 0 12px}.previewrow{padding:11px 0;border-top:1px solid #e5e7eb;display:grid;grid-template-columns:120px 1fr;gap:10px}.previewrow span{color:#6b7280;font-size:13px}.previewrow strong{text-align:right;font-size:13px;word-break:break-word}@media(max-width:440px){.grid2{grid-template-columns:1fr}.hero{align-items:flex-start}.logo{width:56px;height:56px}.hero h1{font-size:27px}}
+
+/* ==========================================================
+   RECHERCHE AGENTS
+   ========================================================== */
+
+.search-wrap {
+  position: relative;
+}
+
+.agent-results {
+  position: absolute;
+  z-index: 1000;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(17,24,39,.16);
+  padding: 6px;
+}
+
+.agent-result {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.agent-result:hover,
+.agent-result:active {
+  background: #f3f4f6;
+}
+
+.agent-result strong {
+  font-size: 14px;
+  color: #111827;
+}
+
+.agent-result span {
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.agent-empty {
+  padding: 14px;
+  color: #6b7280;
+  text-align: center;
+  font-size: 13px;
+}
+
+.agent-detail {
+  margin-top: 7px;
+}
+
+
+/* ==========================================================
+   RECHERCHE VILLES
+   ========================================================== */
+
+.ville-results {
+  position: absolute;
+  z-index: 1100;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(17,24,39,.16);
+  padding: 6px;
+}
+
+.ville-result {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ville-result:hover,
+.ville-result:active {
+  background: #f3f4f6;
+}
+
+.ville-result strong {
+  font-size: 14px;
+  color: #111827;
+}
+
+
+/* ==========================================================
+   ADMINISTRATION
+   ========================================================== */
+
+.admin-card {
+  margin-top: 16px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-header h2 {
+  margin: 4px 0 0;
+}
+
+.admin-toggle {
+  border: 0;
+  border-radius: 12px;
+  background: #e5e7eb;
+  color: #111827;
+  padding: 10px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 20px 0 18px;
+}
+
+.admin-tab {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #fff;
+  color: #6b7280;
+  min-height: 44px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-tab.active {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.primary.small,
+.secondary.small {
+  width: auto;
+  min-width: 140px;
+  padding: 0 16px;
+}
+
+.admin-list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.admin-list-head span {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.admin-list {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 12px;
+  background: #f9fafb;
+}
+
+.admin-item-main {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-item-main strong {
+  font-size: 14px;
+}
+
+.admin-item-main span {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.admin-item-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.admin-item-actions button {
+  border: 0;
+  border-radius: 10px;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-edit {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.admin-delete {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.admin-note {
+  margin: 16px 0 0;
+  color: #6b7280;
+  font-size: 12px;
+  text-align: center;
+}
+
+.admin-empty {
+  padding: 16px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+@media(max-width: 520px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+  }
+
+  .primary.small,
+  .secondary.small {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================
+   BOUTON SMS
+   ========================================================== */
+
+.sms-btn {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 10px;
+  border: 1px solid #111827;
+  border-radius: 15px;
+  background: #ffffff;
+  color: #111827;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sms-btn:active {
+  transform: translateY(1px);
+  background: #f3f4f6;
+}
+
+.private-import{margin-bottom:18px;padding:14px;border:1px solid #d1d5db;border-radius:14px;background:#f9fafb}
+.private-import p{margin:5px 0 12px;color:#6b7280;font-size:12px}
+.private-status{color:#6b7280;font-size:12px;font-weight:700}
+
+
+/* ALLER / RETOUR */
+.trip-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 18px}
+.trip-btn{min-height:46px;border:1px solid #d1d5db;border-radius:13px;background:#fff;color:#6b7280;font-weight:800;cursor:pointer}
+.trip-btn.active{background:#111827;color:#fff;border-color:#111827}
+.trip-title{font-size:12px;font-weight:900;letter-spacing:.12em;color:#6b7280;margin:4px 0 10px}
+.retour-bloc{margin:10px 0 18px;padding:14px;border:2px solid #f59e0b;border-radius:16px;background:#fffbeb}
+.retour-title{font-size:13px;font-weight:900;letter-spacing:.12em;color:#b45309;margin-bottom:4px}
+.retour-trajet{font-size:13px;font-weight:800;color:#92400e;margin-bottom:12px}
+.retour-field label{color:#b45309;font-weight:900}
+.retour-field input{border:2px solid #f59e0b;background:#fff7ed;color:#9a3412;font-weight:800}
+
+
+/* ==========================================================
+   CORRECTION IPHONE - DATE / HEURE
+   Empêche les champs natifs iOS de dépasser du cadre
+   ========================================================== */
+
+.grid2 {
+  min-width: 0;
+}
+
+.grid2 > .field {
+  min-width: 0;
+}
+
+input[type="date"],
+input[type="time"] {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.retour-field {
+  min-width: 0;
+}
+
+.retour-field input[type="date"],
+.retour-field input[type="time"] {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Sur iPhone étroit, date et heure passent l'une sous l'autre */
+@media (max-width: 480px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  input[type="date"],
+  input[type="time"] {
+    font-size: 16px;
+  }
+}
+
+
+/* Cadres distincts ALLER / RETOUR */
+.aller-bloc {
+  margin: 10px 0 18px;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  background: #f9fafb;
+}
+
+.aller-bloc .trip-title {
+  margin-top: 0;
+}
+
+.retour-bloc .retour-title {
+  margin-bottom: 12px;
+}
+
+
+.trajet-cadre {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.retour-trajet-cadre {
+  border-color: #f59e0b;
+  color: #92400e;
+  background: #fff7ed;
+}
+
+
+/* Aperçu : présentation identique Aller / Retour */
+.previewrow strong {
+  line-height: 1.45;
+}
+
+.retour-preview strong {
+  line-height: 1.45;
+}
+
+
+/* ==========================================================
+   GESTION LIEUX / AGENTS - MOBILE
+   ========================================================== */
+
+.manage-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 4px 0 16px;
+  padding: 13px 14px;
+  border-radius: 14px;
+  background: #f3f4f6;
+}
+
+.manage-intro strong {
+  font-size: 15px;
+  color: #111827;
+}
+
+.manage-intro span {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.admin-tabs {
+  gap: 8px;
+}
+
+.admin-tab {
+  min-height: 48px;
+  padding: 10px 12px;
+  line-height: 1.2;
+}
+
+@media (max-width: 480px) {
+  .admin-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .admin-actions button {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+
+.danger {
+  background:#dc2626 !important;
+  color:#fff !important;
+  border:0 !important;
+  font-weight:900 !important;
+}
+.admin-actions {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+
+/* ==========================================================
+   BOUTON + RAPIDE
+   ========================================================== */
+
+.quick-add-btn {
+  position: fixed;
+  z-index: 3000;
+  top: calc(14px + env(safe-area-inset-top));
+  right: 16px;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: #111827;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  box-shadow: 0 10px 26px rgba(17,24,39,.28);
+  cursor: pointer;
+}
+
+.quick-add-btn:active {
+  transform: scale(.96);
+}
+
+.quick-add-overlay {
+  position: fixed;
+  z-index: 4000;
+  inset: 0;
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    18px
+    calc(20px + env(safe-area-inset-bottom));
+  background: rgba(17,24,39,.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.quick-add-menu {
+  width: min(100%, 360px);
+  margin-top: 52px;
+  padding: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(17,24,39,.28);
+}
+
+.quick-add-title {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.quick-choice {
+  width: 100%;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 9px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  background: #f9fafb;
+  color: #111827;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quick-choice:active {
+  background: #f3f4f6;
+}
+
+.quick-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 22px;
+}
+
+.quick-choice span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.quick-choice strong {
+  font-size: 15px;
+}
+
+.quick-choice small {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.quick-close {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .quick-add-btn {
+    width: 48px;
+    height: 48px;
+    right: 14px;
+    font-size: 30px;
+  }
+
+  .quick-add-menu {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================
+   CORRECTION FENETRE AJOUT RAPIDE
+   ========================================================== */
+
+.quick-add-overlay[hidden] {
+  display: none !important;
+}
+
+.quick-add-overlay {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.quick-add-menu {
+  margin-top: 70px;
+}
+
+
+/* ==========================================================
+   BOUTONS ADMIN : AJOUTER / ANNULER / SUPPRIMER
+   ========================================================== */
+
+.admin-actions {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+
+.admin-actions > button {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 54px !important;
+  height: 54px !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  border-radius: 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+.admin-actions > .primary {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border: 1px solid #111827 !important;
+}
+
+.admin-actions > .secondary {
+  background: #ffffff !important;
+  color: #6b7280 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.admin-actions > .danger-action {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  border: 1px solid #dc2626 !important;
+}
+
+/* La zone import/export Agents garde 2 boutons */
+.private-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 430px) {
+  .admin-actions {
+    gap: 7px !important;
+  }
+
+  .admin-actions > button {
+    min-height: 50px !important;
+    height: 50px !important;
+    padding: 0 5px !important;
+    font-size: 13px !important;
+  }
+}
+
+.admin-tabs {
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+@media (max-width:480px){
+  .admin-tabs { gap:6px !important; }
+  .admin-tab { font-size:12px !important; padding:8px 4px !important; }
+}
+
+
+/* ==========================================================
+   TAXI - GERER LES LIEUX PAR VILLE
+   ========================================================== */
+
+.admin-city-places {
+  margin-top: 18px;
+}
+
+.admin-city-places[hidden] {
+  display: none !important;
+}
+
+.admin-place-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 42px;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 12px;
+  margin: 7px 0;
+  border: 1px solid #dbe3ef;
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+.admin-place-select {
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  color: #111827;
+  cursor: pointer;
+}
+
+.admin-place-select strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.admin-place-select span {
+  display: block;
+  margin-top: 3px;
+  color: #667085;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.admin-place-trash {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: #fee2e2;
+  color: #b42318;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+@media (max-width:480px) {
+  .admin-place-row {
+    grid-template-columns: minmax(0,1fr) 40px;
+    padding: 10px;
+  }
+
+  .admin-place-trash {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+/* ==========================================================
+   THEMES TAXI
+   ========================================================== */
+
+:root {
+  --taxi-primary: #111827;
+  --taxi-mail: #111827;
+  --taxi-accent: #f59e0b;
+  --taxi-background: #f3f4f6;
+  --taxi-card: #ffffff;
+  --taxi-text: #111827;
+}
+
+body {
+  background: var(--taxi-background) !important;
+  color: var(--taxi-text) !important;
+}
+
+.card,
+.admin-panel,
+.quick-add-menu,
+.aller-bloc,
+.retour-bloc,
+.admin-item,
+.admin-place-row {
+  background: var(--taxi-card) !important;
+}
+
+.primary,
+.quick-add-btn,
+.admin-tab.active,
+.mode-btn.active,
+#prepareMail,
+#mailBtn,
+button.primary {
+  background: var(--taxi-primary) !important;
+  color: #ffffff !important;
+}
+
+.retour-bloc,
+.retour-trajet-cadre {
+  border-color: var(--taxi-accent) !important;
+}
+
+.retour-title,
+.retour-trajet-cadre {
+  color: var(--taxi-accent) !important;
+}
+
+.appearance-title {
+  margin: 18px 0 10px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 8px;
+}
+
+.theme-choice {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #d0d5dd;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #344054;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.theme-choice.active {
+  border: 2px solid var(--taxi-primary);
+}
+
+.theme-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex: 0 0 18px;
+}
+
+.theme-classic { background: #111827; }
+.theme-blue { background: #0b63d8; }
+.theme-green { background: #047857; }
+.theme-orange { background: #ea580c; }
+.theme-red { background: #b91c1c; }
+.theme-dark { background: #000000; }
+
+.color-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.color-field {
+  display: grid;
+  grid-template-columns: 1fr 54px;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.color-field span {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.color-field input[type="color"] {
+  width: 50px;
+  height: 38px;
+  padding: 2px;
+  border-radius: 8px;
+}
+
+.appearance-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.appearance-actions button {
+  margin: 0 !important;
+}
+
+@media (max-width: 480px) {
+  .admin-tabs {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+
+  .theme-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .color-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* v29 : le bloc Administration entier est invisible tant que + ne l'ouvre pas */
+#adminCard[hidden] { display: none !important; }
+
+/* ==========================================================
+   v31 - FORMULAIRE TAXI COMPACT
+   ========================================================== */
+.compact-trip-choice {
+  margin: 0 0 12px !important;
+}
+
+.compact-ville {
+  margin-bottom: 10px !important;
+}
+
+.locations-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.locations-row .field {
+  margin-bottom: 0 !important;
+  min-width: 0;
+}
+
+.locations-row select {
+  width: 100%;
+}
+
+.compact-trip-block {
+  padding: 10px 12px !important;
+  margin: 8px 0 !important;
+  min-height: 0 !important;
+}
+
+.compact-trip-line {
+  display: grid;
+  grid-template-columns: 64px minmax(0,1fr);
+  gap: 10px;
+  align-items: end;
+}
+
+.compact-trip-line .trip-title,
+.compact-trip-line .retour-title {
+  margin: 0 0 10px !important;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.compact-date-time {
+  display: grid;
+  grid-template-columns: minmax(0,1.35fr) minmax(92px,.65fr);
+  gap: 8px;
+}
+
+.compact-date-time .field {
+  margin: 0 !important;
+}
+
+.compact-date-time label {
+  margin-bottom: 4px !important;
+  font-size: 10px !important;
+}
+
+.compact-date-time input {
+  min-height: 38px !important;
+  height: 38px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+.compact-trip-block .trajet-cadre {
+  margin-top: 7px !important;
+  padding: 6px 8px !important;
+  min-height: 0 !important;
+  font-size: 11px !important;
+}
+
+@media (max-width: 430px) {
+  .locations-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .locations-row select {
+    font-size: 12px;
+    padding-left: 8px;
+    padding-right: 24px;
+  }
+
+  .compact-trip-line {
+    grid-template-columns: 54px minmax(0,1fr);
+    gap: 6px;
+  }
+
+  .compact-date-time {
+    grid-template-columns: minmax(0,1.3fr) minmax(86px,.7fr);
+    gap: 6px;
+  }
+
+  .compact-date-time input {
+    font-size: 12px !important;
+    padding-left: 6px !important;
+    padding-right: 4px !important;
+  }
+}
+
+/* v32 - Ajustement léger du cadre ALLER */
+.aller-bloc.compact-trip-block {
+  padding-top: 13px !important;
+  padding-bottom: 13px !important;
+}
+
+.aller-bloc .compact-trip-line {
+  align-items: start !important;
+}
+
+.aller-bloc .compact-trip-line .trip-title {
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+  align-self: start !important;
+}
+
+
+/* ==========================================================
+   v33 - ALLER / RETOUR COMME LE MODELE
+   ALLER | Date | Heure
+         | champ | champ
+   ========================================================== */
+
+.aller-bloc.compact-trip-block,
+.retour-bloc.compact-trip-block {
+  padding: 12px 14px 14px !important;
+  margin: 10px 0 !important;
+  border-radius: 16px !important;
+  min-height: 0 !important;
+}
+
+.compact-trip-line {
+  display: grid !important;
+  grid-template-columns: 82px minmax(0, 1fr) !important;
+  column-gap: 14px !important;
+  align-items: start !important;
+}
+
+.compact-trip-line .trip-title,
+.compact-trip-line .retour-title {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+
+  margin: 0 !important;
+  padding-top: 1px !important;
+
+  align-self: start !important;
+
+  font-size: 15px !important;
+  font-weight: 1000 !important;
+  line-height: 1.2 !important;
+}
+
+.compact-date-time {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.35fr) minmax(105px, .65fr) !important;
+  gap: 14px !important;
+  align-items: start !important;
+}
+
+.compact-date-time .field {
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+
+.compact-date-time label {
+  display: block !important;
+  margin: 0 0 6px !important;
+
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+}
+
+.compact-date-time input[type="date"],
+.compact-date-time input[type="time"] {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 44px !important;
+  min-height: 44px !important;
+
+  padding: 8px 10px !important;
+
+  box-sizing: border-box !important;
+
+  border-radius: 13px !important;
+  font-size: 14px !important;
+}
+
+.compact-trip-block .trajet-cadre {
+  margin: 8px 0 0 96px !important;
+  padding: 6px 8px !important;
+  min-height: 0 !important;
+  font-size: 11px !important;
+}
+
+/* iPhone */
+@media (max-width: 480px) {
+
+  .aller-bloc.compact-trip-block,
+  .retour-bloc.compact-trip-block {
+    padding: 10px 10px 12px !important;
+  }
+
+  .compact-trip-line {
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+    column-gap: 8px !important;
+  }
+
+  .compact-trip-line .trip-title,
+  .compact-trip-line .retour-title {
+    font-size: 14px !important;
+    padding-top: 1px !important;
+  }
+
+  .compact-date-time {
+    grid-template-columns: minmax(0, 1.25fr) minmax(90px, .75fr) !important;
+    gap: 8px !important;
+  }
+
+  .compact-date-time label {
+    margin-bottom: 5px !important;
+    font-size: 11px !important;
+  }
+
+  .compact-date-time input[type="date"],
+  .compact-date-time input[type="time"] {
+    height: 42px !important;
+    min-height: 42px !important;
+
+    padding-left: 8px !important;
+    padding-right: 6px !important;
+
+    font-size: 13px !important;
+  }
+
+  .compact-trip-block .trajet-cadre {
+    margin-left: 80px !important;
+  }
+}
+
+@media (max-width: 370px) {
+
+  .compact-trip-line {
+    grid-template-columns: 62px minmax(0, 1fr) !important;
+    column-gap: 6px !important;
+  }
+
+  .compact-trip-line .trip-title,
+  .compact-trip-line .retour-title {
+    font-size: 13px !important;
+  }
+
+  .compact-date-time {
+    grid-template-columns: minmax(0, 1.2fr) minmax(82px, .8fr) !important;
+    gap: 6px !important;
+  }
+
+  .compact-date-time input[type="date"],
+  .compact-date-time input[type="time"] {
+    font-size: 12px !important;
+  }
+}
+
+
+/* ==========================================================
+   v34 - CADRES ALLER / RETOUR + THEMES COHERENTS
+   ========================================================== */
+
+/* Même géométrie pour ALLER et RETOUR */
+.aller-bloc.compact-trip-block,
+.retour-bloc.compact-trip-block {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px 12px !important;
+  margin: 9px 0 !important;
+  border: 1.5px solid var(--taxi-accent, #16a34a) !important;
+  border-radius: 15px !important;
+  background: transparent !important;
+  overflow: hidden;
+}
+
+/* Le titre est bien aligné sur Date / Heure */
+.compact-trip-line {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: 66px minmax(0, 1fr) !important;
+  gap: 8px !important;
+  align-items: start !important;
+}
+
+.compact-trip-line .trip-title,
+.compact-trip-line .retour-title {
+  margin: 0 !important;
+  padding-top: 2px !important;
+  color: var(--taxi-accent, #16a34a) !important;
+  font-size: 13px !important;
+  font-weight: 1000 !important;
+  line-height: 1.1 !important;
+}
+
+/* Date et Heure sur la même ligne */
+.compact-date-time {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.35fr) minmax(92px, .65fr) !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+.compact-date-time .field {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.compact-date-time label {
+  margin: 0 0 5px !important;
+  color: var(--taxi-accent, #16a34a) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+}
+
+/* Champs parfaitement contenus dans le cadre */
+.compact-date-time input[type="date"],
+.compact-date-time input[type="time"] {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+
+  height: 40px !important;
+  min-height: 40px !important;
+
+  padding: 6px 8px !important;
+  border: 1.5px solid var(--taxi-accent, #16a34a) !important;
+  border-radius: 11px !important;
+
+  background: #ffffff !important;
+  color: #111827 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+/* Le trajet sous Date/Heure suit aussi le thème */
+.compact-trip-block .trajet-cadre,
+.compact-trip-block .retour-trajet-cadre {
+  margin: 7px 0 0 74px !important;
+  padding: 5px 8px !important;
+  border: 1.5px solid var(--taxi-accent, #16a34a) !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  color: var(--taxi-accent, #16a34a) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+}
+
+/* Supprime toutes les anciennes couleurs orange codées en dur
+   dans les zones retour/date/heure */
+.retour-bloc,
+.retour-field,
+.retour-title,
+.retour-trajet-cadre,
+.retour-bloc input,
+.retour-bloc label {
+  border-color: var(--taxi-accent, #16a34a) !important;
+  color: var(--taxi-accent, #16a34a) !important;
+}
+
+/* Le texte saisi dans les inputs reste noir */
+.retour-bloc input[type="date"],
+.retour-bloc input[type="time"] {
+  color: #111827 !important;
+}
+
+/* iPhone */
+@media (max-width: 480px) {
+  .aller-bloc.compact-trip-block,
+  .retour-bloc.compact-trip-block {
+    padding: 10px 9px 11px !important;
+  }
+
+  .compact-trip-line {
+    grid-template-columns: 60px minmax(0, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .compact-date-time {
+    grid-template-columns: minmax(0, 1.25fr) minmax(82px, .75fr) !important;
+    gap: 6px !important;
+  }
+
+  .compact-trip-line .trip-title,
+  .compact-trip-line .retour-title {
+    font-size: 12px !important;
+  }
+
+  .compact-date-time input[type="date"],
+  .compact-date-time input[type="time"] {
+    height: 38px !important;
+    min-height: 38px !important;
+    font-size: 11px !important;
+    padding-left: 7px !important;
+    padding-right: 5px !important;
+  }
+
+  .compact-trip-block .trajet-cadre,
+  .compact-trip-block .retour-trajet-cadre {
+    margin-left: 66px !important;
+  }
+}
+
+
+/* ==========================================================
+   v35 - HEADER COMPACT + ALLER SANS CADRE + RETOUR CADRE A/R
+   ========================================================== */
+
+/* Header plus compact */
+.hero {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 6px !important;
+  min-height: 0 !important;
+  align-items: center !important;
+}
+
+.hero h1 {
+  margin: 0 !important;
+  line-height: 1.05 !important;
+}
+
+.hero .logo {
+  margin: 0 !important;
+}
+
+/* Le formulaire remonte sous le titre */
+.app > .card:first-of-type {
+  margin-top: 4px !important;
+}
+
+/* ALLER : aucun cadre extérieur */
+.aller-bloc.compact-trip-block {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+}
+
+/* RETOUR : cadre uniquement lorsqu'il est visible */
+.retour-bloc.compact-trip-block:not([hidden]) {
+  border: 1.5px solid var(--taxi-accent, #16a34a) !important;
+  background: transparent !important;
+  border-radius: 15px !important;
+  box-shadow: none !important;
+}
+
+/* Quand le retour est caché, aucune trace visuelle */
+.retour-bloc[hidden] {
+  display: none !important;
+}
+
+/* Titres et labels suivent le thème */
+.compact-trip-line .trip-title,
+.compact-trip-line .retour-title,
+.compact-date-time label,
+.compact-trip-block .trajet-cadre,
+.compact-trip-block .retour-trajet-cadre {
+  color: var(--taxi-accent) !important;
+}
+
+/* Bordures thématiques cohérentes */
+.compact-date-time input[type="date"],
+.compact-date-time input[type="time"],
+.retour-bloc.compact-trip-block:not([hidden]),
+.compact-trip-block .trajet-cadre,
+.compact-trip-block .retour-trajet-cadre {
+  border-color: var(--taxi-accent) !important;
+}
+
+/* ALLER : on garde uniquement les champs et le trajet, pas le grand contour */
+.aller-bloc.compact-trip-block .trajet-cadre {
+  margin-left: 74px !important;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 4px !important;
+    padding-bottom: 5px !important;
+  }
+
+  .hero h1 {
+    font-size: 24px !important;
+  }
+
+  .app > .card:first-of-type {
+    margin-top: 0 !important;
+  }
+
+  .aller-bloc.compact-trip-block {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .aller-bloc.compact-trip-block .trajet-cadre {
+    margin-left: 66px !important;
+  }
+}
+
+
+/* ==========================================================
+   v36 - LOGIQUE DES CADRES ALLER / RETOUR
+   ALLER  = cadre neutre comme les autres
+   RETOUR = cadre coloré selon le thème
+   ========================================================== */
+
+/* ALLER : cadre neutre, comme les autres cartes/champs */
+.aller-bloc.compact-trip-block {
+  border: 1.5px solid #d7dee8 !important;
+  border-radius: 15px !important;
+  background: var(--taxi-card, #ffffff) !important;
+  box-shadow: none !important;
+
+  padding: 11px 12px 12px !important;
+  margin: 9px 0 !important;
+}
+
+/* Titre ALLER en couleur normale */
+.aller-bloc .trip-title {
+  color: var(--taxi-text, #111827) !important;
+}
+
+/* Labels Date / Heure de l'ALLER en noir */
+.aller-bloc .compact-date-time label {
+  color: var(--taxi-text, #111827) !important;
+}
+
+/* Champs Date / Heure de l'ALLER avec bordure neutre */
+.aller-bloc .compact-date-time input[type="date"],
+.aller-bloc .compact-date-time input[type="time"] {
+  border-color: #d7dee8 !important;
+  color: #111827 !important;
+  background: #ffffff !important;
+}
+
+/* Trajet ALLER : cadre neutre mais texte sombre */
+.aller-bloc .trajet-cadre {
+  border-color: #d7dee8 !important;
+  color: var(--taxi-text, #111827) !important;
+  background: #ffffff !important;
+}
+
+/* RETOUR : seul bloc coloré selon le thème */
+.retour-bloc.compact-trip-block:not([hidden]) {
+  border: 1.5px solid var(--taxi-accent, #16a34a) !important;
+  border-radius: 15px !important;
+  background: transparent !important;
+}
+
+/* Titre et labels RETOUR suivent le thème */
+.retour-bloc .retour-title,
+.retour-bloc .compact-date-time label {
+  color: var(--taxi-accent, #16a34a) !important;
+}
+
+/* Champs RETOUR colorés */
+.retour-bloc .compact-date-time input[type="date"],
+.retour-bloc .compact-date-time input[type="time"] {
+  border-color: var(--taxi-accent, #16a34a) !important;
+  color: #111827 !important;
+  background: #ffffff !important;
+}
+
+/* Trajet RETOUR coloré */
+.retour-bloc .retour-trajet-cadre,
+.retour-bloc .trajet-cadre {
+  border-color: var(--taxi-accent, #16a34a) !important;
+  color: var(--taxi-accent, #16a34a) !important;
+  background: #ffffff !important;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .aller-bloc.compact-trip-block,
+  .retour-bloc.compact-trip-block {
+    padding: 10px 9px 11px !important;
+  }
+}
+
+/* ==========================================================
+   v37 - PARAMETRES FIXE + AJOUT AGENT NON FIXE
+   ========================================================== */
+
+/* Roue Paramètres fixe à l'écran */
+#quickAddBtn.settings-float-btn {
+  position: fixed !important;
+  top: max(12px, env(safe-area-inset-top)) !important;
+  right: 14px !important;
+  z-index: 1000 !important;
+
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  font-size: 23px !important;
+  line-height: 1 !important;
+}
+
+/* Le + d'agent reste dans la page : jamais fixe */
+#plus.agent-add-plus {
+  position: static !important;
+  inset: auto !important;
+
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+
+  color: var(--taxi-accent, #16a34a) !important;
+}
+
+/* Le moins reste également non fixe */
+#moins {
+  position: static !important;
+  inset: auto !important;
+}
+
+/* Petit espace à droite du titre pour ne jamais passer sous la roue fixe */
+.hero {
+  padding-right: 62px !important;
+}
+
+@media (max-width: 480px) {
+  #quickAddBtn.settings-float-btn {
+    top: max(9px, env(safe-area-inset-top)) !important;
+    right: 11px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    font-size: 21px !important;
+  }
+
+  .hero {
+    padding-right: 55px !important;
+  }
+}
+
+
+/* ==========================================================
+   v38 - PARTICIPANTS / AGENTS : COMMANDES TOUJOURS VISIBLES
+   ========================================================== */
+
+.participants-field {
+  position: relative !important;
+}
+
+/* La ligne titre + compteur reste visible pendant le défilement
+   de la liste des agents, mais s'arrête à la fin de cette section. */
+.participants-sticky-bar {
+  position: static !important;
+  top: calc(env(safe-area-inset-top, 0px) + 54px) !important;
+  z-index: 80 !important;
+
+  margin: 0 -4px 8px !important;
+  padding: 7px 4px !important;
+
+  background: var(--taxi-card, #ffffff) !important;
+  border-radius: 11px !important;
+}
+
+/* Léger fond pour que les champs ne passent pas derrière */
+.participants-sticky-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--taxi-card, #ffffff);
+  opacity: .97;
+}
+
+/* Le compteur reste à droite et compact */
+.participants-sticky-bar .counter {
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* + et - restent cliquables et visibles */
+.participants-sticky-bar #plus,
+.participants-sticky-bar #moins {
+  position: static !important;
+  flex: 0 0 auto !important;
+}
+
+/* Le + d'ajout reste bien rond */
+.participants-sticky-bar #plus {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  border-radius: 50% !important;
+}
+
+/* Mobile : sous la roue Paramètres fixe */
+@media (max-width: 480px) {
+  .participants-sticky-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 50px) !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .participants-sticky-bar label {
+    font-size: 14px !important;
+  }
+}
+
+
+/* ==========================================================
+   v39 - PARTICIPANTS / AGENTS + MESSAGE COMPACT
+   ========================================================== */
+
+/* Boutons - et + parfaitement ronds */
+.participants-sticky-bar #moins,
+.participants-sticky-bar #plus {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+/* Le moins reprend le style neutre */
+.participants-sticky-bar #moins {
+  background: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+/* Le plus suit la couleur du thème */
+.participants-sticky-bar #plus {
+  color: var(--taxi-accent, #16a34a) !important;
+}
+
+/* Bouton large Ajouter un participant / agent */
+.add-agent-wide {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+
+  background: var(--taxi-card, #ffffff);
+  color: var(--taxi-accent, #16a34a);
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.add-agent-wide-plus {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Message plus compact */
+.message-field {
+  margin-top: 14px !important;
+}
+
+.message-field textarea#message {
+  min-height: 76px !important;
+  height: 76px !important;
+  max-height: 110px !important;
+
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+  border-radius: 14px !important;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .participants-sticky-bar #moins,
+  .participants-sticky-bar #plus {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+
+  .add-agent-wide {
+    min-height: 42px;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+
+  .message-field textarea#message {
+    min-height: 68px !important;
+    height: 68px !important;
+  }
+}
+
+
+/* ==========================================================
+   v40 - Suppression du grand bouton Ajouter un agent
+   ========================================================== */
+.add-agent-wide,
+.add-agent-wide-plus {
+  display: none !important;
+}
+
+.participants-field .agents {
+  margin-bottom: 0 !important;
+}
+
+.message-field {
+  margin-top: 12px !important;
+}
+
+
+/* ==========================================================
+   v41 - APERÇU AVANT LES BOUTONS D'ACTION
+   ========================================================== */
+
+.preview-in-form {
+  margin: 14px 0 !important;
+  padding: 14px !important;
+  box-shadow: none !important;
+}
+
+.preview-in-form h2 {
+  margin-top: 2px !important;
+  margin-bottom: 10px !important;
+}
+
+@media (max-width: 480px) {
+  .preview-in-form {
+    margin: 12px 0 !important;
+    padding: 12px !important;
+  }
+}
+
+
+/* V41 FIX PROPRE : DEPART + ARRIVEE COTE A COTE */
+.locations-row.depart-arrivee-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+.locations-row.depart-arrivee-row > .field {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+.locations-row.depart-arrivee-row select {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+@media (max-width: 700px) {
+  .locations-row.depart-arrivee-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+
+
+/* ==========================================================
+   V41 - THEMES : ALLER SIMPLE / ALLER-RETOUR
+   ========================================================== */
+
+/* Bouton inactif : neutre */
+.trip-choice .trip-btn {
+  background: var(--taxi-card, #ffffff) !important;
+  color: #667085 !important;
+  border-color: #d7dee8 !important;
+}
+
+/* Bouton actif : suit la couleur principale du thème */
+.trip-choice .trip-btn.active {
+  background: var(--taxi-primary, #111827) !important;
+  color: #ffffff !important;
+  border-color: var(--taxi-primary, #111827) !important;
+}
+
+/* Au changement de thème, aucune ancienne couleur ne doit rester */
+#btnAllerSimple.active,
+#btnAllerRetour.active {
+  background: var(--taxi-primary, #111827) !important;
+  color: #ffffff !important;
+  border-color: var(--taxi-primary, #111827) !important;
+}
+
+#btnAllerSimple:not(.active),
+#btnAllerRetour:not(.active) {
+  background: var(--taxi-card, #ffffff) !important;
+  color: #667085 !important;
+  border-color: #d7dee8 !important;
+}
+
+
+/* ==========================================================
+   V41 - BOUTON + AGENTS SUIT LE THEME
+   ========================================================== */
+
+#plus,
+#plus.agent-add-plus,
+.participants-sticky-bar #plus {
+  background: var(--taxi-primary, #111827) !important;
+  color: #ffffff !important;
+  border: 1.5px solid var(--taxi-primary, #111827) !important;
+}
+
+#plus:hover,
+#plus:active,
+#plus.agent-add-plus:hover,
+#plus.agent-add-plus:active {
+  background: var(--taxi-primary, #111827) !important;
+  color: #ffffff !important;
+  border-color: var(--taxi-primary, #111827) !important;
+}
+
+
+/* ==========================================================
+   PROPRIETAIRE DU TELEPHONE
+   ========================================================== */
+.owner-phone-box {
+  margin: 0 0 16px;
+  padding: 12px;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+  background: var(--taxi-card, #ffffff);
+}
+
+.owner-phone-title {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.owner-phone-box .field {
+  margin-bottom: 4px !important;
+}
+
+
+/* ==========================================================
+   v43 - AGENTS : LE NOMBRE ET LES BOUTONS RESTENT ENSEMBLE
+   ========================================================== */
+
+.participants-field {
+  position: relative !important;
+}
+
+.participants-sticky-bar {
+  position: static !important;
+  top: calc(env(safe-area-inset-top, 0px) + 50px) !important;
+  z-index: 120 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  width: 100% !important;
+  box-sizing: border-box !important;
+
+  margin: 0 0 8px !important;
+  padding: 7px 4px !important;
+
+  background: var(--taxi-card, #ffffff) !important;
+  border-radius: 11px !important;
+}
+
+.participants-sticky-bar .counter {
+  position: static !important;
+
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+  flex: 0 0 auto !important;
+}
+
+.participants-sticky-bar #nb,
+.participants-sticky-bar #moins,
+.participants-sticky-bar #plus {
+  position: static !important;
+  inset: auto !important;
+  flex: 0 0 auto !important;
+}
+
+.participants-sticky-bar #nb {
+  min-width: 20px !important;
+  text-align: center !important;
+}
+
+.participants-sticky-bar #moins,
+.participants-sticky-bar #plus {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@media (max-width: 480px) {
+  .participants-sticky-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 46px) !important;
+  }
+}
+
+html body #quickAddBtn.settings-float-btn{position:fixed!important;top:max(12px,env(safe-area-inset-top))!important;right:14px!important;bottom:auto!important;left:auto!important;transform:none!important;z-index:2147483000!important;margin:0!important;}
+
+
+/* ==========================================================
+   v47 - CHOIX SMS INDIVIDUEL, SANS TOUCHER AUX AGENTS
+   ========================================================== */
+.sms-choice-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483200;
+  background: rgba(0,0,0,.45);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.sms-choice-overlay[hidden] {
+  display: none !important;
+}
+
+.sms-choice-card {
+  width: min(520px, 100%);
+  max-height: 72vh;
+  overflow-y: auto;
+
+  padding: 16px;
+
+  background: var(--taxi-card, #ffffff);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.sms-choice-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 12px;
+}
+
+.sms-choice-head strong {
+  font-size: 17px;
+}
+
+#smsChoiceClose {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #e5e7eb;
+  color: #111827;
+
+  font-size: 25px;
+  line-height: 1;
+}
+
+.sms-agent-btn {
+  width: 100%;
+  min-height: 54px;
+
+  margin: 8px 0;
+  padding: 12px 14px;
+
+  border: 1.5px solid var(--taxi-primary, #111827);
+  border-radius: 14px;
+
+  background: var(--taxi-primary, #111827);
+  color: #ffffff;
+
+  text-align: left;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.sms-agent-btn small {
+  display: block;
+  margin-top: 3px;
+
+  font-size: 13px;
+  font-weight: 600;
+  opacity: .9;
+}
+
+
+/* ==========================================================
+   VERSION VISIBLE DE L'APPLICATION
+   ========================================================== */
+.app-version {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 18px 0 8px;
+  padding: 8px 12px 12px;
+
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  color: #7b8492;
+  opacity: .9;
+}
+
+/* v50 - PARAMETRES REELLEMENT FIXE AU VIEWPORT */
+body > #quickAddBtn.settings-float-btn {
+  position: fixed !important;
+  top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+  right: 12px !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  animation: none !important;
+  z-index: 2147483640 !important;
+  width: 46px !important;
+  height: 46px !important;
+}
+
+
+/* ==========================================================
+   v51 - ⚙ PARAMETRES FIXE AU VIEWPORT, MEME SUR IPHONE
+   ========================================================== */
+
+/* Aucun parent ne doit créer un nouveau repère pour le bouton */
+html,
+body {
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  contain: none !important;
+}
+
+/* Le bouton est enfant direct de body et ancré au viewport */
+body > #quickAddBtn.settings-float-btn {
+  position: fixed !important;
+  top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+  right: 12px !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  transform: translateZ(0) !important;
+  translate: none !important;
+
+  z-index: 2147483647 !important;
+
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 50% !important;
+  touch-action: manipulation !important;
+  -webkit-transform: translateZ(0) !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+/* Aucune règle responsive ne doit le remettre dans le flux */
+@media (max-width: 900px) {
+  body > #quickAddBtn.settings-float-btn {
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+    right: 12px !important;
+    bottom: auto !important;
+    left: auto !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  body > #quickAddBtn.settings-float-btn {
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+    right: 12px !important;
+  }
+}
+
+
+/* ==========================================================
+   v52 - PARAMETRES FIXE EN HAUT DE LA PAGE
+   Il NE suit PAS l'écran pendant le défilement.
+   ========================================================== */
+body {
+  position: relative !important;
+}
+
+body > #quickAddBtn.settings-float-btn {
+  position: absolute !important;
+  top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+  right: 12px !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  margin: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  translate: none !important;
+  animation: none !important;
+
+  z-index: 3000 !important;
+}
+
+/* Même comportement sur téléphone : jamais sticky/fixed au viewport */
+@media (max-width: 900px) {
+  body > #quickAddBtn.settings-float-btn {
+    position: absolute !important;
+    top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+    right: 12px !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  body > #quickAddBtn.settings-float-btn {
+    position: absolute !important;
+  }
+}
+
+
+/* ==========================================================
+   v53 - PARAMETRES DANS LE HEADER
+   Il monte avec la page exactement comme les cadres.
+   ========================================================== */
+
+.hero {
+  position: relative !important;
+}
+
+.hero > #quickAddBtn.settings-float-btn {
+  position: absolute !important;
+
+  top: 6px !important;
+  right: 4px !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  margin: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  translate: none !important;
+  animation: none !important;
+
+  z-index: 20 !important;
+
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
+/* IMPORTANT :
+   annule toutes les anciennes règles qui le rendaient fixe au viewport */
+body > #quickAddBtn.settings-float-btn {
+  position: static !important;
+}
+
+@media (max-width: 900px) {
+  .hero > #quickAddBtn.settings-float-btn {
+    position: absolute !important;
+    top: 4px !important;
+    right: 2px !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .hero > #quickAddBtn.settings-float-btn {
+    position: absolute !important;
+  }
+}
+
+
+/* ==========================================================
+   v54 - PARAMETRES = ELEMENT NORMAL DU HEADER
+   PAS fixed, PAS absolute, PAS sticky
+   ========================================================== */
+
+.hero {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  position: static !important;
+}
+
+/* Le bloc du titre prend la place disponible */
+.hero > div:not(.logo) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* ⚙ fait partie du flux normal, comme le logo et le titre */
+.hero > #quickAddBtn.settings-float-btn,
+#quickAddBtn.settings-float-btn {
+  position: static !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  inset: auto !important;
+
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+
+  transform: none !important;
+  -webkit-transform: none !important;
+  translate: none !important;
+
+  animation: none !important;
+
+  flex: 0 0 44px !important;
+
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+
+  z-index: auto !important;
+}
+
+/* Même règle sur iPhone / Android */
+@media (max-width: 900px) {
+  .hero > #quickAddBtn.settings-float-btn,
+  #quickAddBtn.settings-float-btn {
+    position: static !important;
+    inset: auto !important;
+    margin-left: auto !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .hero > #quickAddBtn.settings-float-btn {
+    position: static !important;
+  }
+}
+
+
+/* ==========================================================
+   v55 - PARAMETRES VRAIMENT DANS LA LIGNE DU HEADER
+   ========================================================== */
+
+.hero {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  position: static !important;
+}
+
+.hero .logo {
+  flex: 0 0 auto !important;
+}
+
+.hero > div:not(.logo) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Bouton Paramètres normal dans le header */
+.header-settings-btn {
+  position: static !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  inset: auto !important;
+
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+
+  transform: none !important;
+  -webkit-transform: none !important;
+  translate: none !important;
+  animation: none !important;
+
+  flex: 0 0 44px !important;
+
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  background: var(--taxi-primary, #111827) !important;
+  color: #ffffff !important;
+
+  font-size: 21px !important;
+  line-height: 1 !important;
+
+  box-shadow: none !important;
+  z-index: auto !important;
+}
+
+/* Neutralise totalement les anciennes classes si elles existent encore ailleurs */
+.quick-add-btn,
+.settings-float-btn {
+  position: static !important;
+}
+
+/* Mobile : toujours dans la ligne du header */
+@media (max-width: 480px) {
+  .header-settings-btn {
+    flex-basis: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    font-size: 19px !important;
+  }
+}
+
+
+/* ==========================================================
+   v56 - BOUTON PARAMETRES PLUS GRAND
+   ========================================================== */
+.header-settings-btn {
+  flex: 0 0 58px !important;
+
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  border-radius: 50% !important;
+
+  font-size: 28px !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 480px) {
+  .header-settings-btn {
+    flex-basis: 56px !important;
+
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+
+    font-size: 27px !important;
+  }
+}
+
+/* ==========================================================
+   v57 - AGENTS COMPACTS : NOM + TELEPHONE DANS LE CADRE
+   ========================================================== */
+.agentbox{
+  padding:12px 14px !important;
+  margin-bottom:10px !important;
+}
+.agentbox > label{
+  margin-bottom:5px !important;
+}
+.agentbox .agent-search{
+  min-height:54px !important;
+  height:54px !important;
+  padding:0 14px !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+}
+.agent-detail{
+  min-height:0 !important;
+  margin-top:5px !important;
+  padding:0 4px !important;
+  line-height:1.2 !important;
+}
+.agent-email{
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  color:#6b7280;
+  overflow-wrap:anywhere;
+}
+
+
+/* ==========================================================
+   v58 - AGENTS COMME MODELE : NOM + TEL DANS LE CADRE
+   EMAIL SEUL EN DESSOUS - AUCUN MATRICULE
+   ========================================================== */
+
+.agentbox {
+  padding: 10px 12px 11px !important;
+  margin-bottom: 9px !important;
+  border-radius: 16px !important;
+}
+
+.agentbox > label {
+  display: block !important;
+  margin: 0 0 5px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #667085 !important;
+}
+
+.agentbox .search-wrap {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 0 !important;
+
+  width: 100% !important;
+  min-height: 50px !important;
+
+  border: 1px solid #d0d5dd !important;
+  border-radius: 13px !important;
+  background: #ffffff !important;
+}
+
+.agentbox .agent-search {
+  width: 100% !important;
+  min-width: 0 !important;
+
+  height: 48px !important;
+  min-height: 48px !important;
+
+  margin: 0 !important;
+  padding: 0 12px !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+}
+
+.agent-phone-inline {
+  padding: 0 12px !important;
+  border-left: 1px solid #e4e7ec !important;
+
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #344054 !important;
+
+  white-space: nowrap !important;
+}
+
+.agent-phone-inline[hidden] {
+  display: none !important;
+}
+
+.agent-detail {
+  margin: 5px 0 0 !important;
+  padding: 0 4px !important;
+  min-height: 0 !important;
+  line-height: 1.15 !important;
+}
+
+.agent-email {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #667085 !important;
+  overflow-wrap: anywhere !important;
+}
+
+.agentbox .agent-results {
+  grid-column: 1 / -1 !important;
+  top: calc(100% + 6px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5000 !important;
+}
+
+@media (max-width: 480px) {
+  .agentbox {
+    padding: 9px 10px 10px !important;
+  }
+
+  .agentbox .search-wrap {
+    min-height: 48px !important;
+  }
+
+  .agentbox .agent-search {
+    height: 46px !important;
+    min-height: 46px !important;
+    padding-left: 10px !important;
+    padding-right: 8px !important;
+    font-size: 16px !important;
+  }
+
+  .agent-phone-inline {
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+    font-size: 14px !important;
+  }
+
+  .agent-email {
+    font-size: 12px !important;
+  }
+}
+
+/* v59 - bouton Paramètres légèrement plus à droite */
+.header-settings-btn {
+  margin-left: auto !important;
+  margin-right: -8px !important;
+}
+@media (max-width: 480px) {
+  .header-settings-btn {
+    margin-left: auto !important;
+    margin-right: -6px !important;
+  }
+}
+
+
+/* ==========================================================
+   v60 - AGENTS : NOM + TELEPHONE DANS LE MEME CADRE
+   EMAIL SOUS LE CADRE - AUCUN MATRICULE
+   ========================================================== */
+
+.agentbox {
+  padding: 10px 12px 10px !important;
+  margin-bottom: 9px !important;
+  border-radius: 16px !important;
+}
+
+.agentbox > label {
+  display: block !important;
+  margin: 0 0 5px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #667085 !important;
+}
+
+.agentbox .search-wrap {
+  position: relative !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+
+  width: 100% !important;
+  min-height: 48px !important;
+
+  border: 1px solid #d0d5dd !important;
+  border-radius: 13px !important;
+
+  background: #ffffff !important;
+}
+
+.agentbox .agent-search {
+  width: 100% !important;
+  min-width: 0 !important;
+
+  height: 46px !important;
+  min-height: 46px !important;
+
+  margin: 0 !important;
+  padding: 0 12px !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+
+  background: transparent !important;
+
+  color: #111827 !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+}
+
+.agent-phone-inline {
+  padding: 0 12px !important;
+
+  border-left: 1px solid #e4e7ec !important;
+
+  color: #344054 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+
+  white-space: nowrap !important;
+}
+
+.agent-phone-inline[hidden] {
+  display: none !important;
+}
+
+.agent-detail {
+  margin: 5px 0 0 !important;
+  padding: 0 4px !important;
+  min-height: 0 !important;
+
+  color: #667085 !important;
+  line-height: 1.15 !important;
+}
+
+.agent-email {
+  display: block !important;
+
+  color: #667085 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+
+  overflow-wrap: anywhere !important;
+}
+
+/* Liste de recherche toujours au-dessus */
+.agentbox .agent-results {
+  grid-column: 1 / -1 !important;
+  top: calc(100% + 6px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5000 !important;
+}
+
+/* Bouton paramètres bleu et encore légèrement plus à droite */
+.header-settings-btn {
+  margin-left: auto !important;
+  margin-right: -14px !important;
+
+  background: var(--taxi-primary, #0b63d8) !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 480px) {
+
+  .agentbox {
+    padding: 9px 10px 9px !important;
+  }
+
+  .agentbox .search-wrap {
+    min-height: 46px !important;
+  }
+
+  .agentbox .agent-search {
+    height: 44px !important;
+    min-height: 44px !important;
+
+    padding-left: 10px !important;
+    padding-right: 8px !important;
+
+    font-size: 16px !important;
+  }
+
+  .agent-phone-inline {
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+
+    font-size: 14px !important;
+  }
+
+  .agent-email {
+    font-size: 12px !important;
+  }
+
+  .header-settings-btn {
+    margin-right: -10px !important;
+  }
+}
+
+
+/* ==========================================================
+   v61 - BOUTON PARAMETRES COMME LA MAQUETTE VALIDEE
+   ========================================================== */
+
+.hero {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  column-gap: 14px !important;
+}
+
+.hero .logo {
+  grid-column: 1 !important;
+}
+
+.hero > div:not(.logo) {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+}
+
+.header-settings-btn {
+  grid-column: 3 !important;
+
+  position: static !important;
+  inset: auto !important;
+
+  margin: 0 !important;
+  justify-self: end !important;
+  align-self: center !important;
+
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  border-radius: 50% !important;
+  background: var(--taxi-primary, #0b63d8) !important;
+  color: #ffffff !important;
+
+  font-size: 28px !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    column-gap: 12px !important;
+  }
+
+  .header-settings-btn {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    font-size: 27px !important;
+  }
+}
+
+
+/* ==========================================================
+   v61 - CARTES AGENTS COMME LA MAQUETTE VALIDEE
+   ========================================================== */
+
+.agentbox {
+  padding: 10px 12px 9px !important;
+  margin-bottom: 9px !important;
+
+  border: 1px solid #d7dde6 !important;
+  border-radius: 16px !important;
+
+  background: var(--taxi-card, #ffffff) !important;
+}
+
+.agentbox > label {
+  margin: 0 0 5px !important;
+
+  color: var(--taxi-primary, #0b63d8) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+.agentbox .search-wrap {
+  position: relative !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+
+  min-height: 50px !important;
+
+  border: 1px solid #d0d5dd !important;
+  border-radius: 12px !important;
+
+  background: #ffffff !important;
+}
+
+.agentbox .agent-search {
+  height: 48px !important;
+  min-height: 48px !important;
+
+  margin: 0 !important;
+  padding: 0 12px !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+
+  background: transparent !important;
+
+  color: #111827 !important;
+  font-size: 17px !important;
+  font-weight: 900 !important;
+}
+
+.agent-phone-inline {
+  min-width: 0 !important;
+  padding: 0 12px !important;
+
+  border-left: 1px solid #e4e7ec !important;
+
+  color: #111827 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+
+  white-space: nowrap !important;
+}
+
+.agent-phone-inline[hidden] {
+  display: none !important;
+}
+
+/* e-mail uniquement sous le cadre */
+.agent-detail {
+  margin: 6px 0 0 !important;
+  padding: 0 4px !important;
+  min-height: 0 !important;
+
+  color: var(--taxi-primary, #0b63d8) !important;
+  font-size: 13px !important;
+  line-height: 1.15 !important;
+}
+
+.agent-email {
+  display: block !important;
+  color: var(--taxi-primary, #0b63d8) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* résultats de recherche au-dessus du reste */
+.agentbox .agent-results {
+  grid-column: 1 / -1 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% + 6px) !important;
+  z-index: 5000 !important;
+}
+
+@media (max-width: 480px) {
+  .agentbox {
+    padding: 9px 10px 8px !important;
+  }
+
+  .agentbox .search-wrap {
+    min-height: 48px !important;
+  }
+
+  .agentbox .agent-search {
+    height: 46px !important;
+    min-height: 46px !important;
+    padding-left: 10px !important;
+    padding-right: 8px !important;
+    font-size: 16px !important;
+  }
+
+  .agent-phone-inline {
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+    font-size: 14px !important;
+  }
+
+  .agent-email {
+    font-size: 12px !important;
+  }
+}
+
+
+/* ==========================================================
+   v62 - PARAMETRES ENCORE PLUS A DROITE
+   ========================================================== */
+.header-settings-btn {
+  justify-self: end !important;
+  transform: translateX(20px) !important;
+  -webkit-transform: translateX(20px) !important;
+}
+
+@media (max-width: 480px) {
+  .header-settings-btn {
+    transform: translateX(18px) !important;
+    -webkit-transform: translateX(18px) !important;
+  }
+}
+
+
+/* ==========================================================
+   v63 - PARAMETRES EXACTEMENT AU BORD DROIT DU HEADER
+   ========================================================== */
+
+.hero {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding-right: 72px !important;
+}
+
+.header-settings-btn {
+  position: absolute !important;
+
+  top: 50% !important;
+  right: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  margin: 0 !important;
+
+  transform: translateY(-50%) !important;
+  -webkit-transform: translateY(-50%) !important;
+
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  border-radius: 50% !important;
+
+  background: var(--taxi-primary, #0b63d8) !important;
+  color: #ffffff !important;
+
+  z-index: 20 !important;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-right: 68px !important;
+  }
+
+  .header-settings-btn {
+    right: 0 !important;
+
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+
+    transform: translateY(-50%) !important;
+    -webkit-transform: translateY(-50%) !important;
+  }
+}
+
+
+/* ==========================================================
+   v64 - PARAMETRES AU VRAI BORD DROIT VISUEL
+   ========================================================== */
+
+.hero {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* On sort volontairement le bouton du header vers le bord de l'écran */
+.header-settings-btn {
+  position: absolute !important;
+  top: 50% !important;
+
+  right: -28px !important;
+  left: auto !important;
+
+  margin: 0 !important;
+
+  transform: translateY(-50%) !important;
+  -webkit-transform: translateY(-50%) !important;
+
+  z-index: 50 !important;
+}
+
+@media (max-width: 480px) {
+  .header-settings-btn {
+    right: -26px !important;
+  }
+}
+
+
+/* ==========================================================
+   POPUP MISE A JOUR
+   ========================================================== */
+
+.update-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2147483600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(17, 24, 39, .48);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.update-overlay[hidden] {
+  display: none !important;
+}
+
+.update-card {
+  width: min(420px, 100%);
+
+  padding: 22px;
+
+  border-radius: 22px;
+
+  background: var(--taxi-card, #ffffff);
+
+  text-align: center;
+
+  box-shadow:
+    0 24px 60px rgba(17, 24, 39, .28);
+}
+
+.update-icon {
+  width: 54px;
+  height: 54px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    var(--taxi-primary, #0b63d8);
+
+  color: #ffffff;
+
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.update-card h2 {
+  margin: 0 0 8px;
+
+  font-size: 20px;
+}
+
+.update-card p {
+  margin: 0 0 18px;
+
+  color: #667085;
+
+  font-size: 14px;
+}
+
+.update-now-btn,
+.update-later-btn {
+  width: 100%;
+
+  min-height: 48px;
+
+  border-radius: 13px;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.update-now-btn {
+  margin-bottom: 8px;
+
+  border: 0;
+
+  background:
+    var(--taxi-primary, #0b63d8);
+
+  color: #ffffff;
+}
+
+.update-later-btn {
+  border: 1px solid #d0d5dd;
+
+  background: #ffffff;
+
+  color: #475467;
+}
+
+
+/* ==========================================================
+   v66 - PARAMETRES UN PEU PLUS A GAUCHE
+   ========================================================== */
+.header-settings-btn {
+  right: -4px !important;
+}
+
+@media (max-width: 480px) {
+  .header-settings-btn {
+    right: -4px !important;
+  }
+}
+
+
+/* ==========================================================
+   v67 - LIGNE AGENTS NON STICKY
+   Le -, le nombre et le + suivent normalement la page.
+   ========================================================== */
+
+.participants-sticky-bar {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  transform: none !important;
+  -webkit-transform: none !important;
+
+  z-index: auto !important;
+}
+
+.participants-sticky-bar .counter,
+.participants-sticky-bar #moins,
+.participants-sticky-bar #nb,
+.participants-sticky-bar #plus {
+  position: static !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Le + reste bien rond et suit le thème, mais n'est jamais fixe */
+#plus,
+#plus.agent-add-plus,
+.participants-sticky-bar #plus {
+  position: static !important;
+  inset: auto !important;
+
+  background: var(--taxi-primary, #0b63d8) !important;
+  color: #ffffff !important;
+  border-color: var(--taxi-primary, #0b63d8) !important;
+}
+
+
+/* ==========================================================
+   v68 - CORRECTION REELLE LIGNE AGENTS
+   Toute la ligne Agents / - / nombre / + reste dans le flux.
+   ========================================================== */
+html body .participants-field .participants-sticky-bar {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  inset: auto !important;
+  z-index: 1 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+html body .participants-field .participants-sticky-bar .counter,
+html body .participants-field .participants-sticky-bar #moins,
+html body .participants-field .participants-sticky-bar #nb,
+html body .participants-field .participants-sticky-bar #plus {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  inset: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Le + garde uniquement son aspect, jamais un ancrage écran */
+html body #plus.agent-add-plus {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 1 !important;
+}
+
+
+/* ==========================================================
+   v69 - LE + SUIT L'ECRAN
+   La ligne Agents / - / nombre / + reste visible pendant
+   le défilement de la liste des agents.
+   ========================================================== */
+
+.participants-field {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+html body .participants-field .participants-sticky-bar {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  z-index: 500 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  width: 100% !important;
+
+  margin: 0 0 8px !important;
+  padding: 7px 4px !important;
+
+  background: var(--taxi-card, #ffffff) !important;
+  border-radius: 11px !important;
+
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Le compteur et les boutons restent ensemble dans la barre */
+html body .participants-field .participants-sticky-bar .counter {
+  position: static !important;
+
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+}
+
+html body .participants-field .participants-sticky-bar #moins,
+html body .participants-field .participants-sticky-bar #nb,
+html body .participants-field .participants-sticky-bar #plus {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Le + garde la couleur du thème */
+html body .participants-field .participants-sticky-bar #plus {
+  background: var(--taxi-primary, #0b63d8) !important;
+  color: #ffffff !important;
+  border-color: var(--taxi-primary, #0b63d8) !important;
+}
+
+/* v70 - bouton aperçu HTML du mail Taxi */
+.html-mail-btn{
+  width:100%;
+  margin-top:10px;
+  min-height:48px;
+  font-weight:800;
+}
+
+
+/* ==========================================================
+   v71 - MODE SOMBRE : TEXTES LISIBLES
+   ========================================================== */
+
+/* Libellés et titres en blanc */
+body.theme-dark label,
+body.theme-dark .field > label,
+body.theme-dark .labelrow label,
+body.theme-dark .compact-trip-line,
+body.theme-dark .travel-title,
+body.theme-dark .retour-title,
+body.theme-dark .participants-field label,
+body.theme-dark .agentbox > label,
+body.theme-dark .message-field label,
+body.theme-dark .preview h2,
+body.theme-dark .preview .recap-row,
+body.theme-dark .preview .recap-row span,
+body.theme-dark .preview .recap-row strong,
+body.theme-dark .preview-in-form h2,
+body.theme-dark .preview-in-form span,
+body.theme-dark .preview-in-form strong,
+body.theme-dark .section-title,
+body.theme-dark .kicker,
+body.theme-dark .admin-header,
+body.theme-dark .manage-intro strong,
+body.theme-dark .manage-intro span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Textes secondaires visibles en sombre */
+body.theme-dark .agent-detail,
+body.theme-dark .hint,
+body.theme-dark .private-status,
+body.theme-dark .appearance-title,
+body.theme-dark .admin-list-head,
+body.theme-dark .admin-city-places,
+body.theme-dark .trajet-cadre {
+  color: #cbd5e1 !important;
+}
+
+/* Champs blancs : texte noir */
+body.theme-dark input,
+body.theme-dark select,
+body.theme-dark textarea,
+body.theme-dark .agent-search,
+body.theme-dark #ville,
+body.theme-dark #depart,
+body.theme-dark #arrivee,
+body.theme-dark #date,
+body.theme-dark #heure,
+body.theme-dark #dateRetour,
+body.theme-dark #heureRetour {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Placeholders gris lisibles */
+body.theme-dark input::placeholder,
+body.theme-dark textarea::placeholder {
+  color: #9ca3af !important;
+  -webkit-text-fill-color: #9ca3af !important;
+}
+
+/* Aperçu : garder les séparateurs clairs */
+body.theme-dark .preview,
+body.theme-dark .preview-in-form,
+body.theme-dark .agentbox,
+body.theme-dark .compact-trip-block,
+body.theme-dark .trajet-cadre,
+body.theme-dark .admin-card {
+  border-color: #cbd5e1 !important;
+}
+
+/* Compteur agents lisible */
+body.theme-dark #nb,
+body.theme-dark .counter strong {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   v72 - MODE SOMBRE REEL TAXI
+   La classe taxi-dark est appliquée par applyTaxiAppearance()
+   ========================================================== */
+
+body.taxi-dark {
+  --taxi-text: #f8fafc !important;
+  color: #f8fafc !important;
+}
+
+/* Titres / libellés principaux */
+body.taxi-dark h1,
+body.taxi-dark h2,
+body.taxi-dark h3,
+body.taxi-dark label,
+body.taxi-dark .field > label,
+body.taxi-dark .labelrow label,
+body.taxi-dark .travel-title,
+body.taxi-dark .retour-title,
+body.taxi-dark .participants-field label,
+body.taxi-dark .agentbox > label,
+body.taxi-dark .message-field label,
+body.taxi-dark .preview h2,
+body.taxi-dark .preview-in-form h2,
+body.taxi-dark .section-title,
+body.taxi-dark .admin-header,
+body.taxi-dark .manage-intro strong,
+body.taxi-dark .manage-intro span,
+body.taxi-dark .admin-tab,
+body.taxi-dark .appearance-title,
+body.taxi-dark .kicker {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+/* Récapitulatif */
+body.taxi-dark #apercu,
+body.taxi-dark #apercu *,
+body.taxi-dark .preview,
+body.taxi-dark .preview * {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+/* Compteur */
+body.taxi-dark #nb,
+body.taxi-dark .counter strong {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+/* Détails secondaires */
+body.taxi-dark .agent-detail,
+body.taxi-dark .hint,
+body.taxi-dark .private-status,
+body.taxi-dark .admin-list-head,
+body.taxi-dark .admin-city-places,
+body.taxi-dark .trajet-cadre {
+  color: #cbd5e1 !important;
+}
+
+/* Champs restent blancs avec texte noir */
+body.taxi-dark input,
+body.taxi-dark select,
+body.taxi-dark textarea,
+body.taxi-dark .agent-search {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.taxi-dark input::placeholder,
+body.taxi-dark textarea::placeholder {
+  color: #9ca3af !important;
+  -webkit-text-fill-color: #9ca3af !important;
+}
+
+/* Les boutons actifs gardent leur contraste */
+body.taxi-dark .mode-btn.active,
+body.taxi-dark .primary,
+body.taxi-dark button.primary {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   v74 - ESPACE HAUT REDUIT
+   ========================================================== */
+
+.app {
+  padding-top: max(8px, env(safe-area-inset-top)) !important;
+}
+
+.hero,
+header.hero {
+  margin-top: 0 !important;
+  padding-top: 6px !important;
+  padding-bottom: 10px !important;
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding-top: max(5px, env(safe-area-inset-top)) !important;
+  }
+
+  .hero,
+  header.hero {
+    padding-top: 2px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* ==========================================================
+   v74 - SELECTEUR AGENTS
+   ========================================================== */
+
+.agents-picker-field {
+  overflow: visible !important;
+}
+
+.agents-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.agents-picker-head > label {
+  margin: 0 !important;
+}
+
+.agents-count-badge {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--taxi-primary) 12%, white);
+  color: var(--taxi-primary);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.choose-agents-btn {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 0 15px;
+  border: 1px solid #d0d5dd;
+  border-radius: 13px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-size: 16px;
+  font-weight: 900;
+  text-align: left;
+}
+
+.choose-agents-btn > span {
+  font-size: 27px;
+  line-height: 1;
+  color: var(--taxi-primary);
+}
+
+.agents-selected-summary {
+  margin-top: 9px;
+  border: 1px solid #dbe3ef;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.selected-agent-row {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.selected-agent-row:last-child {
+  border-bottom: 0;
+}
+
+.selected-agent-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.selected-agent-main strong {
+  color: #111827;
+  font-size: 15px;
+}
+
+.selected-agent-main span {
+  color: #344054;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.selected-agent-email {
+  margin-top: 3px;
+  color: #667085;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.agents-hidden-compat {
+  display: none !important;
+}
+
+/* Popup */
+.agents-picker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    max(14px, env(safe-area-inset-top))
+    14px
+    max(14px, env(safe-area-inset-bottom));
+
+  background: rgba(15, 23, 42, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.agents-picker-overlay[hidden] {
+  display: none !important;
+}
+
+body.agents-picker-open {
+  overflow: hidden !important;
+}
+
+.agents-picker-modal {
+  width: min(520px, 100%);
+  max-height: min(82vh, 720px);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 16px;
+
+  border-radius: 20px;
+  background: var(--taxi-card, #ffffff);
+  color: var(--taxi-text, #111827);
+
+  box-shadow: 0 24px 70px rgba(0,0,0,.28);
+}
+
+.agents-picker-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.agents-picker-kicker {
+  color: var(--taxi-primary);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.agents-picker-title-row h2 {
+  margin: 3px 0 0;
+  font-size: 20px;
+}
+
+.agents-picker-close {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: #eef2f6;
+  color: #111827;
+
+  font-size: 26px;
+  line-height: 1;
+}
+
+.agents-picker-search-wrap {
+  margin: 14px 0 10px;
+}
+
+#agentsPickerSearch {
+  width: 100%;
+  min-height: 48px;
+  font-size: 16px !important;
+}
+
+.agents-picker-list {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.agent-check-row {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-height: 58px;
+  margin: 0 !important;
+  padding: 9px 11px !important;
+
+  border-bottom: 1px solid #eef2f6;
+
+  background: #ffffff;
+  color: #111827;
+
+  cursor: pointer;
+}
+
+.agent-check-row:last-child {
+  border-bottom: 0;
+}
+
+.agent-check-row.checked {
+  background: color-mix(in srgb, var(--taxi-primary) 8%, white);
+}
+
+.agent-check-row input {
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.agent-check-box {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid #98a2b3;
+  border-radius: 7px;
+
+  background: #ffffff;
+}
+
+.agent-check-row.checked .agent-check-box {
+  border-color: var(--taxi-primary);
+  background: var(--taxi-primary);
+}
+
+.agent-check-row.checked .agent-check-box::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 1000;
+}
+
+.agent-check-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.agent-check-content strong {
+  color: #111827 !important;
+  font-size: 15px;
+  line-height: 1.15;
+}
+
+.agent-check-content > span {
+  color: #667085 !important;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.agents-picker-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 9px;
+
+  margin-top: 12px;
+}
+
+.agents-picker-actions button {
+  min-height: 48px;
+  border-radius: 12px;
+  font-weight: 900;
+}
+
+.agents-picker-cancel {
+  border: 1px solid #d0d5dd;
+  background: #ffffff;
+  color: #344054;
+}
+
+.agents-picker-validate {
+  border: 0;
+  background: var(--taxi-primary);
+  color: #ffffff;
+}
+
+/* Mode sombre : popup sombre, liste blanche lisible */
+body.taxi-dark .agents-picker-modal {
+  background: var(--taxi-card);
+  color: #f8fafc;
+}
+
+body.taxi-dark .agents-picker-title-row h2 {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+body.taxi-dark .agents-count-badge {
+  background: #334155;
+  color: #ffffff;
+}
+
+body.taxi-dark .choose-agents-btn,
+body.taxi-dark .agents-selected-summary {
+  background: #ffffff !important;
+  color: #111827 !important;
+}
+
+@media (max-width: 480px) {
+  .agents-picker-overlay {
+    align-items: flex-end;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .agents-picker-modal {
+    width: 100%;
+    max-height: 88vh;
+
+    padding: 14px;
+
+    border-radius: 20px 20px 12px 12px;
+  }
+}
+
+
+/* ==========================================================
+   v76 - POPUP AGENTS : TEXTE LISIBLE EN MODE SOMBRE
+   ========================================================== */
+
+/* La liste reste volontairement blanche */
+body.taxi-dark #agentsPickerList,
+body.taxi-dark .agents-picker-list,
+body.taxi-dark .agent-check-row {
+  background: #ffffff !important;
+}
+
+/* Nom agent : NOIR */
+body.taxi-dark #agentsPickerList .agent-check-row .agent-check-content strong,
+body.taxi-dark .agents-picker-list .agent-check-content strong {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  opacity: 1 !important;
+}
+
+/* Téléphone : GRIS FONCE */
+body.taxi-dark #agentsPickerList .agent-check-row .agent-check-content > span,
+body.taxi-dark .agents-picker-list .agent-check-content > span {
+  color: #475467 !important;
+  -webkit-text-fill-color: #475467 !important;
+  opacity: 1 !important;
+}
+
+/* Empêcher le style global "label blanc" de contaminer la ligne */
+body.taxi-dark #agentsPickerList label.agent-check-row,
+body.taxi-dark .agents-picker-list label.agent-check-row {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Ligne cochée : fond légèrement teinté, texte toujours foncé */
+body.taxi-dark #agentsPickerList .agent-check-row.checked,
+body.taxi-dark .agents-picker-list .agent-check-row.checked {
+  background:
+    color-mix(
+      in srgb,
+      var(--taxi-primary) 10%,
+      #ffffff
+    ) !important;
+}
+
+/* Cases non cochées bien visibles */
+body.taxi-dark .agent-check-box {
+  background: #ffffff !important;
+  border-color: #98a2b3 !important;
+}
+
+/* Case cochée suit le thème */
+body.taxi-dark .agent-check-row.checked .agent-check-box {
+  background: var(--taxi-primary) !important;
+  border-color: var(--taxi-primary) !important;
+}
+
+/* Champ de recherche : texte noir */
+body.taxi-dark #agentsPickerSearch {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+body.taxi-dark #agentsPickerSearch::placeholder {
+  color: #98a2b3 !important;
+  -webkit-text-fill-color: #98a2b3 !important;
+}
+
+
+/* ==========================================================
+   v77 - POPUP SMS PLUS HAUT
+   ========================================================== */
+
+/* Popup choix agent SMS : centré plus haut dans la fenêtre */
+.sms-overlay,
+.sms-agent-overlay,
+#smsAgentOverlay,
+#smsChoiceOverlay {
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  padding-top:
+    max(
+      72px,
+      calc(env(safe-area-inset-top) + 52px)
+    ) !important;
+
+  padding-bottom:
+    max(
+      14px,
+      env(safe-area-inset-bottom)
+    ) !important;
+}
+
+/* Si le popup utilise une modale interne */
+.sms-modal,
+.sms-agent-modal,
+.sms-choice-modal,
+#smsAgentModal,
+#smsChoiceModal {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  max-height: calc(
+    100vh -
+    env(safe-area-inset-top) -
+    env(safe-area-inset-bottom) -
+    95px
+  ) !important;
+  overflow-y: auto !important;
+}
+
+/* iPhone petit écran */
+@media (max-width: 480px) {
+  .sms-overlay,
+  .sms-agent-overlay,
+  #smsAgentOverlay,
+  #smsChoiceOverlay {
+    padding-top:
+      max(
+        58px,
+        calc(env(safe-area-inset-top) + 38px)
+      ) !important;
+  }
+}
+
+
+/* ==========================================================
+   v77 - PARAMETRES MODE SOMBRE : BOUTONS LISIBLES
+   ========================================================== */
+
+/* Onglets non actifs : fond gris foncé + texte blanc */
+body.taxi-dark .admin-tab {
+  background: #334155 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #475569 !important;
+}
+
+/* Onglet actif : couleur principale du thème */
+body.taxi-dark .admin-tab.active {
+  background: var(--taxi-primary) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: var(--taxi-primary) !important;
+}
+
+/* Boutons secondaires dans Paramètres */
+body.taxi-dark #adminCard .secondary,
+body.taxi-dark #adminCard button.secondary,
+body.taxi-dark #adminCard .admin-toggle,
+body.taxi-dark #adminCard .small.secondary {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #64748b !important;
+}
+
+/* Boutons principaux */
+body.taxi-dark #adminCard .primary,
+body.taxi-dark #adminCard button.primary {
+  background: var(--taxi-primary) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: var(--taxi-primary) !important;
+}
+
+/* Boutons supprimer */
+body.taxi-dark #adminCard .danger-action,
+body.taxi-dark #adminCard button.danger-action {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #dc2626 !important;
+}
+
+/* Bouton Fermer */
+body.taxi-dark #toggleAdmin,
+body.taxi-dark #closeAdmin,
+body.taxi-dark .admin-toggle {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #64748b !important;
+}
+
+/* Carte descriptive Destinataire : texte clair, pas blanc sur blanc */
+body.taxi-dark #adminCard .manage-intro {
+  background: #334155 !important;
+  border-color: #475569 !important;
+}
+
+body.taxi-dark #adminCard .manage-intro strong {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+body.taxi-dark #adminCard .manage-intro span {
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+}
+
+
+/* ==========================================================
+   v78 - POPUP AGENTS : VERROUILLAGE HORIZONTAL
+   ========================================================== */
+
+.agents-picker-overlay,
+.agents-picker-modal,
+.agents-picker-list,
+#agentsPickerList {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.agents-picker-list,
+#agentsPickerList {
+  touch-action: pan-y !important;
+  overscroll-behavior-x: none !important;
+  overscroll-behavior-y: contain !important;
+}
+
+.agent-check-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.agent-check-content {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.agent-check-content strong,
+.agent-check-content > span {
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+
+/* ==========================================================
+   v78 - APPARENCE : LIBELLES COULEURS PERSONNALISEES
+   ========================================================== */
+
+body.taxi-dark .color-field,
+body.taxi-dark .appearance-color-field,
+body.taxi-dark .appearance-custom-row,
+body.taxi-dark .color-setting {
+  background: #ffffff !important;
+  color: #111827 !important;
+}
+
+body.taxi-dark .color-field label,
+body.taxi-dark .appearance-color-field label,
+body.taxi-dark .appearance-custom-row label,
+body.taxi-dark .color-setting label,
+body.taxi-dark .color-field span,
+body.taxi-dark .appearance-color-field span,
+body.taxi-dark .appearance-custom-row span,
+body.taxi-dark .color-setting span {
+  color: #344054 !important;
+  -webkit-text-fill-color: #344054 !important;
+  opacity: 1 !important;
+}
+
+
+/* ==========================================================
+   v78 - SMS : TOUS LES AGENTS SELECTIONNES
+   ========================================================== */
+
+.sms-all-agents-btn {
+  width: 100% !important;
+  min-height: 64px !important;
+  margin-top: 10px !important;
+  padding: 12px 14px !important;
+
+  border: 1px solid var(--taxi-primary) !important;
+  border-radius: 14px !important;
+
+  background: var(--taxi-primary) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 4px !important;
+
+  text-align: left !important;
+}
+
+.sms-all-agents-btn strong {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+.sms-all-agents-btn small {
+  color: #dbeafe !important;
+  -webkit-text-fill-color: #dbeafe !important;
+  font-size: 11px !important;
+  line-height: 1.3 !important;
+}
+
+
+/* ==========================================================
+   v79 - BOUTON SMS ENVOYER
+   ========================================================== */
+
+.sms-all-agents-btn {
+  align-items: center !important;
+  text-align: center !important;
+  justify-content: center !important;
+  min-height: 58px !important;
+}
+
+.sms-all-agents-btn strong {
+  font-size: 16px !important;
+  letter-spacing: .02em !important;
+}
+
+.sms-all-agents-btn small {
+  font-size: 11px !important;
+}
+
+
+/* ==========================================================
+   v81 - SMS CONSERVE MAIS DESACTIVE POUR PLUS TARD
+   ========================================================== */
+
+#smsAgents:disabled,
+#smsAgents[aria-disabled="true"] {
+  pointer-events: none !important;
+  cursor: default !important;
+  opacity: .42 !important;
+  filter: grayscale(1) !important;
+  background: #64748b !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #64748b !important;
+}
+
+#smsAgents:disabled::after {
+  opacity: .65 !important;
+}
+
+
+/* ==========================================================
+   v82 - MODE SOMBRE GLOBAL ET COHERENT
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   1. Tous les titres et libellés principaux en blanc
+   ---------------------------------------------------------- */
+
+body.taxi-dark h1,
+body.taxi-dark h2,
+body.taxi-dark h3,
+body.taxi-dark h4,
+body.taxi-dark label,
+body.taxi-dark .field > label,
+body.taxi-dark .labelrow label,
+body.taxi-dark .participants-field label,
+body.taxi-dark .message-field label,
+body.taxi-dark .agentbox > label,
+body.taxi-dark .preview h2,
+body.taxi-dark .preview-in-form h2,
+body.taxi-dark .section-title,
+body.taxi-dark .travel-title,
+body.taxi-dark .aller-title,
+body.taxi-dark .admin-header h2,
+body.taxi-dark .admin-header .kicker,
+body.taxi-dark .manage-intro strong,
+body.taxi-dark .appearance-title,
+body.taxi-dark .admin-list-head strong,
+body.taxi-dark .agents-picker-title-row h2,
+body.taxi-dark .agents-picker-kicker {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Récapitulatif */
+body.taxi-dark #apercu,
+body.taxi-dark #apercu *,
+body.taxi-dark .preview,
+body.taxi-dark .preview * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Textes secondaires */
+body.taxi-dark .hint,
+body.taxi-dark .admin-note,
+body.taxi-dark .private-status,
+body.taxi-dark .agent-detail,
+body.taxi-dark .manage-intro span,
+body.taxi-dark .admin-item-main span {
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+}
+
+/* ----------------------------------------------------------
+   2. ALLER SIMPLE / ALLER-RETOUR
+   ---------------------------------------------------------- */
+
+/* Non sélectionné */
+body.taxi-dark .mode-btn {
+  background: #000000 !important;
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+
+  border: 2px solid #cbd5e1 !important;
+
+  opacity: 1 !important;
+}
+
+/* Sélectionné */
+body.taxi-dark .mode-btn.active {
+  background: #334155 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+
+  border: 2px solid #334155 !important;
+
+  opacity: 1 !important;
+}
+
+/* ----------------------------------------------------------
+   3. Boutons généraux du mode sombre
+   ---------------------------------------------------------- */
+
+/* Boutons actifs / principaux */
+body.taxi-dark .primary,
+body.taxi-dark button.primary,
+body.taxi-dark .admin-tab.active,
+body.taxi-dark .agents-picker-validate {
+  background: #334155 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #334155 !important;
+}
+
+/* Boutons non actifs / secondaires */
+body.taxi-dark .secondary,
+body.taxi-dark button.secondary,
+body.taxi-dark .admin-tab:not(.active),
+body.taxi-dark .agents-picker-cancel {
+  background: #000000 !important;
+  color: #e2e8f0 !important;
+  -webkit-text-fill-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+
+/* Bouton paramètres */
+body.taxi-dark .header-settings-btn,
+body.taxi-dark #quickAddBtn {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #64748b !important;
+}
+
+/* SMS désactivé */
+body.taxi-dark #smsAgents:disabled,
+body.taxi-dark #smsAgents[aria-disabled="true"] {
+  background: #475569 !important;
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+  border-color: #64748b !important;
+  opacity: .45 !important;
+}
+
+/* ----------------------------------------------------------
+   4. Champs blancs = texte noir
+   ---------------------------------------------------------- */
+
+body.taxi-dark input,
+body.taxi-dark select,
+body.taxi-dark textarea,
+body.taxi-dark .agent-search,
+body.taxi-dark #ville,
+body.taxi-dark #depart,
+body.taxi-dark #arrivee,
+body.taxi-dark #date,
+body.taxi-dark #heure,
+body.taxi-dark #dateRetour,
+body.taxi-dark #heureRetour,
+body.taxi-dark #agentsPickerSearch {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.taxi-dark input::placeholder,
+body.taxi-dark textarea::placeholder {
+  color: #9ca3af !important;
+  -webkit-text-fill-color: #9ca3af !important;
+}
+
+/* ----------------------------------------------------------
+   5. Cadres principaux
+   ---------------------------------------------------------- */
+
+body.taxi-dark .card,
+body.taxi-dark .preview,
+body.taxi-dark .preview-in-form,
+body.taxi-dark .aller-bloc,
+body.taxi-dark .agentbox,
+body.taxi-dark .admin-card,
+body.taxi-dark .admin-panel {
+  border-color: #cbd5e1 !important;
+}
+
+/* ----------------------------------------------------------
+   6. RETOUR : conserver le vert actuel
+   ---------------------------------------------------------- */
+
+body.taxi-dark .retour-bloc,
+body.taxi-dark .retour-trajet-cadre {
+  border-color: var(--taxi-accent) !important;
+}
+
+body.taxi-dark .retour-title,
+body.taxi-dark .retour-bloc label,
+body.taxi-dark .retour-trajet-cadre {
+  color: var(--taxi-accent) !important;
+  -webkit-text-fill-color: var(--taxi-accent) !important;
+}
+
+/* Les champs de retour restent blancs */
+body.taxi-dark .retour-bloc input,
+body.taxi-dark .retour-bloc select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* ----------------------------------------------------------
+   7. Sélecteur agents
+   ---------------------------------------------------------- */
+
+body.taxi-dark .choose-agents-btn {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.taxi-dark .choose-agents-btn > span {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+body.taxi-dark .agents-count-badge {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   8. Apparence : boutons de thèmes rapides
+   ---------------------------------------------------------- */
+
+body.taxi-dark .theme-choice {
+  background: #ffffff !important;
+  color: #334155 !important;
+  -webkit-text-fill-color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.taxi-dark .theme-choice.active {
+  border: 2px solid #111827 !important;
+}
+
+/* ----------------------------------------------------------
+   9. Suppression reste rouge
+   ---------------------------------------------------------- */
+
+body.taxi-dark .danger-action,
+body.taxi-dark button.danger-action,
+body.taxi-dark .admin-delete {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #dc2626 !important;
+}
+
+
+/* ==========================================================
+   v83 - DIFFERENCE VISUELLE ALLER SIMPLE / ALLER-RETOUR
+   MODE SOMBRE
+   ========================================================== */
+
+/* ALLER SIMPLE : carte NOIRE quand sélectionnée */
+body.taxi-dark #modeSimple.active,
+body.taxi-dark #simpleBtn.active,
+body.taxi-dark [data-mode="simple"].active {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ALLER / RETOUR : carte GRISE quand sélectionnée */
+body.taxi-dark #modeAR.active,
+body.taxi-dark #modeRetour.active,
+body.taxi-dark #returnBtn.active,
+body.taxi-dark [data-mode="retour"].active,
+body.taxi-dark [data-mode="aller-retour"].active {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: #64748b !important;
+}
+
+/* Si les vrais IDs sont simple / ar : couverture supplémentaire */
+body.taxi-dark #simple.active {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+body.taxi-dark #ar.active,
+body.taxi-dark #allerRetour.active {
+  background: #475569 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   v84 - COHERENCE VISUELLE ALLER / RETOUR
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   CADRE ALLER : NOIR
+   ---------------------------------------------------------- */
+
+body.taxi-dark .aller-bloc,
+body.taxi-dark #allerBloc,
+body.taxi-dark .aller-trajet-cadre,
+body.taxi-dark #allerTrajet {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.taxi-dark .aller-bloc *,
+body.taxi-dark #allerBloc *,
+body.taxi-dark .aller-trajet-cadre *,
+body.taxi-dark #allerTrajet * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Les champs dans ALLER restent blancs / texte noir */
+body.taxi-dark .aller-bloc input,
+body.taxi-dark .aller-bloc select,
+body.taxi-dark #allerBloc input,
+body.taxi-dark #allerBloc select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ----------------------------------------------------------
+   CADRE RETOUR : GRIS + LIGNES NOIRES
+   ---------------------------------------------------------- */
+
+body.taxi-dark .retour-bloc,
+body.taxi-dark #retourBloc,
+body.taxi-dark .retour-trajet-cadre,
+body.taxi-dark #retourTrajet {
+  background: #9ca3af !important;
+  color: #111827 !important;
+  border: 2px solid #111827 !important;
+}
+
+body.taxi-dark .retour-bloc *,
+body.taxi-dark #retourBloc *,
+body.taxi-dark .retour-trajet-cadre *,
+body.taxi-dark #retourTrajet * {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Les champs du RETOUR restent blancs */
+body.taxi-dark .retour-bloc input,
+body.taxi-dark .retour-bloc select,
+body.taxi-dark #retourBloc input,
+body.taxi-dark #retourBloc select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #111827 !important;
+}
+
+/* ----------------------------------------------------------
+   BOUTONS ALLER SIMPLE / ALLER-RETOUR
+   sélectionné = BLANC + NOIR
+   non sélectionné = NOIR + BLANC
+   ---------------------------------------------------------- */
+
+body.taxi-dark .mode-btn {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.taxi-dark .mode-btn.active {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   PREPARER L'E-MAIL : NOIR + BLANC
+   ---------------------------------------------------------- */
+
+body.taxi-dark #form button[type="submit"],
+body.taxi-dark #prepareMail,
+body.taxi-dark .primary[type="submit"] {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.taxi-dark #form button[type="submit"] span,
+body.taxi-dark #prepareMail span,
+body.taxi-dark .primary[type="submit"] span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   v85 - BOUTONS DE MODE : COULEURS FIXES
+   ========================================================== */
+
+/* 1. ALLER SIMPLE = NOIR */
+body.taxi-dark .mode-switch .mode-btn:first-child,
+body.taxi-dark .trip-mode .mode-btn:first-child,
+body.taxi-dark .mode-btn[data-mode="simple"] {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* 2. ALLER / RETOUR = GRIS + BORDURE NOIRE */
+body.taxi-dark .mode-switch .mode-btn:last-child,
+body.taxi-dark .trip-mode .mode-btn:last-child,
+body.taxi-dark .mode-btn[data-mode="ar"],
+body.taxi-dark .mode-btn[data-mode="retour"] {
+  background: #9ca3af !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border: 2px solid #111827 !important;
+}
+
+/* La sélection ne change plus leur couleur propre. */
+body.taxi-dark .mode-btn.active {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
+}
+
+
+/* ==========================================================
+   v86 - MODELE 2 VALIDE
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   BOUTONS DE MODE
+   ---------------------------------------------------------- */
+
+/* Aller simple = noir + blanc */
+body.taxi-dark #btnAllerSimple {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Aller / Retour = gris + noir */
+body.taxi-dark #btnAllerRetour {
+  background: #b8b8b8 !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border: 2px solid #111827 !important;
+}
+
+/* Sélection : contour clair seulement, sans changer la couleur propre */
+body.taxi-dark #btnAllerSimple.active,
+body.taxi-dark #btnAllerRetour.active {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
+}
+
+/* ----------------------------------------------------------
+   CADRE ALLER = NOIR
+   ---------------------------------------------------------- */
+
+body.taxi-dark .aller-bloc,
+body.taxi-dark #allerBloc,
+body.taxi-dark .compact-trip-block:not(.retour-bloc) {
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.taxi-dark .aller-bloc label,
+body.taxi-dark #allerBloc label,
+body.taxi-dark .aller-bloc .compact-trip-line,
+body.taxi-dark #allerBloc .compact-trip-line,
+body.taxi-dark .aller-bloc .travel-title,
+body.taxi-dark .aller-bloc .aller-title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Champs ALLER restent blancs */
+body.taxi-dark .aller-bloc input,
+body.taxi-dark .aller-bloc select,
+body.taxi-dark #allerBloc input,
+body.taxi-dark #allerBloc select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ----------------------------------------------------------
+   CADRE RETOUR = GRIS
+   ---------------------------------------------------------- */
+
+body.taxi-dark .retour-bloc,
+body.taxi-dark #retourBloc {
+  background: #b8b8b8 !important;
+  border: 2px solid #111827 !important;
+}
+
+body.taxi-dark .retour-bloc label,
+body.taxi-dark #retourBloc label,
+body.taxi-dark .retour-title,
+body.taxi-dark .retour-bloc .compact-trip-line {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Champs RETOUR restent blancs */
+body.taxi-dark .retour-bloc input,
+body.taxi-dark .retour-bloc select,
+body.taxi-dark #retourBloc input,
+body.taxi-dark #retourBloc select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #111827 !important;
+}
+
+/* ----------------------------------------------------------
+   LIBELLES PRINCIPAUX = BLANCS
+   ---------------------------------------------------------- */
+
+body.taxi-dark .field > label,
+body.taxi-dark .participants-field label,
+body.taxi-dark .message-field label,
+body.taxi-dark .agents-picker-head label,
+body.taxi-dark .preview h2,
+body.taxi-dark .preview-in-form h2 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   VOTRE DEMANDE = SOMBRE + TEXTES BLANCS
+   ---------------------------------------------------------- */
+
+body.taxi-dark .preview,
+body.taxi-dark .preview-in-form {
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.taxi-dark .preview h2,
+body.taxi-dark .preview #apercu,
+body.taxi-dark .preview #apercu *,
+body.taxi-dark .preview-in-form #apercu,
+body.taxi-dark .preview-in-form #apercu * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+body.taxi-dark .preview hr,
+body.taxi-dark .preview-in-form hr,
+body.taxi-dark .preview .preview-row,
+body.taxi-dark .preview-in-form .preview-row {
+  border-color: #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   CHOISIR LES AGENTS
+   ---------------------------------------------------------- */
+
+body.taxi-dark .choose-agents-btn {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.taxi-dark .choose-agents-btn span {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* ----------------------------------------------------------
+   PREPARER L'E-MAIL = NOIR + BLANC
+   ---------------------------------------------------------- */
+
+body.taxi-dark #form button[type="submit"],
+body.taxi-dark .primary[type="submit"] {
+  background: #000000 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.taxi-dark #form button[type="submit"] span,
+body.taxi-dark .primary[type="submit"] span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   SMS DESACTIVE = GRIS
+   ---------------------------------------------------------- */
+
+body.taxi-dark #smsAgents:disabled,
+body.taxi-dark #smsAgents[aria-disabled="true"] {
+  background: #4b5563 !important;
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+  border-color: #6b7280 !important;
+  opacity: .65 !important;
+}
+
+
+/* ==========================================================
+   v87 - RETOUR GRIS : NE PLUS UTILISER LA COULEUR ACCENT
+   ========================================================== */
+
+body.taxi-dark .retour-bloc,
+body.taxi-dark #retourBloc,
+body.taxi-dark .retour-trajet-cadre,
+body.taxi-dark #retourTrajet {
+  background: #b8b8b8 !important;
+  border-color: #111827 !important;
+  color: #111827 !important;
+}
+
+body.taxi-dark .retour-bloc *,
+body.taxi-dark #retourBloc *,
+body.taxi-dark .retour-trajet-cadre *,
+body.taxi-dark #retourTrajet * {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Champs retour blancs, texte noir */
+body.taxi-dark .retour-bloc input,
+body.taxi-dark .retour-bloc select,
+body.taxi-dark #retourBloc input,
+body.taxi-dark #retourBloc select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #111827 !important;
+}
+
+/* Même si --taxi-accent vaut vert, il ne pilote plus RETOUR */
+body.taxi-dark .retour-title,
+body.taxi-dark .retour-bloc label,
+body.taxi-dark .retour-trajet-cadre {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+
+/* ==========================================================
+   v88 - VOTRE DEMANDE : TRAJET SUR UNE SEULE LIGNE
+   ========================================================== */
+
+body.taxi-dark .preview-row,
+body.taxi-dark .preview-in-form .preview-row {
+  display: grid !important;
+  grid-template-columns: 105px minmax(0, 1fr) !important;
+  column-gap: 12px !important;
+  align-items: start !important;
+}
+
+body.taxi-dark .preview-row > :first-child,
+body.taxi-dark .preview-in-form .preview-row > :first-child {
+  grid-column: 1 !important;
+  text-align: left !important;
+}
+
+body.taxi-dark .preview-row > :last-child,
+body.taxi-dark .preview-in-form .preview-row > :last-child {
+  grid-column: 2 !important;
+  text-align: right !important;
+  min-width: 0 !important;
+}
+
+/* Les lignes du trajet restent ensemble. */
+body.taxi-dark .preview-route,
+body.taxi-dark .recap-route {
+  white-space: nowrap !important;
+  display: block !important;
+}
+
+/* La date reste dessous, alignée avec le trajet. */
+body.taxi-dark .preview-date,
+body.taxi-dark .recap-date {
+  display: block !important;
+  text-align: right !important;
+  margin-top: 2px !important;
+  white-space: nowrap !important;
+}
+
+body.taxi-dark .preview-row strong,
+body.taxi-dark .preview-in-form .preview-row strong {
+  text-align: right !important;
+}
+
+
+/* ==========================================================
+   v89 - AGENTS PERSONNALISES : AFFICHAGE UNIQUEMENT EN RECHERCHE
+   ========================================================== */
+.agents-list-search-hidden {
+  display: none !important;
+}
+
+
+/* ==========================================================
+   v92 - BADGE TAXI JAUNE DANS L'ENTETE
+   ========================================================== */
+.hero .logo.taxi-picture-logo {
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px !important;
+  min-height: 72px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.hero .logo.taxi-picture-logo img {
+  display: block !important;
+  width: 72px !important;
+  height: 72px !important;
+  object-fit: contain !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 440px) {
+  .hero .logo.taxi-picture-logo,
+  .hero .logo.taxi-picture-logo img {
+    width: 66px !important;
+    height: 66px !important;
+    min-width: 66px !important;
+    min-height: 66px !important;
+  }
+}
+
+
+/* ==========================================================
+   v93 - BADGE TAXI : IMAGE INTEGREE DIRECTEMENT
+   ========================================================== */
+.hero .taxi-picture-logo {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 74px !important;
+  height: 74px !important;
+  min-width: 74px !important;
+  flex: 0 0 74px !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.hero .taxi-picture-logo img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 74px !important;
+  height: 74px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+}
+
+
+/* ==========================================================
+   v94 - BADGE TAXI JAUNE SUR FOND NOIR
+   ========================================================== */
+
+.hero .taxi-picture-logo {
+  width: 78px !important;
+  height: 78px !important;
+  min-width: 78px !important;
+  min-height: 78px !important;
+  flex: 0 0 78px !important;
+
+  padding: 5px !important;
+
+  background: #000000 !important;
+
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 18px !important;
+
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-shadow: none !important;
+}
+
+.hero .taxi-picture-logo img {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: contain !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+
+  box-shadow: none !important;
+}
+
+/* Même rendu en mode sombre */
+body.taxi-dark .hero .taxi-picture-logo {
+  background: #000000 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Taille légèrement réduite sur petits écrans */
+@media (max-width: 440px) {
+  .hero .taxi-picture-logo {
+    width: 72px !important;
+    height: 72px !important;
+    min-width: 72px !important;
+    min-height: 72px !important;
+    flex-basis: 72px !important;
+    border-radius: 16px !important;
+  }
+}
+
+
+/* ==========================================================
+   v95 - TAXI JAUNE SANS CARRE / FOND D'IMAGE
+   ========================================================== */
+.hero .logo.taxi-picture-logo,
+body.taxi-dark .hero .logo.taxi-picture-logo {
+  width: 82px !important;
+  height: 82px !important;
+  min-width: 82px !important;
+  min-height: 82px !important;
+  flex: 0 0 82px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+}
+
+.hero .logo.taxi-picture-logo img {
+  width: 82px !important;
+  height: 82px !important;
+  min-width: 82px !important;
+  min-height: 82px !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 440px) {
+  .hero .logo.taxi-picture-logo,
+  .hero .logo.taxi-picture-logo img {
+    width: 76px !important;
+    height: 76px !important;
+    min-width: 76px !important;
+    min-height: 76px !important;
+  }
+  .hero .logo.taxi-picture-logo {
+    flex-basis: 76px !important;
+  }
+}
+
+
+/* ==========================================================
+   v96 - COULEURS PERSONNALISEES DU TEXTE
+   ========================================================== */
+
+:root {
+  --taxi-text-primary: #ffffff;
+  --taxi-text-secondary: #cbd5e1;
+}
+
+/* Texte principal */
+body.taxi-dark h1,
+body.taxi-dark h2,
+body.taxi-dark h3,
+body.taxi-dark h4,
+body.taxi-dark .field > label,
+body.taxi-dark .labelrow label,
+body.taxi-dark .participants-field label,
+body.taxi-dark .message-field label,
+body.taxi-dark .agents-picker-head label,
+body.taxi-dark .preview h2,
+body.taxi-dark .preview-in-form h2,
+body.taxi-dark .section-title,
+body.taxi-dark .travel-title,
+body.taxi-dark .aller-title,
+body.taxi-dark .admin-header h2,
+body.taxi-dark .admin-header .kicker,
+body.taxi-dark .manage-intro strong,
+body.taxi-dark .appearance-title,
+body.taxi-dark .admin-list-head strong,
+body.taxi-dark #apercu,
+body.taxi-dark #apercu * {
+  color: var(--taxi-text-primary) !important;
+  -webkit-text-fill-color: var(--taxi-text-primary) !important;
+}
+
+/* Texte secondaire */
+body.taxi-dark .hint,
+body.taxi-dark .admin-note,
+body.taxi-dark .private-status,
+body.taxi-dark .agent-detail,
+body.taxi-dark .manage-intro span,
+body.taxi-dark .admin-item-main span,
+body.taxi-dark .selected-agent-email {
+  color: var(--taxi-text-secondary) !important;
+  -webkit-text-fill-color: var(--taxi-text-secondary) !important;
+}
+
+/* Les champs blancs restent noirs */
+body.taxi-dark input:not([type="color"]),
+body.taxi-dark select,
+body.taxi-dark textarea,
+body.taxi-dark .agent-search,
+body.taxi-dark #agentsPickerSearch {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Les contrôles de couleur conservent leur libellé foncé sur leur cadre blanc */
+body.taxi-dark .color-field span {
+  color: #344054 !important;
+  -webkit-text-fill-color: #344054 !important;
+}

@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Taxi">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css?v=41-reset-direct4">
+<title>Demande de taxi</title>
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/taxi-apple-180.png?v=27">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+
+
+
+
+
+
+<div id="quickAddMenu" class="quick-add-overlay" hidden>
+  <div class="quick-add-menu">
+    <div class="quick-add-title">Paramètres</div>
+
+    <button type="button" id="quickAddLieu" class="quick-choice">
+      <span class="quick-icon">📍</span>
+      <span>
+        <strong>Hôtel / lieu</strong>
+        <small>Ajouter une nouvelle adresse</small>
+      </span>
+    </button>
+
+    <button type="button" id="quickAddAgent" class="quick-choice">
+      <span class="quick-icon">👤</span>
+      <span>
+        <strong>Agent</strong>
+        <small>Ajouter un nouvel agent</small>
+      </span>
+    </button>
+
+    <button type="button" id="quickAddDest" class="quick-choice">
+      <span class="quick-icon">✉️</span>
+      <span>
+        <strong>Destinataire</strong>
+        <small>Gérer l’adresse e-mail</small>
+      </span>
+    </button>
+
+    <button type="button" id="quickAddAppearance" class="quick-choice">
+      <span class="quick-icon">🎨</span>
+      <span>
+        <strong>Apparence</strong>
+        <small>Changer le thème et les couleurs</small>
+      </span>
+    </button>
+
+    <button type="button" id="quickAddClose" class="quick-close">
+      Annuler
+    </button>
+  </div>
+</div>
+<main class="app">
+  <header class="hero">
+    <div class="logo taxi-picture-logo" aria-label="Taxi">
+      <img src="data:image/png;base64,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" alt="Taxi">
+    </div>
+    <div>
+<h1>Demande de taxi</h1>
+</div>
+  
+
+<button
+  type="button"
+  id="quickAddBtn"
+  class="header-settings-btn"
+  aria-label="Paramètres"
+  title="Paramètres"
+>
+  ⚙
+</button>
+
+</header>
+
+  <section class="card">
+    <form id="form">
+      <div class="trip-choice compact-trip-choice">
+        <button type="button" id="btnAllerSimple" class="trip-btn active">
+          Aller simple
+        </button>
+        <button type="button" id="btnAllerRetour" class="trip-btn">
+          Aller / Retour
+        </button>
+      </div>
+
+      <div class="field compact-ville">
+        <label for="ville">Ville</label>
+        <div class="search-wrap">
+          <input
+            id="ville"
+            class="ville-search"
+            type="text"
+            autocomplete="off"
+            placeholder="Rechercher une ville..."
+            required
+          >
+          <div class="ville-results" id="villeResults" hidden></div>
+        </div>
+      </div>
+
+      <div class="locations-row depart-arrivee-row">
+        <div class="field">
+          <label for="depart">Départ</label>
+          <select id="depart" required></select>
+          <div class="detail" id="departDetail"></div>
+        </div>
+
+        <div class="field">
+          <label for="arrivee">Arrivée</label>
+          <select id="arrivee" required></select>
+          <div class="detail" id="arriveeDetail"></div>
+        </div>
+      </div>
+
+      <div class="aller-bloc compact-trip-block">
+        <div class="compact-trip-line">
+          <div class="trip-title">ALLER</div>
+          <div class="compact-date-time">
+            <div class="field">
+              <label for="date">Date</label>
+              <input id="date" type="date" required>
+            </div>
+            <div class="field">
+              <label for="heure">Heure</label>
+              <input id="heure" type="time" required>
+            </div>
+          </div>
+        </div>
+        <div class="trajet-cadre" id="allerTrajet" hidden></div>
+      </div>
+
+      <div id="retourBloc" class="retour-bloc compact-trip-block" hidden>
+        <div class="compact-trip-line">
+          <div class="retour-title">RETOUR</div>
+          <div class="compact-date-time">
+            <div class="field retour-field">
+              <label for="dateRetour">Date</label>
+              <input id="dateRetour" type="date">
+            </div>
+            <div class="field retour-field">
+              <label for="heureRetour">Heure</label>
+              <input id="heureRetour" type="time">
+            </div>
+          </div>
+        </div>
+        <div class="trajet-cadre retour-trajet-cadre" id="retourTrajet" hidden></div>
+      </div>
+
+      
+      <div class="field participants-field agents-picker-field">
+        <div class="agents-picker-head">
+          <label>Agents</label>
+          <span id="agentsCountBadge" class="agents-count-badge">0 sélectionné</span>
+        </div>
+
+        <button
+          type="button"
+          id="chooseAgentsBtn"
+          class="choose-agents-btn"
+        >
+          Choisir les agents
+          <span>›</span>
+        </button>
+
+        <div id="agentsSelectedSummary" class="agents-selected-summary" hidden></div>
+
+        <!-- Zone technique invisible :
+             elle conserve la compatibilité avec le mail, le SMS et les CC existants. -->
+        <div id="agents" class="agents agents-hidden-compat" aria-hidden="true"></div>
+        <strong id="nb" class="agents-hidden-compat">0</strong>
+      </div>
+
+
+      <div class="field message-field">
+        <label for="message">Message</label>
+        <textarea id="message" rows="2" placeholder="Informations complémentaires..."></textarea>
+      </div>
+
+
+      <section class="card preview preview-in-form">
+        <h2>Votre demande</h2>
+        <div id="apercu"></div>
+      </section>
+
+      <button class="primary" type="submit">Préparer l’e-mail <span>→</span></button>
+
+      <button class="sms-btn" type="button" id="smsAgents" disabled aria-disabled="true" title="Fonction disponible ultérieurement">
+        Prévenir les agents par SMS
+        <span>→</span>
+      </button>
+
+      <button class="secondary html-mail-btn" type="button" id="previewHtmlMailBtn">
+        TEST PRÉSENTATION OUTLOOK
+        <span>→</span>
+      </button>
+
+      <button class="secondary" type="button" id="reset" onclick="effacerDemandeDirecte(); return false;">Effacer</button>
+    </form>
+  </section>
+<section id="adminCard" class="card admin-card" hidden>
+    <div class="admin-header">
+      <div>
+        <div class="kicker">ADMINISTRATION</div>
+        <h2>Gérer les données</h2>
+      </div>
+
+      <button type="button" id="toggleAdmin" class="admin-toggle">
+        Ouvrir
+      </button>
+    </div>
+
+    <div id="adminPanel" hidden>
+
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab active" data-tab="lieux">
+          Lieux
+        </button>
+
+        <button type="button" class="admin-tab" data-tab="agents">
+          Agents
+        </button>
+
+        <button type="button" class="admin-tab" data-tab="destinataires">
+          Destinataire
+        </button>
+      
+        <button type="button" class="admin-tab" data-tab="appearance">
+          🎨 Apparence
+        </button>
+      </div>
+
+      <div id="tabLieux" class="admin-section">
+        <div class="manage-intro">
+          <strong>Mes lieux</strong>
+          <span>Ajoutez, modifiez ou supprimez une adresse utilisée pour les taxis.</span>
+        </div>
+
+        <div class="admin-grid">
+          <div class="field">
+            <label for="adminVille">Ville</label>
+            <input id="adminVille" type="text" placeholder="Ex. TOULOUSE">
+          </div>
+
+          <div class="field">
+            <label for="adminLieu">Lieu (ex. Hôtel, Gare)</label>
+            <input id="adminLieu" type="text" placeholder="Ex. HOTEL ...">
+          </div>
+
+          <div class="field">
+            <label for="adminAdresse">Adresse</label>
+            <input id="adminAdresse" type="text" placeholder="Rue, avenue...">
+          </div>
+
+          <div class="field">
+            <label for="adminCP">Code postal / Ville</label>
+            <input id="adminCP" type="text" placeholder="31000 TOULOUSE">
+          </div>
+        </div>
+
+        <div class="admin-actions">
+          <button type="button" id="saveLieu" class="primary small">
+            Ajouter le lieu
+          </button>
+
+          <button type="button" id="cancelLieu" class="secondary small">
+            Annuler
+          </button>
+
+          <button type="button" id="deleteLieu" class="danger-action small">
+            Supprimer
+          </button>
+        </div>
+
+        <div id="lieuxVilleBloc" class="admin-city-places" hidden>
+          <div class="admin-list-head">
+            <strong>Lieux de la ville</strong>
+            <span id="countLieux">0</span>
+          </div>
+
+          <div id="listeLieuxAdmin" class="admin-list"></div>
+        </div>
+      </div>
+
+      <div id="tabAgents" class="admin-section" hidden>
+        <div class="manage-intro">
+          <strong>Mes agents</strong>
+          <span>Ajoutez, modifiez ou supprimez les coordonnées utilisées pour les participants et SMS.</span>
+        </div>
+
+        <div class="private-import">
+          <strong>Base agents privée</strong>
+          <p>Les agents sont stockés uniquement sur cet appareil.</p>
+
+          <input type="file" id="importAgentsFile"
+                 accept=".json,application/json" hidden>
+
+          <div class="admin-actions private-actions">
+            <button type="button" id="importAgentsBtn" class="primary small">
+              Importer les agents
+            </button>
+            <button type="button" id="exportAgentsBtn" class="secondary small">
+              Exporter une sauvegarde
+            </button>
+          </div>
+
+          <div id="privateAgentsStatus" class="private-status">
+            Aucune base privée importée.
+          </div>
+        </div>
+
+        <div class="owner-phone-box">
+          <div class="owner-phone-title">Propriétaire de ce téléphone</div>
+          <div class="field">
+            <label for="ownerAgent">Agent propriétaire</label>
+            <select id="ownerAgent">
+              <option value="">Choisir mon nom...</option>
+            </select>
+          </div>
+          <p class="admin-note">
+            Cet agent sera automatiquement exclu des destinataires SMS.
+          </p>
+        </div>
+
+        <div class="admin-grid">
+          <div class="field">
+            <label for="adminNomAgent">Nom</label>
+            <input id="adminNomAgent" type="text" placeholder="NOM">
+          </div>
+
+          <div class="field">
+            <label for="adminMatricule">Matricule</label>
+            <input id="adminMatricule" type="text" placeholder="---">
+          </div>
+
+          <div class="field">
+            <label for="adminTelephone">Téléphone</label>
+            <input id="adminTelephone" type="tel" placeholder="06 00 00 00 00">
+          </div>
+
+          <div class="field">
+            <label for="adminEmail">E-mail</label>
+            <input id="adminEmail" type="email" placeholder="prenom.nom@...">
+          </div>
+        </div>
+
+        <div class="admin-actions">
+          <button type="button" id="saveAgent" class="primary small">
+            Ajouter l’agent
+          </button>
+
+          <button type="button" id="cancelAgent" class="secondary small">
+            Annuler
+          </button>
+
+          <button type="button" id="deleteAgent" class="danger-action small">
+            Supprimer
+          </button>
+        </div>
+
+        <div class="admin-list-head">
+          <strong>Agents personnalisés</strong>
+          <span id="countAgents">0</span>
+        </div>
+
+        <div id="listeAgentsAdmin" class="admin-list"></div>
+      </div>
+
+      <div id="tabDestinataires" class="admin-section" hidden>
+        <div class="manage-intro">
+          <strong>Destinataire de la demande</strong>
+          <span>Enregistrez l’adresse qui sera remplie automatiquement dans Outlook.</span>
+        </div>
+
+        <div class="admin-grid">
+          <div class="field">
+            <label for="adminNomDest">Nom</label>
+            <input id="adminNomDest" type="text" placeholder="Ex. TAXI TOULOUSE">
+          </div>
+
+          <div class="field">
+            <label for="adminEmailDest">Adresse e-mail</label>
+            <input id="adminEmailDest" type="email" placeholder="taxi@entreprise.fr">
+          </div>
+        </div>
+
+        <div class="admin-actions">
+          <button type="button" id="saveDest" class="primary small">Ajouter</button>
+          <button type="button" id="cancelDest" class="secondary small">Annuler</button>
+          <button type="button" id="deleteDest" class="danger-action small">Supprimer</button>
+        </div>
+
+        <div class="admin-list-head">
+          <strong>Destinataires enregistrés</strong>
+          <span id="countDest">0</span>
+        </div>
+        <div id="listeDestAdmin" class="admin-list"></div>
+      </div>
+
+      
+      <div id="tabAppearance" class="admin-section" hidden>
+        <div class="manage-intro">
+          <strong>Apparence</strong>
+          <span>Choisissez un thème ou personnalisez les couleurs de l'application.</span>
+        </div>
+
+        <div class="appearance-title">Thèmes rapides</div>
+
+        <div class="theme-grid">
+          <button type="button" class="theme-choice" data-theme="classic">
+            <span class="theme-dot theme-classic"></span>
+            Classique
+          </button>
+
+          <button type="button" class="theme-choice" data-theme="blue">
+            <span class="theme-dot theme-blue"></span>
+            Bleu
+          </button>
+
+          <button type="button" class="theme-choice" data-theme="green">
+            <span class="theme-dot theme-green"></span>
+            Vert
+          </button>
+
+          <button type="button" class="theme-choice" data-theme="orange">
+            <span class="theme-dot theme-orange"></span>
+            Orange
+          </button>
+
+          <button type="button" class="theme-choice" data-theme="red">
+            <span class="theme-dot theme-red"></span>
+            Rouge
+          </button>
+
+          <button type="button" class="theme-choice" data-theme="dark">
+            <span class="theme-dot theme-dark"></span>
+            Sombre
+          </button>
+        </div>
+
+        <div class="appearance-title">Couleurs personnalisées</div>
+
+        <div class="color-grid">
+          <label class="color-field">
+            <span>Couleur principale</span>
+            <input id="colorPrimary" type="color" value="#111827">
+          </label>
+
+          <label class="color-field">
+            <span>Bouton e-mail</span>
+            <input id="colorMail" type="color" value="#111827">
+          </label>
+
+          <label class="color-field">
+            <span>Accent / aller-retour</span>
+            <input id="colorAccent" type="color" value="#f59e0b">
+          </label>
+
+          <label class="color-field">
+            <span>Fond</span>
+            <input id="colorBackground" type="color" value="#f3f4f6">
+          </label>
+
+          <label class="color-field">
+            <span>Cadres</span>
+            <input id="colorCard" type="color" value="#ffffff">
+          </label>
+
+          <label class="color-field">
+            <span>Texte principal</span>
+            <input id="colorTextPrimary" type="color" value="#ffffff">
+          </label>
+
+          <label class="color-field">
+            <span>Texte secondaire</span>
+            <input id="colorTextSecondary" type="color" value="#cbd5e1">
+          </label>
+        </div>
+
+        <div class="appearance-actions">
+          <button type="button" id="saveAppearance" class="primary">
+            Enregistrer
+          </button>
+
+          <button type="button" id="resetAppearance" class="secondary">
+            Réinitialiser
+          </button>
+        </div>
+
+        <p class="admin-note">
+          Les couleurs sont enregistrées uniquement sur cet appareil.
+        </p>
+      </div>
+
+<p class="admin-note">
+        Les ajouts sont enregistrés sur cet appareil uniquement.
+      </p>
+    </div>
+  </section>
+</main>
+<script src="database.js"></script>
+<script src="script.js?v=41-reset-direct4"></script>
+
+
+<div id="smsChoiceOverlay" class="sms-choice-overlay" hidden>
+  <div class="sms-choice-card">
+    <div class="sms-choice-head">
+      <strong>Choisir l’agent à prévenir</strong>
+      <button type="button" id="smsChoiceClose" aria-label="Fermer">×</button>
+    </div>
+    <div id="smsChoiceList" class="sms-choice-list"></div>
+  </div>
+</div>
+
+<script>
+function effacerDemandeDirecte() {
+  try {
+    var form = document.getElementById("form");
+    if (form) HTMLFormElement.prototype.reset.call(form);
+
+    var ville = document.getElementById("ville");
+    if (ville) {
+      ville.value = "";
+      ville.dispatchEvent(new Event("input", {bubbles:true}));
+    }
+
+    var depart = document.getElementById("depart");
+    var arrivee = document.getElementById("arrivee");
+
+    if (depart) {
+      depart.innerHTML = '<option value="">Choisir d’abord une ville...</option>';
+      depart.value = "";
+    }
+
+    if (arrivee) {
+      arrivee.innerHTML = '<option value="">Choisir d’abord une ville...</option>';
+      arrivee.value = "";
+    }
+
+    var departDetail = document.getElementById("departDetail");
+    var arriveeDetail = document.getElementById("arriveeDetail");
+    if (departDetail) departDetail.textContent = "";
+    if (arriveeDetail) arriveeDetail.textContent = "";
+
+    ["date","heure","dateRetour","heureRetour","message"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.value = "";
+        el.dispatchEvent(new Event("input", {bubbles:true}));
+        el.dispatchEvent(new Event("change", {bubbles:true}));
+      }
+    });
+
+    // Revenir en aller simple.
+    var simple = document.getElementById("btnAllerSimple");
+    if (simple) simple.click();
+
+    // Vider la sélection des agents.
+    if (typeof selectedAgentNames !== "undefined") {
+      selectedAgentNames = [];
+    }
+    if (typeof participants !== "undefined") {
+      participants = 0;
+    }
+    if (typeof renderAgents === "function") {
+      renderAgents();
+    }
+
+    document.querySelectorAll(".agent-results, .ville-results").forEach(function(el) {
+      el.hidden = true;
+      el.innerHTML = "";
+    });
+
+    var allerTrajet = document.getElementById("allerTrajet");
+    var retourTrajet = document.getElementById("retourTrajet");
+
+    if (allerTrajet) {
+      allerTrajet.textContent = "";
+      allerTrajet.hidden = true;
+    }
+
+    if (retourTrajet) {
+      retourTrajet.textContent = "";
+      retourTrajet.hidden = true;
+    }
+
+    // Forcer le recalcul de l'affichage.
+    if (typeof update === "function") {
+      update();
+    }
+
+    window.scrollTo({top:0, behavior:"smooth"});
+  } catch (err) {
+    console.error("Erreur effacement :", err);
+    alert("Erreur pendant l’effacement : " + err.message);
+  }
+}
+</script>
+
+
+<div id="appVersion" class="app-version">
+  P65-Lab Taxi • v97 • Mise à jour : 15/08/2026 08:05</div>
+
+
+
+<div id="agentsPickerOverlay" class="agents-picker-overlay" hidden>
+  <div class="agents-picker-modal" role="dialog" aria-modal="true" aria-labelledby="agentsPickerTitle">
+    <div class="agents-picker-title-row">
+      <div>
+        <div class="agents-picker-kicker">AGENTS</div>
+        <h2 id="agentsPickerTitle">Sélectionner les agents</h2>
+      </div>
+      <button type="button" id="closeAgentsPicker" class="agents-picker-close" aria-label="Fermer">×</button>
+    </div>
+
+    <div class="agents-picker-search-wrap">
+      <input
+        type="search"
+        id="agentsPickerSearch"
+        placeholder="Rechercher un agent..."
+        autocomplete="off"
+      >
+    </div>
+
+    <div id="agentsPickerList" class="agents-picker-list"></div>
+
+    <div class="agents-picker-actions">
+      <button type="button" id="cancelAgentsPicker" class="agents-picker-cancel">Annuler</button>
+      <button type="button" id="validateAgentsPicker" class="agents-picker-validate">Valider</button>
+    </div>
+  </div>
+</div>
+
+<div id="updateOverlay" class="update-overlay" hidden>
+  <div class="update-card">
+    <div class="update-icon">↻</div>
+    <h2>Nouvelle mise à jour disponible</h2>
+    <p id="updateText">Une nouvelle version de Taxi est disponible.</p>
+
+    <button type="button" id="updateNowBtn" class="update-now-btn">
+      Mettre à jour
+    </button>
+
+    <button type="button" id="updateLaterBtn" class="update-later-btn">
+      Plus tard
+    </button>
+  </div>
+</div>
+
+</body>
+</html>
