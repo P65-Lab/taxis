@@ -138,33 +138,67 @@
       </div>
 
       <div class="field compact-ville">
-        <label for="ville">Ville</label>
-        <div class="search-wrap">
-          <input
-            id="ville"
-            class="ville-search"
-            type="text"
-            autocomplete="off"
-            placeholder="Rechercher une ville..."
-            required
-          >
-          <div class="ville-results" id="villeResults" hidden></div>
-        </div>
-      </div>
 
-      <div class="locations-row depart-arrivee-row">
-        <div class="field">
-          <label for="depart">Départ</label>
-          <select id="depart" required></select>
-          <div class="detail" id="departDetail"></div>
-        </div>
+  <label for="ville">
+    <span class="label-icon">📍</span>
+    Ville
+  </label>
 
-        <div class="field">
-          <label for="arrivee">Arrivée</label>
-          <select id="arrivee" required></select>
-          <div class="detail" id="arriveeDetail"></div>
-        </div>
-      </div>
+  <div class="search-wrap">
+    <input
+      id="ville"
+      class="ville-search"
+      type="text"
+      autocomplete="off"
+      placeholder="Rechercher une ville..."
+      required
+    >
+
+    <div
+      class="ville-results"
+      id="villeResults"
+      hidden
+    ></div>
+  </div>
+
+</div>
+
+    <div class="locations-row depart-arrivee-row">
+
+  <div class="field">
+
+    <label for="depart">
+      <span class="label-icon">📍</span>
+      Départ
+    </label>
+
+    <select id="depart" required></select>
+
+    <div
+      class="detail"
+      id="departDetail"
+    ></div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label for="arrivee">
+      <span class="label-icon">📍</span>
+      Arrivée
+    </label>
+
+    <select id="arrivee" required></select>
+
+    <div
+      class="detail"
+      id="arriveeDetail"
+    ></div>
+
+  </div>
+
+</div>
 
       <div class="aller-bloc compact-trip-block">
         <div class="compact-trip-line">
