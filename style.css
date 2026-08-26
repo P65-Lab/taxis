@@ -2183,7 +2183,8 @@ body > #quickAddBtn.settings-float-btn {
   border-radius: 50% !important;
   touch-action: manipulation !important;
   -webkit-transform: translateZ(0) !important;
-  -webkit-backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden;
+backface-visibility: hidden;
 }
 
 /* Aucune règle responsive ne doit le remettre dans le flux */
@@ -5196,4 +5197,113 @@ body.taxi-dark #agentsPickerSearch {
 body.taxi-dark .color-field span {
   color: #344054 !important;
   -webkit-text-fill-color: #344054 !important;
+}
+/* ==========================================================
+   ACCUEIL TAXI - PLEIN ECRAN
+   ========================================================== */
+
+.taxi-home{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+
+  width:100%;
+  min-height:100vh;
+  min-height:100dvh;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:18px;
+  padding:
+    calc(24px + env(safe-area-inset-top))
+    22px
+    calc(24px + env(safe-area-inset-bottom));
+
+  background:var(--theme-page);
+}
+
+.taxi-home-btn{
+  width:min(100%, 520px);
+  min-height:76px;
+
+  border:2px solid var(--theme-primary);
+  border-radius:18px;
+
+  background:var(--theme-primary);
+  color:#ffffff;
+
+  font-size:18px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+/* ==========================================================
+   POPUP DEMANDE TAXI
+   ========================================================== */
+
+.taxi-request-popup{
+  position:fixed;
+  inset:0;
+  z-index:6000;
+
+  width:100%;
+  height:100vh;
+  height:100dvh;
+
+  padding:
+    calc(12px + env(safe-area-inset-top))
+    10px
+    calc(12px + env(safe-area-inset-bottom));
+
+  background:rgba(17,24,39,.45);
+
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.taxi-request-popup[hidden]{
+  display:none !important;
+}
+
+.taxi-request-popup-card{
+  position:relative;
+
+  width:min(100%,620px);
+  min-height:100%;
+  margin:0 auto;
+
+  background:var(--theme-page);
+  border-radius:20px;
+
+  padding:48px 10px 12px;
+}
+
+.taxi-request-popup-close{
+  position:absolute;
+  z-index:10;
+  top:8px;
+  right:10px;
+
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0;
+  border:0;
+  border-radius:50%;
+
+  background:var(--theme-primary);
+  color:#ffffff;
+
+  font-size:28px;
+  font-weight:400;
+  line-height:1;
+
+  cursor:pointer;
 }

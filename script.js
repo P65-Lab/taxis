@@ -3293,3 +3293,62 @@ document.addEventListener(
     );
   }
 );
+/* ==========================================================
+   ACCUEIL TAXI -> OUVERTURE POPUP
+   ========================================================== */
+
+const taxiHome =
+  document.getElementById("taxiHome");
+
+const taxiRequestPopup =
+  document.getElementById("taxiRequestPopup");
+
+const openAllerSimple =
+  document.getElementById("openAllerSimple");
+
+const openAllerRetour =
+  document.getElementById("openAllerRetour");
+
+const closeTaxiRequestPopup =
+  document.getElementById("closeTaxiRequestPopup");
+
+
+function ouvrirPopupTaxi(modeRetour) {
+
+  setAllerRetour(modeRetour);
+
+  taxiHome.hidden = true;
+  taxiRequestPopup.hidden = false;
+
+  document.body.style.overflow = "hidden";
+
+  taxiRequestPopup.scrollTop = 0;
+}
+
+
+function fermerPopupTaxi() {
+
+  taxiRequestPopup.hidden = true;
+  taxiHome.hidden = false;
+
+  document.body.style.overflow = "";
+
+}
+
+
+openAllerSimple.addEventListener(
+  "click",
+  () => ouvrirPopupTaxi(false)
+);
+
+
+openAllerRetour.addEventListener(
+  "click",
+  () => ouvrirPopupTaxi(true)
+);
+
+
+closeTaxiRequestPopup.addEventListener(
+  "click",
+  fermerPopupTaxi
+);

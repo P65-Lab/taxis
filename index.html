@@ -16,10 +16,6 @@
 <body>
 
 
-
-
-
-
 <div id="quickAddMenu" class="quick-add-overlay" hidden>
   <div class="quick-add-menu">
     <div class="quick-add-title">Paramètres</div>
@@ -82,8 +78,44 @@
 </button>
 
 </header>
+<!-- ==========================================================
+     ACCUEIL - CHOIX DU TYPE DE TRAJET
+     ========================================================== -->
 
-  <section class="card">
+<section id="taxiHome" class="taxi-home">
+
+  <button
+    type="button"
+    id="openAllerSimple"
+    class="taxi-home-btn"
+  >
+    ALLER SIMPLE
+  </button>
+
+  <button
+    type="button"
+    id="openAllerRetour"
+    class="taxi-home-btn"
+  >
+    ALLER / RETOUR
+  </button>
+
+</section>
+ <div id="taxiRequestPopup" class="taxi-request-popup" hidden>
+
+  <div class="taxi-request-popup-card">
+
+    <button
+      type="button"
+      id="closeTaxiRequestPopup"
+      class="taxi-request-popup-close"
+      aria-label="Fermer"
+    >
+      ×
+    </button>
+
+    <section class="card">
+
     <form id="form">
       <div class="trip-choice compact-trip-choice">
         <button type="button" id="btnAllerSimple" class="trip-btn active">
@@ -207,7 +239,12 @@
 
       <button class="secondary" type="button" id="reset" onclick="effacerDemandeDirecte(); return false;">Effacer</button>
     </form>
+
   </section>
+
+  </div>
+</div>
+
 <section id="adminCard" class="card admin-card" hidden>
     <div class="admin-header">
       <div>
