@@ -1702,12 +1702,31 @@ const tabDestinataires = document.getElementById("tabDestinataires");
 const tabAppearance = document.getElementById("tabAppearance");
 
 toggleAdmin.addEventListener("click", () => {
+
+  const taxiHome =
+    document.getElementById("taxiHome");
+
   if (!adminPanel.hidden) {
+
     adminPanel.hidden = true;
     adminCard.hidden = true;
     toggleAdmin.textContent = "Ouvrir";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (taxiHome) {
+      taxiHome.hidden = false;
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
   } else {
+
+    if (taxiHome) {
+      taxiHome.hidden = true;
+    }
+
     adminCard.hidden = false;
     adminPanel.hidden = false;
     toggleAdmin.textContent = "Fermer";
@@ -2578,16 +2597,47 @@ const quickAddAppearance = document.getElementById("quickAddAppearance");
 const quickAddClose = document.getElementById("quickAddClose");
 
 function ouvrirMenuAjout() {
+
+  const taxiHome =
+    document.getElementById("taxiHome");
+
+  if (taxiHome) {
+    taxiHome.hidden = true;
+  }
+
   quickAddMenu.hidden = false;
 }
 
-function fermerMenuAjout() {
+
+function fermerMenuAjout(restaurerAccueil = true) {
+
   quickAddMenu.hidden = true;
+
+  if (!restaurerAccueil) {
+    return;
+  }
+
+  const taxiHome =
+    document.getElementById("taxiHome");
+
+  const taxiRequestPopup =
+    document.getElementById("taxiRequestPopup");
+
+  const taxiRecapPopup =
+    document.getElementById("taxiRecapPopup");
+
+  if (
+    taxiHome &&
+    taxiRequestPopup.hidden &&
+    taxiRecapPopup.hidden
+  ) {
+    taxiHome.hidden = false;
+  }
 }
 
 function ouvrirAdministrationSur(type) {
 
-  fermerMenuAjout();
+  fermerMenuAjout(false);
 
   adminCard.hidden = false;
   adminPanel.hidden = false;
@@ -2988,14 +3038,6 @@ if (toggleAdmin) toggleAdmin.textContent = "Ouvrir";
    ========================================================== */
 document.addEventListener("DOMContentLoaded", () => {
 
-  const btnParam = document.getElementById("quickAddBtn");
-  const menuParam = document.getElementById("quickAddMenu");
-
-  if (btnParam && menuParam) {
-    btnParam.onclick = () => {
-      menuParam.hidden = false;
-    };
-  }
 
   const btnSms = document.getElementById("smsAgents");
 
@@ -3294,7 +3336,7 @@ document.addEventListener(
   }
 );
 /* ==========================================================
-   ACCUEIL TAXI -> OUVERTURE POPUP
+   NAVIGATION ACCUEIL / SAISIE / RECAPITULATIF
    ========================================================== */
 
 const taxiHome =
@@ -3302,6 +3344,9 @@ const taxiHome =
 
 const taxiRequestPopup =
   document.getElementById("taxiRequestPopup");
+
+const taxiRecapPopup =
+  document.getElementById("taxiRecapPopup");
 
 const openAllerSimple =
   document.getElementById("openAllerSimple");
@@ -3312,12 +3357,19 @@ const openAllerRetour =
 const closeTaxiRequestPopup =
   document.getElementById("closeTaxiRequestPopup");
 
+const closeTaxiRecapPopup =
+  document.getElementById("closeTaxiRecapPopup");
 
-function ouvrirPopupTaxi(modeRetour) {
+const validateTaxiRequest =
+  document.getElementById("validateTaxiRequest");
+
+
+function ouvrirSaisieTaxi(modeRetour) {
 
   setAllerRetour(modeRetour);
 
   taxiHome.hidden = true;
+  taxiRecapPopup.hidden = true;
   taxiRequestPopup.hidden = false;
 
   document.body.style.overflow = "hidden";
@@ -3326,48 +3378,17 @@ function ouvrirPopupTaxi(modeRetour) {
 }
 
 
-function fermerPopupTaxi() {
+function fermerSaisieTaxi() {
 
   taxiRequestPopup.hidden = true;
+  taxiRecapPopup.hidden = true;
   taxiHome.hidden = false;
 
   document.body.style.overflow = "";
-
 }
 
 
-openAllerSimple.addEventListener(
-  "click",
-  () => ouvrirPopupTaxi(false)
-);
-
-
-openAllerRetour.addEventListener(
-  "click",
-  () => ouvrirPopupTaxi(true)
-);
-
-
-closeTaxiRequestPopup.addEventListener(
-  "click",
-  fermerPopupTaxi
-);
-
-/* ==========================================================
-   VALIDATION -> POPUP RECAPITULATIF
-   ========================================================== */
-
-const validateTaxiRequest =
-  document.getElementById("validateTaxiRequest");
-
-const taxiRecapPopup =
-  document.getElementById("taxiRecapPopup");
-
-const closeTaxiRecapPopup =
-  document.getElementById("closeTaxiRecapPopup");
-
-
-validateTaxiRequest.addEventListener("click", () => {
+function ouvrirRecapTaxi() {
 
   const form =
     document.getElementById("form");
@@ -3383,13 +3404,43 @@ validateTaxiRequest.addEventListener("click", () => {
   taxiRecapPopup.hidden = false;
 
   taxiRecapPopup.scrollTop = 0;
-});
+}
 
 
-closeTaxiRecapPopup.addEventListener("click", () => {
+function fermerRecapTaxi() {
 
   taxiRecapPopup.hidden = true;
   taxiRequestPopup.hidden = false;
 
   taxiRequestPopup.scrollTop = 0;
-});
+}
+
+
+openAllerSimple.addEventListener(
+  "click",
+  () => ouvrirSaisieTaxi(false)
+);
+
+
+openAllerRetour.addEventListener(
+  "click",
+  () => ouvrirSaisieTaxi(true)
+);
+
+
+closeTaxiRequestPopup.addEventListener(
+  "click",
+  fermerSaisieTaxi
+);
+
+
+validateTaxiRequest.addEventListener(
+  "click",
+  ouvrirRecapTaxi
+);
+
+
+closeTaxiRecapPopup.addEventListener(
+  "click",
+  fermerRecapTaxi
+);

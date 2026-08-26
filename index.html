@@ -220,10 +220,7 @@
       </div>
 
 
-      <section class="card preview preview-in-form">
-        <h2>Votre demande</h2>
-        <div id="apercu"></div>
-      </section>
+     
 
      <div class="taxi-form-actions">
 
@@ -249,62 +246,67 @@
     </form>
 
   </section>
+
+  </div>
+</div>
 <!-- ==========================================================
-     RECAPITULATIF - DANS LE MEME POPUP
+     POPUP 2 - VOTRE DEMANDE
      ========================================================== -->
 
-<section id="taxiRecapZone" class="card preview taxi-recap-zone" hidden>
+<div id="taxiRecapPopup" class="taxi-request-popup" hidden>
 
-  <div class="taxi-recap-head">
-
-    <h2>Récapitulatif de la demande</h2>
+  <div class="taxi-request-popup-card">
 
     <button
       type="button"
-      id="backTaxiForm"
-      class="taxi-recap-back"
+      id="closeTaxiRecapPopup"
+      class="taxi-request-popup-close"
+      aria-label="Fermer"
     >
-      ← Modifier
+      ×
     </button>
 
+    <section class="card preview">
+
+      <h2>Votre demande</h2>
+
+      <div id="apercu"></div>
+
+      <button
+        class="primary"
+        type="submit"
+        form="form"
+      >
+        Préparer l’e-mail
+        <span>→</span>
+      </button>
+
+      <button
+        class="sms-btn"
+        type="button"
+        id="smsAgents"
+        disabled
+        aria-disabled="true"
+        title="Fonction disponible ultérieurement"
+      >
+        Prévenir les agents par SMS
+        <span>→</span>
+      </button>
+
+      <button
+        class="secondary html-mail-btn"
+        type="button"
+        id="previewHtmlMailBtn"
+      >
+        PRÉSENTATION OUTLOOK
+        <span>→</span>
+      </button>
+
+    </section>
+
   </div>
 
-  <div id="apercu"></div>
-
-  <button
-    class="primary"
-    type="submit"
-    form="form"
-  >
-    Préparer l’e-mail
-    <span>→</span>
-  </button>
-
-  <button
-    class="sms-btn"
-    type="button"
-    id="smsAgents"
-    disabled
-    aria-disabled="true"
-    title="Fonction disponible ultérieurement"
-  >
-    Prévenir les agents par SMS
-    <span>→</span>
-  </button>
-
-  <button
-    class="secondary html-mail-btn"
-    type="button"
-    id="previewHtmlMailBtn"
-  >
-    PRÉSENTATION OUTLOOK
-    <span>→</span>
-  </button>
-
-</section>
-  </div>
 </div>
-
 
 
 <section id="adminCard" class="card admin-card" hidden>

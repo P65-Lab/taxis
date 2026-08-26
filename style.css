@@ -5201,7 +5201,9 @@ body.taxi-dark .color-field span {
 /* ==========================================================
    ACCUEIL TAXI - PLEIN ECRAN
    ========================================================== */
-
+.taxi-home:not([hidden]){
+  display:flex;
+}
 .taxi-home{
   position:fixed;
   inset:0;
@@ -5211,7 +5213,7 @@ body.taxi-dark .color-field span {
   min-height:100vh;
   min-height:100dvh;
 
-  display:flex;
+  
   flex-direction:column;
   align-items:center;
   justify-content:center;
@@ -5315,4 +5317,15 @@ body.taxi-dark .color-field span {
 
 #taxiRequestPopup .trip-choice{
   display:none !important;
+}
+
+/* ==========================================================
+   PARAMETRES AU-DESSUS DE L'ACCUEIL TAXI
+   ========================================================== */
+
+#quickAddBtn{
+  position:fixed !important;
+  top:calc(env(safe-area-inset-top, 0px) + 12px) !important;
+  right:14px !important;
+  z-index:7000 !important;
 }
