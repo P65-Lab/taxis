@@ -3414,10 +3414,20 @@ const closeTaxiRecapPopup =
 const validateTaxiRequest =
   document.getElementById("validateTaxiRequest");
 
+const taxiRequestTitle =
+  document.getElementById("taxiRequestTitle");
 
 function ouvrirSaisieTaxi(modeRetour) {
 
   setAllerRetour(modeRetour);
+
+  // Titre du popup suivant le choix fait à l'accueil
+  if (taxiRequestTitle) {
+    taxiRequestTitle.textContent =
+      modeRetour
+        ? "ALLER / RETOUR"
+        : "ALLER SIMPLE";
+  }
 
   const quickAddBtn =
     document.getElementById("quickAddBtn");
