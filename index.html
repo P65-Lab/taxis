@@ -103,18 +103,29 @@
 </section>
  <div id="taxiRequestPopup" class="taxi-request-popup" hidden>
 
+<div id="taxiRequestPopup" class="taxi-request-popup" hidden>
+
   <div class="taxi-request-popup-card">
 
-    <button
-      type="button"
-      id="closeTaxiRequestPopup"
-      class="taxi-request-popup-close"
-      aria-label="Fermer"
-    >
-      ×
-    </button>
+    <!-- EN-TETE POPUP -->
+    <div class="taxi-popup-header">
 
-    <section class="card">
+      <h2 id="taxiRequestTitle" class="taxi-popup-title">
+        ALLER SIMPLE
+      </h2>
+
+      <button
+        type="button"
+        id="closeTaxiRequestPopup"
+        class="taxi-request-popup-close"
+        aria-label="Fermer"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <section class="card taxi-request-form-card">
 
     <form id="form">
       <div class="trip-choice compact-trip-choice">
