@@ -3352,3 +3352,44 @@ closeTaxiRequestPopup.addEventListener(
   "click",
   fermerPopupTaxi
 );
+
+/* ==========================================================
+   VALIDATION -> POPUP RECAPITULATIF
+   ========================================================== */
+
+const validateTaxiRequest =
+  document.getElementById("validateTaxiRequest");
+
+const taxiRecapPopup =
+  document.getElementById("taxiRecapPopup");
+
+const closeTaxiRecapPopup =
+  document.getElementById("closeTaxiRecapPopup");
+
+
+validateTaxiRequest.addEventListener("click", () => {
+
+  const form =
+    document.getElementById("form");
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  update();
+
+  taxiRequestPopup.hidden = true;
+  taxiRecapPopup.hidden = false;
+
+  taxiRecapPopup.scrollTop = 0;
+});
+
+
+closeTaxiRecapPopup.addEventListener("click", () => {
+
+  taxiRecapPopup.hidden = true;
+  taxiRequestPopup.hidden = false;
+
+  taxiRequestPopup.scrollTop = 0;
+});
