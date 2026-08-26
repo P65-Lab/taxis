@@ -5307,3 +5307,12 @@ body.taxi-dark .color-field span {
 
   cursor:pointer;
 }
+
+/* ==========================================================
+   ANCIENS BOUTONS ALLER SIMPLE / ALLER RETOUR
+   Masqués car le choix se fait sur la page d'accueil
+   ========================================================== */
+
+#taxiRequestPopup .trip-choice{
+  display:none !important;
+}
