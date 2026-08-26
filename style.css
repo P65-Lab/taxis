@@ -1251,6 +1251,12 @@ button.primary {
   min-width: 0;
 }
 
+.retour-bloc .compact-date-time {
+  grid-template-columns:
+    minmax(0, 1.55fr)
+    minmax(108px, .75fr) !important;
+}
+
 .retour-bloc .compact-date-time label {
   color: #111827 !important;
 }
