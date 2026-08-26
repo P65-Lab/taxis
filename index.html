@@ -251,22 +251,62 @@
 
 </div>
 
-      <div id="retourBloc" class="retour-bloc compact-trip-block" hidden>
-        <div class="compact-trip-line">
-          <div class="retour-title">RETOUR</div>
-          <div class="compact-date-time">
-            <div class="field retour-field">
-              <label for="dateRetour">Date</label>
-              <input id="dateRetour" type="date">
-            </div>
-            <div class="field retour-field">
-              <label for="heureRetour">Heure</label>
-              <input id="heureRetour" type="time">
-            </div>
+     <div
+  id="retourBloc"
+  class="retour-bloc compact-trip-block"
+  hidden
+>
+
+  <div class="retour-layout">
+
+    <div class="retour-right">
+
+      <div class="compact-date-time">
+
+        <div class="field">
+          <label for="dateRetour">Date</label>
+
+          <div class="date-time-icon-wrap">
+            <span class="field-icon">📅</span>
+
+            <input
+              id="dateRetour"
+              type="date"
+            >
           </div>
         </div>
-        <div class="trajet-cadre retour-trajet-cadre" id="retourTrajet" hidden></div>
+
+
+        <div class="field">
+          <label for="heureRetour">Heure</label>
+
+          <div class="date-time-icon-wrap">
+            <span class="field-icon">🕐</span>
+
+            <input
+              id="heureRetour"
+              type="time"
+            >
+          </div>
+        </div>
+
       </div>
+
+
+      <div
+        class="trajet-cadre"
+        id="retourTrajet"
+        hidden
+      >
+        <span class="trajet-taxi">🚕</span>
+        <span class="trajet-texte"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
       
       <div class="field participants-field agents-picker-field">

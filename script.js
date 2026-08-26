@@ -581,15 +581,31 @@ function update() {
 
 }
 
-  if (retourTrajet) {
-    if (allerRetour && d && a) {
-      retourTrajet.textContent = `${a.lieu} → ${d.lieu}`;
-      retourTrajet.hidden = false;
-    } else {
-      retourTrajet.textContent = "";
-      retourTrajet.hidden = true;
+if (retourTrajet) {
+
+  const trajetTexteRetour =
+    retourTrajet.querySelector(".trajet-texte");
+
+  if (allerRetour && d && a) {
+
+    if (trajetTexteRetour) {
+      trajetTexteRetour.textContent =
+        `${a.lieu} → ${d.lieu}`;
     }
+
+    retourTrajet.hidden = false;
+
+  } else {
+
+    if (trajetTexteRetour) {
+      trajetTexteRetour.textContent = "";
+    }
+
+    retourTrajet.hidden = true;
+
   }
+
+}
 
   apercu.innerHTML = `
     <div class="previewrow">
@@ -1091,7 +1107,14 @@ if (allerTrajet) {
 }
 
 if (retourTrajet) {
-  retourTrajet.textContent = "";
+
+  const trajetTexteRetour =
+    retourTrajet.querySelector(".trajet-texte");
+
+  if (trajetTexteRetour) {
+    trajetTexteRetour.textContent = "";
+  }
+
   retourTrajet.hidden = true;
 }
 
