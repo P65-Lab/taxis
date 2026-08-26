@@ -2386,7 +2386,7 @@ body > #quickAddBtn.settings-float-btn {
 }
 
 /* Bouton Paramètres normal dans le header */
-.header-settings-btn {
+.header-settings-btn:not([hidden]) {
   position: static !important;
 
   top: auto !important;
