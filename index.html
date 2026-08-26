@@ -199,8 +199,7 @@
   <div class="aller-layout">
 
     <div class="aller-left">
-      <div class="aller-taxi">🚕</div>
-      <div class="trip-title">ALLER</div>
+      <div class="aller-taxi"></div>
     </div>
 
     <div class="aller-right">
@@ -212,7 +211,12 @@
 
           <div class="date-time-icon-wrap">
             <span class="field-icon">📅</span>
-            <input id="date" type="date" required>
+
+            <input
+              id="date"
+              type="date"
+              required
+            >
           </div>
         </div>
 
@@ -221,7 +225,12 @@
 
           <div class="date-time-icon-wrap">
             <span class="field-icon">🕐</span>
-            <input id="heure" type="time" required>
+
+            <input
+              id="heure"
+              type="time"
+              required
+            >
           </div>
         </div>
 
@@ -231,19 +240,14 @@
         class="trajet-cadre"
         id="allerTrajet"
         hidden
-      ></div>
+      >
+        <span class="trajet-taxi">🚕</span>
+        <span class="trajet-texte"></span>
+      </div>
 
     </div>
 
   </div>
-
-</div>
-
-  <div
-    class="trajet-cadre"
-    id="allerTrajet"
-    hidden
-  ></div>
 
 </div>
 

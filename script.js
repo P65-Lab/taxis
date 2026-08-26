@@ -555,15 +555,31 @@ function update() {
     .filter(Boolean)
     .map(x => x.nom);
 
-  if (allerTrajet) {
-    if (d && a) {
-      allerTrajet.textContent = `${d.lieu} → ${a.lieu}`;
-      allerTrajet.hidden = false;
-    } else {
-      allerTrajet.textContent = "";
-      allerTrajet.hidden = true;
+ if (allerTrajet) {
+
+  const trajetTexte =
+    allerTrajet.querySelector(".trajet-texte");
+
+  if (d && a) {
+
+    if (trajetTexte) {
+      trajetTexte.textContent =
+        `${d.lieu} → ${a.lieu}`;
     }
+
+    allerTrajet.hidden = false;
+
+  } else {
+
+    if (trajetTexte) {
+      trajetTexte.textContent = "";
+    }
+
+    allerTrajet.hidden = true;
+
   }
+
+}
 
   if (retourTrajet) {
     if (allerRetour && d && a) {
@@ -1060,12 +1076,24 @@ window.effacerDemande = function effacerDemande() {
   dateRetour.required = false;
   heureRetour.required = false;
 
-  // Trajets
-  allerTrajet.textContent = "";
-  allerTrajet.hidden = true;
+// Trajets
 
+if (allerTrajet) {
+
+  const trajetTexte =
+    allerTrajet.querySelector(".trajet-texte");
+
+  if (trajetTexte) {
+    trajetTexte.textContent = "";
+  }
+
+  allerTrajet.hidden = true;
+}
+
+if (retourTrajet) {
   retourTrajet.textContent = "";
   retourTrajet.hidden = true;
+}
 
   // Agents : vider la sélection du popup.
   selectedAgentNames = [];
