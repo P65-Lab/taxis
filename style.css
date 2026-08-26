@@ -5229,10 +5229,10 @@ body.taxi-dark .color-field span {
   width:min(100%, 520px);
   min-height:76px;
 
-  border:2px solid var(--theme-primary);
+  border:2px solid #111827;
   border-radius:18px;
 
-  background:var(--theme-primary);
+ background:#111827;
   color:#ffffff;
 
   font-size:18px;
