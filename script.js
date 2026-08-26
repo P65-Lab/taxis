@@ -3368,9 +3368,16 @@ function ouvrirSaisieTaxi(modeRetour) {
 
   setAllerRetour(modeRetour);
 
+  const quickAddBtn =
+    document.getElementById("quickAddBtn");
+
   taxiHome.hidden = true;
   taxiRecapPopup.hidden = true;
   taxiRequestPopup.hidden = false;
+
+  if (quickAddBtn) {
+    quickAddBtn.hidden = true;
+  }
 
   document.body.style.overflow = "hidden";
 
@@ -3380,9 +3387,16 @@ function ouvrirSaisieTaxi(modeRetour) {
 
 function fermerSaisieTaxi() {
 
+  const quickAddBtn =
+    document.getElementById("quickAddBtn");
+
   taxiRequestPopup.hidden = true;
   taxiRecapPopup.hidden = true;
   taxiHome.hidden = false;
+
+  if (quickAddBtn) {
+    quickAddBtn.hidden = false;
+  }
 
   document.body.style.overflow = "";
 }
