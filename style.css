@@ -5385,3 +5385,41 @@ min-height:40px !important;
   display:flex;
   align-items:center;
 }
+/* ==========================================================
+   PICTOGRAMMES DANS LES CHAMPS TAXI
+   ========================================================== */
+
+.icon-input-wrap,
+.select-icon-wrap,
+.date-time-icon-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.field-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  font-size: 17px;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+/* Ville */
+.icon-input-wrap input {
+  padding-left: 44px !important;
+}
+
+/* Départ / Arrivée */
+.select-icon-wrap select {
+  padding-left: 44px !important;
+}
+
+/* Date / Heure */
+.date-time-icon-wrap input {
+  padding-left: 42px !important;
+}

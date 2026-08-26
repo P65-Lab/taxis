@@ -137,14 +137,12 @@
         </button>
       </div>
 
-      <div class="field compact-ville">
+<div class="field compact-ville">
+  <label for="ville">Ville</label>
 
-  <label for="ville">
-    <span class="label-icon">📍</span>
-    Ville
-  </label>
+  <div class="search-wrap icon-input-wrap">
+    <span class="field-icon">📍</span>
 
-  <div class="search-wrap">
     <input
       id="ville"
       class="ville-search"
@@ -160,47 +158,43 @@
       hidden
     ></div>
   </div>
-
 </div>
 
-    <div class="locations-row depart-arrivee-row">
+
+<div class="locations-row depart-arrivee-row">
 
   <div class="field">
+    <label for="depart">Départ</label>
 
-    <label for="depart">
-      <span class="label-icon">📍</span>
-      Départ
-    </label>
-
-    <select id="depart" required></select>
+    <div class="select-icon-wrap">
+      <span class="field-icon">📍</span>
+      <select id="depart" required></select>
+    </div>
 
     <div
       class="detail"
       id="departDetail"
     ></div>
-
   </div>
 
 
   <div class="field">
+    <label for="arrivee">Arrivée</label>
 
-    <label for="arrivee">
-      <span class="label-icon">📍</span>
-      Arrivée
-    </label>
-
-    <select id="arrivee" required></select>
+    <div class="select-icon-wrap">
+      <span class="field-icon">📍</span>
+      <select id="arrivee" required></select>
+    </div>
 
     <div
       class="detail"
       id="arriveeDetail"
     ></div>
-
   </div>
 
 </div>
 
-      <div class="aller-bloc compact-trip-block">
+     <div class="aller-bloc compact-trip-block">
 
   <div class="compact-trip-line">
 
@@ -212,19 +206,21 @@
     <div class="compact-date-time">
 
       <div class="field">
-        <label for="date">
-          <span class="label-icon">📅</span>
-          Date
-        </label>
-        <input id="date" type="date" required>
+        <label for="date">Date</label>
+
+        <div class="date-time-icon-wrap">
+          <span class="field-icon">📅</span>
+          <input id="date" type="date" required>
+        </div>
       </div>
 
       <div class="field">
-        <label for="heure">
-          <span class="label-icon">🕐</span>
-          Heure
-        </label>
-        <input id="heure" type="time" required>
+        <label for="heure">Heure</label>
+
+        <div class="date-time-icon-wrap">
+          <span class="field-icon">🕐</span>
+          <input id="heure" type="time" required>
+        </div>
       </div>
 
     </div>
