@@ -5423,3 +5423,45 @@ min-height:40px !important;
 .date-time-icon-wrap input {
   padding-left: 42px !important;
 }
+
+.aller-layout{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+}
+
+.aller-left{
+  display:grid;
+  grid-template-rows:auto auto;
+  justify-items:center;
+  align-items:center;
+  padding-top:24px;
+}
+
+.aller-taxi{
+  font-size:22px;
+  line-height:1;
+  margin-bottom:6px;
+}
+
+.aller-left .trip-title{
+  margin:0 !important;
+  padding:0 !important;
+  text-align:center;
+}
+
+.aller-right{
+  min-width:0;
+}
+
+.aller-right .compact-date-time{
+  width:100%;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr) !important;
+  gap:8px !important;
+}
+
+.aller-right .trajet-cadre{
+  margin:8px 0 0 0 !important;
+  width:100%;
+}

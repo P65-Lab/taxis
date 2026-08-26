@@ -194,38 +194,50 @@
 
 </div>
 
-     <div class="aller-bloc compact-trip-block">
+    <div class="aller-bloc compact-trip-block">
 
-  <div class="compact-trip-line">
+  <div class="aller-layout">
 
-    <div class="trip-title">
-      <span class="label-icon">🚕</span>
-      ALLER
+    <div class="aller-left">
+      <div class="aller-taxi">🚕</div>
+      <div class="trip-title">ALLER</div>
     </div>
 
-    <div class="compact-date-time">
+    <div class="aller-right">
 
-      <div class="field">
-        <label for="date">Date</label>
+      <div class="compact-date-time">
 
-        <div class="date-time-icon-wrap">
-          <span class="field-icon">📅</span>
-          <input id="date" type="date" required>
+        <div class="field">
+          <label for="date">Date</label>
+
+          <div class="date-time-icon-wrap">
+            <span class="field-icon">📅</span>
+            <input id="date" type="date" required>
+          </div>
         </div>
+
+        <div class="field">
+          <label for="heure">Heure</label>
+
+          <div class="date-time-icon-wrap">
+            <span class="field-icon">🕐</span>
+            <input id="heure" type="time" required>
+          </div>
+        </div>
+
       </div>
 
-      <div class="field">
-        <label for="heure">Heure</label>
-
-        <div class="date-time-icon-wrap">
-          <span class="field-icon">🕐</span>
-          <input id="heure" type="time" required>
-        </div>
-      </div>
+      <div
+        class="trajet-cadre"
+        id="allerTrajet"
+        hidden
+      ></div>
 
     </div>
 
   </div>
+
+</div>
 
   <div
     class="trajet-cadre"
