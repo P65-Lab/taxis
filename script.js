@@ -1081,24 +1081,21 @@ window.effacerDemande = function effacerDemande() {
   departDetail.textContent = "";
   arriveeDetail.textContent = "";
 
-  // Aller simple par défaut
-  allerRetour = false;
+ // Dates et heures
+dateEl.value = "";
+heure.value = "";
 
-  btnAllerSimple.classList.add("active");
-  btnAllerRetour.classList.remove("active");
+dateRetour.value = "";
+heureRetour.value = "";
 
-  retourBloc.hidden = true;
+// Conserver le mode actuel ALLER SIMPLE / ALLER-RETOUR
+retourBloc.hidden = !allerRetour;
 
-  // Dates et heures
-  dateEl.value = "";
-  heure.value = "";
+btnAllerSimple.classList.toggle("active", !allerRetour);
+btnAllerRetour.classList.toggle("active", allerRetour);
 
-  dateRetour.value = "";
-  heureRetour.value = "";
-
-  dateRetour.required = false;
-  heureRetour.required = false;
-
+dateRetour.required = allerRetour;
+heureRetour.required = allerRetour;
 // Trajets
 
 if (allerTrajet) {
