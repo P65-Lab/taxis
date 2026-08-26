@@ -740,7 +740,14 @@ dateRetour.addEventListener("input", update);
 dateEl.addEventListener(
   "change",
   () => {
+
     appliquerMinDateRetour();
+
+    if (allerRetour && dateEl.value) {
+      dateRetour.value =
+        lendemainISO(dateEl.value);
+    }
+
     update();
   }
 );

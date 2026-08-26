@@ -1170,10 +1170,10 @@ button.primary {
   margin: 8px 0 0 0 !important;
 
   padding:
-    7px
-    12px
-    7px
-    42px !important;
+  7px
+  42px
+  7px
+  12px !important;
 
   box-sizing: border-box !important;
 
@@ -5304,16 +5304,17 @@ min-height:40px !important;
 
 /* VOITURE AU BORD GAUCHE DU CADRE */
 
-.aller-bloc #allerTrajet .trajet-taxi{
-  position:absolute;
+.aller-bloc #allerTrajet .trajet-taxi {
+  position: absolute;
 
-  left:12px;
-  top:50%;
+  right: 12px;
+  left: auto;
 
-  transform:translateY(-50%);
+  top: 50%;
+  transform: translateY(-50%);
 
-  font-size:18px;
-  line-height:1;
+  font-size: 18px;
+  line-height: 1;
 }
 
 
