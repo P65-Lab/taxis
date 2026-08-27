@@ -1148,7 +1148,15 @@ if (retourTrajet) {
     behavior: "smooth"
   });
 };
+const resetBtn =
+  document.getElementById("reset");
 
+if (resetBtn) {
+  resetBtn.addEventListener(
+    "click",
+    window.effacerDemande
+  );
+}
 
 /* ==========================================================
    ENVOI EMAIL
