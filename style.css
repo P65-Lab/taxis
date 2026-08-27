@@ -3445,6 +3445,7 @@ header.hero {
   font-size: 14px;
   line-height: 1;
   color: #6b7280;
+  font-weight: 400;
 }
 
 .agents-selected-summary {
