@@ -352,14 +352,13 @@
     <span>→</span>
   </button>
 
-  <button
-    class="secondary"
-    type="button"
-    id="reset"
-    onclick="effacerDemandeDirecte(); return false;"
-  >
-    EFFACER
-  </button>
+<button
+  class="secondary"
+  type="button"
+  id="reset"
+>
+  EFFACER
+</button>
 
 </div>
     </form>
@@ -742,90 +741,8 @@
   </div>
 </div>
 
-<script>
-function effacerDemandeDirecte() {
-  try {
-    var form = document.getElementById("form");
-    if (form) HTMLFormElement.prototype.reset.call(form);
 
-    var ville = document.getElementById("ville");
-    if (ville) {
-      ville.value = "";
-      ville.dispatchEvent(new Event("input", {bubbles:true}));
-    }
 
-    var depart = document.getElementById("depart");
-    var arrivee = document.getElementById("arrivee");
-
-    if (depart) {
-      depart.innerHTML = '<option value="">Choisir d’abord une ville...</option>';
-      depart.value = "";
-    }
-
-    if (arrivee) {
-      arrivee.innerHTML = '<option value="">Choisir d’abord une ville...</option>';
-      arrivee.value = "";
-    }
-
-    var departDetail = document.getElementById("departDetail");
-    var arriveeDetail = document.getElementById("arriveeDetail");
-    if (departDetail) departDetail.textContent = "";
-    if (arriveeDetail) arriveeDetail.textContent = "";
-
-    ["date","heure","dateRetour","heureRetour","message"].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.value = "";
-        el.dispatchEvent(new Event("input", {bubbles:true}));
-        el.dispatchEvent(new Event("change", {bubbles:true}));
-      }
-    });
-
-    // Revenir en aller simple.
-    var simple = document.getElementById("btnAllerSimple");
-    if (simple) simple.click();
-
-    // Vider la sélection des agents.
-    if (typeof selectedAgentNames !== "undefined") {
-      selectedAgentNames = [];
-    }
-    if (typeof participants !== "undefined") {
-      participants = 0;
-    }
-    if (typeof renderAgents === "function") {
-      renderAgents();
-    }
-
-    document.querySelectorAll(".agent-results, .ville-results").forEach(function(el) {
-      el.hidden = true;
-      el.innerHTML = "";
-    });
-
-    var allerTrajet = document.getElementById("allerTrajet");
-    var retourTrajet = document.getElementById("retourTrajet");
-
-    if (allerTrajet) {
-      allerTrajet.textContent = "";
-      allerTrajet.hidden = true;
-    }
-
-    if (retourTrajet) {
-      retourTrajet.textContent = "";
-      retourTrajet.hidden = true;
-    }
-
-    // Forcer le recalcul de l'affichage.
-    if (typeof update === "function") {
-      update();
-    }
-
-    window.scrollTo({top:0, behavior:"smooth"});
-  } catch (err) {
-    console.error("Erreur effacement :", err);
-    alert("Erreur pendant l’effacement : " + err.message);
-  }
-}
-</script>
 
 
 <div id="appVersion" class="app-version">
