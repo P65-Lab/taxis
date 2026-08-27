@@ -1620,75 +1620,57 @@ function construireMessageSMS(villeExacte, d, a) {
 
 function ouvrirSMS(numeros, texte) {
 
-  const ua =
-    navigator.userAgent || "";
-
-  const estIOS =
-    /iPad|iPhone|iPod/.test(ua) ||
-    (
-      navigator.platform === "MacIntel" &&
-      navigator.maxTouchPoints > 1
-    );
-
-  const estAndroid =
-    /Android/i.test(ua);
-
-  const propres =
-    [
-      ...new Set(
-        (numeros || [])
-          .map(normaliserNumeroSMS)
-          .filter(Boolean)
-      )
-    ];
+  const propres = [
+    ...new Set(
+      (numeros || [])
+        .map(normaliserNumeroSMS)
+        .filter(Boolean)
+    )
+  ];
 
   if (!propres.length) {
-    alert(
-      "Aucun numéro de téléphone disponible."
-    );
+    alert("Aucun numéro de téléphone disponible.");
     return;
   }
 
-  const corps =
-    encodeURIComponent(
-      texte || ""
-    );
+  const corps = encodeURIComponent(texte || "");
 
-  let destinataires;
+  const estAndroid =
+    /Android/i.test(navigator.userAgent || "");
+
   let lienSMS;
 
-  if (estIOS) {
+  if (estAndroid) {
 
-    // iPhone / iPad :
-    // les destinataires multiples sont séparés par une virgule.
-    destinataires =
-      propres.join(",");
+    /*
+      TEST ANDROID GROUPE
 
-    lienSMS =
-      `sms:${destinataires}&body=${corps}`;
+      Plusieurs numéros séparés par ;
+      Exemple :
+      sms:+33611111111;+33622222222?body=...
+    */
 
-  } else if (estAndroid) {
-
-    // Android :
-    // la majorité des applications Messages attendent
-    // un point-virgule entre plusieurs destinataires.
-    destinataires =
-      propres.join(";");
+    const destinataires = propres.join(";");
 
     lienSMS =
       `sms:${destinataires}?body=${corps}`;
 
   } else {
 
-    destinataires =
-      propres.join(",");
+    /*
+      On ne change rien pour les autres appareils
+      pendant notre test Android.
+    */
+
+    const destinataires = propres.join(",");
 
     lienSMS =
       `sms:${destinataires}?body=${corps}`;
   }
 
-  window.location.href =
-    lienSMS;
+  console.log("SMS TEST :", lienSMS);
+
+  window.location.href = lienSMS;
 }
 
 /* ==========================================================
