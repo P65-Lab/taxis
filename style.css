@@ -3401,21 +3401,44 @@ header.hero {
 .choose-agents-btn {
   width: 100%;
   min-height: 52px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 
   padding: 0 15px;
+
   border: 1px solid #d0d5dd;
   border-radius: 13px;
 
   background: #ffffff;
-  color: #111827;
+  color: #6b7280;
 
-  font-size: 16px;
-  font-weight: 900;
+  font-size: 14px;
+  font-weight: 800;
   text-align: left;
+}
+
+.choose-agents-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.choose-agents-icon {
+  font-size: 16px;
+  line-height: 1;
+  filter: grayscale(1);
+}
+
+.choose-agents-arrow {
+  flex: 0 0 auto;
+  color: #6b7280;
+  font-size: 22px;
+  line-height: 1;
 }
 
 .choose-agents-btn > span {
