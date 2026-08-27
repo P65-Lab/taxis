@@ -3166,9 +3166,9 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         return;
       }
-
       const overlay =
         document.getElementById("smsChoiceOverlay");
+     
 
       const liste =
         document.getElementById("smsChoiceList");

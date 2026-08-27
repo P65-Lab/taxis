@@ -1608,7 +1608,6 @@ button.primary {
   border-color: #d7dee8 !important;
 }
 
-
 /* ==========================================================
    V41 - BOUTON + AGENTS SUIT LE THEME
    ========================================================== */
@@ -2702,7 +2701,6 @@ body > #quickAddBtn.settings-float-btn {
   }
 }
 
-
 /* ==========================================================
    v63 - PARAMETRES EXACTEMENT AU BORD DROIT DU HEADER
    ========================================================== */
@@ -3709,9 +3707,8 @@ body.taxi-dark #agentsPickerSearch::placeholder {
    ========================================================== */
 
 /* Popup choix agent SMS : centré plus haut dans la fenêtre */
-.sms-overlay,
+
 .sms-agent-overlay,
-#smsAgentOverlay,
 #smsChoiceOverlay {
   align-items: flex-start !important;
   justify-content: center !important;
@@ -3731,8 +3728,6 @@ body.taxi-dark #agentsPickerSearch::placeholder {
 
 /* Si le popup utilise une modale interne */
 .sms-modal,
-.sms-agent-modal,
-.sms-choice-modal,
 #smsAgentModal,
 #smsChoiceModal {
   margin-top: 0 !important;
@@ -3745,7 +3740,6 @@ body.taxi-dark #agentsPickerSearch::placeholder {
   ) !important;
   overflow-y: auto !important;
 }
-
 /* iPhone petit écran */
 @media (max-width: 480px) {
   .sms-overlay,
@@ -3759,7 +3753,6 @@ body.taxi-dark #agentsPickerSearch::placeholder {
       ) !important;
   }
 }
-
 
 /* ==========================================================
    v77 - PARAMETRES MODE SOMBRE : BOUTONS LISIBLES
@@ -3877,7 +3870,6 @@ body.taxi-dark #adminCard .manage-intro span {
   white-space: nowrap !important;
 }
 
-
 /* ==========================================================
    v78 - APPARENCE : LIBELLES COULEURS PERSONNALISEES
    ========================================================== */
@@ -3903,14 +3895,13 @@ body.taxi-dark .color-setting span {
   opacity: 1 !important;
 }
 
-
 /* ==========================================================
    v78 - SMS : TOUS LES AGENTS SELECTIONNES
    ========================================================== */
 
 .sms-all-agents-btn {
   width: 100% !important;
-  min-height: 64px !important;
+  min-height: 58px !important;
   margin-top: 10px !important;
   padding: 12px 14px !important;
 
@@ -3923,7 +3914,7 @@ body.taxi-dark .color-setting span {
 
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   justify-content: center !important;
   gap: 4px !important;
 
@@ -3933,7 +3924,8 @@ body.taxi-dark .color-setting span {
 .sms-all-agents-btn strong {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
-  font-size: 14px !important;
+  font-size: 16px !important;
+letter-spacing: .02em !important;
   font-weight: 900 !important;
 }
 
@@ -3943,28 +3935,6 @@ body.taxi-dark .color-setting span {
   font-size: 11px !important;
   line-height: 1.3 !important;
 }
-
-
-/* ==========================================================
-   v79 - BOUTON SMS ENVOYER
-   ========================================================== */
-
-.sms-all-agents-btn {
-  align-items: center !important;
-  text-align: center !important;
-  justify-content: center !important;
-  min-height: 58px !important;
-}
-
-.sms-all-agents-btn strong {
-  font-size: 16px !important;
-  letter-spacing: .02em !important;
-}
-
-.sms-all-agents-btn small {
-  font-size: 11px !important;
-}
-
 
 /* ==========================================================
    v81 - SMS CONSERVE MAIS DESACTIVE POUR PLUS TARD
@@ -3985,7 +3955,6 @@ body.taxi-dark .color-setting span {
 #smsAgents:disabled::after {
   opacity: .65 !important;
 }
-
 
 /* ==========================================================
    v82 - MODE SOMBRE GLOBAL ET COHERENT
@@ -5118,11 +5087,14 @@ min-height:40px !important;
 
 /* TEXTE DU TRAJET */
 
-.aller-bloc #allerTrajet .trajet-texte{
+..aller-bloc #allerTrajet .trajet-texte{
   display:block;
   width:100%;
 
-  text-align:center;
+  text-align:left;
+  padding-left:8px;
+  padding-right:34px;
+  box-sizing:border-box;
 
   font-weight:900;
 }
