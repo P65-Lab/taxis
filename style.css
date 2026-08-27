@@ -1474,22 +1474,6 @@ button.primary {
   gap: 8px !important;
 }
 
-/* + et - restent cliquables et visibles */
-.participants-sticky-bar #plus,
-.participants-sticky-bar #moins {
-  position: static !important;
-  flex: 0 0 auto !important;
-}
-
-/* Le + d'ajout reste bien rond */
-.participants-sticky-bar #plus {
-  width: 36px !important;
-  height: 36px !important;
-  min-width: 36px !important;
-  min-height: 36px !important;
-  border-radius: 50% !important;
-}
-
 /* Mobile : sous la roue Paramètres fixe */
 @media (max-width: 480px) {
   .participants-sticky-bar {
@@ -1503,125 +1487,48 @@ button.primary {
   }
 }
 
-
 /* ==========================================================
    v39 - PARTICIPANTS / AGENTS + MESSAGE COMPACT
    ========================================================== */
-
-/* Boutons - et + parfaitement ronds */
-.participants-sticky-bar #moins,
-.participants-sticky-bar #plus {
-  width: 38px !important;
-  height: 38px !important;
-  min-width: 38px !important;
-  min-height: 38px !important;
-
-  padding: 0 !important;
-  border-radius: 50% !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-}
-
-/* Le moins reprend le style neutre */
-.participants-sticky-bar #moins {
-  background: #e5e7eb !important;
-  color: #111827 !important;
-}
-
-/* Le plus suit la couleur du thème */
-.participants-sticky-bar #plus {
-  color: var(--taxi-accent, #16a34a) !important;
-}
-
-/* Bouton large Ajouter un participant / agent */
-.add-agent-wide {
-  width: 100%;
-  min-height: 46px;
-  margin-top: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-
-  border: 1px dashed #cbd5e1;
-  border-radius: 12px;
-
-  background: var(--taxi-card, #ffffff);
-  color: var(--taxi-accent, #16a34a);
-
-  font-size: 14px;
-  font-weight: 900;
-
-  cursor: pointer;
-}
-
-.add-agent-wide-plus {
-  font-size: 25px;
-  font-weight: 500;
-  line-height: 1;
-}
 
 /* Message plus compact */
 .message-field {
   margin-top: 14px !important;
 }
+.message-icon-wrap {
+  position: relative;
+}
+.message-icon {
+  position: absolute;
+  left: 13px;
+  top: 14px;
+  z-index: 2;
 
+  font-size: 16px;
+  line-height: 1;
+
+  filter: grayscale(1);
+  opacity: .65;
+
+  pointer-events: none;
+}
 .message-field textarea#message {
   min-height: 76px !important;
   height: 76px !important;
   max-height: 110px !important;
 
-  padding: 12px 14px !important;
+  padding: 12px 14px 12px 42px !important;
+
   box-sizing: border-box !important;
   border-radius: 14px !important;
 }
-
 /* Mobile */
 @media (max-width: 480px) {
-  .participants-sticky-bar #moins,
-  .participants-sticky-bar #plus {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    min-height: 36px !important;
-  }
-
-  .add-agent-wide {
-    min-height: 42px;
-    margin-top: 8px;
-    font-size: 13px;
-  }
-
   .message-field textarea#message {
     min-height: 68px !important;
     height: 68px !important;
   }
 }
-
-
-/* ==========================================================
-   v40 - Suppression du grand bouton Ajouter un agent
-   ========================================================== */
-.add-agent-wide,
-.add-agent-wide-plus {
-  display: none !important;
-}
-
-.participants-field .agents {
-  margin-bottom: 0 !important;
-}
-
-.message-field {
-  margin-top: 12px !important;
-}
-
 
 /* ==========================================================
    v41 - APERÇU AVANT LES BOUTONS D'ACTION
@@ -1632,20 +1539,16 @@ button.primary {
   padding: 14px !important;
   box-shadow: none !important;
 }
-
 .preview-in-form h2 {
   margin-top: 2px !important;
   margin-bottom: 10px !important;
 }
-
 @media (max-width: 480px) {
   .preview-in-form {
     margin: 12px 0 !important;
     padding: 12px !important;
   }
 }
-
-
 /* V41 FIX PROPRE : DEPART + ARRIVEE COTE A COTE */
 .locations-row.depart-arrivee-row {
   display: grid !important;
@@ -1671,7 +1574,6 @@ button.primary {
     gap: 8px !important;
   }
 }
-
 
 /* ==========================================================
    V41 - THEMES : ALLER SIMPLE / ALLER-RETOUR
@@ -3710,12 +3612,6 @@ body.taxi-dark .agents-picker-title-row h2 {
   -webkit-text-fill-color: #f8fafc !important;
 }
 
-body.taxi-dark .agents-count-badge {
-  background: #334155;
-  color: #ffffff;
-}
-
-body.taxi-dark .choose-agents-btn,
 body.taxi-dark .agents-selected-summary {
   background: #ffffff !important;
   color: #111827 !important;
@@ -3737,7 +3633,6 @@ body.taxi-dark .agents-selected-summary {
     border-radius: 20px 20px 12px 12px;
   }
 }
-
 
 /* ==========================================================
    v76 - POPUP AGENTS : TEXTE LISIBLE EN MODE SOMBRE
@@ -4651,22 +4546,6 @@ body.taxi-dark .preview-in-form .preview-row {
 }
 
 /* ----------------------------------------------------------
-   CHOISIR LES AGENTS
-   ---------------------------------------------------------- */
-
-body.taxi-dark .choose-agents-btn {
-  background: #ffffff !important;
-  color: #111827 !important;
-  -webkit-text-fill-color: #111827 !important;
-  border-color: #cbd5e1 !important;
-}
-
-body.taxi-dark .choose-agents-btn span {
-  color: #111827 !important;
-  -webkit-text-fill-color: #111827 !important;
-}
-
-/* ----------------------------------------------------------
    PREPARER L'E-MAIL = NOIR + BLANC
    ---------------------------------------------------------- */
 
@@ -4785,7 +4664,6 @@ body.taxi-dark .preview-in-form .preview-row strong {
   text-align: right !important;
 }
 
-
 /* ==========================================================
    v89 - AGENTS PERSONNALISES : AFFICHAGE UNIQUEMENT EN RECHERCHE
    ========================================================== */
@@ -4794,134 +4672,24 @@ body.taxi-dark .preview-in-form .preview-row strong {
 }
 
 
+
+
+
+
+
+
 /* ==========================================================
-   v92 - BADGE TAXI JAUNE DANS L'ENTETE
+   BADGE TAXI - CENTRAGE
    ========================================================== */
-.hero .logo.taxi-picture-logo {
-  width: 72px !important;
-  height: 72px !important;
-  min-width: 72px !important;
-  min-height: 72px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  overflow: visible !important;
+
+.hero .taxi-picture-logo {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
-.hero .logo.taxi-picture-logo img {
-  display: block !important;
-  width: 72px !important;
-  height: 72px !important;
-  object-fit: contain !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-@media (max-width: 440px) {
-  .hero .logo.taxi-picture-logo,
-  .hero .logo.taxi-picture-logo img {
-    width: 66px !important;
-    height: 66px !important;
-    min-width: 66px !important;
-    min-height: 66px !important;
-  }
-}
-
-
-/* ==========================================================
-   v93 - BADGE TAXI : IMAGE INTEGREE DIRECTEMENT
-   ========================================================== */
-.hero .taxi-picture-logo {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: 74px !important;
-  height: 74px !important;
-  min-width: 74px !important;
-  flex: 0 0 74px !important;
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  overflow: visible !important;
-}
-
 .hero .taxi-picture-logo img {
   display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: 74px !important;
-  height: 74px !important;
-  max-width: none !important;
-  object-fit: contain !important;
-}
-
-
-/* ==========================================================
-   v94 - BADGE TAXI JAUNE SUR FOND NOIR
-   ========================================================== */
-
-.hero .taxi-picture-logo {
-  width: 78px !important;
-  height: 78px !important;
-  min-width: 78px !important;
-  min-height: 78px !important;
-  flex: 0 0 78px !important;
-
-  padding: 5px !important;
-
-  background: #000000 !important;
-
-  border: 1.5px solid #cbd5e1 !important;
-  border-radius: 18px !important;
-
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  box-shadow: none !important;
-}
-
-.hero .taxi-picture-logo img {
-  display: block !important;
-
-  width: 100% !important;
-  height: 100% !important;
-
-  object-fit: contain !important;
-
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 12px !important;
-
-  box-shadow: none !important;
-}
-
-/* Même rendu en mode sombre */
-body.taxi-dark .hero .taxi-picture-logo {
-  background: #000000 !important;
-  border-color: #cbd5e1 !important;
-}
-
-/* Taille légèrement réduite sur petits écrans */
-@media (max-width: 440px) {
-  .hero .taxi-picture-logo {
-    width: 72px !important;
-    height: 72px !important;
-    min-width: 72px !important;
-    min-height: 72px !important;
-    flex-basis: 72px !important;
-    border-radius: 16px !important;
-  }
 }
 
 
