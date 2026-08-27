@@ -3442,9 +3442,9 @@ header.hero {
 }
 
 .choose-agents-btn > span {
-  font-size: 27px;
+  font-size: 14px;
   line-height: 1;
-  color: var(--taxi-primary);
+  color: #6b7280;
 }
 
 .agents-selected-summary {
