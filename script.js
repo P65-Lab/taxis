@@ -1620,6 +1620,40 @@ function construireMessageSMS(villeExacte, d, a) {
 
 function ouvrirSMS(numeros, texte) {
 
+  const ua = navigator.userAgent || "";
+
+  const estIOS =
+    /iPhone|iPad|iPod/i.test(ua) ||
+    (
+      navigator.platform === "MacIntel" &&
+      navigator.maxTouchPoints > 1
+    );
+
+  const estAndroid =
+    /Android/i.test(ua);
+
+  /* ========================================================
+     TEST IPHONE -> RACCOURCI APPLE
+     ======================================================== */
+
+  if (estIOS) {
+
+    const urlRaccourci =
+      "shortcuts://run-shortcut" +
+      "?name=SMS%20taxi%20test" +
+      "&input=text" +
+      "&text=" +
+      encodeURIComponent("TEST TAXI");
+
+    window.location.href = urlRaccourci;
+
+    return;
+  }
+
+  /* ========================================================
+     ANDROID -> ON GARDE LE SMS GROUPE ACTUEL
+     ======================================================== */
+
   const propres = [
     ...new Set(
       (numeros || [])
@@ -1633,46 +1667,33 @@ function ouvrirSMS(numeros, texte) {
     return;
   }
 
-  const corps = encodeURIComponent(texte || "");
-
-  const estAndroid =
-    /Android/i.test(navigator.userAgent || "");
+  const corps =
+    encodeURIComponent(
+      texte || ""
+    );
 
   let lienSMS;
 
   if (estAndroid) {
 
-    /*
-      TEST ANDROID GROUPE
-
-      Plusieurs numéros séparés par ;
-      Exemple :
-      sms:+33611111111;+33622222222?body=...
-    */
-
-    const destinataires = propres.join(";");
+    const destinataires =
+      propres.join(";");
 
     lienSMS =
       `sms:${destinataires}?body=${corps}`;
 
   } else {
 
-    /*
-      On ne change rien pour les autres appareils
-      pendant notre test Android.
-    */
-
-    const destinataires = propres.join(",");
+    const destinataires =
+      propres.join(",");
 
     lienSMS =
       `sms:${destinataires}?body=${corps}`;
   }
 
-  console.log("SMS TEST :", lienSMS);
-
-  window.location.href = lienSMS;
+  window.location.href =
+    lienSMS;
 }
-
 /* ==========================================================
    BASE AGENTS PRIVEE
    ========================================================== */
