@@ -1636,19 +1636,50 @@ function ouvrirSMS(numeros, texte) {
      TEST IPHONE -> RACCOURCI APPLE
      ======================================================== */
 
-  if (estIOS) {
+ if (estIOS) {
 
-    const urlRaccourci =
-      "shortcuts://run-shortcut" +
-      "?name=SMS%20taxi%20test" +
-      "&input=text" +
-      "&text=" +
-      encodeURIComponent("TEST TAXI");
+  /* -----------------------------------------------
+     TEST : PREMIER NUMERO + VRAI MESSAGE TAXI
+     ----------------------------------------------- */
 
-    window.location.href = urlRaccourci;
+  const propres = [
+    ...new Set(
+      (numeros || [])
+        .map(normaliserNumeroSMS)
+        .filter(Boolean)
+    )
+  ];
 
+  if (!propres.length) {
+    alert("Aucun numéro de téléphone disponible.");
     return;
   }
+
+  // Pour le premier test : UN SEUL numéro
+  const numeroTest = propres[0];
+
+  /*
+     Données envoyées au raccourci :
+
+     ligne 1 = numéro
+     ligne 2 et suivantes = message Taxi
+  */
+  const entreeRaccourci =
+    numeroTest + "\n" +
+    (texte || "");
+
+  const urlRaccourci =
+    "shortcuts://run-shortcut" +
+    "?name=" +
+    encodeURIComponent("SMS taxi test") +
+    "&input=text" +
+    "&text=" +
+    encodeURIComponent(entreeRaccourci);
+
+  window.location.href = urlRaccourci;
+
+  return;
+}
 
   /* ========================================================
      ANDROID -> ON GARDE LE SMS GROUPE ACTUEL
