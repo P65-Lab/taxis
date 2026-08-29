@@ -1592,7 +1592,49 @@ function construireMessageSMS(villeExacte, d, a) {
     `VILLE : ${villeExacte}`,
     "",
     `ALLER : ${d.lieu} → ${a.lieu}`,
-    `DATE : ${frDate(dateEl.value)}`,
+    `function construireMessageSMS(villeExacte, d, a) {
+
+  const separation = "----------------";
+
+  const lignes = [
+    "🚕 DEMANDE DE TAXI",
+    "",
+    `📍 VILLE : ${villeExacte}`,
+    separation,
+    "",
+    "➡️ ALLER",
+    `${d.lieu} → ${a.lieu}`,
+    `📅 ${frDate(dateEl.value)}`,
+    `🕐 ${heure.value}`
+  ];
+
+  if (allerRetour) {
+    lignes.push(
+      "",
+      "⬅️ RETOUR",
+      `${a.lieu} → ${d.lieu}`,
+      `📅 ${frDate(dateRetour.value)}`,
+      `🕐 ${heureRetour.value}`
+    );
+  }
+
+  const texteMessage = message.value.trim();
+
+  if (texteMessage) {
+    lignes.push(
+      "",
+      "💬 MESSAGE",
+      texteMessage
+    );
+  }
+
+  lignes.push(
+    "",
+    separation
+  );
+
+  return lignes.join("\n");
+}DATE : ${frDate(dateEl.value)}`,
     `HEURE : ${heure.value}`
   ];
 
