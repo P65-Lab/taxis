@@ -3429,10 +3429,10 @@ body.taxi-dark .color-field span {
   right: 14px !important;
   z-index: 7000 !important;
 
-  width: 58px !important;
-  height: 58px !important;
-  min-width: 58px !important;
-  min-height: 58px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
 
   padding: 0 !important;
   margin: 0 !important;
