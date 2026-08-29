@@ -3340,11 +3340,13 @@ let miseAJourEnCours = false;
 
 async function verifierMiseAJour() {
 
-  if (miseAJourIgnoree || miseAJourEnCours) {
-    return;
-  }
+ async function verifierMiseAJour() {
+
+  return;
 
   try {
+  
+
 
     const reponse = await fetch(
       `./version.json?t=${Date.now()}`,
