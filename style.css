@@ -3428,6 +3428,29 @@ body.taxi-dark .color-field span {
   top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
   right: 14px !important;
   z-index: 7000 !important;
+
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: var(--taxi-primary, #111827) !important;
+  color: #ffffff !important;
+
+  font-size: 28px !important;
+  line-height: 1 !important;
+
+  box-shadow: 0 8px 22px rgba(17,24,39,.28) !important;
 }
 
 /* ==========================================================
