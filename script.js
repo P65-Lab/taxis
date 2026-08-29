@@ -1590,9 +1590,8 @@ function construireMessageSMS(villeExacte, d, a) {
 
   const lignes = [
     "🚕 DEMANDE DE TAXI",
-    `📍  ${villeExacte}`,
+    `📍 ${villeExacte}`,
     separation,
-    "",
     "➡️ ALLER",
     `${d.lieu} → ${a.lieu}`,
     `📅 ${frDate(dateEl.value)}`,
