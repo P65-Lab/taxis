@@ -1,6 +1,6 @@
 
-const APP_VERSION = "v97";
-const APP_VERSION_DATE = "13/08/2026 10:15";
+const APP_VERSION = "v98";
+const APP_VERSION_DATE = "29/08/2026 15:22";
 
 const baseLieux = window.TAXI_DB || [];
 const baseAgents = [];
@@ -1586,14 +1586,6 @@ function normaliserNumeroSMS(numero) {
 
 function construireMessageSMS(villeExacte, d, a) {
 
-  const lignes = [
-    "Demande de taxi",
-    "",
-    `VILLE : ${villeExacte}`,
-    "",
-    `ALLER : ${d.lieu} → ${a.lieu}`,
-    `function construireMessageSMS(villeExacte, d, a) {
-
   const separation = "----------------";
 
   const lignes = [
@@ -1632,30 +1624,6 @@ function construireMessageSMS(villeExacte, d, a) {
     "",
     separation
   );
-
-  return lignes.join("\n");
-}DATE : ${frDate(dateEl.value)}`,
-    `HEURE : ${heure.value}`
-  ];
-
-  if (allerRetour) {
-    lignes.push(
-      "",
-      `RETOUR : ${a.lieu} → ${d.lieu}`,
-      `DATE : ${frDate(dateRetour.value)}`,
-      `HEURE : ${heureRetour.value}`
-    );
-  }
-
-  const texteMessage = message.value.trim();
-
-  if (texteMessage) {
-    lignes.push(
-      "",
-      "MESSAGE",
-      texteMessage
-    );
-  }
 
   return lignes.join("\n");
 }
