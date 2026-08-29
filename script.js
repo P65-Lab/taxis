@@ -1670,13 +1670,13 @@ function ouvrirSMS(numeros, texte) {
 
   /*
      Données envoyées au raccourci :
+     numéro + séparateur + message Taxi
+  */
 
-     ligne 1 = numéro
-     ligne 2 et suivantes = message Taxi
-const entreeRaccourci =
-  numeroTest +
-  "|||SMS_TAXI|||" +
-  (texte || "");
+  const entreeRaccourci =
+    numeroTest +
+    "|||SMS_TAXI|||" +
+    (texte || "");
 
   const urlRaccourci =
     "shortcuts://run-shortcut" +
