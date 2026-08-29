@@ -3440,10 +3440,6 @@ body.taxi-dark .color-field span {
   border: 0 !important;
   border-radius: 50% !important;
 
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
   background: var(--taxi-primary, #111827) !important;
   color: #ffffff !important;
 
