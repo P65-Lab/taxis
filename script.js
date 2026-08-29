@@ -3332,21 +3332,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ==========================================================
-   DETECTION MISE A JOUR DISPONIBLE
+   DETECTION MISE A JOUR DISPONIBLE - VERSION ROBUSTE
    ========================================================== */
 
+let miseAJourIgnoree = false;
+let miseAJourEnCours = false;
+
 async function verifierMiseAJour() {
+
+  if (miseAJourIgnoree || miseAJourEnCours) {
+    return;
+  }
 
   try {
 
     const reponse = await fetch(
-      `version.json?t=${Date.now()}`,
+      `./version.json?t=${Date.now()}`,
       {
         cache: "no-store"
       }
     );
 
-    if (!reponse.ok) return;
+    if (!reponse.ok) {
+      return;
+    }
 
     const info = await reponse.json();
 
@@ -3364,7 +3373,9 @@ async function verifierMiseAJour() {
     const texte =
       document.getElementById("updateText");
 
-    if (!overlay || !texte) return;
+    if (!overlay || !texte) {
+      return;
+    }
 
     texte.textContent =
       `La version ${info.version} est disponible.`;
@@ -3372,12 +3383,18 @@ async function verifierMiseAJour() {
     overlay.hidden = false;
 
   } catch (err) {
+
     console.log(
       "Vérification mise à jour impossible :",
       err
     );
   }
 }
+
+
+/* ==========================================================
+   BOUTONS POPUP MISE A JOUR
+   ========================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -3392,50 +3409,125 @@ document.addEventListener(
     const updateOverlay =
       document.getElementById("updateOverlay");
 
+
+    /* --------------------------------------------------------
+       METTRE A JOUR
+       -------------------------------------------------------- */
+
     if (updateNowBtn) {
 
       updateNowBtn.addEventListener(
         "click",
         async () => {
 
+          if (miseAJourEnCours) {
+            return;
+          }
+
+          miseAJourEnCours = true;
+
+          if (updateOverlay) {
+            updateOverlay.hidden = true;
+          }
+
           try {
+
+            /* Supprimer tous les caches de la PWA */
+
+            if ("caches" in window) {
+
+              const nomsCaches =
+                await caches.keys();
+
+              await Promise.all(
+                nomsCaches.map(nom =>
+                  caches.delete(nom)
+                )
+              );
+            }
+
+
+            /* Désenregistrer les anciens Service Workers */
 
             if ("serviceWorker" in navigator) {
 
-              const reg =
-                await navigator.serviceWorker.getRegistration();
+              const registrations =
+                await navigator.serviceWorker
+                  .getRegistrations();
 
-              if (reg) {
-                await reg.update();
-              }
+              await Promise.all(
+                registrations.map(reg =>
+                  reg.unregister()
+                )
+              );
             }
 
           } catch (err) {
-            console.log(err);
+
+            console.log(
+              "Nettoyage mise à jour :",
+              err
+            );
           }
 
-          window.location.reload();
+
+          /* Recharge avec une URL différente pour éviter le cache */
+
+          const url =
+            new URL(
+              window.location.href
+            );
+
+          url.searchParams.set(
+            "_maj",
+            Date.now()
+          );
+
+          window.location.replace(
+            url.toString()
+          );
         }
       );
     }
 
-    if (updateLaterBtn && updateOverlay) {
+
+    /* --------------------------------------------------------
+       PLUS TARD
+       -------------------------------------------------------- */
+
+    if (
+      updateLaterBtn &&
+      updateOverlay
+    ) {
 
       updateLaterBtn.addEventListener(
         "click",
         () => {
+
+          miseAJourIgnoree = true;
+
           updateOverlay.hidden = true;
         }
       );
     }
 
+
+    /* Vérification initiale */
+
     verifierMiseAJour();
 
-    // Revérifier lorsqu'on revient dans l'application.
+
+    /* Vérification au retour dans l'application */
+
     document.addEventListener(
       "visibilitychange",
       () => {
-        if (!document.hidden) {
+
+        if (
+          !document.hidden &&
+          !miseAJourIgnoree &&
+          !miseAJourEnCours
+        ) {
           verifierMiseAJour();
         }
       }
