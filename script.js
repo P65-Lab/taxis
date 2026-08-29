@@ -1673,10 +1673,10 @@ function ouvrirSMS(numeros, texte) {
 
      ligne 1 = numéro
      ligne 2 et suivantes = message Taxi
-  */
-  const entreeRaccourci =
-    numeroTest + "\n" +
-    (texte || "");
+const entreeRaccourci =
+  numeroTest +
+  "|||SMS_TAXI|||" +
+  (texte || "");
 
   const urlRaccourci =
     "shortcuts://run-shortcut" +
