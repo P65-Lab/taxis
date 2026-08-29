@@ -1671,7 +1671,7 @@ function ouvrirSMS(numeros, texte) {
   const urlRaccourci =
     "shortcuts://run-shortcut" +
     "?name=" +
-    encodeURIComponent("SMS taxi test") +
+    encodeURIComponent("SMS taxi") +
     "&input=text" +
     "&text=" +
     encodeURIComponent(entreeRaccourci);
