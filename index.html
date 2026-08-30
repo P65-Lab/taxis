@@ -429,17 +429,9 @@
 </div>
 
 
-<section id="adminCard" class="card admin-card" hidden>
-    <div class="admin-header">
-      <div>
-        <div class="kicker">ADMINISTRATION</div>
-        <h2>Gérer les données</h2>
-      </div>
+<section id="adminCard" class="admin-popup-overlay" hidden>
+  <div class="admin-popup-card">
 
-      <button type="button" id="toggleAdmin" class="admin-toggle">
-        Ouvrir
-      </button>
-    </div>
 
     <div id="adminPanel" hidden>
 
@@ -724,10 +716,14 @@
       </div>
 
 <p class="admin-note">
-        Les ajouts sont enregistrés sur cet appareil uniquement.
-      </p>
-    </div>
-  </section>
+  Les ajouts sont enregistrés sur cet appareil uniquement.
+</p>
+
+    </div> <!-- ferme adminPanel -->
+
+  </div> <!-- ferme admin-popup-card -->
+
+</section> <!-- ferme adminCard -->
 </main>
 <script src="database.js"></script>
 <script src="script.js?v=41-reset-direct4"></script>

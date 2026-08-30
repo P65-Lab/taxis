@@ -1806,37 +1806,7 @@ const tabAgents = document.getElementById("tabAgents");
 const tabDestinataires = document.getElementById("tabDestinataires");
 const tabAppearance = document.getElementById("tabAppearance");
 
-toggleAdmin.addEventListener("click", () => {
 
-  const taxiHome =
-    document.getElementById("taxiHome");
-
-  if (!adminPanel.hidden) {
-
-    adminPanel.hidden = true;
-    adminCard.hidden = true;
-    toggleAdmin.textContent = "Ouvrir";
-
-    if (taxiHome) {
-      taxiHome.hidden = false;
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  } else {
-
-    if (taxiHome) {
-      taxiHome.hidden = true;
-    }
-
-    adminCard.hidden = false;
-    adminPanel.hidden = false;
-    toggleAdmin.textContent = "Fermer";
-  }
-});
 
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
@@ -2745,8 +2715,7 @@ function ouvrirAdministrationSur(type) {
 
   adminCard.hidden = false;
   adminPanel.hidden = false;
-  toggleAdmin.textContent = "Fermer";
-
+  
   tabs.forEach(t => t.classList.remove("active"));
 
   tabLieux.hidden = true;
