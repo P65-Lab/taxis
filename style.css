@@ -3648,3 +3648,7 @@ body.taxi-dark .color-field span {
   box-sizing: border-box;
   font-weight: 900;
 }
+
+#privateAgentsStatus {
+  display: none !important;
+}
