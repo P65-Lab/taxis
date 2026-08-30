@@ -2775,49 +2775,30 @@ function ouvrirAdministrationSur(type) {
       adminVille.focus();
     }, 120);
 
-  } else if (type === "agent") {
+} else if (type === "contacts") {
 
-    const tab = document.querySelector(
-      '.admin-tab[data-tab="agents"]'
-    );
+  const tabAgent = document.querySelector(
+    '.admin-tab[data-tab="agents"]'
+  );
 
-    if (tab) tab.classList.add("active");
+  const tabDest = document.querySelector(
+    '.admin-tab[data-tab="destinataires"]'
+  );
 
-    tabAgents.hidden = false;
+  if (tabAgent) tabAgent.classList.add("active");
+  if (tabDest) tabDest.classList.add("active");
 
-    clearAgentForm();
+  tabAgents.hidden = false;
+  tabDestinataires.hidden = false;
 
-    setTimeout(() => {
-      adminNomAgent.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+  clearAgentForm();
 
-      adminNomAgent.focus();
-    }, 120);
-
-  } else if (type === "destinataire") {
-
-    const tab = document.querySelector(
-      '.admin-tab[data-tab="destinataires"]'
-    );
-
-    if (tab) tab.classList.add("active");
-
-    tabDestinataires.hidden = false;
-
-    setTimeout(() => {
-      const champ = document.getElementById("adminNomDest");
-
-      if (champ) {
-        champ.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-        champ.focus();
-      }
-    }, 120);
+  setTimeout(() => {
+    adminNomAgent.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 120);
 
   } else if (type === "appearance") {
 
