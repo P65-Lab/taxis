@@ -492,125 +492,300 @@
 </section>
 
 <section id="popupContacts" class="admin-popup-overlay" hidden>
+
   <div class="admin-popup-card">
-    <button type="button" class="admin-popup-close" data-close-popup="popupContacts">
-  ✕
-</button>
-      <div id="tabAgents" class="admin-section">
-        <div class="manage-intro">
-          <strong>Mes agents</strong>
-          <span>Ajoutez, modifiez ou supprimez les coordonnées utilisées pour les participants et SMS.</span>
-        </div>
 
-        <div class="private-import">
-          <strong>Base agents privée</strong>
-          <p>Les agents sont stockés uniquement sur cet appareil.</p>
+    <!-- =====================================================
+         FERMER
+         ===================================================== -->
+    <button
+      type="button"
+      class="admin-popup-close"
+      data-close-popup="popupContacts">
+      ✕
+    </button>
 
-          <input type="file" id="importAgentsFile"
-                 accept=".json,application/json" hidden>
 
-          <div class="admin-actions private-actions">
-            <button type="button" id="importAgentsBtn" class="primary small">
-              Importer les agents
-            </button>
-            <button type="button" id="exportAgentsBtn" class="secondary small">
-              Exporter une sauvegarde
-            </button>
-          </div>
+    <!-- =====================================================
+         1 - PROPRIETAIRE DE CE TELEPHONE
+         ===================================================== -->
+    <div class="owner-phone-box">
 
-          <div id="privateAgentsStatus" class="private-status">
-            Aucune base privée importée.
-          </div>
-        </div>
-
-        <div class="owner-phone-box">
-          <div class="owner-phone-title">Propriétaire de ce téléphone</div>
-          <div class="field">
-            <label for="ownerAgent">Agent propriétaire</label>
-            <select id="ownerAgent">
-              <option value="">Choisir mon nom...</option>
-            </select>
-          </div>
-          <p class="admin-note">
-            Cet agent sera automatiquement exclu des destinataires SMS.
-          </p>
-        </div>
-
-        <div class="admin-grid">
-          <div class="field">
-            <label for="adminNomAgent">Nom</label>
-            <input id="adminNomAgent" type="text" placeholder="NOM">
-          </div>
-
-          <div class="field">
-            <label for="adminMatricule">Matricule</label>
-            <input id="adminMatricule" type="text" placeholder="---">
-          </div>
-
-          <div class="field">
-            <label for="adminTelephone">Téléphone</label>
-            <input id="adminTelephone" type="tel" placeholder="06 00 00 00 00">
-          </div>
-
-          <div class="field">
-            <label for="adminEmail">E-mail</label>
-            <input id="adminEmail" type="email" placeholder="prenom.nom@...">
-          </div>
-        </div>
-
-        <div class="admin-actions">
-          <button type="button" id="saveAgent" class="primary small">
-            Ajouter l’agent
-          </button>
-
-          <button type="button" id="cancelAgent" class="secondary small">
-            Annuler
-          </button>
-
-          <button type="button" id="deleteAgent" class="danger-action small">
-            Supprimer
-          </button>
-        </div>
-
-        <div class="admin-list-head">
-          <strong>Agents personnalisés</strong>
-          <span id="countAgents">0</span>
-        </div>
-
-        <div id="listeAgentsAdmin" class="admin-list"></div>
+      <div class="owner-phone-title">
+        Propriétaire de ce téléphone
       </div>
 
-     <div id="tabDestinataires" class="admin-section">
-        <div class="manage-intro">
-          <strong>Destinataire de la demande</strong>
-          <span>Enregistrez l’adresse qui sera remplie automatiquement dans Outlook.</span>
-        </div>
+      <div class="field">
+        <label for="ownerAgent">
+          Agent propriétaire
+        </label>
 
-        <div class="admin-grid">
-          <div class="field">
-            <label for="adminNomDest">Nom</label>
-            <input id="adminNomDest" type="text" placeholder="Ex. TAXI TOULOUSE">
-          </div>
-
-          <div class="field">
-            <label for="adminEmailDest">Adresse e-mail</label>
-            <input id="adminEmailDest" type="email" placeholder="taxi@entreprise.fr">
-          </div>
-        </div>
-
-        <div class="admin-actions">
-          <button type="button" id="saveDest" class="primary small">Ajouter</button>
-          <button type="button" id="cancelDest" class="secondary small">Annuler</button>
-          <button type="button" id="deleteDest" class="danger-action small">Supprimer</button>
-        </div>
-
-        <div class="admin-list-head">
-          <strong>Destinataires enregistrés</strong>
-          <span id="countDest">0</span>
-        </div>
-        <div id="listeDestAdmin" class="admin-list"></div>
+        <select id="ownerAgent">
+          <option value="">
+            Choisir mon nom...
+          </option>
+        </select>
       </div>
+
+      <p class="admin-note">
+        Cet agent sera automatiquement exclu des destinataires SMS.
+      </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         2 - AUTRES AGENTS
+         ===================================================== -->
+    <div id="tabAgents" class="admin-section">
+
+      <div class="manage-intro">
+        <strong>Autres agents</strong>
+        <span>
+          Ajoutez, modifiez ou supprimez les coordonnées des agents.
+        </span>
+      </div>
+
+
+      <!-- BASE PRIVEE -->
+      <div class="private-import">
+
+        <strong>Base agents privée</strong>
+
+        <p>
+          Les agents sont stockés uniquement sur cet appareil.
+        </p>
+
+        <input
+          type="file"
+          id="importAgentsFile"
+          accept=".json,application/json"
+          hidden>
+
+        <div class="admin-actions private-actions">
+
+          <button
+            type="button"
+            id="importAgentsBtn"
+            class="primary small">
+            Importer les agents
+          </button>
+
+          <button
+            type="button"
+            id="exportAgentsBtn"
+            class="secondary small">
+            Exporter une sauvegarde
+          </button>
+
+        </div>
+
+        <div
+          id="privateAgentsStatus"
+          class="private-status">
+          Aucune base privée importée.
+        </div>
+
+      </div>
+
+
+      <!-- FORMULAIRE AGENT -->
+      <div class="admin-grid">
+
+        <div class="field">
+          <label for="adminNomAgent">
+            Nom
+          </label>
+
+          <input
+            id="adminNomAgent"
+            type="text"
+            placeholder="NOM">
+        </div>
+
+
+        <div class="field">
+          <label for="adminMatricule">
+            Matricule
+          </label>
+
+          <input
+            id="adminMatricule"
+            type="text"
+            placeholder="---">
+        </div>
+
+
+        <div class="field">
+          <label for="adminTelephone">
+            Téléphone
+          </label>
+
+          <input
+            id="adminTelephone"
+            type="tel"
+            placeholder="06 00 00 00 00">
+        </div>
+
+
+        <div class="field">
+          <label for="adminEmail">
+            E-mail
+          </label>
+
+          <input
+            id="adminEmail"
+            type="email"
+            placeholder="prenom.nom@...">
+        </div>
+
+      </div>
+
+
+      <div class="admin-actions">
+
+        <button
+          type="button"
+          id="saveAgent"
+          class="primary small">
+          Ajouter l’agent
+        </button>
+
+        <button
+          type="button"
+          id="cancelAgent"
+          class="secondary small">
+          Annuler
+        </button>
+
+        <button
+          type="button"
+          id="deleteAgent"
+          class="danger-action small">
+          Supprimer
+        </button>
+
+      </div>
+
+
+      <!-- LISTE DES AGENTS -->
+      <div class="admin-list-head">
+
+        <strong>
+          Agents personnalisés
+        </strong>
+
+        <span id="countAgents">
+          0
+        </span>
+
+      </div>
+
+      <div
+        id="listeAgentsAdmin"
+        class="admin-list">
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         3 - DESTINATAIRE
+         ===================================================== -->
+    <div id="tabDestinataires" class="admin-section">
+
+      <div class="manage-intro">
+
+        <strong>
+          Destinataire de la demande
+        </strong>
+
+        <span>
+          Enregistrez l’adresse qui sera remplie automatiquement dans Outlook.
+        </span>
+
+      </div>
+
+
+      <div class="admin-grid">
+
+        <div class="field">
+
+          <label for="adminNomDest">
+            Nom
+          </label>
+
+          <input
+            id="adminNomDest"
+            type="text"
+            placeholder="Ex. TAXI TOULOUSE">
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="adminEmailDest">
+            Adresse e-mail
+          </label>
+
+          <input
+            id="adminEmailDest"
+            type="email"
+            placeholder="taxi@entreprise.fr">
+
+        </div>
+
+      </div>
+
+
+      <div class="admin-actions">
+
+        <button
+          type="button"
+          id="saveDest"
+          class="primary small">
+          Ajouter
+        </button>
+
+        <button
+          type="button"
+          id="cancelDest"
+          class="secondary small">
+          Annuler
+        </button>
+
+        <button
+          type="button"
+          id="deleteDest"
+          class="danger-action small">
+          Supprimer
+        </button>
+
+      </div>
+
+
+      <div class="admin-list-head">
+
+        <strong>
+          Destinataires enregistrés
+        </strong>
+
+        <span id="countDest">
+          0
+        </span>
+
+      </div>
+
+      <div
+        id="listeDestAdmin"
+        class="admin-list">
+      </div>
+
+    </div>
+
   </div>
+
 </section>
 
 <section id="popupAppearance" class="admin-popup-overlay" hidden>
