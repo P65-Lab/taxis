@@ -2696,8 +2696,7 @@ deleteDestBtn.addEventListener("click", () => {
 const quickAddBtn = document.getElementById("quickAddBtn");
 const quickAddMenu = document.getElementById("quickAddMenu");
 const quickAddLieu = document.getElementById("quickAddLieu");
-const quickAddAgent = document.getElementById("quickAddAgent");
-const quickAddDest = document.getElementById("quickAddDest");
+const quickAddContacts = document.getElementById("quickAddContacts");
 const quickAddAppearance = document.getElementById("quickAddAppearance");
 const quickAddClose = document.getElementById("quickAddClose");
 
@@ -2868,12 +2867,8 @@ quickAddLieu.addEventListener("click", () => {
   ouvrirAdministrationSur("lieu");
 });
 
-quickAddAgent.addEventListener("click", () => {
-  ouvrirAdministrationSur("agent");
-});
-
-quickAddDest.addEventListener("click", () => {
-  ouvrirAdministrationSur("destinataire");
+quickAddContacts.addEventListener("click", () => {
+  ouvrirAdministrationSur("contacts");
 });
 
 quickAddAppearance.addEventListener("click", () => {
