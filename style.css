@@ -335,49 +335,59 @@ select:focus,input:focus,textarea:focus {
    ADMINISTRATION
    ========================================================== */
 
-.admin-card {
-  margin-top: 16px;
-}
+/* ==========================================================
+   POPUPS ADMINISTRATION
+   ========================================================== */
 
-.admin-header {
+.admin-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: center;
+
+  padding: 18px;
+
+  background: rgba(17, 24, 39, 0.48);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  overflow: hidden;
 }
 
-.admin-header h2 {
-  margin: 4px 0 0;
+.admin-popup-overlay[hidden] {
+  display: none !important;
 }
 
-.admin-toggle {
-  border: 0;
-  border-radius: 12px;
-  background: #e5e7eb;
-  color: #111827;
-  padding: 10px 14px;
-  font-weight: 800;
-  cursor: pointer;
+.admin-popup-card {
+  width: min(560px, 100%);
+  max-height: calc(100vh - 36px);
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 20px;
+
+  border-radius: 22px;
+  background: var(--taxi-card, #ffffff);
+
+  box-shadow: 0 24px 70px rgba(17, 24, 39, 0.32);
+
+  box-sizing: border-box;
 }
 
-.admin-tabs {
-  margin: 20px 0 18px;
+.admin-section {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.admin-tab {
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  background: #fff;
-  color: #6b7280;
-  font-weight: 800;
-  cursor: pointer;
-}
 
-.admin-tab.active {
-  background: #111827;
-  color: #fff;
-  border-color: #111827;
-}
+/* ==========================================================
+   CHAMPS ADMINISTRATION
+   ========================================================== */
 
 .admin-grid {
   display: grid;
@@ -396,11 +406,18 @@ select:focus,input:focus,textarea:focus {
   padding: 0 16px;
 }
 
+
+/* ==========================================================
+   LISTES ADMINISTRATION
+   ========================================================== */
+
 .admin-list-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 10px 0;
+
   border-top: 1px solid #e5e7eb;
 }
 
@@ -408,11 +425,15 @@ select:focus,input:focus,textarea:focus {
   min-width: 28px;
   height: 28px;
   padding: 0 8px;
+
   border-radius: 999px;
+
   display: grid;
   place-items: center;
+
   background: #f3f4f6;
   color: #6b7280;
+
   font-size: 12px;
   font-weight: 800;
 }
@@ -425,7 +446,9 @@ select:focus,input:focus,textarea:focus {
 .admin-item {
   border: 1px solid #e5e7eb;
   border-radius: 14px;
+
   padding: 12px;
+
   background: #f9fafb;
 }
 
@@ -453,10 +476,13 @@ select:focus,input:focus,textarea:focus {
 .admin-item-actions button {
   border: 0;
   border-radius: 10px;
+
   min-height: 36px;
   padding: 0 12px;
+
   font-size: 12px;
   font-weight: 800;
+
   cursor: pointer;
 }
 
@@ -472,19 +498,49 @@ select:focus,input:focus,textarea:focus {
 
 .admin-note {
   margin: 16px 0 0;
+
   color: #6b7280;
+
   font-size: 12px;
   text-align: center;
 }
 
 .admin-empty {
   padding: 16px;
+
   text-align: center;
+
   color: #9ca3af;
   font-size: 13px;
 }
 
+
+/* ==========================================================
+   IPHONE / PETITS ECRANS
+   ========================================================== */
+
 @media (max-width: 520px) {
+
+  .admin-popup-overlay {
+    padding:
+      max(12px, env(safe-area-inset-top))
+      12px
+      max(12px, env(safe-area-inset-bottom));
+  }
+
+  .admin-popup-card {
+    width: 100%;
+    max-height: calc(
+      100dvh -
+      max(24px, env(safe-area-inset-top)) -
+      max(24px, env(safe-area-inset-bottom))
+    );
+
+    padding: 16px;
+
+    border-radius: 20px;
+  }
+
   .admin-grid {
     grid-template-columns: 1fr;
   }
@@ -494,11 +550,10 @@ select:focus,input:focus,textarea:focus {
   }
 
   .primary.small,
-    .secondary.small {
+  .secondary.small {
     width: 100%;
   }
 }
-
 /* ==========================================================
    BOUTON SMS
    ========================================================== */

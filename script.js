@@ -1797,10 +1797,6 @@ if (exportAgentsBtn) {
    ADMINISTRATION
    ========================================================== */
 
-const adminCard = document.getElementById("adminCard");
-const toggleAdmin = document.getElementById("toggleAdmin");
-const adminPanel = document.getElementById("adminPanel");
-const tabs = document.querySelectorAll(".admin-tab");
 const tabLieux = document.getElementById("tabLieux");
 const tabAgents = document.getElementById("tabAgents");
 const tabDestinataires = document.getElementById("tabDestinataires");
@@ -3078,14 +3074,6 @@ if (
 }
 
 renderDestinataires();
-
-
-
-// Etat initial : aucune zone Administration visible.
-if (adminCard) adminCard.hidden = true;
-if (adminPanel) adminPanel.hidden = true;
-if (toggleAdmin) toggleAdmin.textContent = "Ouvrir";
-
 
 /* ==========================================================
    v48 - BINDINGS ROBUSTES PARAMETRES + SMS
