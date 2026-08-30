@@ -2663,9 +2663,12 @@ function ouvrirMenuAjout() {
     taxiHome.hidden = true;
   }
 
+  if (quickAddBtn) {
+    quickAddBtn.hidden = true;
+  }
+
   quickAddMenu.hidden = false;
 }
-
 
 function fermerMenuAjout(restaurerAccueil = true) {
 
@@ -2786,9 +2789,45 @@ function ouvrirAdministrationSur(type) {
     }, 120);
   }
 
-
   document.body.style.overflow = "hidden";
 }
+
+
+// ==========================================================
+// FERMETURE DES POPUPS ADMINISTRATION
+// ==========================================================
+
+document
+  .querySelectorAll("[data-close-popup]")
+  .forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      const popup =
+        document.getElementById(
+          btn.dataset.closePopup
+        );
+
+      if (popup) {
+        popup.hidden = true;
+      }
+
+      document.body.style.overflow = "";
+
+      const taxiHome =
+        document.getElementById("taxiHome");
+
+      if (taxiHome) {
+        taxiHome.hidden = false;
+      }
+
+      if (quickAddBtn) {
+        quickAddBtn.hidden = false;
+      }
+
+    });
+
+  });
 
 quickAddBtn.addEventListener("click", ouvrirMenuAjout);
 
