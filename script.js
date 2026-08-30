@@ -1808,19 +1808,7 @@ const tabAppearance = document.getElementById("tabAppearance");
 
 
 
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
 
-    const target = tab.dataset.tab;
-
-    tabLieux.hidden = target !== "lieux";
-    tabAgents.hidden = target !== "agents";
-    tabDestinataires.hidden = target !== "destinataires";
-    if (tabAppearance) tabAppearance.hidden = target !== "appearance";
-  });
-});
 
 let editLieuIndex = -1;
 let editAgentIndex = -1;
@@ -2716,7 +2704,7 @@ function ouvrirAdministrationSur(type) {
   adminCard.hidden = false;
   adminPanel.hidden = false;
   
-  tabs.forEach(t => t.classList.remove("active"));
+  
 
   tabLieux.hidden = true;
   tabAgents.hidden = true;
@@ -2725,11 +2713,7 @@ function ouvrirAdministrationSur(type) {
 
   if (type === "lieu") {
 
-    const tab = document.querySelector(
-      '.admin-tab[data-tab="lieux"]'
-    );
-
-    if (tab) tab.classList.add("active");
+  
 
     tabLieux.hidden = false;
 
@@ -2746,16 +2730,7 @@ function ouvrirAdministrationSur(type) {
 
 } else if (type === "contacts") {
 
-  const tabAgent = document.querySelector(
-    '.admin-tab[data-tab="agents"]'
-  );
 
-  const tabDest = document.querySelector(
-    '.admin-tab[data-tab="destinataires"]'
-  );
-
-  if (tabAgent) tabAgent.classList.add("active");
-  if (tabDest) tabDest.classList.add("active");
 
   tabAgents.hidden = false;
   tabDestinataires.hidden = false;
