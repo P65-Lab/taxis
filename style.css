@@ -1727,14 +1727,43 @@ button.primary {
 }
 
 .owner-phone-box .field {
-  margin-bottom: 4px !important;
+  margin-bottom: 0 !important;
+}
+
+.owner-agent-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.9fr);
+  gap: 14px;
+  align-items: center;
+}
+
+.owner-agent-line select {
+  width: 100%;
+  margin: 0;
+}
+
+.owner-agent-line .admin-note {
+  margin: 0 !important;
+  text-align: left !important;
+  line-height: 1.35;
+}
+
+@media (max-width: 480px) {
+  .owner-agent-line {
+    grid-template-columns: minmax(0, 1fr) minmax(135px, 0.8fr);
+    gap: 10px;
+  }
+
+  .owner-agent-line .admin-note {
+    font-size: 11px;
+  }
 }
 
 .sms-choice-overlay {
   position: fixed;
   inset: 0;
   z-index: 2147483200;
-  background: rgba(0,0,0,.45);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: flex-end;
   justify-content: center;
