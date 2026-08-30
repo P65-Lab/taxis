@@ -2752,18 +2752,9 @@ function ouvrirAdministrationSur(type) {
       popupContacts.hidden = false;
     }
 
-    clearAgentForm();
-
-    setTimeout(() => {
-
-      if (adminNomAgent) {
-        adminNomAgent.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-
-    }, 120);
+ if (agentFormBox) {
+  agentFormBox.hidden = true;
+}
   }
 
 
@@ -2792,6 +2783,45 @@ function ouvrirAdministrationSur(type) {
   document.body.style.overflow = "hidden";
 }
 
+// ==========================================================
+// OUVRIR LE FORMULAIRE AJOUT AGENT
+// ==========================================================
+
+const openAgentForm =
+  document.getElementById("openAgentForm");
+
+const agentFormBox =
+  document.getElementById("agentFormBox");
+
+if (openAgentForm && agentFormBox) {
+
+openAgentForm.addEventListener("click", () => {
+
+  // Si le cadre est ouvert -> on le ferme
+  if (!agentFormBox.hidden) {
+
+    agentFormBox.hidden = true;
+    clearAgentForm();
+
+    openAgentForm.textContent = "+ Ajouter un agent";
+
+    return;
+  }
+
+  // Si le cadre est fermé -> on l'ouvre
+  agentFormBox.hidden = false;
+
+  clearAgentForm();
+
+  openAgentForm.textContent = "− Fermer";
+
+  setTimeout(() => {
+    adminNomAgent.focus();
+  }, 100);
+
+});
+
+}
 
 // ==========================================================
 // FERMETURE DES POPUPS ADMINISTRATION

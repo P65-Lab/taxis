@@ -545,8 +545,12 @@
           Ajoutez, modifiez ou supprimez les coordonnées des agents.
         </span>
       </div>
-
-
+      <button
+  type="button"
+  id="openAgentForm"
+  class="primary">
+  + Ajouter un agent
+</button>
       <!-- BASE PRIVEE -->
       <div class="private-import">
 
@@ -590,7 +594,8 @@
 
 
       <!-- FORMULAIRE AGENT -->
-      <div class="admin-grid">
+      <div id="agentFormBox" class="agent-form-box" hidden>
+  <div class="admin-grid">
 
         <div class="field">
           <label for="adminNomAgent">
@@ -642,30 +647,32 @@
       </div>
 
 
-      <div class="admin-actions">
+ <div class="admin-actions">
 
-        <button
-          type="button"
-          id="saveAgent"
-          class="primary small">
-          Ajouter l’agent
-        </button>
+  <button
+    type="button"
+    id="saveAgent"
+    class="primary small">
+    Ajouter l’agent
+  </button>
 
-        <button
-          type="button"
-          id="cancelAgent"
-          class="secondary small">
-          Annuler
-        </button>
+  <button
+    type="button"
+    id="cancelAgent"
+    class="secondary small">
+    Annuler
+  </button>
 
-        <button
-          type="button"
-          id="deleteAgent"
-          class="danger-action small">
-          Supprimer
-        </button>
+  <button
+    type="button"
+    id="deleteAgent"
+    class="danger-action small">
+    Supprimer
+  </button>
 
-      </div>
+</div> <!-- ferme admin-actions -->
+
+</div> <!-- ferme agentFormBox -->
 
 
       <!-- LISTE DES AGENTS -->
