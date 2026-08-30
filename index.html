@@ -534,140 +534,119 @@
     </div>
 
 
-    <!-- =====================================================
-         2 - AUTRES AGENTS
-         ===================================================== -->
-    <div id="tabAgents" class="admin-section">
+<!-- =====================================================
+     2 - AUTRES AGENTS
+     ===================================================== -->
 
-      <div class="manage-intro">
-  <strong>Autres agents</strong>
-</div>
+<div id="tabAgents" class="admin-section">
+
+  <div class="manage-intro">
+    <strong>Autres agents</strong>
+  </div>
+
+  <button
+    type="button"
+    id="openAgentForm"
+    class="primary">
+    + Ajouter un agent
+  </button>
+
+  <div class="private-import">
+
+    <strong>Base agents privée</strong>
+
+    <input
+      type="file"
+      id="importAgentsFile"
+      accept=".json,application/json"
+      hidden>
+
+    <div class="admin-actions private-actions">
+
       <button
-  type="button"
-  id="openAgentForm"
-  class="primary">
-  + Ajouter un agent
-</button>
-      <!-- BASE PRIVEE -->
-      <div class="private-import">
+        type="button"
+        id="importAgentsBtn"
+        class="primary small">
+        Importer
+      </button>
 
-        <strong>Base agents privée</strong>
+      <button
+        type="button"
+        id="exportAgentsBtn"
+        class="secondary small">
+        Exporter
+      </button>
 
-        <input
-          type="file"
-          id="importAgentsFile"
-          accept=".json,application/json"
-          hidden>
+    </div>
 
-        <div class="admin-actions private-actions">
+    <div
+      id="privateAgentsStatus"
+      class="private-status">
+    </div>
 
-          <button
-            type="button"
-            id="importAgentsBtn"
-            class="primary small">
-            Importer les agents
-          </button>
+  </div>
 
-          <button
-            type="button"
-            id="exportAgentsBtn"
-            class="secondary small">
-            Exporter une sauvegarde
-          </button>
+  <div id="agentFormBox" class="agent-form-box" hidden>
 
-        </div>
+    <div class="admin-grid">
 
-        <div
-          id="privateAgentsStatus"
-          class="private-status">
-          Aucune base privée importée.
-        </div>
-
+      <div class="field">
+        <label for="adminNomAgent">Nom</label>
+        <input id="adminNomAgent" type="text" placeholder="NOM">
       </div>
 
-
-      <!-- FORMULAIRE AGENT -->
-      <div id="agentFormBox" class="agent-form-box" hidden>
-  <div class="admin-grid">
-
-        <div class="field">
-          <label for="adminNomAgent">
-            Nom
-          </label>
-
-          <input
-            id="adminNomAgent"
-            type="text"
-            placeholder="NOM">
-        </div>
-
-
-        <div class="field">
-          <label for="adminMatricule">
-            Matricule
-          </label>
-
-          <input
-            id="adminMatricule"
-            type="text"
-            placeholder="---">
-        </div>
-
-
-        <div class="field">
-          <label for="adminTelephone">
-            Téléphone
-          </label>
-
-          <input
-            id="adminTelephone"
-            type="tel"
-            placeholder="06 00 00 00 00">
-        </div>
-
-
-        <div class="field">
-          <label for="adminEmail">
-            E-mail
-          </label>
-
-          <input
-            id="adminEmail"
-            type="email"
-            placeholder="prenom.nom@...">
-        </div>
-
+      <div class="field">
+        <label for="adminMatricule">Matricule</label>
+        <input id="adminMatricule" type="text" placeholder="---">
       </div>
 
+      <div class="field">
+        <label for="adminTelephone">Téléphone</label>
+        <input id="adminTelephone" type="tel" placeholder="06 00 00 00 00">
+      </div>
 
- <div class="admin-actions">
+      <div class="field">
+        <label for="adminEmail">E-mail</label>
+        <input id="adminEmail" type="email" placeholder="prenom.nom@...">
+      </div>
 
-  <button
-    type="button"
-    id="saveAgent"
-    class="primary small">
-    Ajouter l’agent
-  </button>
+    </div>
 
-  <button
-    type="button"
-    id="cancelAgent"
-    class="secondary small">
-    Annuler
-  </button>
+    <div class="admin-actions">
 
-  <button
-    type="button"
-    id="deleteAgent"
-    class="danger-action small">
-    Supprimer
-  </button>
+      <button
+        type="button"
+        id="saveAgent"
+        class="primary small">
+        Ajouter
+      </button>
 
-</div> <!-- ferme admin-actions -->
+      <button
+        type="button"
+        id="cancelAgent"
+        class="secondary small">
+        Annuler
+      </button>
 
-</div> <!-- ferme agentFormBox -->
+      <button
+        type="button"
+        id="deleteAgent"
+        class="danger-action small">
+        Supprimer
+      </button>
 
+    </div>
 
+  </div>
+
+  <div class="admin-list-head">
+    <strong>Agents personnalisés</strong>
+    <span id="countAgents">0</span>
+  </div>
+
+  <div id="listeAgentsAdmin" class="admin-list"></div>
+
+</div>
       <!-- LISTE DES AGENTS -->
       <div class="admin-list-head">
 
