@@ -2701,68 +2701,97 @@ function ouvrirAdministrationSur(type) {
 
   fermerMenuAjout(false);
 
-  adminCard.hidden = false;
-  adminPanel.hidden = false;
-  
-  
+  const popupLieux =
+    document.getElementById("popupLieux");
 
-  tabLieux.hidden = true;
-  tabAgents.hidden = true;
-  tabDestinataires.hidden = true;
-  if (tabAppearance) tabAppearance.hidden = true;
+  const popupContacts =
+    document.getElementById("popupContacts");
+
+  const popupAppearance =
+    document.getElementById("popupAppearance");
+
+  // Fermer les 3 popups avant d'ouvrir celle demandée
+  if (popupLieux) popupLieux.hidden = true;
+  if (popupContacts) popupContacts.hidden = true;
+  if (popupAppearance) popupAppearance.hidden = true;
+
+
+  // ==========================================================
+  // HOTEL / LIEU
+  // ==========================================================
 
   if (type === "lieu") {
 
-  
-
-    tabLieux.hidden = false;
+    if (popupLieux) {
+      popupLieux.hidden = false;
+    }
 
     clearLieuForm();
 
     setTimeout(() => {
-      adminVille.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
 
-      adminVille.focus();
+      if (adminVille) {
+        adminVille.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        adminVille.focus();
+      }
+
     }, 120);
-
-} else if (type === "contacts") {
-
+  }
 
 
-  tabAgents.hidden = false;
-  tabDestinataires.hidden = false;
+  // ==========================================================
+  // AGENTS + DESTINATAIRES
+  // ==========================================================
 
-  clearAgentForm();
+  else if (type === "contacts") {
 
-  setTimeout(() => {
-    adminNomAgent.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }, 120);
+    if (popupContacts) {
+      popupContacts.hidden = false;
+    }
 
-  } else if (type === "appearance") {
+    clearAgentForm();
 
-    const tab = document.querySelector(
-      '.admin-tab[data-tab="appearance"]'
-    );
+    setTimeout(() => {
 
-    if (tab) tab.classList.add("active");
+      if (adminNomAgent) {
+        adminNomAgent.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
 
-    if (tabAppearance) {
-      tabAppearance.hidden = false;
+    }, 120);
+  }
 
-      setTimeout(() => {
+
+  // ==========================================================
+  // APPARENCE
+  // ==========================================================
+
+  else if (type === "appearance") {
+
+    if (popupAppearance) {
+      popupAppearance.hidden = false;
+    }
+
+    setTimeout(() => {
+
+      if (tabAppearance) {
         tabAppearance.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
-      }, 120);
-    }
+      }
+
+    }, 120);
   }
+
+
+  document.body.style.overflow = "hidden";
 }
 
 quickAddBtn.addEventListener("click", ouvrirMenuAjout);
