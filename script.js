@@ -2195,6 +2195,14 @@ saveAgentBtn.addEventListener("click", () => {
 
 function renderAdminLieux() {
 
+  const countLieuxTotal =
+    document.getElementById("countLieuxTotal");
+
+  if (countLieuxTotal) {
+    countLieuxTotal.textContent =
+      allLieux().length;
+  }
+
   const q = normalizeText(adminVille.value);
 
   if (!q) {

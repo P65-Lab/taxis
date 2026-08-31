@@ -440,48 +440,60 @@
       ✕
     </button>
 
-    <div id="tabLieux" class="admin-section">
+<div id="tabLieux" class="admin-section">
 
-      <div class="manage-intro">
-        <strong>Mes lieux</strong>
-      </div>
+  <div class="lieux-manage-box">
 
-      <div class="private-actions lieux-import-export">
+    <div class="manage-intro">
+      <strong>Mes lieux</strong>
+    </div>
 
-  <button
-    type="button"
-    id="importLieuxBtn"
-    class="secondary small">
-    Importer
-  </button>
+    <div class="private-actions lieux-import-export">
 
-  <button
-    type="button"
-    id="exportLieuxBtn"
-    class="secondary small">
-    Exporter
-  </button>
-
-</div>
-
-<input
-  type="file"
-  id="importLieuxFile"
-  accept=".json,application/json"
-  hidden>
-   <div class="field">
-            <label for="adminVille">Ville</label>
-            <input
-              id="adminVille"
-              type="text"
-              placeholder="Ex. TOULOUSE">
-          </div>
       <button
         type="button"
-        id="openLieuForm"
-        class="primary">
-        + Ajouter un lieu
+        id="importLieuxBtn"
+        class="primary small">
+        Importer
       </button>
+
+      <button
+        type="button"
+        id="exportLieuxBtn"
+        class="secondary small">
+        Exporter
+      </button>
+
+    </div>
+
+    <input
+      type="file"
+      id="importLieuxFile"
+      accept=".json,application/json"
+      hidden>
+
+    <div class="field lieux-ville-search">
+      <label for="adminVille">Ville</label>
+
+      <input
+        id="adminVille"
+        type="text"
+        placeholder="Ex. TOULOUSE">
+    </div>
+
+    <button
+      type="button"
+      id="openLieuForm"
+      class="primary">
+      + Ajouter un lieu
+    </button>
+
+    <div class="admin-list-head lieux-total-head">
+      <strong>Lieux enregistrés</strong>
+      <span id="countLieuxTotal">0</span>
+    </div>
+
+  </div>
 
       <div id="lieuFormBox" hidden>
 
