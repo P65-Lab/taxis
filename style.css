@@ -3633,7 +3633,8 @@ body.taxi-dark .color-field span {
 
 .owner-phone-box label,
 #tabAgents > div:first-child,
-#tabDestinataires > div:first-child {
+#tabDestinataires > div:first-child,
+.lieux-manage-box .manage-intro strong {
   font-size: 18px !important;
   font-weight: 900 !important;
   line-height: 1.2 !important;
@@ -3650,6 +3651,16 @@ body.taxi-dark .color-field span {
   gap: 12px !important;
   width: 100% !important;
   margin: 12px 0 18px !important;
+}
+
+.lieux-import-export button {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 68px !important;
+  margin: 0 !important;
+  border-radius: 18px !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
 }
 
 /* IMPORTER */
