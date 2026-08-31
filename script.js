@@ -2625,12 +2625,9 @@ saveDestBtn.addEventListener("click", () => {
   alert("Destinataire enregistré.");
 });
 
-
-
 /* ==========================================================
    AJOUT RAPIDE +
    ========================================================== */
-
 
 const quickAddBtn = document.getElementById("quickAddBtn");
 const quickAddMenu = document.getElementById("quickAddMenu");
@@ -2807,7 +2804,48 @@ openAgentForm.addEventListener("click", () => {
 });
 
 }
+// ==========================================================
+// OUVRIR / FERMER LE FORMULAIRE DESTINATAIRE
+// ==========================================================
 
+const openDestForm =
+  document.getElementById("openDestForm");
+
+const destFormBox =
+  document.getElementById("destFormBox");
+
+if (openDestForm && destFormBox) {
+
+  openDestForm.addEventListener("click", () => {
+
+    if (!destFormBox.hidden) {
+
+      destFormBox.hidden = true;
+      clearDestForm();
+
+      openDestForm.textContent =
+        "+ Ajouter un destinataire";
+
+      return;
+    }
+
+    destFormBox.hidden = false;
+    clearDestForm();
+
+    openDestForm.textContent =
+      "− Fermer";
+
+    setTimeout(() => {
+
+      if (adminNomDest) {
+        adminNomDest.focus();
+      }
+
+    }, 100);
+
+  });
+
+}
 // ==========================================================
 // FERMETURE DES POPUPS ADMINISTRATION
 // ==========================================================

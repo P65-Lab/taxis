@@ -332,10 +332,6 @@ select:focus,input:focus,textarea:focus {
 }
 
 /* ==========================================================
-   ADMINISTRATION
-   ========================================================== */
-
-/* ==========================================================
    POPUPS ADMINISTRATION
    ========================================================== */
 
@@ -389,7 +385,22 @@ select:focus,input:focus,textarea:focus {
   border-radius: 18px;
   background: #ffffff;
 }
+#tabDestinataires {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 18px;
+  background: #ffffff;
+}
 
+#tabDestinataires > div:first-child {
+  margin-bottom: 14px;
+}
+
+#openDestForm {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 /* ==========================================================
    CHAMPS ADMINISTRATION
    ========================================================== */
