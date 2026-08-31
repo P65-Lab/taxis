@@ -3638,3 +3638,42 @@ body.taxi-dark .color-field span {
   font-weight: 900 !important;
   line-height: 1.2 !important;
 }
+
+/* ==========================================================
+   LIEUX - IMPORTER / EXPORTER
+   MEME PRESENTATION QUE LES AGENTS
+   ========================================================== */
+
+.lieux-import-export {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin: 12px 0 18px !important;
+}
+
+.lieux-import-export button {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 68px !important;
+  margin: 0 !important;
+  border-radius: 18px !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
+
+/* IMPORTER */
+
+#importLieuxBtn {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border: 1px solid #111827 !important;
+}
+
+/* EXPORTER */
+
+#exportLieuxBtn {
+  background: #ffffff !important;
+  color: #6b7280 !important;
+  border: 1px solid #d1d5db !important;
+}
