@@ -2042,7 +2042,7 @@ function clearAgentForm() {
   adminMatricule.value = "";
   adminTelephone.value = "";
   adminEmail.value = "";
-  saveAgentBtn.textContent = "Ajouter l’agent";
+  saveAgentBtn.textContent = "💾 Valider";
 }
 
 function lieuExiste(villeNom, lieuNom, ignoreIndex = -1) {
