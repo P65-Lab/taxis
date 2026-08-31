@@ -692,8 +692,7 @@ input[type="time"] {
   margin: 4px 0 16px;
   padding: 13px 14px;
   border-radius: 14px;
-  background: #f3f4f6;
-}
+  background: transparent;
 
 .manage-intro strong {
   font-size: 15px;
