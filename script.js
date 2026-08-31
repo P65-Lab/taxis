@@ -1821,8 +1821,8 @@ const adminTelephone = document.getElementById("adminTelephone");
 const adminEmail = document.getElementById("adminEmail");
 
 const saveLieuBtn = document.getElementById("saveLieu");
-const cancelLieuBtn = document.getElementById("cancelLieu");
-const deleteLieuBtn = document.getElementById("deleteLieu");
+
+
 const saveAgentBtn = document.getElementById("saveAgent");
 
 
@@ -1976,68 +1976,6 @@ saveLieuBtn.addEventListener("click", () => {
   }
 });
 
-
-cancelLieuBtn.addEventListener("click", clearLieuForm);
-
-deleteLieuBtn.addEventListener("click", () => {
-
-  const v = normalizeText(adminVille.value);
-  const l = normalizeText(adminLieu.value);
-  const adr = normalizeText(adminAdresse.value);
-  const cp = normalizeText(adminCP.value);
-
-  if (!v || !l) {
-    alert("Tapez au minimum la ville et le lieu à supprimer.");
-    return;
-  }
-
-  const trouves = allLieux().filter(x => {
-    if (normalizeText(x.ville) !== v) return false;
-    if (normalizeText(x.lieu) !== l) return false;
-    if (adr && normalizeText(x.adresse) !== adr) return false;
-    if (cp && normalizeText(x.codePostal) !== cp) return false;
-    return true;
-  });
-
-  if (trouves.length === 0) {
-    alert("Aucun lieu correspondant trouvé.");
-    return;
-  }
-
-  if (trouves.length > 1) {
-    alert("Plusieurs lieux correspondent. Renseignez aussi l’adresse et le code postal.");
-    return;
-  }
-
-  const x = trouves[0];
-
-  if (!confirm(`Supprimer "${x.lieu}" à ${x.ville} ?`)) {
-    return;
-  }
-
-  const key = cleLieu(x);
-  const i = customLieux.findIndex(c => cleLieu(c) === key);
-
-  if (i >= 0) {
-    customLieux.splice(i, 1);
-    saveLocalArray(LS_LIEUX, customLieux);
-  } else {
-    if (!lieuxSupprimes.includes(key)) {
-      lieuxSupprimes.push(key);
-      saveLocalArray(LS_LIEUX_SUPPRIMES, lieuxSupprimes);
-    }
-  }
-
-  clearLieuForm();
-  renderAdminLieux();
-
-  if (normalizeText(villeSelectionnee) === normalizeText(x.ville)) {
-    fillLieux();
-  }
-
-  alert("Lieu supprimé.");
-});
-
 saveAgentBtn.addEventListener("click", () => {
 
   const nom = adminNomAgent.value.trim().toUpperCase();
@@ -2120,27 +2058,49 @@ function renderAdminLieux() {
   listeLieuxAdmin.innerHTML =
     resultats.map(x => `
 
-      <div class="admin-place-row">
+<div class="admin-item">
 
-        <button
-          type="button"
-          class="admin-place-select"
-          data-place-key="${encodeURIComponent(cleLieu(x))}"
-        >
-          <strong>${x.ville} — ${x.lieu}</strong>
-          <span>${x.adresse || ""}${x.codePostal ? " · " + x.codePostal : ""}</span>
-        </button>
+  <div class="admin-item-main">
 
-        <button
-          type="button"
-          class="admin-place-trash"
-          data-delete-place-key="${encodeURIComponent(cleLieu(x))}"
-          aria-label="Supprimer ${x.lieu}"
-        >
-          🗑
-        </button>
+    <strong>
+      ${x.ville} — ${x.lieu}
+    </strong>
 
-      </div>
+    <span>
+      ${x.adresse || ""}
+    </span>
+
+    <span>
+      ${x.codePostal || ""}
+    </span>
+
+  </div>
+
+  <div class="admin-item-actions">
+
+    <button
+      type="button"
+      class="admin-edit"
+      data-place-key="${encodeURIComponent(cleLieu(x))}"
+      title="Modifier"
+      aria-label="Modifier ${x.lieu}"
+    >
+      ✏️
+    </button>
+
+    <button
+      type="button"
+      class="admin-delete"
+      data-delete-place-key="${encodeURIComponent(cleLieu(x))}"
+      title="Supprimer"
+      aria-label="Supprimer ${x.lieu}"
+    >
+      🗑️
+    </button>
+
+  </div>
+
+</div>
 
     `).join("");
 
