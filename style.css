@@ -3652,16 +3652,6 @@ body.taxi-dark .color-field span {
   margin: 12px 0 18px !important;
 }
 
-.lieux-import-export button {
-  width: 100% !important;
-  min-width: 0 !important;
-  height: 68px !important;
-  margin: 0 !important;
-  border-radius: 18px !important;
-  font-size: 18px !important;
-  font-weight: 900 !important;
-}
-
 /* IMPORTER */
 
 #importLieuxBtn {
