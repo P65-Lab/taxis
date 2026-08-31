@@ -2678,6 +2678,49 @@ openAgentForm.addEventListener("click", () => {
 });
 
 }
+
+// ==========================================================
+// OUVRIR / FERMER LE FORMULAIRE LIEU
+// ==========================================================
+
+const openLieuForm =
+  document.getElementById("openLieuForm");
+
+const lieuFormBox =
+  document.getElementById("lieuFormBox");
+
+if (openLieuForm && lieuFormBox) {
+
+  openLieuForm.addEventListener("click", () => {
+
+    // Si le cadre est ouvert -> on le ferme
+    if (!lieuFormBox.hidden) {
+
+      lieuFormBox.hidden = true;
+      clearLieuForm();
+
+      openLieuForm.textContent =
+        "+ Ajouter un lieu";
+
+      return;
+    }
+
+    // Si le cadre est fermé -> on l'ouvre
+    lieuFormBox.hidden = false;
+
+    clearLieuForm();
+
+    openLieuForm.textContent =
+      "− Fermer";
+
+    setTimeout(() => {
+      adminVille.focus();
+    }, 100);
+
+  });
+
+}
+
 // ==========================================================
 // OUVRIR / FERMER LE FORMULAIRE DESTINATAIRE
 // ==========================================================
