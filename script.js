@@ -3258,11 +3258,30 @@ if (
   "serviceWorker" in navigator &&
   location.protocol.startsWith("http")
 ) {
-  addEventListener("load", () =>
-    navigator.serviceWorker
-      .register("./service-worker.js")
-      .catch(() => {})
-  );
+  addEventListener("load", async () => {
+
+    try {
+
+      const registration =
+        await navigator.serviceWorker.register(
+          "./service-worker.js",
+          {
+            updateViaCache: "none"
+          }
+        );
+
+      await registration.update();
+
+    } catch (e) {
+
+      console.error(
+        "Erreur mise à jour Service Worker :",
+        e
+      );
+
+    }
+
+  });
 }
 
 renderDestinataires();
