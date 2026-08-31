@@ -1740,6 +1740,7 @@ button.primary {
 .owner-agent-line select {
   width: 100%;
   margin: 0;
+  font-size: 15px;
 }
 
 .owner-agent-line .admin-note {
