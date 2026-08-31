@@ -3617,3 +3617,15 @@ body.taxi-dark .color-field span {
 #privateAgentsStatus {
   display: none !important;
 }
+
+/* ==========================================================
+   TITRES POPUP CONTACTS - MEME TAILLE
+   ========================================================== */
+
+.owner-phone-box label,
+#tabAgents > div:first-child,
+#tabDestinataires > div:first-child {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+}
