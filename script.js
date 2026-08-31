@@ -2578,8 +2578,6 @@ function renderAdminAgents() {
 const adminNomDest = document.getElementById("adminNomDest");
 const adminEmailDest = document.getElementById("adminEmailDest");
 const saveDestBtn = document.getElementById("saveDest");
-const cancelDestBtn = document.getElementById("cancelDest");
-const deleteDestBtn = document.getElementById("deleteDest");
 const listeDestAdmin = document.getElementById("listeDestAdmin");
 const countDest = document.getElementById("countDest");
 
@@ -2627,20 +2625,7 @@ saveDestBtn.addEventListener("click", () => {
   alert("Destinataire enregistré.");
 });
 
-cancelDestBtn.addEventListener("click", clearDestForm);
 
-deleteDestBtn.addEventListener("click", () => {
-  if (!destinataires.length) {
-    alert("Aucun destinataire à supprimer.");
-    return;
-  }
-  const x = destinataires[0];
-  if (!confirm(`Supprimer le destinataire "${x.nom}" ?`)) return;
-  destinataires = [];
-  saveLocalArray(LS_DESTINATAIRES, destinataires);
-  clearDestForm();
-  renderDestinataires();
-});
 
 /* ==========================================================
    AJOUT RAPIDE +
