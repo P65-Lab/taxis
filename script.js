@@ -2359,7 +2359,7 @@ function renderOwnerAgent() {
     '<option value="">Choisir mon nom...</option>' +
     liste.map(a => `
       <option value="${encodeURIComponent(cleAgent(a))}">
-        ${a.nom}${a.telephone ? " — " + a.telephone : ""}
+        ${a.nom}
       </option>
     `).join("");
 
