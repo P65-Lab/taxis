@@ -1824,8 +1824,7 @@ const saveLieuBtn = document.getElementById("saveLieu");
 const cancelLieuBtn = document.getElementById("cancelLieu");
 const deleteLieuBtn = document.getElementById("deleteLieu");
 const saveAgentBtn = document.getElementById("saveAgent");
-const cancelAgentBtn = document.getElementById("cancelAgent");
-const deleteAgentBtn = document.getElementById("deleteAgent");
+
 
 const listeLieuxAdmin = document.getElementById("listeLieuxAdmin");
 const lieuxVilleBloc = document.getElementById("lieuxVilleBloc");
@@ -2080,94 +2079,6 @@ saveAgentBtn.addEventListener("click", () => {
   renderAgents();
 });
 
-
-cancelAgentBtn.addEventListener("click", clearAgentForm);
-
-deleteAgentBtn.addEventListener("click", () => {
-
-  const nom = normalizeText(adminNomAgent.value);
-  const matricule = normalizeText(adminMatricule.value);
-  const telephone = normalizeText(adminTelephone.value);
-  const email = normalizeText(adminEmail.value);
-
-  if (!nom) {
-    alert("Tapez au minimum le nom de l’agent à supprimer.");
-    return;
-  }
-
-  const trouves = allAgents().filter(x => {
-
-    if (normalizeText(x.nom) !== nom) return false;
-
-    if (
-      matricule &&
-      matricule !== "---" &&
-      normalizeText(x.matricule) !== matricule
-    ) {
-      return false;
-    }
-
-    if (
-      telephone &&
-      normalizeText(x.telephone) !== telephone
-    ) {
-      return false;
-    }
-
-    if (
-      email &&
-      normalizeText(x.email) !== email
-    ) {
-      return false;
-    }
-
-    return true;
-  });
-
-  if (trouves.length === 0) {
-    alert("Aucun agent correspondant trouvé.");
-    return;
-  }
-
-  if (trouves.length > 1) {
-    alert(
-      "Plusieurs agents correspondent. Renseignez aussi le matricule, le téléphone ou l’e-mail."
-    );
-    return;
-  }
-
-  const x = trouves[0];
-
-  if (!confirm(`Supprimer l’agent "${x.nom}" ?`)) {
-    return;
-  }
-
-  const key = cleAgent(x);
-
-  const i = customAgents.findIndex(
-    c => cleAgent(c) === key
-  );
-
-  if (i >= 0) {
-    customAgents.splice(i, 1);
-    saveLocalArray(LS_AGENTS, customAgents);
-  } else {
-    if (!agentsSupprimes.includes(key)) {
-      agentsSupprimes.push(key);
-      saveLocalArray(
-        LS_AGENTS_SUPPRIMES,
-        agentsSupprimes
-      );
-    }
-  }
-
-  clearAgentForm();
-  renderAdminAgents();
-  renderAgents();
-  updatePrivateAgentsStatus();
-
-  alert("Agent supprimé.");
-});
 
 function renderAdminLieux() {
 
