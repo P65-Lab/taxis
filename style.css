@@ -3344,7 +3344,9 @@ body.taxi-dark .color-field span {
   padding: calc(24px + env(safe-area-inset-top))
     22px
     calc(24px + env(safe-area-inset-bottom));
-  background: var(--theme-page);
+  background-image: url("images/fond-taxi.png");
+background-size: cover;
+background-position: center;
 }
 
 .taxi-home-btn {
