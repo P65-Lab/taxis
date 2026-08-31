@@ -469,11 +469,20 @@ select:focus,input:focus,textarea:focus {
   padding: 12px;
 
   background: #f9fafb;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
+
+
 
 .admin-item-main {
   display: grid;
   gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 
 .admin-item-main strong {
@@ -488,8 +497,9 @@ select:focus,input:focus,textarea:focus {
 
 .admin-item-actions {
   display: flex;
+  align-items: center;
   gap: 8px;
-  margin-top: 10px;
+  flex-shrink: 0;
 }
 
 .admin-item-actions button {
