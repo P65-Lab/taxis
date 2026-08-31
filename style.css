@@ -385,6 +385,9 @@ select:focus,input:focus,textarea:focus {
   border-radius: 18px;
   background: #ffffff;
 }
+#tabAgents > div:first-child {
+  margin-bottom: 14px;
+}
 #tabDestinataires {
   margin-top: 16px;
   padding: 16px;
