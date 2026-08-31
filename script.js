@@ -2377,21 +2377,25 @@ function renderAdminAgents() {
 
           <div class="admin-item-actions">
 
-            <button
-              type="button"
-              class="admin-edit"
-              data-edit-agent="${i}"
-            >
-              Modifier
-            </button>
+<button
+  type="button"
+  class="admin-edit"
+  data-edit-agent="${i}"
+  title="Modifier"
+  aria-label="Modifier l’agent"
+>
+  ✏️
+</button>
 
-            <button
-              type="button"
-              class="admin-delete"
-              data-delete-agent="${i}"
-            >
-              Supprimer
-            </button>
+<button
+  type="button"
+  class="admin-delete"
+  data-delete-agent="${i}"
+  title="Supprimer"
+  aria-label="Supprimer l’agent"
+>
+  🗑️
+</button>
 
           </div>
 
