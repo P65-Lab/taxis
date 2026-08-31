@@ -3344,7 +3344,7 @@ body.taxi-dark .color-field span {
   padding: calc(24px + env(safe-area-inset-top))
     22px
     calc(24px + env(safe-area-inset-bottom));
-  background-image: url("images/fond-taxi.png");
+  background-image: url("images/fond-taxi1.png");
 background-size: cover;
 background-position: center;
 }
