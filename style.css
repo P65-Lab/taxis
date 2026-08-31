@@ -582,10 +582,9 @@ select:focus,input:focus,textarea:focus {
 
 .private-import {
   margin-bottom: 18px;
-  padding: 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 14px;
-  background: #f9fafb;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .private-import p {
