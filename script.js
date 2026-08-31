@@ -1794,6 +1794,181 @@ if (exportAgentsBtn) {
 }
 
 /* ==========================================================
+   BASE LIEUX PRIVEE
+   ========================================================== */
+
+const importLieuxFile =
+  document.getElementById("importLieuxFile");
+
+const importLieuxBtn =
+  document.getElementById("importLieuxBtn");
+
+const exportLieuxBtn =
+  document.getElementById("exportLieuxBtn");
+
+
+// ==========================================================
+// IMPORTER LES LIEUX
+// ==========================================================
+
+if (importLieuxBtn && importLieuxFile) {
+
+  importLieuxBtn.addEventListener(
+    "click",
+    () => importLieuxFile.click()
+  );
+
+  importLieuxFile.addEventListener(
+    "change",
+    async () => {
+
+      const file =
+        importLieuxFile.files &&
+        importLieuxFile.files[0];
+
+      if (!file) return;
+
+      try {
+
+        const data =
+          JSON.parse(await file.text());
+
+        if (!Array.isArray(data)) {
+          throw new Error(
+            "Le fichier n'est pas une liste de lieux."
+          );
+        }
+
+        const nettoyes =
+          data.map(x => ({
+
+            ville:
+              String(x.ville || "")
+                .trim()
+                .toUpperCase(),
+
+            lieu:
+              String(x.lieu || "")
+                .trim(),
+
+            adresse:
+              String(x.adresse || "")
+                .trim(),
+
+            codePostal:
+              String(x.codePostal || "")
+                .trim()
+
+          }))
+          .filter(x =>
+            x.ville &&
+            x.lieu
+          );
+
+        const uniques =
+          new Map();
+
+        nettoyes.forEach(x => {
+
+          uniques.set(
+            cleLieu(x),
+            x
+          );
+
+        });
+
+        customLieux =
+          [...uniques.values()];
+
+        saveLocalArray(
+          LS_LIEUX,
+          customLieux
+        );
+
+        renderAdminLieux();
+
+        if (villeSelectionnee) {
+          fillLieux();
+        }
+
+        alert(
+          `${customLieux.length} lieu(x) importé(s) sur cet appareil.`
+        );
+
+      } catch (e) {
+
+        alert(
+          "Import impossible : " +
+          (e.message || "fichier invalide")
+        );
+
+      }
+
+      importLieuxFile.value = "";
+
+    }
+  );
+}
+
+
+// ==========================================================
+// EXPORTER LES LIEUX
+// ==========================================================
+
+if (exportLieuxBtn) {
+
+  exportLieuxBtn.addEventListener(
+    "click",
+    () => {
+
+      if (!customLieux.length) {
+
+        alert(
+          "Aucun lieu privé à exporter."
+        );
+
+        return;
+      }
+
+      const blob =
+        new Blob(
+          [
+            JSON.stringify(
+              customLieux,
+              null,
+              2
+            )
+          ],
+          {
+            type:
+              "application/json"
+          }
+        );
+
+      const url =
+        URL.createObjectURL(blob);
+
+      const a =
+        document.createElement("a");
+
+      a.href = url;
+
+      a.download =
+        "lieux_prives_taxi_sauvegarde.json";
+
+      document.body.appendChild(a);
+
+      a.click();
+
+      a.remove();
+
+      URL.revokeObjectURL(url);
+
+    }
+  );
+}
+
+/* ==========================================================
    ADMINISTRATION
    ========================================================== */
 
