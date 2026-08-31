@@ -648,102 +648,100 @@
      
 
 
-    <!-- =====================================================
-         3 - DESTINATAIRE
-         ===================================================== -->
-    <div id="tabDestinataires" class="admin-section">
+<!-- =====================================================
+     3 - DESTINATAIRE
+     ===================================================== -->
 
-      <div class="manage-intro">
+<div id="tabDestinataires" class="admin-section">
 
-        <strong>
-          Destinataire de la demande
-        </strong>
+  <div>
+    <strong>Destinataires</strong>
+  </div>
 
-        <span>
-          Enregistrez l’adresse qui sera remplie automatiquement dans Outlook.
-        </span>
+  <button
+    type="button"
+    id="openDestForm"
+    class="primary">
+    + Ajouter un destinataire
+  </button>
 
+
+  <div id="destFormBox" hidden>
+
+    <div class="admin-grid">
+
+      <div class="field">
+        <label for="adminNomDest">
+          Nom
+        </label>
+
+        <input
+          id="adminNomDest"
+          type="text"
+          placeholder="Ex. TAXI TOULOUSE">
       </div>
 
 
-      <div class="admin-grid">
+      <div class="field">
+        <label for="adminEmailDest">
+          Adresse e-mail
+        </label>
 
-        <div class="field">
-
-          <label for="adminNomDest">
-            Nom
-          </label>
-
-          <input
-            id="adminNomDest"
-            type="text"
-            placeholder="Ex. TAXI TOULOUSE">
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="adminEmailDest">
-            Adresse e-mail
-          </label>
-
-          <input
-            id="adminEmailDest"
-            type="email"
-            placeholder="taxi@entreprise.fr">
-
-        </div>
-
-      </div>
-
-
-      <div class="admin-actions">
-
-        <button
-          type="button"
-          id="saveDest"
-          class="primary small">
-          Ajouter
-        </button>
-
-        <button
-          type="button"
-          id="cancelDest"
-          class="secondary small">
-          Annuler
-        </button>
-
-        <button
-          type="button"
-          id="deleteDest"
-          class="danger-action small">
-          Supprimer
-        </button>
-
-      </div>
-
-
-      <div class="admin-list-head">
-
-        <strong>
-          Destinataires enregistrés
-        </strong>
-
-        <span id="countDest">
-          0
-        </span>
-
-      </div>
-
-      <div
-        id="listeDestAdmin"
-        class="admin-list">
+        <input
+          id="adminEmailDest"
+          type="email"
+          placeholder="taxi@entreprise.fr">
       </div>
 
     </div>
 
+
+    <div class="admin-actions">
+
+      <button
+        type="button"
+        id="saveDest"
+        class="primary small">
+        Ajouter
+      </button>
+
+      <button
+        type="button"
+        id="cancelDest"
+        class="secondary small">
+        Annuler
+      </button>
+
+      <button
+        type="button"
+        id="deleteDest"
+        class="danger-action small">
+        Supprimer
+      </button>
+
+    </div>
+
   </div>
+
+
+  <div class="admin-list-head">
+
+    <strong>
+      Destinataires enregistrés
+    </strong>
+
+    <span id="countDest">
+      0
+    </span>
+
+  </div>
+
+  <div
+    id="listeDestAdmin"
+    class="admin-list">
+  </div>
+
+</div>
 
 </section>
 
