@@ -3745,3 +3745,14 @@ body.taxi-dark .color-field span {
   margin-top: 12px !important;
   padding: 12px 0 0 !important;
 }
+
+/* ==========================================================
+   BOUTONS VALIDER - PERSONNEL / CONTACT
+   ========================================================== */
+
+#saveAgent,
+#saveDest {
+  background: #047857 !important;
+  color: #ffffff !important;
+  border-color: #047857 !important;
+}
