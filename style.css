@@ -3748,14 +3748,6 @@ body.taxi-dark .color-field span {
   margin: 0 !important;
 }
 
-.lieux-manage-box .lieux-import-export button {
-  width: 100% !important;
-  height: 42px !important;
-  min-height: 42px !important;
-  margin: 0 !important;
-  padding: 0 12px !important;
-}
-
 /* Lieux enregistrés sous les boutons */
 
 .lieux-manage-box .lieux-total-head {
