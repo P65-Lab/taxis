@@ -2589,10 +2589,9 @@ function clearDestForm() {
 function renderDestinataires() {
   countDest.textContent = destinataires.length;
   if (!destinataires.length) {
-    listeDestAdmin.innerHTML =
-      '<div class="admin-empty">Aucun destinataire enregistré.</div>';
-    return;
-  }
+  listeDestAdmin.innerHTML = "";
+  return;
+}
   listeDestAdmin.innerHTML = destinataires.map((x,i) => `
     <div class="admin-item">
       <div class="admin-item-main">
