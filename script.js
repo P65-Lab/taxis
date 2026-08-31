@@ -1,5 +1,5 @@
 
-const APP_VERSION = "v98";
+const APP_VERSION = "v99";
 const APP_VERSION_DATE = "29/08/2026 15:22";
 
 const baseLieux = window.TAXI_DB || [];
