@@ -440,91 +440,128 @@
       ✕
     </button>
 
-<div id="tabLieux" class="admin-section">
+    <div id="tabLieux" class="admin-section">
 
-  <div class="lieux-manage-box">
+      <!-- =========================================
+           CADRE MES LIEUX
+           ========================================= -->
+      <div class="lieux-manage-box">
 
-    <div class="manage-intro">
-      <strong>Mes lieux</strong>
-    </div>
+        <div class="manage-intro">
+          <strong>Mes lieux</strong>
+        </div>
 
-    <div class="private-actions lieux-import-export">
+        <div class="private-actions lieux-import-export">
 
-      <button
-        type="button"
-        id="importLieuxBtn"
-        class="primary small">
-        Importer
-      </button>
+          <button
+            type="button"
+            id="importLieuxBtn"
+            class="primary small">
+            Importer
+          </button>
 
-      <button
-        type="button"
-        id="exportLieuxBtn"
-        class="secondary small">
-        Exporter
-      </button>
+          <button
+            type="button"
+            id="exportLieuxBtn"
+            class="secondary small">
+            Exporter
+          </button>
 
-    </div>
+        </div>
 
-    <input
-      type="file"
-      id="importLieuxFile"
-      accept=".json,application/json"
-      hidden>
+        <input
+          type="file"
+          id="importLieuxFile"
+          accept=".json,application/json"
+          hidden>
 
-    <div class="field lieux-ville-search">
-      <label for="adminVille">Ville</label>
+        <div class="admin-list-head lieux-total-head">
+          <strong>Lieux enregistrés</strong>
+          <span id="countLieuxTotal">0</span>
+        </div>
 
-      <input
-        id="adminVille"
-        type="text"
-        placeholder="Ex. TOULOUSE">
-    </div>
+      </div>
 
-    <button
-      type="button"
-      id="openLieuForm"
-      class="primary">
-      + Ajouter un lieu
-    </button>
 
-    <div class="admin-list-head lieux-total-head">
-      <strong>Lieux enregistrés</strong>
-      <span id="countLieuxTotal">0</span>
-    </div>
+      <!-- =========================================
+           RECHERCHE PAR VILLE
+           ========================================= -->
+<div class="lieux-search-box">
 
+  <div class="lieux-search-title">
+    Recherche par ville
   </div>
 
+  <div class="field lieux-ville-search">
+
+    <label for="adminVille">
+      Ville
+    </label>
+
+    <input
+      id="adminVille"
+      type="text"
+      placeholder="Ex. TOULOUSE">
+
+  </div>
+      <!-- =========================================
+           AJOUTER UN LIEU
+           ========================================= -->
+  <button
+    type="button"
+    id="openLieuForm"
+    class="primary">
+    + Ajouter un lieu
+  </button>
+
+</div>
+     
+
+
+      <!-- =========================================
+           FORMULAIRE AJOUT / MODIFICATION
+           ========================================= -->
       <div id="lieuFormBox" hidden>
 
         <div class="admin-grid">
 
-       
-
           <div class="field">
+
             <label for="adminLieu">
               Lieu de prise en charge (ex. Hôtel, Gare)
             </label>
+
             <input
               id="adminLieu"
               type="text"
               placeholder="Ex. HOTEL ...">
+
           </div>
 
           <div class="field">
-            <label for="adminAdresse">Adresse</label>
+
+            <label for="adminAdresse">
+              Adresse
+            </label>
+
             <input
               id="adminAdresse"
               type="text"
               placeholder="Rue, avenue...">
+
           </div>
 
           <div class="field">
-            <label for="adminCP">Code postal / Ville</label>
+
+            <label for="adminCP">
+              Code postal / Ville
+            </label>
+
             <input
               id="adminCP"
               type="text"
               placeholder="31000 TOULOUSE">
+
           </div>
 
         </div>
@@ -540,16 +577,27 @@
 
         </div>
 
-      </div> <!-- ferme lieuFormBox -->
+      </div>
 
+
+      <!-- =========================================
+           LIEUX DE LA VILLE RECHERCHEE
+           ========================================= -->
       <div
         id="lieuxVilleBloc"
         class="admin-city-places"
         hidden>
 
         <div class="admin-list-head">
-          <strong>Lieux de la ville</strong>
-          <span id="countLieux">0</span>
+
+          <strong>
+            Lieux de la ville
+          </strong>
+
+          <span id="countLieux">
+            0
+          </span>
+
         </div>
 
         <div

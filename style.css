@@ -3677,3 +3677,88 @@ body.taxi-dark .color-field span {
   color: #6b7280 !important;
   border: 1px solid #d1d5db !important;
 }
+
+/* ==========================================================
+   RECHERCHE PAR VILLE - CADRE
+   ========================================================== */
+
+.lieux-search-box {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 16px;
+  padding: 16px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 18px;
+
+  background: #ffffff;
+}
+
+.lieux-search-title {
+  margin-bottom: 14px;
+
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.2;
+
+  color: #111827;
+}
+
+.lieux-search-box .lieux-ville-search {
+  margin-bottom: 12px;
+}
+
+.lieux-search-box #openLieuForm {
+  margin: 0;
+}
+
+
+/* ==========================================================
+   MES LIEUX - CADRE IMPORT / EXPORT
+   ========================================================== */
+
+.lieux-manage-box {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 16px;
+  margin-bottom: 16px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 18px;
+
+  background: #ffffff;
+}
+
+/* Titre Mes lieux */
+
+.lieux-manage-box .manage-intro {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Importer / Exporter */
+
+.lieux-manage-box .lieux-import-export {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  margin: 0 !important;
+}
+
+.lieux-manage-box .lieux-import-export button {
+  width: 100% !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+}
+
+/* Lieux enregistrés sous les boutons */
+
+.lieux-manage-box .lieux-total-head {
+  margin-top: 12px !important;
+  padding: 12px 0 0 !important;
+}
