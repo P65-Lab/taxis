@@ -3454,7 +3454,7 @@ body.taxi-dark .color-field span {
 
 #quickAddBtn {
   position: fixed !important;
-  top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 26px) !important;
   right: 14px !important;
   z-index: 7000 !important;
 
