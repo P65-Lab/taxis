@@ -2510,7 +2510,36 @@ body.taxi-dark .color-setting span {
   -webkit-text-fill-color: #344054 !important;
   opacity: 1 !important;
 }
+/* ==========================================================
+   BOUTON SMS - RECAPITULATIF
+   ========================================================== */
 
+.sms-btn {
+  width: 100%;
+  min-height: 56px;
+  margin-top: 10px;
+  padding: 0 18px;
+
+  border: 1px solid #111827;
+  border-radius: 15px;
+
+  background: #ffffff;
+  color: #111827;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 16px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.sms-btn span {
+  display: inline-block;
+  color: inherit;
+}
 .sms-all-agents-btn {
   width: 100% !important;
   min-height: 58px !important;
