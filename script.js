@@ -7,7 +7,7 @@ if (appVersionEl) {
   appVersionEl.textContent =
     `P65-Lab Taxi • ${APP_VERSION} • Mise à jour : ${APP_VERSION_DATE.split(" ")[0]}`;
 }
-}
+
 const baseLieux = window.TAXI_DB || [];
 const baseAgents = [];
 

@@ -1754,7 +1754,7 @@ button.primary {
 .app-version {
   position: fixed;
   left: 50%;
-  bottom: 3px;
+  bottom: 5px;
   transform: translateX(-50%);
   z-index: 5100;
 
@@ -1783,11 +1783,8 @@ button.primary {
   -webkit-backdrop-filter: blur(6px);
 }
 
-@supports (padding: env(safe-area-inset-bottom)) {
-  .app-version {
-    bottom: max(3px, env(safe-area-inset-bottom));
-  }
-}
+
+
 /* ==========================================================
    POPUP MISE A JOUR
    ========================================================== */
