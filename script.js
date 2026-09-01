@@ -1498,164 +1498,499 @@ function ouvrirApercuMailTaxiHtml() {
   const estAndroid =
     /Android/i.test(navigator.userAgent);
 
-  let page;
+
+  /* ==========================================================
+     ANDROID : APERCU DANS L'APPLICATION
+     ========================================================== */
 
   if (estAndroid) {
 
-    page = window;
-
-  } else {
-
-    page =
-      window.open(
-        "",
-        "_blank"
+    const ancien =
+      document.getElementById(
+        "androidOutlookPreview"
       );
 
-    if (!page) {
-      alert(
-        "L’aperçu a été bloqué par le navigateur."
-      );
-      return;
+    if (ancien) {
+      ancien.remove();
     }
 
+    const overlay =
+      document.createElement("div");
+
+    overlay.id =
+      "androidOutlookPreview";
+
+    overlay.style.cssText = `
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      background: #f3f4f6;
+      overflow: auto;
+      padding: 12px;
+    `;
+
+    overlay.innerHTML = `
+
+      <div style="
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
+        margin: -12px -12px 12px;
+        background: white;
+        border-bottom: 1px solid #d1d5db;
+      ">
+
+        <button
+          type="button"
+          id="androidCopyPreview"
+          style="
+            min-height:44px;
+            border:0;
+            border-radius:10px;
+            padding:10px 14px;
+            background:#111827;
+            color:white;
+            font-weight:800;
+          "
+        >
+          Copier la présentation
+        </button>
+
+        <button
+          type="button"
+          id="androidOpenOutlook"
+          style="
+            min-height:44px;
+            border:0;
+            border-radius:10px;
+            padding:10px 14px;
+            background:#2563eb;
+            color:white;
+            font-weight:800;
+          "
+        >
+          Ouvrir Outlook
+        </button>
+
+        <button
+          type="button"
+          id="androidClosePreview"
+          style="
+            min-height:44px;
+            border:0;
+            border-radius:10px;
+            padding:10px 14px;
+            background:#e5e7eb;
+            color:#111827;
+            font-weight:800;
+          "
+        >
+          Fermer
+        </button>
+
+      </div>
+
+      <div
+        id="androidMailRendered"
+        style="
+          max-width:800px;
+          margin:auto;
+          padding:14px;
+          background:white;
+          border-radius:12px;
+        "
+      >
+        ${mail.html}
+      </div>
+    `;
+
+    document.body.appendChild(
+      overlay
+    );
+
+
+    /* FERMER */
+    document
+      .getElementById(
+        "androidClosePreview"
+      )
+      .onclick = () => {
+
+        overlay.remove();
+
+      };
+
+
+    /* OUVRIR OUTLOOK */
+    document
+      .getElementById(
+        "androidOpenOutlook"
+      )
+      .onclick = () => {
+
+        const mailto =
+          "mailto:" +
+          encodeURIComponent(mail.to) +
+          "?subject=" +
+          encodeURIComponent(mail.sujet);
+
+        window.location.href =
+          mailto;
+
+      };
+
+
+    /* COPIER */
+    document
+      .getElementById(
+        "androidCopyPreview"
+      )
+      .onclick = () => {
+
+        const zone =
+          document.getElementById(
+            "androidMailRendered"
+          );
+
+        const range =
+          document.createRange();
+
+        range.selectNodeContents(
+          zone
+        );
+
+        const selection =
+          window.getSelection();
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        let ok = false;
+
+        try {
+          ok =
+            document.execCommand(
+              "copy"
+            );
+        } catch (e) {
+          ok = false;
+        }
+
+        selection.removeAllRanges();
+
+        alert(
+          ok
+            ? "Présentation copiée. Ouvrez Outlook puis collez."
+            : "Copie impossible."
+        );
+
+      };
+
+    return;
+  }
+
+
+  /* ==========================================================
+     IPHONE / IPAD / PC
+     ========================================================== */
+
+  const page =
+    window.open(
+      "",
+      "_blank"
+    );
+
+  if (!page) {
+    alert(
+      "L’aperçu a été bloqué par le navigateur."
+    );
+    return;
   }
 
   page.document.open();
 
   page.document.write(`<!doctype html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aperçu mail Taxi</title>
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  Aperçu mail Taxi
+</title>
+
 <style>
-body{margin:0;padding:20px;background:#f3f4f6;font-family:Arial,Helvetica,sans-serif;color:#111827}
-.toolbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:10px;margin:-20px -20px 18px;padding:12px 20px;background:#fff;border-bottom:1px solid #d1d5db}
-.toolbar button{min-height:44px;padding:10px 16px;border:0;border-radius:10px;font-weight:800}
-#copyRenderedBtn{background:#111827;color:#fff}
-#openOutlookBtn{background:#2563eb;color:#fff}
-#closePreviewBtn{background:#e5e7eb;color:#111827}
-.help{width:100%;margin:0;color:#667085;font-size:13px}
-#mailRendered{max-width:800px;margin:auto;padding:24px;background:#fff;border-radius:12px}
-#mailRendered th,#mailRendered td{border:1px solid #94a3b8;padding:10px;text-align:left}
-#mailRendered th{width:125px;background:#f8fafc}
+
+body{
+  margin:0;
+  padding:20px;
+  background:#f3f4f6;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#111827;
+}
+
+.toolbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+  margin:-20px -20px 18px;
+  padding:12px 20px;
+
+  background:#fff;
+
+  border-bottom:
+    1px solid #d1d5db;
+}
+
+.toolbar button{
+  min-height:44px;
+
+  padding:
+    10px 16px;
+
+  border:0;
+  border-radius:10px;
+
+  font-weight:800;
+}
+
+#copyRenderedBtn{
+  background:#111827;
+  color:#fff;
+}
+
+#openOutlookBtn{
+  background:#2563eb;
+  color:#fff;
+}
+
+#closePreviewBtn{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+.help{
+  width:100%;
+  margin:0;
+
+  color:#667085;
+  font-size:13px;
+}
+
+#mailRendered{
+  max-width:800px;
+
+  margin:auto;
+
+  padding:24px;
+
+  background:#fff;
+
+  border-radius:12px;
+}
+
+#mailRendered th,
+#mailRendered td{
+  border:
+    1px solid #94a3b8;
+
+  padding:10px;
+
+  text-align:left;
+}
+
+#mailRendered th{
+  width:125px;
+  background:#f8fafc;
+}
 
 @media(max-width:700px){
-  body{padding:10px}
-  .toolbar{margin:-10px -10px 12px;padding:10px}
-  #mailRendered{padding:12px;overflow-x:auto}
+
+  body{
+    padding:10px;
+  }
+
+  .toolbar{
+    margin:
+      -10px -10px 12px;
+
+    padding:10px;
+  }
+
+  #mailRendered{
+    padding:12px;
+    overflow-x:auto;
+  }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
 <div class="toolbar">
-  <button id="copyRenderedBtn">Copier la présentation</button>
-  <button id="openOutlookBtn">Ouvrir Outlook</button>
-  <button id="closePreviewBtn">Fermer</button>
+
+  <button
+    id="copyRenderedBtn"
+  >
+    Copier la présentation
+  </button>
+
+  <button
+    id="openOutlookBtn"
+  >
+    Ouvrir Outlook
+  </button>
+
+  <button
+    id="closePreviewBtn"
+  >
+    Fermer
+  </button>
+
   <p class="help">
-    Copier la présentation → Ouvrir Outlook → Coller dans le corps du mail.
+    Copier la présentation
+    →
+    Ouvrir Outlook
+    →
+    Coller dans le corps du mail.
   </p>
+
 </div>
 
-<div id="mailRendered">${mail.html}</div>
+<div id="mailRendered">
+  ${mail.html}
+</div>
 
 <script>
+
 (function(){
 
-  const sujet=${JSON.stringify(mail.sujet)};
-  const to=${JSON.stringify(mail.to)};
+  const sujet =
+    ${JSON.stringify(mail.sujet)};
 
-  document.getElementById("copyRenderedBtn").onclick=function(){
-
-    const zone=document.getElementById("mailRendered");
-    const range=document.createRange();
-
-    range.selectNodeContents(zone);
-
-    const sel=window.getSelection();
-
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    let ok=false;
-
-    try{
-      ok=document.execCommand("copy");
-    }catch(e){}
-
-    sel.removeAllRanges();
-
-    alert(
-      ok
-        ? "Présentation copiée. Ouvrez Outlook puis collez."
-        : "Sélectionnez la présentation puis copiez-la."
-    );
-  };
+  const to =
+    ${JSON.stringify(mail.to)};
 
 
- document.getElementById("closePreviewBtn").onclick=function(){
+  document
+    .getElementById(
+      "copyRenderedBtn"
+    )
+    .onclick = function(){
 
-  if (/Android/i.test(navigator.userAgent)) {
-    window.location.reload();
-    return;
-  }
+      const zone =
+        document.getElementById(
+          "mailRendered"
+        );
 
-  window.close();
+      const range =
+        document.createRange();
 
-};
+      range.selectNodeContents(
+        zone
+      );
 
-  };
+      const sel =
+        window.getSelection();
+
+      sel.removeAllRanges();
+      sel.addRange(range);
+
+      let ok = false;
+
+      try {
+
+        ok =
+          document.execCommand(
+            "copy"
+          );
+
+      } catch(e) {}
+
+      sel.removeAllRanges();
+
+      alert(
+        ok
+          ? "Présentation copiée. Ouvrez Outlook puis collez."
+          : "Sélectionnez la présentation puis copiez-la."
+      );
+
+    };
 
 
-  document.getElementById("openOutlookBtn").onclick=function(){
+  document
+    .getElementById(
+      "closePreviewBtn"
+    )
+    .onclick = function(){
 
-    const estAndroid =
-      /Android/i.test(navigator.userAgent);
+      window.close();
 
-    const outlook =
-      "ms-outlook://compose?to=" +
-      encodeURIComponent(to) +
-      "&subject=" +
-      encodeURIComponent(sujet);
+    };
 
-    const mailto =
-      "mailto:" +
-      encodeURIComponent(to) +
-      "?subject=" +
-      encodeURIComponent(sujet);
 
-    if (estAndroid) {
-      location.href = mailto;
-      return;
-    }
+  document
+    .getElementById(
+      "openOutlookBtn"
+    )
+    .onclick = function(){
 
-    location.href = outlook;
+      const outlook =
+        "ms-outlook://compose?to=" +
+        encodeURIComponent(to) +
+        "&subject=" +
+        encodeURIComponent(sujet);
 
-    setTimeout(function(){
-      location.href = mailto;
-    },1200);
+      const mailto =
+        "mailto:" +
+        encodeURIComponent(to) +
+        "?subject=" +
+        encodeURIComponent(sujet);
 
-  };
+      location.href =
+        outlook;
+
+      setTimeout(
+        function(){
+
+          location.href =
+            mailto;
+
+        },
+        1200
+      );
+
+    };
 
 })();
+
 <\/script>
 
 </body>
+
 </html>`);
 
   page.document.close();
-}
 
-
-const previewHtmlMailBtn =
-  document.getElementById("previewHtmlMailBtn");
-
-if (previewHtmlMailBtn) {
-  previewHtmlMailBtn.onclick =
-    ouvrirApercuMailTaxiHtml;
 }
 
 /* ==========================================================
