@@ -826,14 +826,12 @@ input[type="time"] {
 
 .quick-add-menu {
   width: min(360px, calc(100% - 36px));
-  margin: 0;
-
   padding: 16px;
-
   border-radius: 20px;
   background: rgba(255,255,255,.96);
-
   box-shadow: 0 24px 60px rgba(17,24,39,.28);
+
+  transform: translateY(20px);
 }
 
 .quick-add-title {
