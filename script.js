@@ -1340,41 +1340,84 @@ document
     const ccUnique = [...new Set(emailsAgentsCC)];
     const ccEncode = encodeURIComponent(ccUnique.join(","));
 
-    const outlookUrl =
-      `ms-outlook://compose?to=${encodeURIComponent(emailDestinataire)}` +
-      `${ccUnique.length ? "&cc=" + ccEncode : ""}` +
-      `&subject=${sujet}` +
-      `&body=${corpsEncode}`;
+    const ua = navigator.userAgent || "";
 
-    const mailtoUrl =
-      `mailto:${encodeURIComponent(emailDestinataire)}` +
-      `?${ccUnique.length ? "cc=" + ccEncode + "&" : ""}` +
-      `subject=${sujet}` +
-      `&body=${corpsEncode}`;
+const estIOS =
+  /iPhone|iPad|iPod/i.test(ua) ||
+  (
+    navigator.platform === "MacIntel" &&
+    navigator.maxTouchPoints > 1
+  );
 
-    let pageMasquee = false;
+const estAndroid =
+  /Android/i.test(ua);
 
-    const detecterSortie = () => {
-      if (document.visibilityState === "hidden") {
-        pageMasquee = true;
-      }
-    };
+const outlookUrl =
+  `ms-outlook://compose?to=${encodeURIComponent(emailDestinataire)}` +
+  `${ccUnique.length ? "&cc=" + ccEncode : ""}` +
+  `&subject=${sujet}` +
+  `&body=${corpsEncode}`;
 
-    document.addEventListener(
-      "visibilitychange",
-      detecterSortie,
-      { once: true }
-    );
+const mailtoUrl =
+  `mailto:${encodeURIComponent(emailDestinataire)}` +
+  `?${ccUnique.length ? "cc=" + ccEncode + "&" : ""}` +
+  `subject=${sujet}` +
+  `&body=${corpsEncode}`;
 
-    window.location.href = outlookUrl;
 
-    setTimeout(() => {
-      if (!pageMasquee && document.visibilityState === "visible") {
-        window.location.href = mailtoUrl;
-      }
-    }, 1200);
-  });
+/* ==========================================================
+   ANDROID
+   ========================================================== */
 
+if (estAndroid) {
+  window.location.href = mailtoUrl;
+  return;
+}
+
+
+/* ==========================================================
+   IPHONE / IPAD
+   ========================================================== */
+
+if (estIOS) {
+
+  let pageMasquee = false;
+
+  const detecterSortie = () => {
+    if (document.visibilityState === "hidden") {
+      pageMasquee = true;
+    }
+  };
+
+  document.addEventListener(
+    "visibilitychange",
+    detecterSortie,
+    { once: true }
+  );
+
+  window.location.href = outlookUrl;
+
+  setTimeout(() => {
+    if (
+      !pageMasquee &&
+      document.visibilityState === "visible"
+    ) {
+      window.location.href = mailtoUrl;
+    }
+  }, 1200);
+
+  return;
+}
+
+
+/* ==========================================================
+   AUTRES APPAREILS / PC
+   ========================================================== */
+
+
+window.location.href = mailtoUrl;
+
+});
 
 
 /* ==========================================================
