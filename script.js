@@ -1596,13 +1596,16 @@ body{margin:0;padding:20px;background:#f3f4f6;font-family:Arial,Helvetica,sans-s
   };
 
 
-  document.getElementById("closePreviewBtn").onclick=function(){
+ document.getElementById("closePreviewBtn").onclick=function(){
 
-    if (/Android/i.test(navigator.userAgent)) {
-      history.back();
-    } else {
-      window.close();
-    }
+  if (/Android/i.test(navigator.userAgent)) {
+    window.location.reload();
+    return;
+  }
+
+  window.close();
+
+};
 
   };
 
