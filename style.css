@@ -3350,31 +3350,22 @@ body.taxi-dark .color-field span {
 }
 
 /* ==========================================================
-   ACCUEIL TAXI - PLEIN ECRAN
+   ACCUEIL TAXI
    ========================================================== */
-
-.taxi-home:not([hidden]) {
-  display: flex;
-}
 
 .taxi-home {
   position: fixed;
   inset: 0;
-  z-index: 5000;
+
   width: 100%;
   min-height: 100dvh;
 
-  flex-direction: column;
-  align-items: center;
-
-  /* Remonte les 2 boutons */
-  justify-content: flex-start;
-
-  gap: 18px;
+  display: grid;
+  grid-template-rows: auto 1fr;
 
   padding:
-    calc(280px + env(safe-area-inset-top))
-    22px
+    calc(12px + env(safe-area-inset-top))
+    18px
     calc(24px + env(safe-area-inset-bottom));
 
   background-image: url("images/Fond-taxi1.png?v=100");
@@ -3383,15 +3374,64 @@ body.taxi-dark .color-field span {
   background-repeat: no-repeat;
 }
 
+.taxi-home[hidden] {
+  display: none !important;
+}
+
+
+/* ==========================================================
+   TITRE + PARAMETRES
+   ========================================================== */
+
+.taxi-home-header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 56px;
+}
+
+.taxi-home-header h1 {
+  margin: 0;
+
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1;
+
+  color: #111827;
+}
+
+
+/* ==========================================================
+   BOUTONS ACCUEIL
+   ========================================================== */
+
+.taxi-home-actions {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+}
+
 .taxi-home-btn {
   width: min(100%, 520px);
   min-height: 76px;
+
   border: 2px solid #111827;
   border-radius: 18px;
+
   background: #111827;
   color: #ffffff;
+
   font-size: 18px;
   font-weight: 900;
+
   cursor: pointer;
 }
 
