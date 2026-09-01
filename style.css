@@ -1754,13 +1754,14 @@ button.primary {
 .app-version {
   position: fixed;
   left: 50%;
-  bottom: calc(2px + env(safe-area-inset-bottom));
+  bottom: 8px;
   transform: translateX(-50%);
   z-index: 5100;
 
-  width: auto;
-  max-width: calc(100% - 32px);
+  width: max-content;
+  max-width: calc(100% - 28px);
   box-sizing: border-box;
+
   margin: 0;
   padding: 6px 14px;
 
@@ -1782,6 +1783,11 @@ button.primary {
   -webkit-backdrop-filter: blur(6px);
 }
 
+@supports (padding: env(safe-area-inset-bottom)) {
+  .app-version {
+    bottom: max(8px, env(safe-area-inset-bottom));
+  }
+}
 /* ==========================================================
    POPUP MISE A JOUR
    ========================================================== */
