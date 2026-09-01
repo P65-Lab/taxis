@@ -20,6 +20,7 @@ body {
 }
 
 .hero {
+  position: relative;
   display: flex;
   gap: 16px;
   align-items: center;
@@ -47,9 +48,10 @@ body {
 }
 
 .hero h1 {
-  margin: 3px 0 5px;
+  margin: 0;
   font-size: 30px;
   letter-spacing: -.03em;
+  line-height: 1;
 }
 
 .hero p {
@@ -206,12 +208,13 @@ select:focus,input:focus,textarea:focus {
 }
 
 @media (max-width:440px) {
+
   .grid2 {
     grid-template-columns: 1fr;
   }
 
   .hero {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .logo {
@@ -221,6 +224,8 @@ select:focus,input:focus,textarea:focus {
 
   .hero h1 {
     font-size: 27px;
+    margin: 0;
+    line-height: 56px;
   }
 }
 
