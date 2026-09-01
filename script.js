@@ -1726,6 +1726,15 @@ body{
   page.document.close();
 
 }
+
+const previewHtmlMailBtn =
+  document.getElementById("previewHtmlMailBtn");
+
+if (previewHtmlMailBtn) {
+  previewHtmlMailBtn.onclick =
+    ouvrirApercuMailTaxiHtml;
+}
+
 /* ==========================================================
    SMS AUX AGENTS
    ========================================================== */
