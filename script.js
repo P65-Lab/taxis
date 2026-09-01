@@ -3018,9 +3018,8 @@ quickAddContacts.addEventListener("click", () => {
 });
 
 quickAddAppearance.addEventListener("click", () => {
-  ouvrirAdministrationSur("appearance");
+  alert("Bientôt");
 });
-
 
 
 /* ==========================================================
