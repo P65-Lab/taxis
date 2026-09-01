@@ -1,7 +1,12 @@
 
 const APP_VERSION = "v99";
 const APP_VERSION_DATE = "29/08/2026 15:22";
+const appVersionEl = document.getElementById("appVersion");
 
+if (appVersionEl) {
+  appVersionEl.textContent =
+    `P65-Lab Taxi • ${APP_VERSION} • Mise à jour : ${APP_VERSION_DATE}`;
+}
 const baseLieux = window.TAXI_DB || [];
 const baseAgents = [];
 
