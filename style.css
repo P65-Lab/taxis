@@ -1754,7 +1754,7 @@ button.primary {
 .app-version {
   position: fixed;
   left: 50%;
-  bottom: 8px;
+  bottom: 3px;
   transform: translateX(-50%);
   z-index: 5100;
 
