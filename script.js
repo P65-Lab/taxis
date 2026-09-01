@@ -1488,6 +1488,209 @@ function construireMailTaxiHtml() {
 
 function ouvrirApercuMailTaxiHtml() {
 
+  const mail =
+    construireMailTaxiHtml();
+
+  if (!mail) {
+    return;
+  }
+
+  const estAndroid =
+    /Android/i.test(navigator.userAgent);
+
+
+  /* ==========================================================
+     ANDROID : APERCU DIRECTEMENT DANS L'APPLICATION
+     ========================================================== */
+
+  if (estAndroid) {
+
+    const ancien =
+      document.getElementById("androidOutlookPreview");
+
+    if (ancien) {
+      ancien.remove();
+    }
+
+
+    const overlay =
+      document.createElement("div");
+
+    overlay.id =
+      "androidOutlookPreview";
+
+    overlay.style.cssText =
+      "position:fixed;" +
+      "inset:0;" +
+      "z-index:20000;" +
+      "background:#f3f4f6;" +
+      "overflow:auto;" +
+      "padding:12px;";
+
+
+    const barre =
+      document.createElement("div");
+
+    barre.style.cssText =
+      "position:sticky;" +
+      "top:0;" +
+      "z-index:2;" +
+      "display:flex;" +
+      "gap:8px;" +
+      "flex-wrap:wrap;" +
+      "padding:10px;" +
+      "margin:-12px -12px 12px;" +
+      "background:#ffffff;" +
+      "border-bottom:1px solid #d1d5db;";
+
+
+    const btnCopier =
+      document.createElement("button");
+
+    btnCopier.type = "button";
+    btnCopier.textContent =
+      "Copier la présentation";
+
+    btnCopier.style.cssText =
+      "min-height:44px;" +
+      "padding:10px 14px;" +
+      "border:0;" +
+      "border-radius:10px;" +
+      "background:#111827;" +
+      "color:#ffffff;" +
+      "font-weight:800;";
+
+
+    const btnOutlook =
+      document.createElement("button");
+
+    btnOutlook.type = "button";
+    btnOutlook.textContent =
+      "Ouvrir Outlook";
+
+    btnOutlook.style.cssText =
+      "min-height:44px;" +
+      "padding:10px 14px;" +
+      "border:0;" +
+      "border-radius:10px;" +
+      "background:#2563eb;" +
+      "color:#ffffff;" +
+      "font-weight:800;";
+
+
+    const btnFermer =
+      document.createElement("button");
+
+    btnFermer.type = "button";
+    btnFermer.textContent =
+      "Fermer";
+
+    btnFermer.style.cssText =
+      "min-height:44px;" +
+      "padding:10px 14px;" +
+      "border:0;" +
+      "border-radius:10px;" +
+      "background:#e5e7eb;" +
+      "color:#111827;" +
+      "font-weight:800;";
+
+
+    barre.appendChild(btnCopier);
+    barre.appendChild(btnOutlook);
+    barre.appendChild(btnFermer);
+
+
+    const contenu =
+      document.createElement("div");
+
+    contenu.style.cssText =
+      "max-width:800px;" +
+      "margin:auto;" +
+      "padding:14px;" +
+      "background:#ffffff;" +
+      "border-radius:12px;";
+
+    contenu.innerHTML =
+      mail.html;
+
+
+    overlay.appendChild(barre);
+    overlay.appendChild(contenu);
+
+    document.body.appendChild(overlay);
+
+
+    /* FERMER */
+    btnFermer.onclick = function() {
+
+      overlay.remove();
+
+    };
+
+
+    /* OUVRIR OUTLOOK */
+    btnOutlook.onclick = function() {
+
+      const mailto =
+        "mailto:" +
+        encodeURIComponent(mail.to) +
+        "?subject=" +
+        encodeURIComponent(mail.sujet);
+
+      window.location.href =
+        mailto;
+
+    };
+
+
+    /* COPIER */
+    btnCopier.onclick = function() {
+
+      const range =
+        document.createRange();
+
+      range.selectNodeContents(
+        contenu
+      );
+
+      const selection =
+        window.getSelection();
+
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      let ok = false;
+
+      try {
+
+        ok =
+          document.execCommand("copy");
+
+      } catch(e) {
+
+        ok = false;
+
+      }
+
+      selection.removeAllRanges();
+
+      alert(
+        ok
+          ? "Présentation copiée. Ouvrez Outlook puis collez."
+          : "Sélectionnez la présentation puis copiez-la."
+      );
+
+    };
+
+
+    return;
+  }
+
+
+  /* ==========================================================
+     APPLE / PC : ON GARDE LE SYSTEME EXISTANT
+     ========================================================== */
+
   const page =
     window.open(
       "",
@@ -1495,19 +1698,14 @@ function ouvrirApercuMailTaxiHtml() {
     );
 
   if (!page) {
+
     alert(
       "L’aperçu a été bloqué par le navigateur. Autorisez les fenêtres surgissantes pour cette PWA."
     );
+
     return;
   }
 
-  const mail =
-    construireMailTaxiHtml();
-
-  if (!mail) {
-    page.close();
-    return;
-  }
 
   page.document.open();
 
