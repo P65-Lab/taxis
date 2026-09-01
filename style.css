@@ -779,24 +779,42 @@ input[type="time"] {
   transform: scale(.96);
 }
 
-.quick-add-overlay {
+.quick-add-overlay{
   position: fixed;
   z-index: 4000;
   inset: 0;
-  padding: calc(20px + env(safe-area-inset-top))
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    calc(20px + env(safe-area-inset-top))
     18px
     calc(20px + env(safe-area-inset-bottom));
-  background: rgba(17,24,39,.42);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  display: flex;
+
+  background-image:
+    linear-gradient(
+      rgba(17,24,39,.22),
+      rgba(17,24,39,.22)
+    ),
+    url("images/Fond-taxi1.png?v=100");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
-.quick-add-menu {
+.quick-add-menu{
   width: min(100%, 360px);
   padding: 16px;
+
   border-radius: 20px;
-  background: #ffffff;
+  background: rgba(255,255,255,.96);
+
   box-shadow: 0 24px 60px rgba(17,24,39,.28);
 }
 
@@ -872,8 +890,8 @@ input[type="time"] {
   }
 
   .quick-add-menu {
-    width: 100%;
-  }
+  margin-top: 70px;
+}
 }
 
 /* ==========================================================
