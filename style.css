@@ -3347,7 +3347,7 @@ body.taxi-dark .color-field span {
   gap: 18px;
 
   padding:
-    calc(200px + env(safe-area-inset-top))
+    calc(250px + env(safe-area-inset-top))
     22px
     calc(24px + env(safe-area-inset-bottom));
 
