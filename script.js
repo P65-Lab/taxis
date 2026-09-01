@@ -2699,6 +2699,8 @@ const quickAddContacts = document.getElementById("quickAddContacts");
 const quickAddAppearance = document.getElementById("quickAddAppearance");
 const quickAddClose = document.getElementById("quickAddClose");
 
+
+
 function ouvrirMenuAjout() {
 
   const taxiHome =
@@ -2706,10 +2708,6 @@ function ouvrirMenuAjout() {
 
   if (taxiHome) {
     taxiHome.hidden = true;
-  }
-
-  if (quickAddBtn) {
-    quickAddBtn.hidden = true;
   }
 
   quickAddMenu.hidden = false;
