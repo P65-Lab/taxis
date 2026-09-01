@@ -3337,16 +3337,24 @@ body.taxi-dark .color-field span {
   z-index: 5000;
   width: 100%;
   min-height: 100dvh;
+
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+
+  /* Remonte les 2 boutons */
+  justify-content: flex-start;
+
   gap: 18px;
-  padding: calc(24px + env(safe-area-inset-top))
+
+  padding:
+    calc(250px + env(safe-area-inset-top))
     22px
     calc(24px + env(safe-area-inset-bottom));
-background-image: url("images/Fond-taxi1.png?v=100");
-background-size: cover;
-background-position: center;
+
+  background-image: url("images/Fond-taxi1.png?v=100");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .taxi-home-btn {
