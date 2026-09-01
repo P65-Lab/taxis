@@ -3494,7 +3494,16 @@ body.taxi-dark .color-field span {
   padding: calc(env(safe-area-inset-top) + 12px)
   12px
   calc(env(safe-area-inset-bottom) + 12px);
-  background: rgba(17,24,39,.42);
+  background-image:
+  linear-gradient(
+    rgba(17,24,39,.22),
+    rgba(17,24,39,.22)
+  ),
+  url("images/Fond-taxi1.png?v=100");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
