@@ -1488,216 +1488,6 @@ function construireMailTaxiHtml() {
 
 function ouvrirApercuMailTaxiHtml() {
 
-  const mail =
-    construireMailTaxiHtml();
-
-  if (!mail) {
-    return;
-  }
-
-  const estAndroid =
-    /Android/i.test(navigator.userAgent);
-
-
-  /* ==========================================================
-     ANDROID : APERCU DANS L'APPLICATION
-     ========================================================== */
-
-  if (estAndroid) {
-
-    const ancien =
-      document.getElementById(
-        "androidOutlookPreview"
-      );
-
-    if (ancien) {
-      ancien.remove();
-    }
-
-    const overlay =
-      document.createElement("div");
-
-    overlay.id =
-      "androidOutlookPreview";
-
-    overlay.style.cssText = `
-      position: fixed;
-      inset: 0;
-      z-index: 20000;
-      background: #f3f4f6;
-      overflow: auto;
-      padding: 12px;
-    `;
-
-    overlay.innerHTML = `
-
-      <div style="
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 10px;
-        margin: -12px -12px 12px;
-        background: white;
-        border-bottom: 1px solid #d1d5db;
-      ">
-
-        <button
-          type="button"
-          id="androidCopyPreview"
-          style="
-            min-height:44px;
-            border:0;
-            border-radius:10px;
-            padding:10px 14px;
-            background:#111827;
-            color:white;
-            font-weight:800;
-          "
-        >
-          Copier la présentation
-        </button>
-
-        <button
-          type="button"
-          id="androidOpenOutlook"
-          style="
-            min-height:44px;
-            border:0;
-            border-radius:10px;
-            padding:10px 14px;
-            background:#2563eb;
-            color:white;
-            font-weight:800;
-          "
-        >
-          Ouvrir Outlook
-        </button>
-
-        <button
-          type="button"
-          id="androidClosePreview"
-          style="
-            min-height:44px;
-            border:0;
-            border-radius:10px;
-            padding:10px 14px;
-            background:#e5e7eb;
-            color:#111827;
-            font-weight:800;
-          "
-        >
-          Fermer
-        </button>
-
-      </div>
-
-      <div
-        id="androidMailRendered"
-        style="
-          max-width:800px;
-          margin:auto;
-          padding:14px;
-          background:white;
-          border-radius:12px;
-        "
-      >
-        ${mail.html}
-      </div>
-    `;
-
-    document.body.appendChild(
-      overlay
-    );
-
-
-    /* FERMER */
-    document
-      .getElementById(
-        "androidClosePreview"
-      )
-      .onclick = () => {
-
-        overlay.remove();
-
-      };
-
-
-    /* OUVRIR OUTLOOK */
-    document
-      .getElementById(
-        "androidOpenOutlook"
-      )
-      .onclick = () => {
-
-        const mailto =
-          "mailto:" +
-          encodeURIComponent(mail.to) +
-          "?subject=" +
-          encodeURIComponent(mail.sujet);
-
-        window.location.href =
-          mailto;
-
-      };
-
-
-    /* COPIER */
-    document
-      .getElementById(
-        "androidCopyPreview"
-      )
-      .onclick = () => {
-
-        const zone =
-          document.getElementById(
-            "androidMailRendered"
-          );
-
-        const range =
-          document.createRange();
-
-        range.selectNodeContents(
-          zone
-        );
-
-        const selection =
-          window.getSelection();
-
-        selection.removeAllRanges();
-        selection.addRange(range);
-
-        let ok = false;
-
-        try {
-          ok =
-            document.execCommand(
-              "copy"
-            );
-        } catch (e) {
-          ok = false;
-        }
-
-        selection.removeAllRanges();
-
-        alert(
-          ok
-            ? "Présentation copiée. Ouvrez Outlook puis collez."
-            : "Copie impossible."
-        );
-
-      };
-
-    return;
-  }
-
-
-  /* ==========================================================
-     IPHONE / IPAD / PC
-     ========================================================== */
-
   const page =
     window.open(
       "",
@@ -1706,32 +1496,29 @@ function ouvrirApercuMailTaxiHtml() {
 
   if (!page) {
     alert(
-      "L’aperçu a été bloqué par le navigateur."
+      "L’aperçu a été bloqué par le navigateur. Autorisez les fenêtres surgissantes pour cette PWA."
     );
+    return;
+  }
+
+  const mail =
+    construireMailTaxiHtml();
+
+  if (!mail) {
+    page.close();
     return;
   }
 
   page.document.open();
 
   page.document.write(`<!doctype html>
-
 <html lang="fr">
-
 <head>
-
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1"
->
-
-<title>
-  Aperçu mail Taxi
-</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aperçu mail Taxi</title>
 
 <style>
-
 body{
   margin:0;
   padding:20px;
@@ -1744,29 +1531,20 @@ body{
   position:sticky;
   top:0;
   z-index:20;
-
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-
   margin:-20px -20px 18px;
   padding:12px 20px;
-
   background:#fff;
-
-  border-bottom:
-    1px solid #d1d5db;
+  border-bottom:1px solid #d1d5db;
 }
 
 .toolbar button{
   min-height:44px;
-
-  padding:
-    10px 16px;
-
+  padding:10px 16px;
   border:0;
   border-radius:10px;
-
   font-weight:800;
 }
 
@@ -1788,30 +1566,22 @@ body{
 .help{
   width:100%;
   margin:0;
-
   color:#667085;
   font-size:13px;
 }
 
 #mailRendered{
   max-width:800px;
-
   margin:auto;
-
   padding:24px;
-
   background:#fff;
-
   border-radius:12px;
 }
 
 #mailRendered th,
 #mailRendered td{
-  border:
-    1px solid #94a3b8;
-
+  border:1px solid #94a3b8;
   padding:10px;
-
   text-align:left;
 }
 
@@ -1827,9 +1597,7 @@ body{
   }
 
   .toolbar{
-    margin:
-      -10px -10px 12px;
-
+    margin:-10px -10px 12px;
     padding:10px;
   }
 
@@ -1837,9 +1605,7 @@ body{
     padding:12px;
     overflow-x:auto;
   }
-
 }
-
 </style>
 
 </head>
@@ -1848,30 +1614,20 @@ body{
 
 <div class="toolbar">
 
-  <button
-    id="copyRenderedBtn"
-  >
+  <button id="copyRenderedBtn">
     Copier la présentation
   </button>
 
-  <button
-    id="openOutlookBtn"
-  >
+  <button id="openOutlookBtn">
     Ouvrir Outlook
   </button>
 
-  <button
-    id="closePreviewBtn"
-  >
+  <button id="closePreviewBtn">
     Fermer
   </button>
 
   <p class="help">
-    Copier la présentation
-    →
-    Ouvrir Outlook
-    →
-    Coller dans le corps du mail.
+    Copier la présentation → Ouvrir Outlook → Coller dans le corps du mail.
   </p>
 
 </div>
@@ -1881,7 +1637,6 @@ body{
 </div>
 
 <script>
-
 (function(){
 
   const sujet =
@@ -1890,24 +1645,17 @@ body{
   const to =
     ${JSON.stringify(mail.to)};
 
-
   document
-    .getElementById(
-      "copyRenderedBtn"
-    )
+    .getElementById("copyRenderedBtn")
     .onclick = function(){
 
       const zone =
-        document.getElementById(
-          "mailRendered"
-        );
+        document.getElementById("mailRendered");
 
       const range =
         document.createRange();
 
-      range.selectNodeContents(
-        zone
-      );
+      range.selectNodeContents(zone);
 
       const sel =
         window.getSelection();
@@ -1918,12 +1666,8 @@ body{
       let ok = false;
 
       try {
-
         ok =
-          document.execCommand(
-            "copy"
-          );
-
+          document.execCommand("copy");
       } catch(e) {}
 
       sel.removeAllRanges();
@@ -1933,14 +1677,11 @@ body{
           ? "Présentation copiée. Ouvrez Outlook puis collez."
           : "Sélectionnez la présentation puis copiez-la."
       );
-
     };
 
 
   document
-    .getElementById(
-      "closePreviewBtn"
-    )
+    .getElementById("closePreviewBtn")
     .onclick = function(){
 
       window.close();
@@ -1949,9 +1690,7 @@ body{
 
 
   document
-    .getElementById(
-      "openOutlookBtn"
-    )
+    .getElementById("openOutlookBtn")
     .onclick = function(){
 
       const outlook =
@@ -1969,30 +1708,24 @@ body{
       location.href =
         outlook;
 
-      setTimeout(
-        function(){
+      setTimeout(function(){
 
-          location.href =
-            mailto;
+        location.href =
+          mailto;
 
-        },
-        1200
-      );
+      },1200);
 
     };
 
 })();
-
 <\/script>
 
 </body>
-
 </html>`);
 
   page.document.close();
 
 }
-
 /* ==========================================================
    SMS AUX AGENTS
    ========================================================== */
