@@ -1785,7 +1785,7 @@ button.primary {
 
 @supports (padding: env(safe-area-inset-bottom)) {
   .app-version {
-    bottom: max(8px, env(safe-area-inset-bottom));
+    bottom: max(3px, env(safe-area-inset-bottom));
   }
 }
 /* ==========================================================
