@@ -1,6 +1,6 @@
 
 const APP_VERSION = "v100";
-const APP_VERSION_DATE = "01/09/2026 07:19";
+const APP_VERSION_DATE = "01/09/2026";
 const appVersionEl = document.getElementById("appVersion");
 
 if (appVersionEl) {
