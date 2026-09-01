@@ -762,16 +762,22 @@ input[type="time"] {
   z-index: 3000;
   top: calc(14px + env(safe-area-inset-top));
   right: 16px;
+
   width: 52px;
   height: 52px;
+
   border: 0;
   border-radius: 50%;
+
   background: #111827;
   color: #ffffff;
+
   font-size: 32px;
   font-weight: 400;
   line-height: 1;
+
   box-shadow: 0 10px 26px rgba(17,24,39,.28);
+
   cursor: pointer;
 }
 
@@ -779,7 +785,12 @@ input[type="time"] {
   transform: scale(.96);
 }
 
-.quick-add-overlay{
+
+/* ==========================================================
+   FOND PARAMETRES
+   ========================================================== */
+
+.quick-add-overlay {
   position: fixed;
   z-index: 4000;
   inset: 0;
@@ -808,8 +819,15 @@ input[type="time"] {
   -webkit-backdrop-filter: none;
 }
 
-.quick-add-menu{
-  width: min(100%, 360px);
+
+/* ==========================================================
+   CARTE PARAMETRES
+   ========================================================== */
+
+.quick-add-menu {
+  width: min(360px, calc(100% - 36px));
+  margin: 0;
+
   padding: 16px;
 
   border-radius: 20px;
@@ -820,6 +838,7 @@ input[type="time"] {
 
 .quick-add-title {
   margin-bottom: 12px;
+
   font-size: 18px;
   font-weight: 900;
   color: #111827;
@@ -828,16 +847,22 @@ input[type="time"] {
 .quick-choice {
   width: 100%;
   min-height: 70px;
+
   display: flex;
   align-items: center;
   gap: 13px;
+
   margin-bottom: 9px;
   padding: 12px 14px;
+
   border: 1px solid #e5e7eb;
   border-radius: 15px;
+
   background: #f9fafb;
   color: #111827;
+
   text-align: left;
+
   cursor: pointer;
 }
 
@@ -848,11 +873,16 @@ input[type="time"] {
 .quick-icon {
   width: 42px;
   height: 42px;
+
   display: grid;
   place-items: center;
+
   flex: 0 0 42px;
+
   border-radius: 12px;
+
   background: #ffffff;
+
   font-size: 22px;
 }
 
@@ -874,24 +904,33 @@ input[type="time"] {
 .quick-close {
   width: 100%;
   min-height: 44px;
+
   border: 0;
   background: transparent;
+
   color: #6b7280;
+
   font-weight: 800;
+
   cursor: pointer;
 }
 
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
 @media (max-width: 480px) {
+
   .quick-add-btn {
     width: 48px;
     height: 48px;
+
     right: 14px;
+
     font-size: 30px;
   }
 
-  .quick-add-menu {
-  margin-top: 70px;
-}
 }
 
 /* ==========================================================
