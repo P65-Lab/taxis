@@ -799,10 +799,7 @@ input[type="time"] {
   align-items: center;
   justify-content: center;
 
-  padding:
-    calc(20px + env(safe-area-inset-top))
-    18px
-    calc(20px + env(safe-area-inset-bottom));
+ padding: 18px;
 
   background-image:
     linear-gradient(
