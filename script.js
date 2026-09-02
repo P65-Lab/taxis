@@ -1010,15 +1010,73 @@ function rendreListeAgentsPicker() {
       searchEl?.value || ""
     );
 
-  let liste =
-    getAgentsTries();
+const tousAgents =
+  getAgentsTries();
 
-  if (query) {
-    liste = liste.filter(ag =>
-      normalizeText(ag.nom).includes(query) ||
-      normalizeText(ag.telephone || "").includes(query)
+let liste;
+
+if (query) {
+
+  /* Agents déjà cochés :
+     ils restent toujours visibles */
+  const dejaChoisis =
+    tousAgents.filter(ag =>
+      agentsPickerDraft.has(
+        normalizeText(ag.nom)
+      )
     );
-  }
+
+
+  /* Recherche :
+     le NOM doit COMMENCER par le texte saisi */
+  const resultatsRecherche =
+    tousAgents.filter(ag => {
+
+      const nom =
+        normalizeText(ag.nom);
+
+      const telephone =
+        normalizeText(
+          ag.telephone || ""
+        );
+
+      return (
+        nom.startsWith(query) ||
+        telephone.startsWith(query)
+      );
+
+    });
+
+
+  /* Fusion sans doublons :
+     sélectionnés en premier,
+     puis résultats de recherche */
+  const vus =
+    new Set();
+
+  liste = [
+    ...dejaChoisis,
+    ...resultatsRecherche
+  ].filter(ag => {
+
+    const key =
+      normalizeText(ag.nom);
+
+    if (vus.has(key)) {
+      return false;
+    }
+
+    vus.add(key);
+    return true;
+
+  });
+
+} else {
+
+  liste =
+    tousAgents;
+
+}
 
   listEl.innerHTML =
     liste.map((ag, index) => {
