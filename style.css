@@ -3645,6 +3645,27 @@ background-repeat: no-repeat;
   box-shadow: 0 8px 22px rgba(17,24,39,.28) !important;
 }
 
+/* POINT ROUGE - MISE A JOUR */
+
+#updateBadge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #ffffff;
+
+  pointer-events: none;
+}
+
+#updateBadge[hidden] {
+  display: none !important;
+}
+
 /* ==========================================================
    PETITS PICTOGRAMMES DES LIBELLES
    ========================================================== */
@@ -3990,3 +4011,4 @@ background-repeat: no-repeat;
 
   z-index: 30 !important;
 }
+
