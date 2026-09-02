@@ -131,7 +131,7 @@ function showVilleResults() {
 
   if (query) {
     filtered = villes.filter(v =>
-      normalizeText(v).includes(query)
+     normalizeText(v).startsWith(query)
     );
   }
 
@@ -192,12 +192,20 @@ ville.addEventListener("input", () => {
   } else {
     villeSelectionnee = "";
 
-    depart.innerHTML =
-      '<option value="">Choisir d’abord une ville...</option>';
+    depart.value = "";
+arrivee.value = "";
 
-    arrivee.innerHTML =
-      '<option value="">Choisir d’abord une ville...</option>';
+delete depart.dataset.lieuIndex;
+delete arrivee.dataset.lieuIndex;
 
+departResults.innerHTML = "";
+arriveeResults.innerHTML = "";
+
+departResults.hidden = true;
+arriveeResults.hidden = true;
+
+departDetail.textContent = "";
+arriveeDetail.textContent = "";
     departDetail.textContent = "";
     arriveeDetail.textContent = "";
   }
