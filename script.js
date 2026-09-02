@@ -226,20 +226,20 @@ function fillLieux() {
   if (!items.length) {
 
     depart.innerHTML =
-      '<option value="">Aucun lieu disponible</option>';
+      '<option value="" selected disabled hidden>Choisir un lieu...</option>'
 
     arrivee.innerHTML =
-      '<option value="">Aucun lieu disponible</option>';
+'<option value="" selected disabled hidden>Choisir un lieu...</option>'
 
     return;
   }
 
   depart.innerHTML =
-    '<option value="">Choisir un lieu...</option>' +
+'<option value="" selected disabled hidden>Choisir un lieu...</option>' +
     items.map(optionLieu).join("");
 
   arrivee.innerHTML =
-    '<option value="">Choisir un lieu...</option>' +
+'<option value="" selected disabled hidden>Choisir un lieu...</option>' +
     items.map(optionLieu).join("");
 
   departDetail.textContent = "";
