@@ -2906,8 +2906,8 @@ function renderAdminLieux() {
 
   const resultats = allLieux()
     .filter(x =>
-      normalizeText(x.ville).includes(q)
-    )
+  normalizeText(x.ville).startsWith(q)
+)
     .sort((a, b) => {
 
       const villeCmp =
