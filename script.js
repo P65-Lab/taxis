@@ -68,8 +68,18 @@ const villeResults = document.getElementById("villeResults");
 
 const depart = document.getElementById("depart");
 const arrivee = document.getElementById("arrivee");
-const departDetail = document.getElementById("departDetail");
-const arriveeDetail = document.getElementById("arriveeDetail");
+
+const departResults =
+  document.getElementById("departResults");
+
+const arriveeResults =
+  document.getElementById("arriveeResults");
+
+const departDetail =
+  document.getElementById("departDetail");
+
+const arriveeDetail =
+  document.getElementById("arriveeDetail");
 const dateEl = document.getElementById("date");
 const heure = document.getElementById("heure");
 const dateRetour = document.getElementById("dateRetour");
@@ -205,7 +215,7 @@ ville.addEventListener("blur", () => {
 });
 
 /* ==========================================================
-   LIEUX
+   LIEUX - LISTES PERSONNALISEES
    ========================================================== */
 
 function lieuxVille() {
@@ -220,142 +230,285 @@ function lieuxVille() {
 }
 
 
-function optionLieu(x, i) {
+/* ==========================================================
+   RECUPERER LE LIEU SELECTIONNE
+   ========================================================== */
 
-  return `<option value="${i}">${x.lieu}</option>`;
+function getLieu(champ) {
 
-}
+  const index =
+    champ.dataset.lieuIndex;
 
-
-function fillLieux() {
-
-  const items =
-    lieuxVille();
-
-  if (!items.length) {
-
-    depart.innerHTML = "";
-    arrivee.innerHTML = "";
-
-    depart.selectedIndex = -1;
-    arrivee.selectedIndex = -1;
-
-    departDetail.textContent = "";
-    arriveeDetail.textContent = "";
-
-    return;
+  if (
+    index === undefined ||
+    index === ""
+  ) {
+    return null;
   }
 
-  depart.innerHTML =
-    items.map(optionLieu).join("");
-
-  arrivee.innerHTML =
-    items.map(optionLieu).join("");
-
-  depart.selectedIndex = -1;
-  arrivee.selectedIndex = -1;
-
-  departDetail.textContent = "";
-  arriveeDetail.textContent = "";
-
-  filtrerLieux();
+  return lieuxVille()[
+    Number(index)
+  ] || null;
 
 }
 
-function getLieu(sel) {
 
-  if (sel.value === "") return null;
-
-  return lieuxVille()[Number(sel.value)] || null;
-}
+/* ==========================================================
+   DETAIL ADRESSE
+   ========================================================== */
 
 function detail(x) {
 
   if (!x) return "";
 
   return `${x.adresse} — ${x.codePostal}`;
+
 }
 
+
+/* ==========================================================
+   REMPLIR DEPART / ARRIVEE
+   ========================================================== */
+
+function fillLieux() {
+
+  depart.value = "";
+  arrivee.value = "";
+
+  delete depart.dataset.lieuIndex;
+  delete arrivee.dataset.lieuIndex;
+
+  departDetail.textContent = "";
+  arriveeDetail.textContent = "";
+
+  departResults.innerHTML = "";
+  arriveeResults.innerHTML = "";
+
+  departResults.hidden = true;
+  arriveeResults.hidden = true;
+
+  update();
+
+}
+
+
+/* ==========================================================
+   AFFICHER UNE LISTE DE LIEUX
+   ========================================================== */
+
+function afficherListeLieux(
+  champ,
+  resultats,
+  autreChamp
+) {
+
+  const items =
+    lieuxVille();
+
+  if (!items.length) {
+
+    resultats.innerHTML =
+      '<div class="agent-empty">Aucun lieu disponible</div>';
+
+    resultats.hidden = false;
+
+    return;
+  }
+
+
+  const indexAutre =
+    autreChamp.dataset.lieuIndex;
+
+
+  const liste =
+    items
+      .map((x, i) => {
+
+        /*
+          Ne pas proposer dans Arrivée
+          le lieu déjà choisi en Départ,
+          et inversement.
+        */
+
+        if (
+          indexAutre !== undefined &&
+          indexAutre !== "" &&
+          Number(indexAutre) === i
+        ) {
+          return "";
+        }
+
+        return `
+          <button
+            type="button"
+            class="ville-result lieu-result"
+            data-lieu-index="${i}"
+          >
+            <strong>${x.lieu}</strong>
+          </button>
+        `;
+
+      })
+      .join("");
+
+
+  resultats.innerHTML =
+    liste;
+
+
+  resultats.hidden =
+    false;
+
+
+  resultats
+    .querySelectorAll(
+      ".lieu-result"
+    )
+    .forEach(btn => {
+
+      btn.addEventListener(
+        "click",
+        event => {
+
+          event.preventDefault();
+
+          const index =
+            Number(
+              btn.dataset.lieuIndex
+            );
+
+          const lieu =
+            items[index];
+
+          if (!lieu) {
+            return;
+          }
+
+
+          champ.value =
+            lieu.lieu;
+
+          champ.dataset.lieuIndex =
+            String(index);
+
+
+          resultats.hidden =
+            true;
+
+
+          /*
+            Adresse sous le champ
+          */
+
+          if (champ === depart) {
+
+            departDetail.textContent =
+              detail(lieu);
+
+          } else {
+
+            arriveeDetail.textContent =
+              detail(lieu);
+
+          }
+
+
+          /*
+            Fermer les deux listes
+          */
+
+          departResults.hidden =
+            true;
+
+          arriveeResults.hidden =
+            true;
+
+
+          update();
+
+        }
+      );
+
+    });
+
+}
+
+
+/* ==========================================================
+   CLIC DEPART
+   ========================================================== */
+
+depart.addEventListener(
+  "click",
+  () => {
+
+    arriveeResults.hidden =
+      true;
+
+    afficherListeLieux(
+      depart,
+      departResults,
+      arrivee
+    );
+
+  }
+);
+
+
+/* ==========================================================
+   CLIC ARRIVEE
+   ========================================================== */
+
+arrivee.addEventListener(
+  "click",
+  () => {
+
+    departResults.hidden =
+      true;
+
+    afficherListeLieux(
+      arrivee,
+      arriveeResults,
+      depart
+    );
+
+  }
+);
+
+
+/* ==========================================================
+   FERMER LES LISTES SI CLIC AILLEURS
+   ========================================================== */
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if (
+      !depart.contains(event.target) &&
+      !departResults.contains(event.target)
+    ) {
+      departResults.hidden =
+        true;
+    }
+
+    if (
+      !arrivee.contains(event.target) &&
+      !arriveeResults.contains(event.target)
+    ) {
+      arriveeResults.hidden =
+        true;
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   COMPATIBILITE ANCIEN CODE
+   ========================================================== */
+
 function filtrerLieux() {
-
-  const items = lieuxVille();
-
-  const departChoisi =
-    depart.value === "" ? null : Number(depart.value);
-
-  const arriveeChoisie =
-    arrivee.value === "" ? null : Number(arrivee.value);
-
-  const valeurDepartActuelle =
-    depart.value;
-
-  const valeurArriveeActuelle =
-    arrivee.value;
-
-
-  depart.innerHTML =
-    items.map((x, i) => {
-
-      if (
-        arriveeChoisie !== null &&
-        i === arriveeChoisie
-      ) {
-        return "";
-      }
-
-      return `<option value="${i}">${x.lieu}</option>`;
-
-    }).join("");
-
-
-  arrivee.innerHTML =
-    items.map((x, i) => {
-
-      if (
-        departChoisi !== null &&
-        i === departChoisi
-      ) {
-        return "";
-      }
-
-      return `<option value="${i}">${x.lieu}</option>`;
-
-    }).join("");
-
-
-  if (
-    valeurDepartActuelle !== "" &&
-    depart.querySelector(
-      `option[value="${valeurDepartActuelle}"]`
-    )
-  ) {
-
-    depart.value =
-      valeurDepartActuelle;
-
-  } else {
-
-    depart.selectedIndex = -1;
-
-  }
-
-
-  if (
-    valeurArriveeActuelle !== "" &&
-    arrivee.querySelector(
-      `option[value="${valeurArriveeActuelle}"]`
-    )
-  ) {
-
-    arrivee.value =
-      valeurArriveeActuelle;
-
-  } else {
-
-    arrivee.selectedIndex = -1;
-
-  }
-
 
   update();
 
@@ -1078,8 +1231,7 @@ if (document.readyState === "loading") {
   x.addEventListener("input", update)
 );
 
-depart.addEventListener("change", filtrerLieux);
-arrivee.addEventListener("change", filtrerLieux);
+
 
 
 
@@ -1114,17 +1266,20 @@ window.effacerDemande = function effacerDemande() {
   }
 
   // Départ / arrivée
-  depart.innerHTML =
-    '<option value="">Choisir d’abord une ville...</option>';
+ depart.value = "";
+arrivee.value = "";
 
-  arrivee.innerHTML =
-    '<option value="">Choisir d’abord une ville...</option>';
+delete depart.dataset.lieuIndex;
+delete arrivee.dataset.lieuIndex;
 
-  depart.value = "";
-  arrivee.value = "";
+departResults.innerHTML = "";
+arriveeResults.innerHTML = "";
 
-  departDetail.textContent = "";
-  arriveeDetail.textContent = "";
+departResults.hidden = true;
+arriveeResults.hidden = true;
+
+departDetail.textContent = "";
+arriveeDetail.textContent = "";
 
  // Dates et heures
 dateEl.value = "";
@@ -1259,7 +1414,10 @@ document
       return;
     }
 
-    if (depart.value === arrivee.value) {
+    if (
+  depart.dataset.lieuIndex ===
+  arrivee.dataset.lieuIndex
+) {
       alert(
         "Le lieu de départ et le lieu d’arrivée " +
         "doivent être différents."
