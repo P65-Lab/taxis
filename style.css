@@ -96,6 +96,13 @@ select:focus,input:focus,textarea:focus {
   box-shadow: 0 0 0 4px #11182710;
 }
 
+/* Départ / Arrivée */
+#depart,
+#arrivee {
+  padding-left: 34px;
+  padding-right: 8px;
+}
+
 .detail {
   margin-top: 7px;
   padding-left: 2px;
