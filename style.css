@@ -2229,12 +2229,20 @@ body.agents-picker-open {
 }
 
 .agents-picker-list {
-  min-height: 0;
+  min-height: 120px;
+  max-height: 220px;
+
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
   overscroll-behavior: contain;
+
   border: 1px solid #e4e7ec;
   border-radius: 14px;
+
   background: #ffffff;
+
+  margin-top: 4px;
 }
 
 .agent-check-row {
@@ -2349,18 +2357,29 @@ body.taxi-dark .agents-selected-summary {
 }
 
 @media (max-width: 480px) {
+
   .agents-picker-overlay {
     align-items: flex-end;
     padding-left: 8px;
     padding-right: 8px;
+    padding-bottom: 8px;
   }
 
   .agents-picker-modal {
     width: 100%;
-    max-height: 88vh;
+
+    /* hauteur adaptée quand le clavier est ouvert */
+    max-height: min(62dvh, 520px);
+
     padding: 14px;
     border-radius: 20px 20px 12px 12px;
   }
+
+  .agents-picker-list {
+    min-height: 110px;
+    max-height: 180px;
+  }
+
 }
 
 /* La liste reste volontairement blanche */
