@@ -152,12 +152,30 @@
 
 <div class="locations-row depart-arrivee-row">
 
+  <!-- DEPART -->
   <div class="field">
     <label for="depart">Départ</label>
 
-    <div class="select-icon-wrap">
+    <div class="search-wrap icon-input-wrap">
+
       <span class="field-icon">📍</span>
-      <select id="depart" required></select>
+
+      <input
+        id="depart"
+        class="lieu-search"
+        type="text"
+        autocomplete="off"
+        placeholder="Choisir un lieu..."
+        readonly
+        required
+      >
+
+      <div
+        id="departResults"
+        class="ville-results"
+        hidden
+      ></div>
+
     </div>
 
     <div
@@ -167,12 +185,30 @@
   </div>
 
 
+  <!-- ARRIVEE -->
   <div class="field">
     <label for="arrivee">Arrivée</label>
 
-    <div class="select-icon-wrap">
+    <div class="search-wrap icon-input-wrap">
+
       <span class="field-icon">📍</span>
-      <select id="arrivee" required></select>
+
+      <input
+        id="arrivee"
+        class="lieu-search"
+        type="text"
+        autocomplete="off"
+        placeholder="Choisir un lieu..."
+        readonly
+        required
+      >
+
+      <div
+        id="arriveeResults"
+        class="ville-results"
+        hidden
+      ></div>
+
     </div>
 
     <div
