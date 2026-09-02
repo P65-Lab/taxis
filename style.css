@@ -3929,7 +3929,7 @@ background-repeat: no-repeat;
   position: absolute;
 
   /* plus haut, hors du cadre intérieur */
-  top: 8px;
+  top: 5px;
   right: 12px;
 
   /* rond légèrement plus petit */
