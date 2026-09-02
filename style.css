@@ -3923,6 +3923,11 @@ background-repeat: no-repeat;
 
 .admin-popup-card {
   position: relative;
+
+  padding:
+    52px
+    16px
+    16px;
 }
 
 .admin-popup-close {
