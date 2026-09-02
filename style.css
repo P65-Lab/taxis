@@ -3927,11 +3927,14 @@ background-repeat: no-repeat;
 
 .admin-popup-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
 
-  width: 42px;
-  height: 42px;
+  /* plus haut, hors du cadre intérieur */
+  top: 8px;
+  right: 12px;
+
+  /* rond légèrement plus petit */
+  width: 38px;
+  height: 38px;
 
   border: 0;
   border-radius: 50%;
@@ -3943,7 +3946,7 @@ background-repeat: no-repeat;
   align-items: center;
   justify-content: center;
 
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
   line-height: 1;
 
