@@ -2557,6 +2557,8 @@ const tabAppearance = document.getElementById("tabAppearance");
 
 
 let editLieuIndex = -1;
+
+let editLieuBaseKey = "";
 let editAgentIndex = -1;
 
 const adminVille = document.getElementById("adminVille");
@@ -2592,6 +2594,7 @@ adminNomAgent.addEventListener(
 
 function clearLieuForm() {
   editLieuIndex = -1;
+  editLieuBaseKey = "";
   adminVille.value = "";
   adminLieu.value = "";
   adminAdresse.value = "";
@@ -2690,12 +2693,26 @@ saveLieuBtn.addEventListener("click", () => {
     return;
   }
 
-  if (lieuExiste(villeNom, lieuNom, editLieuIndex)) {
-    alert(
-      "Ce lieu existe déjà pour cette ville."
-    );
-    return;
-  }
+  const nouvelleCle =
+  normalizeText(
+    `${villeNom}|${lieuNom}|${adresse}|${cp}`
+  );
+
+/* En modification d'un lieu database.js,
+   on autorise son propre enregistrement */
+if (
+  !editLieuBaseKey &&
+  lieuExiste(
+    villeNom,
+    lieuNom,
+    editLieuIndex
+  )
+) {
+  alert(
+    "Ce lieu existe déjà pour cette ville."
+  );
+  return;
+}
 
   const item = {
     lieu: lieuNom,
@@ -2705,10 +2722,44 @@ saveLieuBtn.addEventListener("click", () => {
   };
 
   if (editLieuIndex >= 0) {
-    customLieux[editLieuIndex] = item;
-  } else {
-    customLieux.push(item);
+
+  /* Lieu déjà privé */
+  customLieux[editLieuIndex] =
+    item;
+
+} else if (editLieuBaseKey) {
+
+  /* Lieu venant de database.js :
+     masquer l'ancien */
+  if (
+    !lieuxSupprimes.includes(
+      editLieuBaseKey
+    )
+  ) {
+    lieuxSupprimes.push(
+      editLieuBaseKey
+    );
+
+    saveLocalArray(
+      LS_LIEUX_SUPPRIMES,
+      lieuxSupprimes
+    );
   }
+
+  /* Ajouter la version corrigée
+     dans la base locale */
+  customLieux.push(
+    item
+  );
+
+} else {
+
+  /* Nouveau lieu */
+  customLieux.push(
+    item
+  );
+
+}
 
   saveLocalArray(LS_LIEUX, customLieux);
 
@@ -2883,18 +2934,33 @@ function renderAdminLieux() {
         adminAdresse.value = x.adresse || "";
         adminCP.value = x.codePostal || "";
 
-        const customIndex =
-          customLieux.findIndex(
-            c => cleLieu(c) === key
-          );
+      const customIndex =
+  customLieux.findIndex(
+    c => cleLieu(c) === key
+  );
 
-        editLieuIndex = customIndex;
-        saveLieuBtn.textContent =
-          customIndex >= 0
-            ? "Enregistrer"
-            : "Ajouter le lieu";
+editLieuIndex = customIndex;
 
-        renderAdminLieux();
+/* Si le lieu vient de database.js,
+   on mémorise sa clé d'origine */
+editLieuBaseKey =
+  customIndex >= 0
+    ? ""
+    : key;
+
+/* Ouvrir le formulaire de modification */
+if (lieuFormBox) {
+  lieuFormBox.hidden = false;
+}
+
+if (openLieuForm) {
+  openLieuForm.textContent = "− Fermer";
+}
+
+saveLieuBtn.textContent =
+  "Enregistrer";
+
+adminLieu.focus();
       });
     });
 
@@ -2966,6 +3032,7 @@ function renderAdminLieux() {
           adminAdresse.value = "";
           adminCP.value = "";
           editLieuIndex = -1;
+          editLieuBaseKey = "";
           saveLieuBtn.textContent =
             "Ajouter le lieu";
         }
