@@ -1,5 +1,5 @@
 
-const APP_VERSION = "v101";
+const APP_VERSION = "v102";
 const APP_VERSION_DATE = "02/09/2026";
 const appVersionEl = document.getElementById("appVersion");
 
@@ -3959,11 +3959,16 @@ renderAdminAgents();
 updatePrivateAgentsStatus();
 update();
 
+/* ==========================================================
+   MISE A JOUR PWA
+   ========================================================== */
+
 if (
   "serviceWorker" in navigator &&
   location.protocol.startsWith("http")
 ) {
-  addEventListener("load", async () => {
+
+  window.addEventListener("load", async () => {
 
     try {
 
@@ -3975,7 +3980,138 @@ if (
           }
         );
 
+      const updateBadge =
+        document.getElementById("updateBadge");
+
+      const updateOverlay =
+        document.getElementById("updateOverlay");
+
+      const updateNowBtn =
+  document.getElementById("updateNowBtn");
+
+const updateLaterBtn =
+  document.getElementById("updateLaterBtn");
+
+      /* ------------------------------------------
+         AFFICHER MISE A JOUR DISPONIBLE
+         ------------------------------------------ */
+
+      function afficherMiseAJour(worker) {
+
+        if (!worker) return;
+
+        if (updateBadge) {
+          updateBadge.hidden = false;
+        }
+
+        if (updateOverlay) {
+          updateOverlay.hidden = false;
+        }
+
+    if (updateNowBtn) {
+
+  updateNowBtn.onclick = () => {
+
+    updateNowBtn.disabled = true;
+    updateNowBtn.textContent =
+      "Mise à jour...";
+
+    worker.postMessage({
+      type: "SKIP_WAITING"
+    });
+
+  };
+
+}
+
+
+        /* PLUS TARD */
+
+        if (updateLaterBtn) {
+
+          updateLaterBtn.onclick = () => {
+
+            if (updateOverlay) {
+              updateOverlay.hidden = true;
+            }
+
+            /* Le point rouge reste visible */
+
+          };
+
+        }
+
+      }
+
+
+      /* ------------------------------------------
+         UNE VERSION ATTEND DEJA
+         ------------------------------------------ */
+
+      if (registration.waiting) {
+        afficherMiseAJour(
+          registration.waiting
+        );
+      }
+
+
+      /* ------------------------------------------
+         NOUVELLE VERSION TROUVEE
+         ------------------------------------------ */
+
+      registration.addEventListener(
+        "updatefound",
+        () => {
+
+          const worker =
+            registration.installing;
+
+          if (!worker) return;
+
+          worker.addEventListener(
+            "statechange",
+            () => {
+
+              if (
+                worker.state === "installed" &&
+                navigator.serviceWorker.controller
+              ) {
+
+                afficherMiseAJour(worker);
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+      /* ------------------------------------------
+         NOUVELLE VERSION ACTIVEE
+         ------------------------------------------ */
+
+      let rechargementEffectue = false;
+
+      navigator.serviceWorker.addEventListener(
+        "controllerchange",
+        () => {
+
+          if (rechargementEffectue) return;
+
+          rechargementEffectue = true;
+
+          window.location.reload();
+
+        }
+      );
+
+
+      /* Vérification immédiate */
+
       await registration.update();
+
 
     } catch (e) {
 
@@ -3987,6 +4123,7 @@ if (
     }
 
   });
+
 }
 
 renderDestinataires();
