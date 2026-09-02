@@ -3926,30 +3926,32 @@ background-repeat: no-repeat;
 }
 
 .admin-popup-close {
-  position: absolute;
+  position: absolute !important;
 
-  /* plus haut, hors du cadre intérieur */
-  top: 5px;
-  right: 12px;
+  top: 5px !important;
+  right: 10px !important;
 
-  /* rond légèrement plus petit */
-  width: 38px;
-  height: 38px;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
 
-  border: 0;
-  border-radius: 50%;
+  padding: 0 !important;
+  margin: 0 !important;
 
-  background: #111827;
-  color: #ffffff;
+  border: 0 !important;
+  border-radius: 50% !important;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #111827 !important;
+  color: #ffffff !important;
 
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-  cursor: pointer;
-  z-index: 20;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  z-index: 30 !important;
 }
