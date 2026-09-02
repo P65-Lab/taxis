@@ -210,42 +210,56 @@ ville.addEventListener("blur", () => {
 
 function lieuxVille() {
 
-  const v = villeSelectionnee || villeValide();
+  const v =
+    villeSelectionnee || villeValide();
 
-  return allLieux().filter(x => x.ville === v);
+  return allLieux().filter(
+    x => x.ville === v
+  );
+
 }
+
 
 function optionLieu(x, i) {
+
   return `<option value="${i}">${x.lieu}</option>`;
+
 }
+
 
 function fillLieux() {
 
-  const items = lieuxVille();
+  const items =
+    lieuxVille();
 
   if (!items.length) {
 
-    depart.innerHTML =
-      '<option value="" selected disabled hidden>Choisir un lieu...</option>'
+    depart.innerHTML = "";
+    arrivee.innerHTML = "";
 
-    arrivee.innerHTML =
-'<option value="" selected disabled hidden>Choisir un lieu...</option>'
+    depart.selectedIndex = -1;
+    arrivee.selectedIndex = -1;
+
+    departDetail.textContent = "";
+    arriveeDetail.textContent = "";
 
     return;
   }
 
   depart.innerHTML =
-'<option value="" selected disabled hidden>Choisir un lieu...</option>' +
     items.map(optionLieu).join("");
 
   arrivee.innerHTML =
-'<option value="" selected disabled hidden>Choisir un lieu...</option>' +
     items.map(optionLieu).join("");
+
+  depart.selectedIndex = -1;
+  arrivee.selectedIndex = -1;
 
   departDetail.textContent = "";
   arriveeDetail.textContent = "";
 
   filtrerLieux();
+
 }
 
 function getLieu(sel) {
