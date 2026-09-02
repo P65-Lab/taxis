@@ -286,12 +286,16 @@ function filtrerLieux() {
   const arriveeChoisie =
     arrivee.value === "" ? null : Number(arrivee.value);
 
-  const valeurDepartActuelle = depart.value;
-  const valeurArriveeActuelle = arrivee.value;
+  const valeurDepartActuelle =
+    depart.value;
+
+  const valeurArriveeActuelle =
+    arrivee.value;
+
 
   depart.innerHTML =
-    '<option value="">Choisir un lieu...</option>' +
     items.map((x, i) => {
+
       if (
         arriveeChoisie !== null &&
         i === arriveeChoisie
@@ -300,11 +304,13 @@ function filtrerLieux() {
       }
 
       return `<option value="${i}">${x.lieu}</option>`;
+
     }).join("");
 
+
   arrivee.innerHTML =
-    '<option value="">Choisir un lieu...</option>' +
     items.map((x, i) => {
+
       if (
         departChoisi !== null &&
         i === departChoisi
@@ -313,7 +319,9 @@ function filtrerLieux() {
       }
 
       return `<option value="${i}">${x.lieu}</option>`;
+
     }).join("");
+
 
   if (
     valeurDepartActuelle !== "" &&
@@ -321,8 +329,16 @@ function filtrerLieux() {
       `option[value="${valeurDepartActuelle}"]`
     )
   ) {
-    depart.value = valeurDepartActuelle;
+
+    depart.value =
+      valeurDepartActuelle;
+
+  } else {
+
+    depart.selectedIndex = -1;
+
   }
+
 
   if (
     valeurArriveeActuelle !== "" &&
@@ -330,10 +346,19 @@ function filtrerLieux() {
       `option[value="${valeurArriveeActuelle}"]`
     )
   ) {
-    arrivee.value = valeurArriveeActuelle;
+
+    arrivee.value =
+      valeurArriveeActuelle;
+
+  } else {
+
+    arrivee.selectedIndex = -1;
+
   }
 
+
   update();
+
 }
 
 /* ==========================================================
