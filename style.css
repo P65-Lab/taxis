@@ -246,16 +246,27 @@ select:focus,input:focus,textarea:focus {
 
 .agent-results {
   position: absolute;
+
   z-index: 1000;
-  top: calc(100% + 6px);
+
+  bottom: calc(100% + 6px);
+
   left: 0;
   right: 0;
-  max-height: 280px;
+
+  max-height: 220px;
+
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
   background: #ffffff;
+
   border: 1px solid #d1d5db;
+
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(17,24,39,.16);
+
+  box-shadow: 0 -18px 40px rgba(17,24,39,.16);
+
   padding: 6px;
 }
 
