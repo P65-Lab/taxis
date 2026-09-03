@@ -1,4 +1,4 @@
-const C = "taxi-pwa-v102";
+const C = "taxi-pwa-v103";
 
 /* ==========================================================
    INSTALLATION
