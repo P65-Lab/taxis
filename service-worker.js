@@ -1,4 +1,4 @@
-const CACHE_NAME = "taxi-pwa-cache-v2";
+const CACHE_NAME = "taxi-pwa-cache-v3";
 
 const APP_FILES = [
   "./",
