@@ -3995,7 +3995,7 @@ const updateLaterBtn =
       /* ------------------------------------------
          AFFICHER MISE A JOUR DISPONIBLE
          ------------------------------------------ */
-
+let miseAJourDemandee = false;
       function afficherMiseAJour(worker) {
 
         if (!worker) return;
@@ -4011,7 +4011,7 @@ const updateLaterBtn =
     if (updateNowBtn) {
 
   updateNowBtn.onclick = () => {
-
+miseAJourDemandee = true;
     updateNowBtn.disabled = true;
     updateNowBtn.textContent =
       "Mise à jour...";
@@ -4092,20 +4092,29 @@ const updateLaterBtn =
          NOUVELLE VERSION ACTIVEE
          ------------------------------------------ */
 
-      let rechargementEffectue = false;
+     let rechargementEffectue = false;
 
-      navigator.serviceWorker.addEventListener(
-        "controllerchange",
-        () => {
+navigator.serviceWorker.addEventListener(
+  "controllerchange",
+  () => {
 
-          if (rechargementEffectue) return;
+    /* Ne jamais recharger si l'utilisateur
+       a choisi "Plus tard" */
 
-          rechargementEffectue = true;
+    if (!miseAJourDemandee) {
+      return;
+    }
 
-          window.location.reload();
+    if (rechargementEffectue) {
+      return;
+    }
 
-        }
-      );
+    rechargementEffectue = true;
+
+    window.location.reload();
+
+  }
+);
 
 
       /* Vérification immédiate */
