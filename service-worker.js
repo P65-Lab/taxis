@@ -1,19 +1,67 @@
-const C = "taxi-pwa-v1";
+const CACHE_NAME = "taxi-pwa-cache-v1";
+
+const APP_FILES = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js",
+  "./database.js",
+  "./manifest.json"
+];
+
 
 /* ==========================================================
    INSTALLATION
-   La nouvelle version attend la validation de l'utilisateur
+   Prépare la nouvelle version MAIS NE L'ACTIVE PAS
    ========================================================== */
 
 self.addEventListener("install", event => {
 
-  /* PAS de self.skipWaiting() ici */
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(async cache => {
+
+        for (const url of APP_FILES) {
+
+          try {
+
+            const response = await fetch(
+              new Request(url, {
+                cache: "no-store"
+              })
+            );
+
+            if (response.ok) {
+              await cache.put(
+                url,
+                response.clone()
+              );
+            }
+
+          } catch (e) {
+            console.error(
+              "Impossible de mettre en cache :",
+              url,
+              e
+            );
+          }
+
+        }
+
+      })
+  );
+
+  /*
+    IMPORTANT :
+    PAS de self.skipWaiting() ici.
+    La nouvelle version reste en attente.
+  */
 
 });
 
 
 /* ==========================================================
-   MESSAGE : METTRE A JOUR
+   L'UTILISATEUR CLIQUE SUR "METTRE A JOUR"
    ========================================================== */
 
 self.addEventListener("message", event => {
@@ -41,7 +89,13 @@ self.addEventListener("activate", event => {
     caches.keys()
       .then(keys =>
         Promise.all(
-          keys.map(k => caches.delete(k))
+          keys
+            .filter(key =>
+              key !== CACHE_NAME
+            )
+            .map(key =>
+              caches.delete(key)
+            )
         )
       )
       .then(() =>
@@ -54,7 +108,9 @@ self.addEventListener("activate", event => {
 
 
 /* ==========================================================
-   RESEAU EN PRIORITE
+   NAVIGATION
+   Tant que l'utilisateur n'a pas accepté la mise à jour,
+   on garde l'ancienne page de l'application.
    ========================================================== */
 
 self.addEventListener("fetch", event => {
@@ -63,17 +119,49 @@ self.addEventListener("fetch", event => {
     return;
   }
 
+
+  /* PAGE PRINCIPALE */
+
+  if (event.request.mode === "navigate") {
+
+    event.respondWith(
+
+      caches.match("./index.html")
+        .then(cached => {
+
+          if (cached) {
+            return cached;
+          }
+
+          return fetch(event.request);
+
+        })
+
+    );
+
+    return;
+  }
+
+
+  /* CSS / JAVASCRIPT / AUTRES FICHIERS */
+
   event.respondWith(
 
-    fetch(
+    caches.match(
       event.request,
       {
-        cache: "no-store"
+        ignoreSearch: true
       }
     )
-    .catch(() =>
-      caches.match(event.request)
-    )
+    .then(cached => {
+
+      if (cached) {
+        return cached;
+      }
+
+      return fetch(event.request);
+
+    })
 
   );
 
