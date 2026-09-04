@@ -1,4 +1,4 @@
-const CACHE_NAME = "taxi-pwa-cache-v4";
+const CACHE_NAME = "taxi-pwa-cache-v5";
 
 
 /* ==========================================================
