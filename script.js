@@ -3987,61 +3987,107 @@ if (
         document.getElementById("updateOverlay");
 
       const updateNowBtn =
-  document.getElementById("updateNowBtn");
+        document.getElementById("updateNowBtn");
 
-const updateLaterBtn =
-  document.getElementById("updateLaterBtn");
+      const updateLaterBtn =
+        document.getElementById("updateLaterBtn");
 
-      /* ------------------------------------------
-         AFFICHER MISE A JOUR DISPONIBLE
-         ------------------------------------------ */
+      const quickAddUpdate =
+        document.getElementById("quickAddUpdate");
+
+
+/* ------------------------------------------
+   AFFICHER MISE A JOUR DISPONIBLE
+   ------------------------------------------ */
+
 let miseAJourDemandee = false;
-      function afficherMiseAJour(worker) {
 
-        if (!worker) return;
+function afficherMiseAJour(worker) {
 
-        if (updateBadge) {
-          updateBadge.hidden = false;
-        }
+  if (!worker) return;
 
-        if (updateOverlay) {
-          updateOverlay.hidden = false;
-        }
+  /* POINT ROUGE */
+  if (updateBadge) {
+    updateBadge.hidden = false;
+  }
 
-    if (updateNowBtn) {
+  /* BOUTON DANS PARAMETRES */
+  if (quickAddUpdate) {
+    quickAddUpdate.hidden = false;
+  }
 
-  updateNowBtn.onclick = () => {
-miseAJourDemandee = true;
-    updateNowBtn.disabled = true;
-    updateNowBtn.textContent =
-      "Mise à jour...";
+  /* AFFICHER LE POPUP */
+  if (updateOverlay) {
+    updateOverlay.hidden = false;
+  }
 
-    worker.postMessage({
-      type: "SKIP_WAITING"
-    });
 
-  };
+  /* ------------------------------------------
+     METTRE A JOUR
+     ------------------------------------------ */
+
+  if (updateNowBtn) {
+
+    updateNowBtn.onclick = () => {
+
+      miseAJourDemandee = true;
+
+      updateNowBtn.disabled = true;
+      updateNowBtn.textContent =
+        "Mise à jour...";
+
+      worker.postMessage({
+        type: "SKIP_WAITING"
+      });
+
+    };
+
+  }
+
+
+  /* ------------------------------------------
+     PLUS TARD
+     ------------------------------------------ */
+
+  if (updateLaterBtn) {
+
+    updateLaterBtn.onclick = () => {
+
+      if (updateOverlay) {
+        updateOverlay.hidden = true;
+      }
+
+      /*
+        Le point rouge reste visible
+        Le bouton Mise à jour reste dans Paramètres
+      */
+
+    };
+
+  }
+
+
+  /* ------------------------------------------
+     ROUVRIR DEPUIS PARAMETRES
+     ------------------------------------------ */
+
+  if (quickAddUpdate) {
+
+    quickAddUpdate.onclick = () => {
+
+      if (quickAddMenu) {
+        quickAddMenu.hidden = true;
+      }
+
+      if (updateOverlay) {
+        updateOverlay.hidden = false;
+      }
+
+    };
+
+  }
 
 }
-
-
-        /* PLUS TARD */
-
-        if (updateLaterBtn) {
-
-          updateLaterBtn.onclick = () => {
-
-            if (updateOverlay) {
-              updateOverlay.hidden = true;
-            }
-
-            /* Le point rouge reste visible */
-
-          };
-
-        }
-
-      }
 
 
       /* ------------------------------------------
