@@ -3,12 +3,6 @@ const APP_VERSION = "v2";
 
 const APP_VERSION_DATE = "04/09/2026";
 
-const APP_UPDATE_NOTES = [
-  "Nouveau système de mise à jour",
-  "Ajout du point rouge sur Paramètres",
-  "Ajout du bouton Mise à jour disponible dans Paramètres",
-  "Possibilité de reporter une mise à jour"
-];
 const appVersionEl = document.getElementById("appVersion");
 
 if (appVersionEl) {
@@ -4013,22 +4007,11 @@ let miseAJourDemandee = false;
 function afficherMiseAJour(worker) {
 
   if (!worker) return;
-/* DETAILS DE LA MISE A JOUR */
+/* DEMANDER LES INFORMATIONS DE LA NOUVELLE VERSION */
 
-const updateText =
-  document.getElementById("updateText");
-
-if (updateText) {
-
-  updateText.innerHTML =
-    `<strong>Version ${APP_VERSION}</strong><br>` +
-    `<small>Du ${APP_VERSION_DATE}</small><br><br>` +
-    `<strong>Modifications :</strong><br>` +
-    APP_UPDATE_NOTES
-      .map(note => `• ${note}`)
-      .join("<br>");
-
-}
+worker.postMessage({
+  type: "GET_UPDATE_INFO"
+});
  
 /* POINT ROUGE */
   if (updateBadge) {

@@ -1,5 +1,22 @@
 const CACHE_NAME = "taxi-pwa-cache-v3";
 
+
+/* ==========================================================
+   INFORMATIONS DE LA NOUVELLE VERSION
+   ========================================================== */
+
+const UPDATE_INFO = {
+  version: "v3",
+  date: "04/09/2026",
+
+  notes: [
+    "Affichage du détail des mises à jour",
+    "Accès à la mise à jour depuis Paramètres",
+    "Amélioration du système de mise à jour"
+  ]
+};
+
+
 const APP_FILES = [
   "./",
   "./index.html",
@@ -32,18 +49,22 @@ self.addEventListener("install", event => {
             );
 
             if (response.ok) {
+
               await cache.put(
                 url,
                 response.clone()
               );
+
             }
 
           } catch (e) {
+
             console.error(
               "Impossible de mettre en cache :",
               url,
               e
             );
+
           }
 
         }
@@ -54,22 +75,51 @@ self.addEventListener("install", event => {
   /*
     IMPORTANT :
     PAS de self.skipWaiting() ici.
-    La nouvelle version reste en attente.
+
+    La nouvelle version reste en attente
+    jusqu'au clic sur "Mettre à jour".
   */
 
 });
 
 
 /* ==========================================================
-   L'UTILISATEUR CLIQUE SUR "METTRE A JOUR"
+   MESSAGES REÇUS DE L'APPLICATION
    ========================================================== */
 
 self.addEventListener("message", event => {
 
-  if (
-    event.data &&
-    event.data.type === "SKIP_WAITING"
-  ) {
+  if (!event.data) {
+    return;
+  }
+
+
+  /* ----------------------------------------------------------
+     DEMANDE DES INFORMATIONS DE MISE A JOUR
+     ---------------------------------------------------------- */
+
+  if (event.data.type === "GET_UPDATE_INFO") {
+
+    if (event.source) {
+
+      event.source.postMessage({
+        type: "UPDATE_INFO",
+        version: UPDATE_INFO.version,
+        date: UPDATE_INFO.date,
+        notes: UPDATE_INFO.notes
+      });
+
+    }
+
+    return;
+  }
+
+
+  /* ----------------------------------------------------------
+     L'UTILISATEUR CLIQUE SUR "METTRE A JOUR"
+     ---------------------------------------------------------- */
+
+  if (event.data.type === "SKIP_WAITING") {
 
     self.skipWaiting();
 
@@ -88,7 +138,9 @@ self.addEventListener("activate", event => {
 
     caches.keys()
       .then(keys =>
+
         Promise.all(
+
           keys
             .filter(key =>
               key !== CACHE_NAME
@@ -96,7 +148,9 @@ self.addEventListener("activate", event => {
             .map(key =>
               caches.delete(key)
             )
+
         )
+
       )
       .then(() =>
         self.clients.claim()
@@ -109,8 +163,9 @@ self.addEventListener("activate", event => {
 
 /* ==========================================================
    NAVIGATION
+
    Tant que l'utilisateur n'a pas accepté la mise à jour,
-   on garde l'ancienne page de l'application.
+   on garde l'ancienne version de l'application.
    ========================================================== */
 
 self.addEventListener("fetch", event => {
@@ -120,7 +175,9 @@ self.addEventListener("fetch", event => {
   }
 
 
-  /* PAGE PRINCIPALE */
+  /* ----------------------------------------------------------
+     PAGE PRINCIPALE
+     ---------------------------------------------------------- */
 
   if (event.request.mode === "navigate") {
 
@@ -143,7 +200,9 @@ self.addEventListener("fetch", event => {
   }
 
 
-  /* CSS / JAVASCRIPT / AUTRES FICHIERS */
+  /* ----------------------------------------------------------
+     CSS / JAVASCRIPT / AUTRES FICHIERS
+     ---------------------------------------------------------- */
 
   event.respondWith(
 
