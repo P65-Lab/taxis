@@ -4096,7 +4096,6 @@ worker.postMessage({
 
 }
 
-
       /* ------------------------------------------
          UNE VERSION ATTEND DEJA
          ------------------------------------------ */
@@ -4139,7 +4138,65 @@ worker.postMessage({
 
         }
       );
+            /* ------------------------------------------
+         INFORMATIONS DE LA NOUVELLE VERSION
+         ------------------------------------------ */
 
+      navigator.serviceWorker.addEventListener(
+        "message",
+        event => {
+
+          if (
+            !event.data ||
+            event.data.type !== "UPDATE_INFO"
+          ) {
+            return;
+          }
+
+          const updateText =
+            document.getElementById("updateText");
+
+          if (!updateText) {
+            return;
+          }
+
+          const version =
+            event.data.version || "";
+
+          const date =
+            event.data.date || "";
+
+          const notes =
+            Array.isArray(event.data.notes)
+              ? event.data.notes
+              : [];
+
+          let contenu = "";
+
+          if (version) {
+            contenu +=
+              `<strong>Version ${version}</strong><br>`;
+          }
+
+          if (date) {
+            contenu +=
+              `<small>Du ${date}</small><br><br>`;
+          }
+
+          if (notes.length > 0) {
+
+            contenu +=
+              `<strong>Modifications :</strong><br>`;
+
+            contenu += notes
+              .map(note => `• ${note}`)
+              .join("<br>");
+          }
+
+          updateText.innerHTML = contenu;
+
+        }
+      );
 
       /* ------------------------------------------
          NOUVELLE VERSION ACTIVEE
