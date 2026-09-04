@@ -1,4 +1,4 @@
-const CACHE_NAME = "taxi-pwa-cache-v3";
+const CACHE_NAME = "taxi-pwa-cache-v4";
 
 
 /* ==========================================================
@@ -6,13 +6,13 @@ const CACHE_NAME = "taxi-pwa-cache-v3";
    ========================================================== */
 
 const UPDATE_INFO = {
-  version: "v3",
+  version: "v4",
   date: "04/09/2026",
 
   notes: [
-    "Affichage du détail des mises à jour",
-    "Accès à la mise à jour depuis Paramètres",
-    "Amélioration du système de mise à jour"
+    "Test de l'affichage du détail avant installation",
+    "Vérification du bouton Mise à jour",
+    "Vérification du choix Plus tard"
   ]
 };
 

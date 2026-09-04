@@ -1,5 +1,5 @@
 
-const APP_VERSION = "v3";
+const APP_VERSION = "v4";
 
 const APP_VERSION_DATE = "04/09/2026";
 
