@@ -6,8 +6,8 @@ const CACHE_NAME = "taxi-pwa-cache-v5";
    ========================================================== */
 
 const UPDATE_INFO = {
-  version: "v4",
-  date: "04/09/2026",
+  version: "v5",
+  date: "05/09/2026",
 
   notes: [
     "Test de l'affichage du détail avant installation",
