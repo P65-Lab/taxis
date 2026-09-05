@@ -4078,21 +4078,19 @@ worker.postMessage({
      ROUVRIR DEPUIS PARAMETRES
      ------------------------------------------ */
 
-  if (quickAddUpdate) {
+if (quickAddUpdate) {
 
-    quickAddUpdate.onclick = () => {
+  quickAddUpdate.onclick = () => {
 
-      if (quickAddMenu) {
-        quickAddMenu.hidden = true;
-      }
+    fermerMenuAjout();
 
-      if (updateOverlay) {
-        updateOverlay.hidden = false;
-      }
+    if (updateOverlay) {
+      updateOverlay.hidden = false;
+    }
 
-    };
+  };
 
-  }
+}
 
 }
 
