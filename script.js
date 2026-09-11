@@ -4097,6 +4097,7 @@ if (quickAddUpdate) {
 
     /* OUVRIR LA MISE A JOUR AU-DESSUS */
     updateOverlay.hidden = false;
+    updateOverlay.style.display = "flex";
 
     workerMiseAJour.postMessage({
       type: "GET_UPDATE_INFO"
@@ -4105,6 +4106,7 @@ if (quickAddUpdate) {
   };
 
 }
+
 } // FIN afficherMiseAJour
       /* ------------------------------------------
          UNE VERSION ATTEND DEJA
