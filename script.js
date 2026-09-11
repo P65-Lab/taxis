@@ -4003,12 +4003,12 @@ if (
    ------------------------------------------ */
 
 let miseAJourDemandee = false;
-
+let workerMiseAJour = null;
 function afficherMiseAJour(worker) {
 
   if (!worker) return;
 /* DEMANDER LES INFORMATIONS DE LA NOUVELLE VERSION */
-
+  workerMiseAJour = worker;
 worker.postMessage({
   type: "GET_UPDATE_INFO"
 });
@@ -4060,38 +4060,39 @@ if (updateLaterBtn) {
 
   updateLaterBtn.onclick = () => {
 
-    /* Fermer uniquement le popup mise à jour */
     if (updateOverlay) {
       updateOverlay.hidden = true;
     }
-
-    /* Restaurer correctement l'accueil */
-    fermerMenuAjout();
 
   };
 
 }
 
-  /* ------------------------------------------
-     ROUVRIR DEPUIS PARAMETRES
-     ------------------------------------------ */
+}
+/* ------------------------------------------
+   OUVRIR MISE A JOUR DEPUIS PARAMETRES
+   ------------------------------------------ */
 
 if (quickAddUpdate) {
 
   quickAddUpdate.onclick = () => {
 
-    fermerMenuAjout();
+    if (!workerMiseAJour) {
+      console.log("Aucune mise à jour disponible");
+      return;
+    }
 
     if (updateOverlay) {
       updateOverlay.hidden = false;
     }
 
+    workerMiseAJour.postMessage({
+      type: "GET_UPDATE_INFO"
+    });
+
   };
 
 }
-
-}
-
       /* ------------------------------------------
          UNE VERSION ATTEND DEJA
          ------------------------------------------ */
