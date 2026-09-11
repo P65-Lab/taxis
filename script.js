@@ -1,5 +1,5 @@
 
-const APP_VERSION = "v2";
+const APP_VERSION = "v3";
 
 const APP_VERSION_DATE = "05/09/2026";
 
@@ -10,7 +10,7 @@ if (appVersionEl) {
     `P65-Lab Taxi • ${APP_VERSION} • Mise à jour : ${APP_VERSION_DATE.split(" ")[0]}`;
 }
 
-const baseLieux = window.TAXI_DB || [];
+const baseLieux = widow.TAXI_DB || [];
 const baseAgents = [];
 
 const LS_LIEUX = "taxiCustomLieux";
