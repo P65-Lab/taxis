@@ -4143,14 +4143,17 @@ if (quickAddUpdate) {
             "statechange",
             () => {
 
-              if (
-                worker.state === "installed" &&
-                navigator.serviceWorker.controller
-              ) {
+          if (
+          worker.state === "installed" &&
+           navigator.serviceWorker.controller &&
+          registration.waiting
+          ) {
 
-                afficherMiseAJour(worker);
+         afficherMiseAJour(
+        registration.waiting
+        );
 
-              }
+        }
 
             }
           );
