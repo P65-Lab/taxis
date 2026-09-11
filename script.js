@@ -4004,7 +4004,7 @@ if (
 
 let miseAJourDemandee = false;
 let workerMiseAJour = null;
-let miseAJourDepuisParametres = false;
+
 function afficherMiseAJour(worker) {
 
   if (!worker) return;
@@ -4058,23 +4058,16 @@ worker.postMessage({
 
 if (updateLaterBtn) {
 
-  updateLaterBtn.onclick = () => {
+  updateLaterBtn.onclick = (event) => {
 
-    /* Fermer la fenêtre Mise à jour */
-    if (updateOverlay) {
-      updateOverlay.hidden = true;
-    }
+    event.preventDefault();
+    event.stopPropagation();
 
-    /* Si elle venait de Paramètres,
-       réafficher Paramètres */
-    if (miseAJourDepuisParametres) {
+    /* Fermer seulement Mise à jour */
+    updateOverlay.hidden = true;
 
-      if (quickAddMenu) {
-        quickAddMenu.hidden = false;
-      }
-
-      miseAJourDepuisParametres = false;
-    }
+    /* Réafficher Paramètres */
+    quickAddMenu.hidden = false;
 
   };
 
@@ -4085,17 +4078,21 @@ if (updateLaterBtn) {
 
 if (quickAddUpdate) {
 
-  quickAddUpdate.onclick = () => {
+  quickAddUpdate.onclick = (event) => {
+
+    event.preventDefault();
+    event.stopPropagation();
 
     if (!workerMiseAJour) {
       console.log("Aucune mise à jour disponible");
       return;
     }
-  miseAJourDepuisParametres = true;
 
-    if (updateOverlay) {
-      updateOverlay.hidden = false;
-    }
+    /* PARAMETRES RESTE OUVERT DERRIERE */
+    quickAddMenu.hidden = false;
+
+    /* OUVRIR LA MISE A JOUR AU-DESSUS */
+    updateOverlay.hidden = false;
 
     workerMiseAJour.postMessage({
       type: "GET_UPDATE_INFO"
