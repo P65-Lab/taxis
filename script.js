@@ -4063,15 +4063,22 @@ if (updateLaterBtn) {
     event.preventDefault();
     event.stopPropagation();
 
-    /* Fermer seulement Mise à jour */
+    /* Fermer la fenêtre de mise à jour */
     updateOverlay.hidden = true;
-   
 
-    /* Réafficher Paramètres */
-    quickAddMenu.hidden = false;
-    quickAddMenu.style.display = "flex";
-    quickAddMenu.style.visibility = "visible";
-    quickAddMenu.style.opacity = "1";
+    /* Fermer Paramètres */
+    quickAddMenu.hidden = true;
+    quickAddMenu.style.display = "";
+    quickAddMenu.style.visibility = "";
+    quickAddMenu.style.opacity = "";
+
+    /* Retour accueil */
+    const taxiHome =
+      document.getElementById("taxiHome");
+
+    if (taxiHome) {
+      taxiHome.hidden = false;
+    }
 
   };
 
