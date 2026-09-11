@@ -4065,9 +4065,13 @@ if (updateLaterBtn) {
 
     /* Fermer seulement Mise à jour */
     updateOverlay.hidden = true;
+    updateOverlay.style.display = "none";
 
     /* Réafficher Paramètres */
     quickAddMenu.hidden = false;
+    quickAddMenu.style.display = "flex";
+    quickAddMenu.style.visibility = "visible";
+    quickAddMenu.style.opacity = "1";
 
   };
 
