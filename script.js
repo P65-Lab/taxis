@@ -10,7 +10,7 @@ if (appVersionEl) {
     `P65-Lab Taxi • ${APP_VERSION} • Mise à jour : ${APP_VERSION_DATE.split(" ")[0]}`;
 }
 
-const baseLieux = widow.TAXI_DB || [];
+const baseLieux = window.TAXI_DB || [];
 const baseAgents = [];
 
 const LS_LIEUX = "taxiCustomLieux";
@@ -4101,6 +4101,7 @@ if (quickAddUpdate) {
   };
 
 }
+} // FIN afficherMiseAJour
       /* ------------------------------------------
          UNE VERSION ATTEND DEJA
          ------------------------------------------ */
