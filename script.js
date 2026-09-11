@@ -4004,6 +4004,7 @@ if (
 
 let miseAJourDemandee = false;
 let workerMiseAJour = null;
+let miseAJourDepuisParametres = false;
 function afficherMiseAJour(worker) {
 
   if (!worker) return;
@@ -4051,7 +4052,6 @@ worker.postMessage({
 
   }
 
-
 /* ------------------------------------------
    PLUS TARD
    ------------------------------------------ */
@@ -4060,13 +4060,23 @@ if (updateLaterBtn) {
 
   updateLaterBtn.onclick = () => {
 
+    /* Fermer la fenêtre Mise à jour */
     if (updateOverlay) {
       updateOverlay.hidden = true;
     }
 
-  };
+    /* Si elle venait de Paramètres,
+       réafficher Paramètres */
+    if (miseAJourDepuisParametres) {
 
-}
+      if (quickAddMenu) {
+        quickAddMenu.hidden = false;
+      }
+
+      miseAJourDepuisParametres = false;
+    }
+
+  };
 
 }
 /* ------------------------------------------
@@ -4081,6 +4091,7 @@ if (quickAddUpdate) {
       console.log("Aucune mise à jour disponible");
       return;
     }
+  miseAJourDepuisParametres = true;
 
     if (updateOverlay) {
       updateOverlay.hidden = false;
