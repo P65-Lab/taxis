@@ -4065,7 +4065,7 @@ if (updateLaterBtn) {
 
     /* Fermer seulement Mise à jour */
     updateOverlay.hidden = true;
-    updateOverlay.style.display = "none";
+   
 
     /* Réafficher Paramètres */
     quickAddMenu.hidden = false;
