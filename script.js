@@ -4052,27 +4052,25 @@ worker.postMessage({
   }
 
 
-  /* ------------------------------------------
-     PLUS TARD
-     ------------------------------------------ */
+/* ------------------------------------------
+   PLUS TARD
+   ------------------------------------------ */
 
-  if (updateLaterBtn) {
+if (updateLaterBtn) {
 
-    updateLaterBtn.onclick = () => {
+  updateLaterBtn.onclick = () => {
 
-      if (updateOverlay) {
-        updateOverlay.hidden = true;
-      }
+    /* Fermer uniquement le popup mise à jour */
+    if (updateOverlay) {
+      updateOverlay.hidden = true;
+    }
 
-      /*
-        Le point rouge reste visible
-        Le bouton Mise à jour reste dans Paramètres
-      */
+    /* Restaurer correctement l'accueil */
+    fermerMenuAjout();
 
-    };
+  };
 
-  }
-
+}
 
   /* ------------------------------------------
      ROUVRIR DEPUIS PARAMETRES
