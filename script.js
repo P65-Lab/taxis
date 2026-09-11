@@ -4208,11 +4208,11 @@ if (quickAddUpdate) {
         }
       );
 
-      /* ------------------------------------------
-         NOUVELLE VERSION ACTIVEE
-         ------------------------------------------ */
+/* ------------------------------------------
+   NOUVELLE VERSION ACTIVEE
+   ------------------------------------------ */
 
-     let rechargementEffectue = false;
+let rechargementEffectue = false;
 
 navigator.serviceWorker.addEventListener(
   "controllerchange",
@@ -4230,6 +4230,11 @@ navigator.serviceWorker.addEventListener(
     }
 
     rechargementEffectue = true;
+
+    /* Cacher Mise à jour dans Paramètres */
+    if (quickAddUpdate) {
+      quickAddUpdate.hidden = true;
+    }
 
     window.location.reload();
 
@@ -4251,7 +4256,8 @@ navigator.serviceWorker.addEventListener(
 
     }
 
-  });
+  }
+);
 
 }
 
