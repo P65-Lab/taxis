@@ -99,6 +99,7 @@ const apercu = document.getElementById("apercu");
 
 let participants = 0;
 let selectedAgentNames = [];
+let proprietaireRetireDemande = false;
 let villeSelectionnee = "";
 
 function normalizeText(v) {
@@ -552,11 +553,16 @@ function renderAgents() {
 
   if (
     proprietaire &&
+    !proprietaireRetireDemande &&
     !selectedAgentNames.some(
-      nom => normalizeText(nom) === normalizeText(proprietaire.nom)
+      nom =>
+        normalizeText(nom) ===
+        normalizeText(proprietaire.nom)
     )
   ) {
-    selectedAgentNames.unshift(proprietaire.nom);
+    selectedAgentNames.unshift(
+      proprietaire.nom
+    );
   }
 
 
@@ -564,53 +570,144 @@ function renderAgents() {
     .map(name => findAgentExact(name))
     .filter(Boolean);
 
-  selectedAgentNames = selection.map(a => a.nom);
+  selectedAgentNames =
+    selection.map(a => a.nom);
+
   participants = selection.length;
 
-  // Zone technique invisible utilisée par les fonctions existantes.
-  agents.innerHTML = selection.map((ag, i) => `
-    <input
-      type="hidden"
-      id="agent${i + 1}"
-      class="agent-search"
-      value="${ag.nom.replace(/"/g, "&quot;")}"
-      data-agent-name="${ag.nom.replace(/"/g, "&quot;")}"
-    >
-  `).join("");
 
-  nb.textContent = String(participants);
+  /* Zone technique invisible :
+     utilisée par le mail / SMS */
+
+  agents.innerHTML =
+    selection.map((ag, i) => `
+      <input
+        type="hidden"
+        id="agent${i + 1}"
+        class="agent-search"
+        value="${ag.nom.replace(/"/g, "&quot;")}"
+        data-agent-name="${ag.nom.replace(/"/g, "&quot;")}"
+      >
+    `).join("");
+
+
+  nb.textContent =
+    String(participants);
+
 
   const badge =
-    document.getElementById("agentsCountBadge");
+    document.getElementById(
+      "agentsCountBadge"
+    );
 
   const summary =
-    document.getElementById("agentsSelectedSummary");
+    document.getElementById(
+      "agentsSelectedSummary"
+    );
+
+
+  /* ----------------------------------------------------------
+     COMPTEUR
+     ---------------------------------------------------------- */
 
   if (badge) {
+
     badge.textContent =
       participants === 0
         ? "0 sélectionné"
         : `${participants} sélectionné${participants > 1 ? "s" : ""}`;
+
   }
+
+
+  /* ----------------------------------------------------------
+     AFFICHAGE DES AGENTS SELECTIONNES
+     NOM UNIQUEMENT + CORBEILLE
+     ---------------------------------------------------------- */
 
   if (summary) {
 
     if (!selection.length) {
+
       summary.hidden = true;
       summary.innerHTML = "";
+
     } else {
+
       summary.hidden = false;
-      summary.innerHTML = selection.map(ag => `
-        <div class="selected-agent-row">
-          <div class="selected-agent-main">
-            <strong>${ag.nom}</strong>
-            ${ag.telephone ? `<span>${ag.telephone}</span>` : ""}
+
+      summary.innerHTML =
+        selection.map(ag => `
+
+          <div class="selected-agent-row">
+
+            <strong class="selected-agent-name">
+              ${ag.nom}
+            </strong>
+
+            <button
+              type="button"
+              class="selected-agent-delete"
+              data-agent-delete="${ag.nom.replace(/"/g, "&quot;")}"
+              aria-label="Retirer ${ag.nom}"
+              title="Retirer cet agent"
+            >
+              🗑️
+            </button>
+
           </div>
-          ${ag.email ? `<div class="selected-agent-email">${ag.email}</div>` : ""}
-        </div>
-      `).join("");
+
+        `).join("");
+
+
+      /* CORBEILLE */
+
+      summary
+        .querySelectorAll(
+          ".selected-agent-delete"
+        )
+        .forEach(btn => {
+
+          btn.addEventListener(
+            "click",
+            () => {
+
+              const nom =
+                btn.dataset.agentDelete;
+
+              const agent =
+                findAgentExact(nom);
+
+              /* Si on retire le propriétaire,
+                 ne pas le remettre immédiatement */
+
+              if (
+                agent &&
+                estProprietaireTelephone(agent)
+              ) {
+                proprietaireRetireDemande = true;
+              }
+
+
+              selectedAgentNames =
+                selectedAgentNames.filter(
+                  x =>
+                    normalizeText(x) !==
+                    normalizeText(nom)
+                );
+
+
+              renderAgents();
+
+            }
+          );
+
+        });
+
     }
+
   }
+
 
   update();
 }
