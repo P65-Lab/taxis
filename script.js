@@ -541,6 +541,25 @@ function findAgentExact(name) {
 
 function renderAgents() {
 
+  /* ----------------------------------------------------------
+     AJOUT AUTOMATIQUE DU PROPRIETAIRE
+     ---------------------------------------------------------- */
+
+  const proprietaire = getAgentsTries().find(agent =>
+    ownerAgentKey &&
+    cleAgent(agent) === ownerAgentKey
+  );
+
+  if (
+    proprietaire &&
+    !selectedAgentNames.some(
+      nom => normalizeText(nom) === normalizeText(proprietaire.nom)
+    )
+  ) {
+    selectedAgentNames.unshift(proprietaire.nom);
+  }
+
+
   const selection = selectedAgentNames
     .map(name => findAgentExact(name))
     .filter(Boolean);
