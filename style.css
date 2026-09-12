@@ -3630,7 +3630,9 @@ background-repeat: no-repeat;
    ========================================================== */
 
 #taxiRequestPopup form button[type="submit"] {
-  margin-top: 0 !important;
+  position: relative;
+  top: -10px;
+  margin-bottom: -10px !important;
 }
 
 /* ==========================================================
