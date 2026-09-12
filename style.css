@@ -4012,3 +4012,10 @@ background-repeat: no-repeat;
   z-index: 30 !important;
 }
 
+/* ==========================================================
+   ELEMENTS CACHES
+   ========================================================== */
+
+[hidden] {
+  display: none !important;
+}
