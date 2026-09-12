@@ -1,7 +1,7 @@
 
-const APP_VERSION = "v2";
+const APP_VERSION = globalThis.TAXI_VERSION;
 
-const APP_VERSION_DATE = "12/09/2026";
+const APP_VERSION_DATE = globalThis.TAXI_VERSION_DATE;
 
 const appVersionEl = document.getElementById("appVersion");
 

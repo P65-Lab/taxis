@@ -1,4 +1,7 @@
-const CACHE_NAME = "taxi-pwa-cache-v2";
+importScripts("./version.js");
+
+const CACHE_NAME =
+  "taxi-pwa-cache-" + globalThis.TAXI_VERSION;
 
 
 /* ==========================================================
@@ -6,15 +9,9 @@ const CACHE_NAME = "taxi-pwa-cache-v2";
    ========================================================== */
 
 const UPDATE_INFO = {
-  version: "v2",
-  date: "12/09/2026",
-
-  notes: [
-    "Test de l'affichage du détail avant installation",
-    "Vérification du bouton Mise à jour",
-    "Vérification du choix Plus tard",
-    "suppression du bouton mise à jour dans parametres"
-  ]
+  version: globalThis.TAXI_VERSION,
+  date: globalThis.TAXI_VERSION_DATE,
+  notes: globalThis.TAXI_UPDATE_NOTES
 };
 
 
@@ -22,6 +19,7 @@ const APP_FILES = [
   "./",
   "./index.html",
   "./style.css",
+  "./version.js",
   "./script.js",
   "./database.js",
   "./manifest.json"
