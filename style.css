@@ -2110,6 +2110,10 @@ header.hero {
 }
 
 .selected-agent-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 10px 12px;
   border-bottom: 1px solid #eef2f6;
 }
@@ -2118,30 +2122,32 @@ header.hero {
   border-bottom: 0;
 }
 
-.selected-agent-main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.selected-agent-main strong {
+.selected-agent-name {
+  flex: 1;
+  min-width: 0;
   color: #111827;
   font-size: 15px;
+  font-weight: 900;
 }
 
-.selected-agent-main span {
-  color: #344054;
-  font-size: 14px;
-  font-weight: 700;
-  white-space: nowrap;
+.selected-agent-delete {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: #fee2e2;
+  color: #b42318;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.selected-agent-email {
-  margin-top: 3px;
-  color: #667085;
-  font-size: 12px;
-  overflow-wrap: anywhere;
+.selected-agent-delete:active {
+  transform: scale(.96);
 }
 
 .agents-hidden-compat {
