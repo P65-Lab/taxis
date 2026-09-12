@@ -3626,13 +3626,12 @@ background-repeat: no-repeat;
 }
 
 /* ==========================================================
-   FORMULAIRE TAXI - REMONTER VALIDER
+   FORMULAIRE TAXI - REMONTER LES BOUTONS
    ========================================================== */
 
-#validateTaxiRequest {
-  position: relative;
-  top: -20px;
-  margin-bottom: -20px !important;
+#taxiRequestPopup .taxi-form-actions {
+  transform: translateY(-30px) !important;
+  margin-bottom: -30px !important;
 }
 
 /* ==========================================================
