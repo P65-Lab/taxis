@@ -3626,6 +3626,14 @@ background-repeat: no-repeat;
 }
 
 /* ==========================================================
+   FORMULAIRE TAXI - REMONTER VALIDER
+   ========================================================== */
+
+#taxiRequestPopup form button[type="submit"] {
+  margin-top: 0 !important;
+}
+
+/* ==========================================================
    PARAMETRES AU-DESSUS DE L'ACCUEIL TAXI
    ========================================================== */
 
