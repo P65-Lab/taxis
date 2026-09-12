@@ -2133,18 +2133,21 @@ header.hero {
 
 .selected-agent-delete {
   flex: 0 0 auto;
- width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
   padding: 0;
-  border: 0;
-  border-radius: 10px;
-  background: transparent;
+  border: none;
+  border-radius: 0;
+  background: none !important;
+  box-shadow: none !important;
   color: #b42318;
   display: grid;
   place-items: center;
   font-size: 12px;
   line-height: 1;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .selected-agent-delete:active {
@@ -4027,10 +4030,3 @@ background-repeat: no-repeat;
   display: none !important;
 }
 
-.selected-agent-delete,
-.selected-agent-delete:hover,
-.selected-agent-delete:focus,
-.selected-agent-delete:active {
-  background: transparent !important;
-  box-shadow: none !important;
-}
