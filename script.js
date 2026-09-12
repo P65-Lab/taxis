@@ -3997,7 +3997,10 @@ if (
       const quickAddUpdate =
         document.getElementById("quickAddUpdate");
 
-
+      /* Caché par défaut au démarrage */
+if (quickAddUpdate) {
+  quickAddUpdate.hidden = true;
+}
 /* ------------------------------------------
    AFFICHER MISE A JOUR DISPONIBLE
    ------------------------------------------ */
