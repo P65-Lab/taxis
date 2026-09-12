@@ -1285,7 +1285,7 @@ button.primary {
 }
 
 .compact-ville {
-  margin-bottom: 10px !important;
+  margin-bottom: 4px !important;
 }
 
 .locations-row {
@@ -1293,7 +1293,7 @@ button.primary {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   align-items: start;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .locations-row .field {
@@ -1595,7 +1595,7 @@ button.primary {
 /* Message plus compact */
 
 .message-field {
-  margin-top: 14px !important;
+  margin-top: 6px !important;
 }
 
 .message-icon-wrap {
