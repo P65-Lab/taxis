@@ -4026,3 +4026,11 @@ background-repeat: no-repeat;
 [hidden] {
   display: none !important;
 }
+
+.selected-agent-delete,
+.selected-agent-delete:hover,
+.selected-agent-delete:focus,
+.selected-agent-delete:active {
+  background: transparent !important;
+  box-shadow: none !important;
+}
