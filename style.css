@@ -4039,3 +4039,20 @@ background-repeat: no-repeat;
   display: none !important;
 }
 
+/* ==========================================================
+   ALLER / RETOUR - COMPACTER VERTICAL
+   ========================================================== */
+
+#form.aller-retour-actif .aller-bloc {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+#form.aller-retour-actif #retourBloc {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+#form.aller-retour-actif .message-field {
+  margin-top: -8px !important;
+}

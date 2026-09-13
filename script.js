@@ -1054,6 +1054,10 @@ function appliquerMinDateRetour() {
 
 function setAllerRetour(value) {
   allerRetour = value;
+  form.classList.toggle(
+  "aller-retour-actif",
+  value
+);
   retourBloc.hidden = !value;
   btnAllerSimple.classList.toggle("active", !value);
   btnAllerRetour.classList.toggle("active", value);
@@ -1122,11 +1126,6 @@ dateRetour.addEventListener(
 );
 
 heureRetour.addEventListener("input", update);
-
-/* ==========================================================
-   PARTICIPANTS - SELECTION PAR POPUP
-   ========================================================== */
-
 
 
 /* ==========================================================
