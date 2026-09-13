@@ -4719,7 +4719,18 @@ function ouvrirRecapTaxi() {
   const a =
     getLieu(arrivee);
 
+const selected =
+  selectedAgents();
 
+const confirmationAgents =
+  confirm(
+    `Agents sélectionnés : ${selected.length}\n\n` +
+    "Avez-vous pensé à ajouter les autres agents concernés par cette demande ?"
+  );
+
+if (!confirmationAgents) {
+  return;
+}
   if (!villeExacte) {
     alert("Merci de sélectionner une ville.");
     return;
