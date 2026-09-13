@@ -4735,10 +4735,31 @@ function ouvrirRecapTaxi() {
     return;
   }
 
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
+ if (!dateEl.value) {
+  alert("Merci de renseigner la date.");
+  return;
+}
+
+if (!heure.value) {
+  alert("Merci de renseigner l’heure.");
+  return;
+}
+
+if (
+  allerRetour &&
+  !dateRetour.value
+) {
+  alert("Merci de renseigner la date du retour.");
+  return;
+}
+
+if (
+  allerRetour &&
+  !heureRetour.value
+) {
+  alert("Merci de renseigner l’heure du retour.");
+  return;
+}
 
   update();
 
