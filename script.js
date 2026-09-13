@@ -4390,7 +4390,23 @@ navigator.serviceWorker.addEventListener(
       /* Vérification immédiate */
 
       await registration.update();
+document.addEventListener("visibilitychange", async () => {
+  if (document.visibilityState === "visible") {
+    try {
+      await registration.update();
+    } catch (e) {
+      console.error("Vérification mise à jour :", e);
+    }
+  }
+});
 
+window.addEventListener("focus", async () => {
+  try {
+    await registration.update();
+  } catch (e) {
+    console.error("Vérification mise à jour :", e);
+  }
+});
 
     } catch (e) {
 
