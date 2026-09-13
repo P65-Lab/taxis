@@ -1285,7 +1285,7 @@ button.primary {
 }
 
 .compact-ville {
-  margin-bottom: 4px !important;
+  margin-bottom: 0 !important;
 }
 
 .locations-row {
@@ -1384,7 +1384,7 @@ button.primary {
 .aller-bloc.compact-trip-block {
   width: 100%;
   box-sizing: border-box;
-  margin: 9px 0 !important;
+  margin: 3px 0 !important;
   padding: 11px 12px 12px !important;
   border: 1.5px solid #d7dee8 !important;
   border-radius: 15px !important;
@@ -1498,7 +1498,7 @@ button.primary {
 .retour-bloc.compact-trip-block:not([hidden]) {
   width: 100%;
   box-sizing: border-box;
-  margin: 9px 0 !important;
+  margin: 3px 0 !important;
   padding: 11px 12px 12px !important;
   border: 1.5px solid #d7dee8 !important;
   border-radius: 15px !important;
@@ -4039,20 +4039,3 @@ background-repeat: no-repeat;
   display: none !important;
 }
 
-/* ==========================================================
-   ALLER / RETOUR - COMPACTER VERTICAL
-   ========================================================== */
-
-#form.aller-retour-actif .aller-bloc {
-  margin-top: 2px !important;
-  margin-bottom: 2px !important;
-}
-
-#form.aller-retour-actif #retourBloc {
-  margin-top: 2px !important;
-  margin-bottom: 2px !important;
-}
-
-#form.aller-retour-actif .message-field {
-  margin-top: -8px !important;
-}
