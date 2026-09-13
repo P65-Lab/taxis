@@ -4719,18 +4719,6 @@ function ouvrirRecapTaxi() {
   const a =
     getLieu(arrivee);
 
-const selected =
-  selectedAgents();
-
-const confirmationAgents =
-  confirm(
-    `Agents sélectionnés : ${selected.length}\n\n` +
-    "Avez-vous pensé à ajouter les autres agents concernés par cette demande ?"
-  );
-
-if (!confirmationAgents) {
-  return;
-}
   if (!villeExacte) {
     alert("Merci de sélectionner une ville.");
     return;
@@ -4746,31 +4734,44 @@ if (!confirmationAgents) {
     return;
   }
 
- if (!dateEl.value) {
-  alert("Merci de renseigner la date.");
-  return;
-}
+  if (!dateEl.value) {
+    alert("Merci de renseigner la date.");
+    return;
+  }
 
-if (!heure.value) {
-  alert("Merci de renseigner l’heure.");
-  return;
-}
+  if (!heure.value) {
+    alert("Merci de renseigner l’heure.");
+    return;
+  }
 
-if (
-  allerRetour &&
-  !dateRetour.value
-) {
-  alert("Merci de renseigner la date du retour.");
-  return;
-}
+  if (
+    allerRetour &&
+    !dateRetour.value
+  ) {
+    alert("Merci de renseigner la date du retour.");
+    return;
+  }
 
-if (
-  allerRetour &&
-  !heureRetour.value
-) {
-  alert("Merci de renseigner l’heure du retour.");
-  return;
-}
+  if (
+    allerRetour &&
+    !heureRetour.value
+  ) {
+    alert("Merci de renseigner l’heure du retour.");
+    return;
+  }
+
+  const selected =
+    selectedAgents();
+
+  const confirmationAgents =
+    confirm(
+      `Agents sélectionnés : ${selected.length}\n\n` +
+      "Avez-vous pensé à ajouter les autres agents concernés par cette demande ?"
+    );
+
+  if (!confirmationAgents) {
+    return;
+  }
 
   update();
 
@@ -4779,7 +4780,6 @@ if (
 
   taxiRecapPopup.scrollTop = 0;
 }
-
 
 function fermerRecapTaxi() {
 
