@@ -4710,6 +4710,31 @@ function ouvrirRecapTaxi() {
   const form =
     document.getElementById("form");
 
+  const villeExacte =
+    villeSelectionnee || villeValide();
+
+  const d =
+    getLieu(depart);
+
+  const a =
+    getLieu(arrivee);
+
+
+  if (!villeExacte) {
+    alert("Merci de sélectionner une ville.");
+    return;
+  }
+
+  if (!d) {
+    alert("Merci de choisir le lieu de départ.");
+    return;
+  }
+
+  if (!a) {
+    alert("Merci de choisir le lieu d’arrivée.");
+    return;
+  }
+
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
