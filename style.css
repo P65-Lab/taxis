@@ -3581,7 +3581,7 @@ background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 4px 0;
+  margin: 0 0 -4px 0;
   padding: 0;
 }
 
