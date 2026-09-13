@@ -1574,19 +1574,30 @@ document
     const a = getLieu(arrivee);
     const selected = selectedAgents();
 
-    if (
-      !villeExacte ||
-      !d ||
-      !a ||
-      !dateEl.value ||
-      !heure.value
-    ) {
-      alert(
-        "Merci de sélectionner une ville dans les résultats, " +
-        "puis le départ, l’arrivée, la date et l’heure."
-      );
-      return;
-    }
+  if (!villeExacte) {
+  alert("Merci de sélectionner une ville.");
+  return;
+}
+
+if (!d) {
+  alert("Merci de choisir le lieu de départ.");
+  return;
+}
+
+if (!a) {
+  alert("Merci de choisir le lieu d’arrivée.");
+  return;
+}
+
+if (!dateEl.value) {
+  alert("Merci de renseigner la date.");
+  return;
+}
+
+if (!heure.value) {
+  alert("Merci de renseigner l’heure.");
+  return;
+}
 
     if (
       allerRetour &&
