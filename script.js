@@ -637,9 +637,9 @@ function renderAgents() {
       summary.hidden = false;
 
       summary.innerHTML =
-  selection
-    .filter(ag => !estProprietaireTelephone(ag))
-    .map(ag => `
+      selection
+      .filter(ag => !estProprietaireTelephone(ag))
+       .map(ag => `
 
       <div class="selected-agent-row">
 
