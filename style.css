@@ -4092,9 +4092,9 @@ min-height: 32px !important;
   }
 
   .aller-bloc.compact-trip-block {
-    margin: 2px 0 !important;
-    padding: 8px 12px !important;
-  }
+  margin: 0 !important;
+  padding: 4px 10px !important;
+}
 
   .compact-date-time {
     grid-template-columns: 1fr 1fr !important;
