@@ -3609,10 +3609,10 @@ background-repeat: no-repeat;
 
 .taxi-request-popup-close {
   position: static !important;
-  width: 36px !important;
-height: 36px !important;
-min-width: 36px !important;
-min-height: 36px !important;
+  width: 32px !important;
+height: 32px !important;
+min-width: 32px !important;
+min-height: 32px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -3622,7 +3622,7 @@ min-height: 36px !important;
   border-radius: 50% !important;
   background: #111827 !important;
   color: #ffffff !important;
-  font-size: 30px !important;
+  font-size: 24px !important;
   font-weight: 500 !important;
   line-height: 1 !important;
   cursor: pointer;
