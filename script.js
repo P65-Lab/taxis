@@ -1287,10 +1287,10 @@ input.addEventListener(
       );
 
     if (search) {
-      setTimeout(() => {
-        search.focus();
-      }, 50);
-    }
+  search.focus({
+    preventScroll: true
+  });
+}
   }
 );
     });
