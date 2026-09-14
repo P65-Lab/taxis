@@ -1287,10 +1287,14 @@ input.addEventListener(
       );
 
     if (search) {
-      search.focus({
-        preventScroll: true
-      });
-    }
+  search.value = "";
+
+  rendreListeAgentsPicker();
+
+  search.focus({
+    preventScroll: true
+  });
+}
   }
 );
     });
