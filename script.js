@@ -3312,15 +3312,13 @@ function renderOwnerAgent() {
 
       if (ownerSavedName) {
         ownerSavedName.textContent =
-          "Aucun";
+          "0";
       }
 
     } else {
 
-      if (ownerSavedName) {
-        ownerSavedName.textContent =
-          optionEnregistree.textContent.trim();
-      }
+      ownerSavedName.textContent =
+  "1";
     }
 
   } else {
