@@ -1736,9 +1736,11 @@ button.primary {
   padding: 14px 16px;
 }
 .owner-agent-line .admin-note {
+  grid-column: 1 / -1;
   margin: 0 !important;
   text-align: left !important;
   line-height: 1.35;
+  white-space: nowrap;
 }
 
 @media (max-width: 480px) {
