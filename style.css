@@ -2372,7 +2372,8 @@ body.taxi-dark .agents-selected-summary {
 @media (max-width: 480px) {
 
   .agents-picker-overlay {
-    align-items: center;
+    align-items: flex-start;
+    padding-top: max(12px, env(safe-area-inset-top));
     padding-left: 8px;
     padding-right: 8px;
     padding-bottom: 8px;
