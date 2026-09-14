@@ -3325,7 +3325,7 @@ function renderOwnerAgent() {
 
     if (ownerSavedName) {
       ownerSavedName.textContent =
-        "Aucun";
+        "0";
     }
   }
 
@@ -3381,7 +3381,7 @@ if (
         optionChoisie
       ) {
         ownerSavedName.textContent =
-          optionChoisie.textContent.trim();
+          "1";
       }
 
       // Après validation,
