@@ -3922,11 +3922,15 @@ document
       document.body.style.overflow = "";
 
       const taxiHome =
-        document.getElementById("taxiHome");
+  document.getElementById("taxiHome");
 
-      if (taxiHome) {
-        taxiHome.hidden = false;
-      }
+if (taxiHome) {
+  taxiHome.hidden = true;
+}
+
+if (quickAddMenu) {
+  quickAddMenu.hidden = false;
+}
 
       if (quickAddBtn) {
         quickAddBtn.hidden = false;
