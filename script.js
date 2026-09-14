@@ -1259,29 +1259,40 @@ if (query) {
     .querySelectorAll("[data-agent-picker-name]")
     .forEach(input => {
 
-      input.addEventListener(
-        "change",
-        () => {
+input.addEventListener(
+  "change",
+  () => {
 
-          const key =
-            normalizeText(
-              input.dataset.agentPickerName
-            );
-
-          if (input.checked) {
-            agentsPickerDraft.add(key);
-          } else {
-            agentsPickerDraft.delete(key);
-          }
-
-          input
-            .closest(".agent-check-row")
-            ?.classList.toggle(
-              "checked",
-              input.checked
-            );
-        }
+    const key =
+      normalizeText(
+        input.dataset.agentPickerName
       );
+
+    if (input.checked) {
+      agentsPickerDraft.add(key);
+    } else {
+      agentsPickerDraft.delete(key);
+    }
+
+    input
+      .closest(".agent-check-row")
+      ?.classList.toggle(
+        "checked",
+        input.checked
+      );
+
+    const search =
+      document.getElementById(
+        "agentsPickerSearch"
+      );
+
+    if (search) {
+      setTimeout(() => {
+        search.focus();
+      }, 50);
+    }
+  }
+);
     });
 }
 
