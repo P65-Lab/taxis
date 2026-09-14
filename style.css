@@ -4101,9 +4101,9 @@ min-height: 32px !important;
     gap: 14px !important;
   }
 
-  .compact-date-time input {
-    height: 40px !important;
-    min-height: 40px !important;
+    .compact-date-time input {
+    height: 42px !important;
+    min-height: 42px !important;
   }
 
   .agents-picker-field {
@@ -4149,4 +4149,19 @@ min-height: 32px !important;
     transform: none !important;
     margin: 0 !important;
   }
+    .compact-ville input,
+  .depart-arrivee-row input {
+    height: 42px !important;
+    min-height: 42px !important;
+  }
+
+  .compact-date-time input {
+    height: 42px !important;
+    min-height: 42px !important;
+  }
+  .compact-ville input,
+.depart-arrivee-row input {
+  height: 42px !important;
+  min-height: 42px !important;
+}
 }
