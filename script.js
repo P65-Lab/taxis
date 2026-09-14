@@ -3296,12 +3296,13 @@ function renderOwnerAgent() {
     const valeurEncodee =
       encodeURIComponent(ownerAgentKey);
 
-    ownerAgent.value =
-      valeurEncodee;
+    const optionEnregistree =
+      Array.from(ownerAgent.options)
+        .find(option =>
+          option.value === valeurEncodee
+        );
 
-    // Si la valeur enregistrée n'existe plus
-    // dans la liste des agents
-    if (ownerAgent.value !== valeurEncodee) {
+    if (!optionEnregistree) {
 
       ownerAgentKey = "";
 
@@ -3309,31 +3310,89 @@ function renderOwnerAgent() {
         LS_OWNER_AGENT
       );
 
-      ownerAgent.value = "";
-
       if (ownerSavedName) {
         ownerSavedName.textContent =
           "Aucun";
       }
 
-      return;
+    } else {
+
+      if (ownerSavedName) {
+        ownerSavedName.textContent =
+          optionEnregistree.textContent.trim();
+      }
+    }
+
+  } else {
+
+    if (ownerSavedName) {
+      ownerSavedName.textContent =
+        "Aucun";
     }
   }
 
-  if (ownerSavedName) {
-
-    const optionChoisie =
-      ownerAgent.options[
-        ownerAgent.selectedIndex
-      ];
-
-    ownerSavedName.textContent =
-      ownerAgent.value && optionChoisie
-        ? optionChoisie.textContent.trim()
-        : "Aucun";
-  }
+  // Le menu reste toujours sur
+  // "Choisir mon nom..."
+  ownerAgent.value = "";
 }
 
+
+const saveOwnerAgent =
+  document.getElementById(
+    "saveOwnerAgent"
+  );
+
+if (
+  ownerAgent &&
+  saveOwnerAgent
+) {
+
+  saveOwnerAgent.addEventListener(
+    "click",
+    () => {
+
+      if (!ownerAgent.value) {
+        alert(
+          "Merci de choisir un agent propriétaire."
+        );
+        return;
+      }
+
+      ownerAgentKey =
+        decodeURIComponent(
+          ownerAgent.value
+        );
+
+      localStorage.setItem(
+        LS_OWNER_AGENT,
+        ownerAgentKey
+      );
+
+      const ownerSavedName =
+        document.getElementById(
+          "ownerSavedName"
+        );
+
+      const optionChoisie =
+        ownerAgent.options[
+          ownerAgent.selectedIndex
+        ];
+
+      if (
+        ownerSavedName &&
+        optionChoisie
+      ) {
+        ownerSavedName.textContent =
+          optionChoisie.textContent.trim();
+      }
+
+      // Après validation,
+      // remettre le sélecteur à zéro
+      ownerAgent.value = "";
+
+    }
+  );
+}
 function estProprietaireTelephone(agent) {
   return !!(
     agent &&
