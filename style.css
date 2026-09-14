@@ -1734,6 +1734,8 @@ button.primary {
   min-height: 0;
   margin: 0;
   padding: 14px 16px;
+  background: #079447 !important;
+  color: #ffffff !important;
 }
 .owner-agent-line .admin-note {
   grid-column: 1 / -1;
