@@ -4176,4 +4176,25 @@ min-height: 32px !important;
     max-height: 44px !important;
     box-sizing: border-box !important;
   }
+    .depart-arrivee-row > .field {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .depart-arrivee-row > .field > label {
+    margin: 0 !important;
+  }
+
+  .depart-arrivee-row > .field > .search-wrap {
+    width: 100%;
+  }
+
+  .depart-arrivee-row input {
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
+  }
 }
