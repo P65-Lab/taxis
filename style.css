@@ -4118,5 +4118,35 @@ min-height: 32px !important;
     min-height: 54px !important;
     height: 54px !important;
   }
+  .landscape-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+    align-items: end;
+  }
 
+  .landscape-bottom-grid .agents-picker-field {
+    grid-column: 1;
+    margin: 0 !important;
+  }
+
+  .landscape-bottom-grid .message-field {
+    grid-column: 2;
+    margin: 0 !important;
+  }
+
+  .landscape-bottom-grid .message-field textarea#message {
+    height: 44px !important;
+    min-height: 44px !important;
+  }
+
+  .landscape-bottom-grid .taxi-form-actions {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+
+    transform: none !important;
+    margin: 0 !important;
+  }
 }
