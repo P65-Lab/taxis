@@ -3279,7 +3279,7 @@ function renderOwnerAgent() {
     );
 
   ownerAgent.innerHTML =
-    '<option value="">Choisir mon nom...</option>' +
+    '<option value="">Choisir Agent...</option>' +
     liste.map(a => `
       <option value="${encodeURIComponent(cleAgent(a))}">
         ${a.nom}
@@ -3318,7 +3318,7 @@ function renderOwnerAgent() {
     } else {
 
       ownerSavedName.textContent =
-  "1";
+        "1";
     }
 
   } else {
