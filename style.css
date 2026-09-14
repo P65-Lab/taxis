@@ -3609,10 +3609,10 @@ background-repeat: no-repeat;
 
 .taxi-request-popup-close {
   position: static !important;
-  width: 40px !important;
-  height: 40px !important;
-  min-width: 40px !important;
-  min-height: 40px !important;
+  width: 36px !important;
+height: 36px !important;
+min-width: 36px !important;
+min-height: 36px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
