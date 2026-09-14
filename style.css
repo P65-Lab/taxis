@@ -4069,3 +4069,11 @@ min-height: 32px !important;
   display: none !important;
 }
 
+@media (orientation: landscape) {
+
+  .taxi-request-popup-card {
+    width: calc(100% - 24px);
+    max-width: none;
+  }
+
+}
