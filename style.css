@@ -4101,15 +4101,83 @@ min-height: 32px !important;
     gap: 14px !important;
   }
 
- 
-
-  .depart-arrivee-row input,
   .compact-date-time input {
-  height: 44px !important;
-  min-height: 44px !important;
-  max-height: 44px !important;
-  box-sizing: border-box !important;
-}
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* =========================
+     VILLE SUR UNE SEULE LIGNE
+     ========================= */
+
+  .compact-ville {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px !important;
+  }
+
+  .compact-ville > label {
+    margin: 0 !important;
+  }
+
+  .compact-ville .search-wrap {
+    width: 100%;
+  }
+
+  .compact-ville input {
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* =========================
+     DEPART / ARRIVEE
+     LIBELLE + CHAMP MEME LIGNE
+     ========================= */
+
+  .depart-arrivee-row > .field {
+    display: grid !important;
+    grid-template-columns: 90px minmax(0, 1fr) !important;
+    align-items: center !important;
+    column-gap: 8px !important;
+  }
+
+  .depart-arrivee-row > .field > label {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    align-self: center !important;
+  }
+
+  .depart-arrivee-row > .field > .search-wrap {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .depart-arrivee-row input {
+    width: 100% !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
+  }
+
+  .depart-arrivee-row > .field > .detail {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    margin-top: 4px !important;
+  }
+
+  /* =========================
+     BAS DU FORMULAIRE
+     ========================= */
 
   .agents-picker-field {
     margin-bottom: 2px !important;
@@ -4154,68 +4222,5 @@ min-height: 32px !important;
     transform: none !important;
     margin: 0 !important;
   }
-  .compact-ville {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px !important;
-  }
 
-  .compact-ville > label {
-    margin: 0 !important;
-  }
-
-  .compact-ville .search-wrap {
-    width: 100%;
-  }
-
-  .compact-ville input {
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    box-sizing: border-box !important;
-  }
-    .depart-arrivee-row > .field {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .depart-arrivee-row > .field > label {
-    margin: 0 !important;
-  }
-
-  .depart-arrivee-row > .field > .search-wrap {
-    width: 100%;
-  }
-
-  .depart-arrivee-row input {
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    box-sizing: border-box !important;
-  }
-    .depart-arrivee-row > .field {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .depart-arrivee-row > .field > label {
-    margin: 0 !important;
-  }
-
-  .depart-arrivee-row > .field > .search-wrap {
-    width: 100%;
-  }
-
-  .depart-arrivee-row input {
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    box-sizing: border-box !important;
-  }
 }
