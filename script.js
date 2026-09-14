@@ -3796,8 +3796,8 @@ openAgentForm.addEventListener("click", () => {
     agentFormBox.hidden = true;
     clearAgentForm();
 
-    openAgentForm.textContent = "+ Ajouter un agent";
-
+   
+    openAgentForm.textContent = "👤 Ajouter un agent";
     return;
   }
 
@@ -3806,7 +3806,7 @@ openAgentForm.addEventListener("click", () => {
 
   clearAgentForm();
 
-  openAgentForm.textContent = "− Fermer";
+ openAgentForm.textContent = "✖ Fermer";
 
   setTimeout(() => {
     adminNomAgent.focus();
@@ -3878,7 +3878,7 @@ if (openDestForm && destFormBox) {
       clearDestForm();
 
       openDestForm.textContent =
-        "+ Ajouter un destinataire";
+  "📧 Ajouter un contact";
 
       return;
     }
@@ -3887,7 +3887,7 @@ if (openDestForm && destFormBox) {
     clearDestForm();
 
     openDestForm.textContent =
-      "− Fermer";
+  "✖ Fermer";
 
     setTimeout(() => {
 
