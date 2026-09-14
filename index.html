@@ -680,11 +680,11 @@
      ===================================================== -->
 <div class="owner-phone-box">
 
-  <div class="field">
-    <label for="ownerAgent">
-     👤 Propriétaire
-    </label>
+  <div>
+    <strong>👤 Propriétaire</strong>
+  </div>
 
+  <div class="field">
     <div class="owner-agent-line">
 
       <select id="ownerAgent">
@@ -700,9 +700,17 @@
     </div>
   </div>
 
+  <div class="admin-list-head">
+    <strong>
+      Enregistré
+    </strong>
+
+    <span id="ownerSavedName">
+      Aucun
+    </span>
+  </div>
+
 </div>
-
-
 <!-- =====================================================
      2 - AUTRES AGENTS
      ===================================================== -->
@@ -848,18 +856,14 @@
 
     </div>
 
-    
-
-      <div class="admin-actions">
-<button
-  type="button"
-  id="saveDest"
-  class="primary small"
-  style="grid-column: 2;">
-  💾 Valider
-</button>
-</div>
-
+    <div class="admin-actions">
+      <button
+        type="button"
+        id="saveDest"
+        class="primary small"
+        style="grid-column: 2;">
+        💾 Valider
+      </button>
     </div>
 
   </div>
@@ -874,7 +878,7 @@
     </span>
   </div>
 
-    <div
+  <div
     id="listeDestAdmin"
     class="admin-list">
   </div>

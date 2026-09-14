@@ -3274,7 +3274,9 @@ function renderOwnerAgent() {
 
   const liste = allAgents()
     .slice()
-    .sort((a,b) => a.nom.localeCompare(b.nom, "fr"));
+    .sort((a, b) =>
+      a.nom.localeCompare(b.nom, "fr")
+    );
 
   ownerAgent.innerHTML =
     '<option value="">Choisir mon nom...</option>' +
@@ -3284,22 +3286,52 @@ function renderOwnerAgent() {
       </option>
     `).join("");
 
-  if (ownerAgentKey) {
-    ownerAgent.value = encodeURIComponent(ownerAgentKey);
-  }
-}
-
-if (ownerAgent) {
-  ownerAgent.addEventListener("change", () => {
-    ownerAgentKey = ownerAgent.value
-      ? decodeURIComponent(ownerAgent.value)
-      : "";
-
-    localStorage.setItem(
-      LS_OWNER_AGENT,
-      ownerAgentKey
+  const ownerSavedName =
+    document.getElementById(
+      "ownerSavedName"
     );
-  });
+
+  if (ownerAgentKey) {
+
+    const valeurEncodee =
+      encodeURIComponent(ownerAgentKey);
+
+    ownerAgent.value =
+      valeurEncodee;
+
+    // Si la valeur enregistrée n'existe plus
+    // dans la liste des agents
+    if (ownerAgent.value !== valeurEncodee) {
+
+      ownerAgentKey = "";
+
+      localStorage.removeItem(
+        LS_OWNER_AGENT
+      );
+
+      ownerAgent.value = "";
+
+      if (ownerSavedName) {
+        ownerSavedName.textContent =
+          "Aucun";
+      }
+
+      return;
+    }
+  }
+
+  if (ownerSavedName) {
+
+    const optionChoisie =
+      ownerAgent.options[
+        ownerAgent.selectedIndex
+      ];
+
+    ownerSavedName.textContent =
+      ownerAgent.value && optionChoisie
+        ? optionChoisie.textContent.trim()
+        : "Aucun";
+  }
 }
 
 function estProprietaireTelephone(agent) {
