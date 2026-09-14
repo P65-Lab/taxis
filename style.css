@@ -857,6 +857,10 @@ input[type="time"] {
 }
 
 .quick-add-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   margin-bottom: 12px;
 
   font-size: 18px;
@@ -922,15 +926,24 @@ input[type="time"] {
 }
 
 .quick-close {
-  width: 100%;
-  min-height: 44px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
   border: 0;
-  background: transparent;
+  border-radius: 50%;
 
-  color: #6b7280;
+  background: #111827;
+  color: #ffffff;
 
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
 
   cursor: pointer;
 }
