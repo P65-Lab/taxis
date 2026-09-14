@@ -4092,16 +4092,22 @@ min-height: 32px !important;
   }
 
   .aller-bloc.compact-trip-block {
-  margin: 0 !important;
-  padding: 4px 10px !important;
-}
+    margin: 0 !important;
+    padding: 4px 10px !important;
+  }
 
   .compact-date-time {
     grid-template-columns: 1fr 1fr !important;
     gap: 14px !important;
   }
 
-    .compact-date-time input {
+  .compact-date-time input {
+    height: 42px !important;
+    min-height: 42px !important;
+  }
+
+  .compact-ville input,
+  .depart-arrivee-row input {
     height: 42px !important;
     min-height: 42px !important;
   }
@@ -4118,6 +4124,7 @@ min-height: 32px !important;
     min-height: 54px !important;
     height: 54px !important;
   }
+
   .landscape-bottom-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -4145,23 +4152,8 @@ min-height: 32px !important;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-
     transform: none !important;
     margin: 0 !important;
   }
-    .compact-ville input,
-  .depart-arrivee-row input {
-    height: 42px !important;
-    min-height: 42px !important;
-  }
 
-  .compact-date-time input {
-    height: 42px !important;
-    min-height: 42px !important;
-  }
-  .compact-ville input,
-.depart-arrivee-row input {
-  height: 42px !important;
-  min-height: 42px !important;
-}
 }
