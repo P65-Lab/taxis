@@ -4101,16 +4101,15 @@ min-height: 32px !important;
     gap: 14px !important;
   }
 
-  .compact-date-time input {
-    height: 42px !important;
-    min-height: 42px !important;
-  }
+ 
 
-  .compact-ville input,
-  .depart-arrivee-row input {
-    height: 42px !important;
-    min-height: 42px !important;
-  }
+  .depart-arrivee-row input,
+  .compact-date-time input {
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  box-sizing: border-box !important;
+}
 
   .agents-picker-field {
     margin-bottom: 2px !important;
@@ -4155,5 +4154,26 @@ min-height: 32px !important;
     transform: none !important;
     margin: 0 !important;
   }
+  .compact-ville {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px !important;
+  }
 
+  .compact-ville > label {
+    margin: 0 !important;
+  }
+
+  .compact-ville .search-wrap {
+    width: 100%;
+  }
+
+  .compact-ville input {
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
+  }
 }
