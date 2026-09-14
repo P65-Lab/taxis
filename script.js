@@ -3330,7 +3330,7 @@ function renderOwnerAgent() {
   }
 
   // Le menu reste toujours sur
-  // "Choisir mon nom..."
+  // "Choisir Agent..."
   ownerAgent.value = "";
 }
 
