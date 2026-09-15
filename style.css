@@ -4092,15 +4092,26 @@ min-height: 32px !important;
 
 
   /* =========================================================
+     REGLAGE COMMUN
+     Tous les libellés utilisent la même largeur
+     ========================================================= */
+
+  .compact-ville,
+  .depart-arrivee-row > .field,
+  .date-heure-row > .field {
+    grid-template-columns: 90px minmax(0, 1fr) !important;
+    column-gap: 8px !important;
+  }
+
+
+  /* =========================================================
      VILLE
-     LIBELLE + CHAMP SUR LA MEME LIGNE
+     Ville [ cadre ]
      ========================================================= */
 
   .compact-ville {
-    display: grid;
-    grid-template-columns: 90px minmax(0, 1fr);
-    align-items: center;
-    column-gap: 8px;
+    display: grid !important;
+    align-items: center !important;
     margin-bottom: 4px !important;
   }
 
@@ -4109,10 +4120,10 @@ min-height: 32px !important;
     padding: 0 !important;
   }
 
-  .compact-ville .search-wrap {
-    width: 100%;
-    min-width: 0;
-    margin: 0;
+  .compact-ville > .search-wrap {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
   }
 
   .compact-ville input {
@@ -4126,42 +4137,35 @@ min-height: 32px !important;
 
   /* =========================================================
      DEPART / ARRIVEE
-     ========================================================= */
 
-  .locations-row {
-    gap: 14px;
-    margin-bottom: 2px;
-  }
+     Départ [ cadre ]     Arrivée [ cadre ]
+     ========================================================= */
 
   .locations-row.depart-arrivee-row {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 14px !important;
     width: 100% !important;
+    margin-bottom: 4px !important;
   }
 
-  .locations-row.depart-arrivee-row > .field {
+  .depart-arrivee-row > .field {
     display: grid !important;
-    grid-template-columns: 90px minmax(0, 1fr) !important;
     grid-template-rows: auto auto !important;
     align-items: center !important;
-    column-gap: 8px !important;
     row-gap: 0 !important;
     margin: 0 !important;
     min-width: 0 !important;
   }
 
-  .locations-row.depart-arrivee-row > .field > label {
-    display: block !important;
+  .depart-arrivee-row > .field > label {
     grid-column: 1 !important;
     grid-row: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
-    align-self: center !important;
   }
 
-  .locations-row.depart-arrivee-row > .field > .search-wrap {
-    display: block !important;
+  .depart-arrivee-row > .field > .search-wrap {
     grid-column: 2 !important;
     grid-row: 1 !important;
     width: 100% !important;
@@ -4169,7 +4173,7 @@ min-height: 32px !important;
     margin: 0 !important;
   }
 
-  .locations-row.depart-arrivee-row > .field > .search-wrap input {
+  .depart-arrivee-row > .field > .search-wrap input {
     width: 100% !important;
     height: 44px !important;
     min-height: 44px !important;
@@ -4178,74 +4182,46 @@ min-height: 32px !important;
     box-sizing: border-box !important;
   }
 
-  .locations-row.depart-arrivee-row > .field > .detail {
+  /* Adresse sous le cadre */
+  .depart-arrivee-row > .field > .detail {
     grid-column: 2 !important;
     grid-row: 2 !important;
-    margin: 3px 0 0 0 !important;
+    margin: 3px 0 0 !important;
+    min-width: 0 !important;
   }
 
 
   /* =========================================================
      DATE / HEURE
-     MEME STRUCTURE VISUELLE QUE DEPART / ARRIVEE
+
+     Date [ cadre ]       Heure [ cadre ]
+
+     EXACTEMENT LES MEMES COLONNES QUE DEPART / ARRIVEE
      ========================================================= */
 
-  .aller-bloc.compact-trip-block {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-
-  .aller-layout {
-    display: block !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .aller-left {
-    display: none !important;
-  }
-
-  .aller-right {
-    display: block !important;
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .compact-date-time {
+  .date-heure-row {
     display: grid !important;
-
-    grid-template-columns:
-      90px minmax(0, 1fr)
-      90px minmax(0, 1fr) !important;
-
-    column-gap: 8px !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
     width: 100% !important;
+    margin: 4px 0 !important;
+  }
+
+  .date-heure-row > .field {
+    display: grid !important;
+    align-items: center !important;
     margin: 0 !important;
-    padding: 0 !important;
+    min-width: 0 !important;
   }
 
-  .compact-date-time > .field {
-    display: contents !important;
-  }
-
-
-  /* DATE */
-
-  .compact-date-time > .field:first-child > label {
+  .date-heure-row > .field > label {
     grid-column: 1 !important;
     grid-row: 1 !important;
-    align-self: center !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  .compact-date-time > .field:first-child > .date-time-icon-wrap {
+  .date-heure-row > .field > .date-time-icon-wrap {
     grid-column: 2 !important;
     grid-row: 1 !important;
     width: 100% !important;
@@ -4253,81 +4229,158 @@ min-height: 32px !important;
     margin: 0 !important;
   }
 
-
-  /* HEURE */
-
-  .compact-date-time > .field:last-child > label {
-    grid-column: 3 !important;
-    grid-row: 1 !important;
-    align-self: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .compact-date-time > .field:last-child > .date-time-icon-wrap {
-    grid-column: 4 !important;
-    grid-row: 1 !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-  }
-
-
-  /* MEME HAUTEUR DATE / HEURE */
-
-  .compact-date-time .date-time-icon-wrap input {
+  .date-heure-row .date-time-icon-wrap input {
     width: 100% !important;
     height: 44px !important;
     min-height: 44px !important;
     max-height: 44px !important;
     margin: 0 !important;
     box-sizing: border-box !important;
+  }
+
+
+  /* =========================================================
+     TRAJET
+     On le conserve obligatoirement
+     ========================================================= */
+
+  #allerTrajet {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 4px 0 6px !important;
   }
 
 
   /* =========================================================
      AGENTS / MESSAGE
+
+     Agents [ cadre ]     Message [ cadre ]
+
+     Même principe que Départ / Arrivée
      ========================================================= */
 
   .landscape-bottom-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 14px;
-    align-items: end;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px 14px !important;
+    align-items: start !important;
+    width: 100% !important;
   }
+
+
+  /* -------------------------
+     AGENTS
+     ------------------------- */
 
   .landscape-bottom-grid .agents-picker-field {
-    grid-column: 1;
+    grid-column: 1 !important;
+
+    display: grid !important;
+    grid-template-columns: 90px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+
+    column-gap: 8px !important;
+    row-gap: 0 !important;
+
+    align-items: center !important;
+
     margin: 0 !important;
+    min-width: 0 !important;
   }
 
-  .agents-picker-head {
-    margin-bottom: 4px;
+  .landscape-bottom-grid .agents-picker-head {
+    display: contents !important;
   }
+
+  .landscape-bottom-grid .agents-picker-head > label {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .landscape-bottom-grid #agentsCountBadge {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+    margin-top: 3px !important;
+  }
+
+  .landscape-bottom-grid #chooseAgentsBtn {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+
+  /* -------------------------
+     MESSAGE
+     ------------------------- */
 
   .landscape-bottom-grid .message-field {
-    grid-column: 2;
+    grid-column: 2 !important;
+
+    display: grid !important;
+    grid-template-columns: 90px minmax(0, 1fr) !important;
+
+    column-gap: 8px !important;
+    align-items: center !important;
+
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .landscape-bottom-grid .message-field > label {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .landscape-bottom-grid .message-icon-wrap {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
     margin: 0 !important;
   }
 
   .landscape-bottom-grid .message-field textarea#message {
     width: 100% !important;
+
     height: 44px !important;
     min-height: 44px !important;
     max-height: 44px !important;
+
+    margin: 0 !important;
     box-sizing: border-box !important;
   }
 
 
   /* =========================================================
-     BOUTONS VALIDER / EFFACER
+     BOUTONS
      ========================================================= */
 
   .landscape-bottom-grid .taxi-form-actions {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    grid-column: 1 / -1 !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+
+    width: 100% !important;
+
     transform: none !important;
     margin: 0 !important;
   }
