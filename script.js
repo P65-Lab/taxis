@@ -934,6 +934,36 @@ function update() {
       </strong>
     </div>
   `;
+  // =========================================
+// TRAJET ALLER
+// =========================================
+
+const allerTrajet =
+  document.getElementById("allerTrajet");
+
+if (allerTrajet) {
+
+  const trajetTexte =
+    allerTrajet.querySelector(".trajet-texte");
+
+  if (d && a) {
+
+    if (trajetTexte) {
+      trajetTexte.textContent =
+        `${d.lieu} → ${a.lieu}`;
+    }
+
+    allerTrajet.hidden = false;
+
+  } else {
+
+    if (trajetTexte) {
+      trajetTexte.textContent = "";
+    }
+
+    allerTrajet.hidden = true;
+  }
+}
 }
 
 
