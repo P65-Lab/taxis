@@ -87,8 +87,8 @@ const heure = document.getElementById("heure");
 const dateRetour = document.getElementById("dateRetour");
 const heureRetour = document.getElementById("heureRetour");
 const retourBloc = document.getElementById("retourBloc");
-const allerTrajet = document.getElementById("allerTrajet");
-const retourTrajet = document.getElementById("retourTrajet");
+
+
 const btnAllerSimple = document.getElementById("btnAllerSimple");
 const btnAllerRetour = document.getElementById("btnAllerRetour");
 let allerRetour = false;
@@ -895,57 +895,9 @@ function update() {
     .filter(Boolean)
     .map(x => x.nom);
 
- if (allerTrajet) {
 
-  const trajetTexte =
-    allerTrajet.querySelector(".trajet-texte");
 
-  if (d && a) {
 
-    if (trajetTexte) {
-      trajetTexte.textContent =
-        `${d.lieu} → ${a.lieu}`;
-    }
-
-    allerTrajet.hidden = false;
-
-  } else {
-
-    if (trajetTexte) {
-      trajetTexte.textContent = "";
-    }
-
-    allerTrajet.hidden = true;
-
-  }
-
-}
-
-if (retourTrajet) {
-
-  const trajetTexteRetour =
-    retourTrajet.querySelector(".trajet-texte");
-
-  if (allerRetour && d && a) {
-
-    if (trajetTexteRetour) {
-      trajetTexteRetour.textContent =
-        `${a.lieu} → ${d.lieu}`;
-    }
-
-    retourTrajet.hidden = false;
-
-  } else {
-
-    if (trajetTexteRetour) {
-      trajetTexteRetour.textContent = "";
-    }
-
-    retourTrajet.hidden = true;
-
-  }
-
-}
 
   apercu.innerHTML = `
     <div class="previewrow">
@@ -1510,31 +1462,7 @@ btnAllerRetour.classList.toggle("active", allerRetour);
 
 dateRetour.required = allerRetour;
 heureRetour.required = allerRetour;
-// Trajets
 
-if (allerTrajet) {
-
-  const trajetTexte =
-    allerTrajet.querySelector(".trajet-texte");
-
-  if (trajetTexte) {
-    trajetTexte.textContent = "";
-  }
-
-  allerTrajet.hidden = true;
-}
-
-if (retourTrajet) {
-
-  const trajetTexteRetour =
-    retourTrajet.querySelector(".trajet-texte");
-
-  if (trajetTexteRetour) {
-    trajetTexteRetour.textContent = "";
-  }
-
-  retourTrajet.hidden = true;
-}
 
   // Agents : vider la sélection du popup.
   selectedAgentNames = [];
