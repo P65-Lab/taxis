@@ -4269,6 +4269,14 @@ min-height: 32px !important;
   width: 100% !important;
 }
 
+.compact-date-time > .field:first-child {
+  grid-template-columns: 90px minmax(0, 1fr) !important;
+}
+
+.compact-date-time > .field:last-child {
+  grid-template-columns: 90px minmax(0, 1fr) !important;
+}
+
 .compact-date-time > .field {
   display: grid !important;
   grid-template-columns: 90px minmax(0, 1fr) !important;
