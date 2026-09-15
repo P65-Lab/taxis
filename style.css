@@ -4113,12 +4113,12 @@ min-height: 32px !important;
      ========================= */
 
   .compact-ville {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px !important;
-  }
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 8px;
+  margin-bottom: 4px !important;
+}
 
   .compact-ville > label {
     margin: 0 !important;
