@@ -1571,9 +1571,10 @@ button.primary {
 
 .retour-bloc #retourTrajet .trajet-taxi {
   position: absolute;
-  left: 12px;
+  right: 12px;
+  left: auto;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scaleX(-1);
   font-size: 18px;
   line-height: 1;
 }
