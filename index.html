@@ -265,56 +265,46 @@
 
 </div>
 
-    <div class="aller-bloc compact-trip-block">
+<!-- =========================================
+     DATE / HEURE ALLER
+     ========================================= -->
 
-  <div class="aller-layout">
+<div class="locations-row date-heure-row">
 
-    <div class="aller-left">
-      <div class="aller-taxi"></div>
+  <!-- DATE -->
+  <div class="field">
+
+    <label for="date">Date</label>
+
+    <div class="date-time-icon-wrap">
+
+      <span class="field-icon">📅</span>
+
+      <input
+        id="date"
+        type="date"
+        required
+      >
+
     </div>
 
-    <div class="aller-right">
+  </div>
 
-      <div class="compact-date-time">
 
-        <div class="field">
-          <label for="date">Date</label>
+  <!-- HEURE -->
+  <div class="field">
 
-          <div class="date-time-icon-wrap">
-            <span class="field-icon">📅</span>
+    <label for="heure">Heure</label>
 
-            <input
-              id="date"
-              type="date"
-              required
-            >
-          </div>
-        </div>
+    <div class="date-time-icon-wrap">
 
-        <div class="field">
-          <label for="heure">Heure</label>
+      <span class="field-icon">🕐</span>
 
-          <div class="date-time-icon-wrap">
-            <span class="field-icon">🕐</span>
-
-            <input
-              id="heure"
-              type="time"
-              required
-            >
-          </div>
-        </div>
-
-      </div>
-
-      <div
-        class="trajet-cadre"
-        id="allerTrajet"
-        hidden
+      <input
+        id="heure"
+        type="time"
+        required
       >
-        <span class="trajet-taxi">🚕</span>
-        <span class="trajet-texte"></span>
-      </div>
 
     </div>
 
@@ -322,7 +312,18 @@
 
 </div>
 
-     <div
+
+<!-- TRAJET ALLER -->
+<div
+  class="trajet-cadre"
+  id="allerTrajet"
+  hidden
+>
+  <span class="trajet-taxi">🚕</span>
+  <span class="trajet-texte"></span>
+</div>
+
+<div
   id="retourBloc"
   class="retour-bloc compact-trip-block"
   hidden
