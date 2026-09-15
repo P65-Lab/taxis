@@ -1622,11 +1622,11 @@ button.primary {
     gap: 10px !important;
   }
 
-  .date-time-icon-wrap input {
-    height: 44px !important;
-    min-height: 44px !important;
-    font-size: 13px !important;
-  }
+ .date-time-icon-wrap input {
+  height: 38px !important;
+  min-height: 38px !important;
+  font-size: 13px !important;
+}
 }
 
 /* Message plus compact */
@@ -1664,8 +1664,8 @@ button.primary {
 
 @media (max-width: 480px) {
   .message-field textarea#message {
-    min-height: 68px !important;
-    height: 68px !important;
+    min-height: 50px !important;
+    height: 50px !important;
   }
 }
 
@@ -2107,7 +2107,7 @@ header.hero {
 
 .choose-agents-btn {
   width: 100%;
-  min-height: 52px;
+ min-height: 38px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3778,13 +3778,23 @@ min-height: 32px !important;
 /* Ville */
 
 .icon-input-wrap input {
+  height: 38px !important;
+  min-height: 38px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
   padding-left: 44px !important;
+  box-sizing: border-box !important;
 }
 
 /* Départ / Arrivée */
 
 .select-icon-wrap select {
+  height: 38px !important;
+  min-height: 38px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
   padding-left: 44px !important;
+  box-sizing: border-box !important;
 }
 
 /* Date / Heure */
@@ -3833,8 +3843,8 @@ min-height: 32px !important;
 .aller-bloc .date-time-icon-wrap input {
   width: 100% !important;
   min-width: 0 !important;
-  height: 44px !important;
-  min-height: 44px !important;
+  height: 38px !important;
+  min-height: 38px !important;
   padding-left: 40px !important;
   padding-right: 6px !important;
   box-sizing: border-box !important;
