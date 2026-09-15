@@ -1427,12 +1427,11 @@ button.primary {
    DATE + HEURE
    ---------------------------------------------------------- */
 
-.compact-date-time {
-  width: 100%;
+.aller-bloc .compact-date-time {
+  width: 100% !important;
   display: grid !important;
-  grid-template-columns: minmax(0, 1.55fr)
-    minmax(108px, .75fr) !important;
-  gap: 8px !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 10px !important;
 }
 
 .compact-date-time .field {
@@ -1485,19 +1484,38 @@ button.primary {
    ---------------------------------------------------------- */
 
 .aller-bloc #allerTrajet {
+  position: relative;
+  width: 100% !important;
   min-height: 38px !important;
+  margin: 8px 0 0 0 !important;
+  padding: 7px 12px 7px 42px !important;
+  box-sizing: border-box !important;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 1.5px solid #d7dee8 !important;
   border-radius: 10px !important;
   background: #ffffff !important;
   color: #111827 !important;
+
+  text-align: center !important;
   font-size: 11px !important;
   font-weight: 900 !important;
 }
 
 /* Voiture dans le cadre */
+
+.aller-bloc #allerTrajet .trajet-taxi {
+  position: absolute;
+  left: 12px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  line-height: 1;
+}
 
 /* Texte GARE → HOTEL */
 
@@ -1600,15 +1618,14 @@ button.primary {
   }
 
   .compact-date-time {
-    grid-template-columns: minmax(0, 1.55fr)
-        minmax(100px, .75fr) !important;
-    gap: 7px !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 10px !important;
   }
 
   .date-time-icon-wrap input {
     height: 44px !important;
     min-height: 44px !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
 }
 
@@ -3827,23 +3844,14 @@ min-height: 32px !important;
   left: 10px;
 }
 
-/* TRAJET : MEME LARGEUR QUE DATE + HEURE */
 
-.aller-bloc #allerTrajet {
-  position: relative;
-  width: 100% !important;
-  margin: 8px 0 0 0 !important;
-  padding: 8px 12px 8px 42px !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
-}
 
 /* VOITURE AU BORD GAUCHE DU CADRE */
 
 .aller-bloc #allerTrajet .trajet-taxi {
   position: absolute;
-  right: 12px;
-  left: auto;
+  left: 12px;
+  right: auto;
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
@@ -3855,10 +3863,10 @@ min-height: 32px !important;
 .aller-bloc #allerTrajet .trajet-texte {
   display: block;
   width: 100%;
-  text-align: left;
-  padding-left: 0;
-  padding-right: 34px;
+  text-align: center;
+  padding: 0;
   box-sizing: border-box;
+  font-size: 11px;
   font-weight: 900;
 }
 
