@@ -4141,56 +4141,59 @@ min-height: 32px !important;
      Départ [ cadre ]     Arrivée [ cadre ]
      ========================================================= */
 
-  .locations-row.depart-arrivee-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 14px !important;
-    width: 100% !important;
-    margin-bottom: 4px !important;
-  }
-
-  .depart-arrivee-row > .field {
-    display: grid !important;
-    grid-template-rows: auto auto !important;
-    align-items: center !important;
-    row-gap: 0 !important;
-    margin: 0 !important;
-    min-width: 0 !important;
-  }
-
-  .depart-arrivee-row > .field > label {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .depart-arrivee-row > .field > .search-wrap {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-  }
-
-  .depart-arrivee-row > .field > .search-wrap input {
-    width: 100% !important;
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Adresse sous le cadre */
-  .depart-arrivee-row > .field > .detail {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-    margin: 3px 0 0 !important;
-    min-width: 0 !important;
-  }
 
 
+.locations-row.depart-arrivee-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin-bottom: 4px !important;
+}
+
+.locations-row.depart-arrivee-row > .field {
+  display: grid !important;
+  grid-template-columns: 90px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  align-items: center !important;
+  column-gap: 8px !important;
+  row-gap: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+
+.locations-row.depart-arrivee-row > .field > label {
+  display: block !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-self: center !important;
+}
+
+.locations-row.depart-arrivee-row > .field > .search-wrap {
+  display: block !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.locations-row.depart-arrivee-row > .field > .search-wrap input {
+  width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.locations-row.depart-arrivee-row > .field > .detail {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  margin: 3px 0 0 0 !important;
+}
   /* =========================================================
      DATE / HEURE
 
