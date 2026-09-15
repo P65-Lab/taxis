@@ -1532,8 +1532,8 @@ button.primary {
 }
 
 .retour-bloc .compact-date-time {
-  grid-template-columns: minmax(0, 1.55fr)
-    minmax(108px, .75fr) !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 10px !important;
 }
 
 .retour-bloc .compact-date-time label {
