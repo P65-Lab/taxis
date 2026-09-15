@@ -1517,10 +1517,10 @@ button.primary {
   width: 100%;
   box-sizing: border-box;
   margin: 3px 0 !important;
-  padding: 11px 12px 12px !important;
-  border: 1.5px solid #d7dee8 !important;
-  border-radius: 15px !important;
-  background: var(--taxi-card, #ffffff) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
   box-shadow: none !important;
 }
 
