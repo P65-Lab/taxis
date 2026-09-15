@@ -935,8 +935,8 @@ function update() {
     </div>
   `;
   // =========================================
-// TRAJET ALLER
-// =========================================
+  // TRAJET ALLER
+  // =========================================
 
 const allerTrajet =
   document.getElementById("allerTrajet");
@@ -962,6 +962,36 @@ if (allerTrajet) {
     }
 
     allerTrajet.hidden = true;
+  }
+}
+// =========================================
+// TRAJET RETOUR
+// =========================================
+
+const retourTrajet =
+  document.getElementById("retourTrajet");
+
+if (retourTrajet) {
+
+  const trajetTexteRetour =
+    retourTrajet.querySelector(".trajet-texte");
+
+  if (allerRetour && d && a) {
+
+    if (trajetTexteRetour) {
+      trajetTexteRetour.textContent =
+        `${a.lieu} → ${d.lieu}`;
+    }
+
+    retourTrajet.hidden = false;
+
+  } else {
+
+    if (trajetTexteRetour) {
+      trajetTexteRetour.textContent = "";
+    }
+
+    retourTrajet.hidden = true;
   }
 }
 }
