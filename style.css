@@ -4255,9 +4255,21 @@ min-height: 32px !important;
   box-shadow: none !important;
 }
 
-.aller-layout,
-.aller-right {
+.aller-layout {
+  display: block !important;
   width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.aller-left {
+  display: none !important;
+}
+
+.aller-right {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
 }
