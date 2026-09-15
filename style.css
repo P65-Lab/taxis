@@ -4242,40 +4242,62 @@ min-height: 32px !important;
     grid-template-columns: 90px minmax(0, 1fr) !important;
   }
 
-  /* =========================
-     DATE / HEURE COMME DEPART / ARRIVEE
-     ========================= */
+  /* =========================================================
+   DATE / HEURE
+   MEME ALIGNEMENT ET MEME LARGEUR QUE DEPART / ARRIVEE
+   ========================================================= */
 
-  .compact-date-time > .field {
-    display: grid !important;
-    grid-template-columns: 90px minmax(0, 1fr) !important;
-    align-items: center !important;
-    column-gap: 8px !important;
-    margin: 0 !important;
-  }
+.aller-bloc.compact-trip-block {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
 
-  .compact-date-time > .field > label {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    align-self: center !important;
-  }
+.aller-layout,
+.aller-right {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
-  .compact-date-time > .field > .date-time-icon-wrap {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-  }
+.compact-date-time {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
 
-  .compact-date-time > .field > .date-time-icon-wrap input {
-    width: 100% !important;
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-  }
+.compact-date-time > .field {
+  display: grid !important;
+  grid-template-columns: 90px minmax(0, 1fr) !important;
+  align-items: center !important;
+  column-gap: 8px !important;
+  margin: 0 !important;
+}
+
+.compact-date-time > .field > label {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.compact-date-time > .field > .date-time-icon-wrap {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.compact-date-time > .field > .date-time-icon-wrap input {
+  width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
 }
