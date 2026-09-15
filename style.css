@@ -4071,6 +4071,10 @@ min-height: 32px !important;
 
 @media (orientation: landscape) {
 
+  /* =========================================================
+     POPUP GENERAL
+     ========================================================= */
+
   .taxi-request-popup {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -4086,118 +4090,204 @@ min-height: 32px !important;
     font-size: 20px;
   }
 
+
+  /* =========================================================
+     VILLE
+     LIBELLE + CHAMP SUR LA MEME LIGNE
+     ========================================================= */
+
+  .compact-ville {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+    margin-bottom: 4px !important;
+  }
+
+  .compact-ville > label {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .compact-ville .search-wrap {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .compact-ville input {
+    width: 100% !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
+  }
+
+
+  /* =========================================================
+     DEPART / ARRIVEE
+     ========================================================= */
+
   .locations-row {
     gap: 14px;
     margin-bottom: 2px;
   }
 
+  .locations-row.depart-arrivee-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  .locations-row.depart-arrivee-row > .field {
+    display: grid !important;
+    grid-template-columns: 90px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    align-items: center !important;
+    column-gap: 8px !important;
+    row-gap: 0 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .locations-row.depart-arrivee-row > .field > label {
+    display: block !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-self: center !important;
+  }
+
+  .locations-row.depart-arrivee-row > .field > .search-wrap {
+    display: block !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+  .locations-row.depart-arrivee-row > .field > .search-wrap input {
+    width: 100% !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .locations-row.depart-arrivee-row > .field > .detail {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    margin: 3px 0 0 0 !important;
+  }
+
+
+  /* =========================================================
+     DATE / HEURE
+     MEME STRUCTURE VISUELLE QUE DEPART / ARRIVEE
+     ========================================================= */
+
   .aller-bloc.compact-trip-block {
     margin: 0 !important;
-    padding: 4px 10px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .aller-layout {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .aller-left {
+    display: none !important;
+  }
+
+  .aller-right {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .compact-date-time {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 14px !important;
+    display: grid !important;
+
+    grid-template-columns:
+      90px minmax(0, 1fr)
+      90px minmax(0, 1fr) !important;
+
+    column-gap: 8px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .compact-date-time input {
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    box-sizing: border-box !important;
+  .compact-date-time > .field {
+    display: contents !important;
   }
 
-  /* =========================
-     VILLE SUR UNE SEULE LIGNE
-     ========================= */
 
-  .compact-ville {
-  display: grid;
-  grid-template-columns: 90px minmax(0, 1fr);
-  align-items: center;
-  column-gap: 8px;
-  margin-bottom: 4px !important;
-}
+  /* DATE */
 
-  .compact-ville > label {
+  .compact-date-time > .field:first-child > label {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .compact-date-time > .field:first-child > .date-time-icon-wrap {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
     margin: 0 !important;
   }
 
-  .compact-ville .search-wrap {
-    width: 100%;
+
+  /* HEURE */
+
+  .compact-date-time > .field:last-child > label {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .compact-ville input {
+  .compact-date-time > .field:last-child > .date-time-icon-wrap {
+    grid-column: 4 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+
+  /* MEME HAUTEUR DATE / HEURE */
+
+  .compact-date-time .date-time-icon-wrap input {
+    width: 100% !important;
     height: 44px !important;
     min-height: 44px !important;
     max-height: 44px !important;
+    margin: 0 !important;
     box-sizing: border-box !important;
   }
 
-  /* =========================
-   DEPART / ARRIVEE
-   COMME VILLE
-   ========================= */
 
-.locations-row.depart-arrivee-row > .field {
-  display: grid !important;
-  grid-template-columns: 90px minmax(0, 1fr) !important;
-  grid-template-rows: auto auto !important;
-  align-items: center !important;
-  column-gap: 8px !important;
-  row-gap: 0 !important;
-  margin: 0 !important;
-}
-
-.locations-row.depart-arrivee-row > .field > label {
-  display: block !important;
-  grid-column: 1 !important;
-  grid-row: 1 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  align-self: center !important;
-}
-
-.locations-row.depart-arrivee-row > .field > .search-wrap {
-  display: block !important;
-  grid-column: 2 !important;
-  grid-row: 1 !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-}
-
-.locations-row.depart-arrivee-row > .field > .search-wrap input {
-  width: 100% !important;
-  height: 44px !important;
-  min-height: 44px !important;
-  max-height: 44px !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-}
-
-.locations-row.depart-arrivee-row > .field > .detail {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
-  margin: 3px 0 0 0 !important;
-}
-  /* =========================
-     BAS DU FORMULAIRE
-     ========================= */
-
-  .agents-picker-field {
-    margin-bottom: 2px !important;
-  }
-
-  .agents-picker-head {
-    margin-bottom: 4px;
-  }
-
-  .message-field textarea#message {
-    min-height: 54px !important;
-    height: 54px !important;
-  }
+  /* =========================================================
+     AGENTS / MESSAGE
+     ========================================================= */
 
   .landscape-bottom-grid {
     display: grid;
@@ -4211,15 +4301,27 @@ min-height: 32px !important;
     margin: 0 !important;
   }
 
+  .agents-picker-head {
+    margin-bottom: 4px;
+  }
+
   .landscape-bottom-grid .message-field {
     grid-column: 2;
     margin: 0 !important;
   }
 
   .landscape-bottom-grid .message-field textarea#message {
+    width: 100% !important;
     height: 44px !important;
     min-height: 44px !important;
+    max-height: 44px !important;
+    box-sizing: border-box !important;
   }
+
+
+  /* =========================================================
+     BOUTONS VALIDER / EFFACER
+     ========================================================= */
 
   .landscape-bottom-grid .taxi-form-actions {
     grid-column: 1 / -1;
@@ -4229,95 +4331,5 @@ min-height: 32px !important;
     transform: none !important;
     margin: 0 !important;
   }
-  /* =========================
-     ALIGNEMENT DEPART / ARRIVEE
-     ========================= */
 
-  .locations-row.depart-arrivee-row {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 14px !important;
-  }
-
-  .locations-row.depart-arrivee-row > .field {
-    grid-template-columns: 90px minmax(0, 1fr) !important;
-  }
-
-  /* =========================================================
-   DATE / HEURE
-   MEME ALIGNEMENT ET MEME LARGEUR QUE DEPART / ARRIVEE
-   ========================================================= */
-
-.aller-bloc.compact-trip-block {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.aller-layout {
-  display: block !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.aller-left {
-  display: none !important;
-}
-
-.aller-right {
-  display: block !important;
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.compact-date-time {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 14px !important;
-  width: 100% !important;
-}
-
-.compact-date-time > .field:first-child {
-  grid-template-columns: 90px minmax(0, 1fr) !important;
-}
-
-.compact-date-time > .field:last-child {
-  grid-template-columns: 90px minmax(0, 1fr) !important;
-}
-
-.compact-date-time > .field {
-  display: grid !important;
-  grid-template-columns: 90px minmax(0, 1fr) !important;
-  align-items: center !important;
-  column-gap: 8px !important;
-  margin: 0 !important;
-}
-
-.compact-date-time > .field > label {
-  grid-column: 1 !important;
-  grid-row: 1 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.compact-date-time > .field > .date-time-icon-wrap {
-  grid-column: 2 !important;
-  grid-row: 1 !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-}
-
-.compact-date-time > .field > .date-time-icon-wrap input {
-  width: 100% !important;
-  height: 44px !important;
-  min-height: 44px !important;
-  max-height: 44px !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-}
 }
