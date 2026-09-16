@@ -71,13 +71,11 @@ self.addEventListener("install", event => {
       })
   );
 
-  /*
-    IMPORTANT :
-    PAS de self.skipWaiting() ici.
-
-    La nouvelle version reste en attente
-    jusqu'au clic sur "Mettre à jour".
+   /*
+    Active automatiquement la nouvelle version
   */
+
+  self.skipWaiting();
 
 });
 
