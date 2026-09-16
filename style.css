@@ -109,7 +109,9 @@ select:focus,input:focus,textarea:focus {
   padding-left: 2px;
   color: #6b7280;
   font-size: 10px;
-  line-height: 1.4;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: none;
 }
 
 .grid2 {
@@ -1488,7 +1490,7 @@ button.primary {
   width: 100% !important;
   min-height: 38px !important;
   margin: 8px 0 0 0 !important;
-  padding: 7px 12px 7px 42px !important;
+  padding: 7px 42px 7px 12px !important;
   box-sizing: border-box !important;
 
   display: flex;
@@ -1501,28 +1503,23 @@ button.primary {
   color: #111827 !important;
 
   text-align: center !important;
-  font-size: 11px !important;
-  font-weight: 900 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
 }
 
 /* Voiture dans le cadre */
 
 .aller-bloc #allerTrajet .trajet-taxi {
   position: absolute;
-  left: 12px;
-  right: auto;
+    left: auto;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
   line-height: 1;
 }
 
-/* Texte GARE → HOTEL */
 
-.aller-bloc #allerTrajet .trajet-texte {
-  font-size: 11px;
-  font-weight: 900;
-}
 
 /* ----------------------------------------------------------
    RETOUR - MEME PRESENTATION QUE ALLER
@@ -1574,15 +1571,18 @@ button.primary {
   margin: 8px 0 0 0 !important;
   padding: 7px 12px 7px 42px !important;
   box-sizing: border-box !important;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 1.5px solid #d7dee8 !important;
   border-radius: 10px !important;
   background: #ffffff !important;
   color: #111827 !important;
-  font-size: 11px !important;
-  font-weight: 900 !important;
+
+  font-size: 10px !important;
+  font-weight: 700 !important;
   text-align: center;
 }
 
@@ -1590,8 +1590,8 @@ button.primary {
 
 .retour-bloc #retourTrajet .trajet-taxi {
   position: absolute;
-  right: 12px;
-  left: auto;
+  right: auto;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%) scaleX(-1);
   font-size: 18px;
@@ -1604,8 +1604,9 @@ button.primary {
   display: block;
   width: 100%;
   text-align: center;
-  font-size: 11px;
-  font-weight: 900;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: none;
 }
 
 /* ----------------------------------------------------------
@@ -3871,8 +3872,8 @@ background-repeat: no-repeat;
 
 .aller-bloc #allerTrajet .trajet-taxi {
   position: absolute;
-  left: 12px;
-  right: auto;
+  left: auto;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
@@ -3881,14 +3882,15 @@ background-repeat: no-repeat;
 
 /* TEXTE DU TRAJET */
 
+
 .aller-bloc #allerTrajet .trajet-texte {
   display: block;
   width: 100%;
   text-align: center;
   padding: 0;
   box-sizing: border-box;
-  font-size: 11px;
-  font-weight: 900;
+  font-size: 10px;
+  font-weight: 700;
 }
 
 #privateAgentsStatus {
