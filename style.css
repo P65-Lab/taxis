@@ -2163,7 +2163,8 @@ header.hero {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 3px 12px;
+  padding: 0 12px;
+  min-height: 30px;
   border-bottom: 1px solid #eef2f6;
 }
 
