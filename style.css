@@ -1514,7 +1514,7 @@ button.primary {
   left: 12px;
   right: auto;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scaleX(-1);
   font-size: 18px;
   line-height: 1;
 }
@@ -1569,7 +1569,7 @@ button.primary {
   width: 100% !important;
   min-height: 38px !important;
   margin: 8px 0 0 0 !important;
-  padding: 7px 42px 7px 12px !important;
+  padding: 7px 12px 7px 42px !important;
   box-sizing: border-box !important;
 
   display: flex;
@@ -1590,10 +1590,10 @@ button.primary {
 
 .retour-bloc #retourTrajet .trajet-taxi {
   position: absolute;
-  right: 12px;
-  left: auto;
+  right: auto;
+  left: 12px;
   top: 50%;
-  transform: translateY(-50%) scaleX(-1);
+  transform: translateY(-50%);
   font-size: 18px;
   line-height: 1;
 }
@@ -1603,10 +1603,15 @@ button.primary {
 .retour-bloc #retourTrajet .trajet-texte {
   display: block;
   width: 100%;
+  padding: 0;
+  box-sizing: border-box;
   text-align: center;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: none;
+  font-family: inherit;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 1.2;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* ----------------------------------------------------------
@@ -3875,12 +3880,15 @@ background-repeat: no-repeat;
 .aller-bloc #allerTrajet .trajet-texte {
   display: block;
   width: 100%;
-  text-align: center;
   padding: 0;
   box-sizing: border-box;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: none;
+  text-align: center;
+  font-family: inherit;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 1.2;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 #privateAgentsStatus {
