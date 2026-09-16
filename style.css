@@ -1303,7 +1303,7 @@ button.primary {
 .compact-ville {
   margin-top: -4px !important;
   margin-bottom: 0 !important;
-
+}
 .locations-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
