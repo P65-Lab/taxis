@@ -2180,19 +2180,28 @@ header.hero {
 }
 
 .selected-agent-delete {
-  flex: 0 0 auto;
-  width: 24px;
-  height: 24px;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
   padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: none;
   border-radius: 0;
-  background: none !important;
+
+  background: transparent !important;
+  color: #dc2626;
+
   box-shadow: none !important;
-  color: #b42318;
-  display: grid;
-  place-items: center;
-  font-size: 12px;
+
+  font-size: 16px;
   line-height: 1;
+
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
