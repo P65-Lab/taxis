@@ -234,8 +234,13 @@ function lieuxVille() {
   const v =
     villeSelectionnee || villeValide();
 
+  const villeNormalisee =
+    normalizeText(v);
+
   return allLieux().filter(
-    x => x.ville === v
+    x =>
+      normalizeText(x.ville) ===
+      villeNormalisee
   );
 
 }
