@@ -446,7 +446,19 @@ function afficherListeLieux(
 
 
           champ.value =
-            lieu.lieu;
+         lieu.lieu === lieu.lieu.toLocaleUpperCase("fr-FR")
+         ? lieu.lieu
+        .toLocaleLowerCase("fr-FR")
+        .replace(
+          /(^|[\s-])([\p{L}])/gu,
+          (texte, espace, lettre) =>
+            espace + lettre.toLocaleUpperCase("fr-FR")
+        )
+        .replace(
+          /\b(De|Du|Des|Le|La|Les|Et|Sur|Sous|Au|Aux)\b/gu,
+          mot => mot.toLocaleLowerCase("fr-FR")
+        )
+    : lieu.lieu;
 
           champ.dataset.lieuIndex =
             String(index);
