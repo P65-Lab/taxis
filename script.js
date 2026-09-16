@@ -321,7 +321,7 @@ function detail(x) {
 
   if (!x) return "";
 
-  return `${texteAffichage(x.adresse)} — ${texteAffichage(x.codePostal)}`;
+ return `${texteAffichage(x.adresse)} — ${texteAffichage(x.codePostal).replace(/\s+/g, "\u00A0")}`;
 
 }
 
