@@ -286,7 +286,6 @@ function getLieu(champ) {
 
 }
 
-
 /* ==========================================================
    DETAIL ADRESSE
    ========================================================== */
@@ -321,7 +320,7 @@ function detail(x) {
 
   if (!x) return "";
 
- return `${texteAffichage(x.adresse)} — ${texteAffichage(x.codePostal).replace(/\s+/g, "\u00A0")}`;
+return `${texteAffichage(x.adresse)}\n${texteAffichage(x.codePostal).replace(/\s+/g, "\u00A0")}`;
 
 }
 
@@ -474,13 +473,13 @@ function afficherListeLieux(
 
           if (champ === depart) {
 
-            departDetail.textContent =
-              detail(lieu);
+            departDetail.innerText =
+            detail(lieu);
 
           } else {
 
-            arriveeDetail.textContent =
-              detail(lieu);
+            arriveeDetail.innerText =
+            detail(lieu);
 
           }
 
@@ -871,8 +870,8 @@ function update() {
   const d = getLieu(depart);
   const a = getLieu(arrivee);
 
-  departDetail.textContent = detail(d);
-  arriveeDetail.textContent = detail(a);
+  departDetail.innerText = detail(d);
+  arriveeDetail.innerText = detail(a);
 
   selectedAgents().forEach((ag, i) => {
 
