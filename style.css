@@ -3868,17 +3868,7 @@ background-repeat: no-repeat;
 
 
 
-/* VOITURE AU BORD GAUCHE DU CADRE */
 
-.aller-bloc #allerTrajet .trajet-taxi {
-  position: absolute;
-  left: auto;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  line-height: 1;
-}
 
 /* TEXTE DU TRAJET */
 
