@@ -15,6 +15,10 @@ const UPDATE_INFO = {
 };
 
 
+/* ==========================================================
+   FICHIERS DE L'APPLICATION
+   ========================================================== */
+
 const APP_FILES = [
   "./",
   "./index.html",
@@ -28,12 +32,15 @@ const APP_FILES = [
 
 /* ==========================================================
    INSTALLATION
-   Prépare la nouvelle version MAIS NE L'ACTIVE PAS
+
+   La nouvelle version est préparée dans un nouveau cache.
+   Elle attend ensuite le clic sur « Mettre à jour ».
    ========================================================== */
 
 self.addEventListener("install", event => {
 
   event.waitUntil(
+
     caches.open(CACHE_NAME)
       .then(async cache => {
 
@@ -69,13 +76,15 @@ self.addEventListener("install", event => {
         }
 
       })
+
   );
 
-   /*
-    Active automatiquement la nouvelle version
-  */
+  /*
+    Ne pas ajouter self.skipWaiting() ici.
 
-  self.skipWaiting();
+    La nouvelle version doit rester en attente
+    jusqu'au clic sur le bouton « Mettre à jour ».
+  */
 
 });
 
@@ -92,7 +101,7 @@ self.addEventListener("message", event => {
 
 
   /* ----------------------------------------------------------
-     DEMANDE DES INFORMATIONS DE MISE A JOUR
+     ENVOYER LES INFORMATIONS DE LA MISE À JOUR
      ---------------------------------------------------------- */
 
   if (event.data.type === "GET_UPDATE_INFO") {
@@ -113,7 +122,7 @@ self.addEventListener("message", event => {
 
 
   /* ----------------------------------------------------------
-     L'UTILISATEUR CLIQUE SUR "METTRE A JOUR"
+     CLIC SUR LE BOUTON « METTRE À JOUR »
      ---------------------------------------------------------- */
 
   if (event.data.type === "SKIP_WAITING") {
@@ -126,7 +135,7 @@ self.addEventListener("message", event => {
 
 
 /* ==========================================================
-   ACTIVATION
+   ACTIVATION DE LA NOUVELLE VERSION
    ========================================================== */
 
 self.addEventListener("activate", event => {
@@ -159,10 +168,7 @@ self.addEventListener("activate", event => {
 
 
 /* ==========================================================
-   NAVIGATION
-
-   Tant que l'utilisateur n'a pas accepté la mise à jour,
-   on garde l'ancienne version de l'application.
+   NAVIGATION ET FICHIERS
    ========================================================== */
 
 self.addEventListener("fetch", event => {
@@ -198,7 +204,7 @@ self.addEventListener("fetch", event => {
 
 
   /* ----------------------------------------------------------
-     CSS / JAVASCRIPT / AUTRES FICHIERS
+     CSS, JAVASCRIPT ET AUTRES FICHIERS
      ---------------------------------------------------------- */
 
   event.respondWith(
@@ -209,15 +215,15 @@ self.addEventListener("fetch", event => {
         ignoreSearch: true
       }
     )
-    .then(cached => {
+      .then(cached => {
 
-      if (cached) {
-        return cached;
-      }
+        if (cached) {
+          return cached;
+        }
 
-      return fetch(event.request);
+        return fetch(event.request);
 
-    })
+      })
 
   );
 
