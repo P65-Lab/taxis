@@ -3639,7 +3639,7 @@ background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: -4px 0 0 0;
+  margin: 2px 0 0 0;
   padding: 0;
 }
 
