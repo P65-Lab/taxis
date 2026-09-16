@@ -4,7 +4,7 @@
 
 globalThis.TAXI_VERSION = "v1.7";
 
-globalThis.TAXI_VERSION_DATE = "15/09/2026";
+globalThis.TAXI_VERSION_DATE = "16/09/2026";
 
 globalThis.TAXI_UPDATE_NOTES = [
   "Test de l'affichage du détail avant installation",
