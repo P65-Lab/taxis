@@ -7,8 +7,7 @@ globalThis.TAXI_VERSION = "v1.10";
 globalThis.TAXI_VERSION_DATE = "16/09/2026";
 
 globalThis.TAXI_UPDATE_NOTES = [
-  "Test de l'affichage du détail avant installation",
-  "Vérification du bouton Mise à jour",
-  "Vérification du choix Plus tard",
-  "Suppression du bouton mise à jour dans paramètres"
+  "Uniformisation de la taille des trajets Aller et Retour",
+  "Correction de la position et du sens des voitures",
+  "Amélioration de l’affichage des lieux et des adresses"
 ];
