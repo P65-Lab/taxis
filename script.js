@@ -111,9 +111,27 @@ function normalizeText(v) {
 }
 
 function getVilles() {
-  return [...new Set(allLieux().map(x => x.ville))]
-    .filter(Boolean)
-    .sort((a,b) => a.localeCompare(b, "fr"));
+
+  const uniques = new Map();
+
+  allLieux().forEach(x => {
+
+    const ville = String(x.ville || "").trim();
+
+    if (!ville) return;
+
+    const cle = normalizeText(ville);
+
+    if (!uniques.has(cle)) {
+      uniques.set(cle, ville);
+    }
+
+  });
+
+  return [...uniques.values()]
+    .sort((a, b) =>
+      a.localeCompare(b, "fr")
+    );
 }
 
 function getAgentsTries() {
