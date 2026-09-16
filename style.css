@@ -545,7 +545,7 @@ select:focus,input:focus,textarea:focus {
 }
 
 .admin-delete {
-  background: #fee2e2;
+  background: transparent;
   color: #991b1b;
 }
 
