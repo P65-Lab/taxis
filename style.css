@@ -540,7 +540,7 @@ select:focus,input:focus,textarea:focus {
 }
 
 .admin-edit {
-  background: #e5e7eb;
+  background: transparent;
   color: #111827;
 }
 
