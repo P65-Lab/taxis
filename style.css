@@ -108,7 +108,7 @@ select:focus,input:focus,textarea:focus {
   margin-top: 7px;
   padding-left: 2px;
   color: #6b7280;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.4;
 }
 
@@ -3804,6 +3804,7 @@ background-repeat: no-repeat;
   padding-top: 6px !important;
   padding-bottom: 6px !important;
   padding-left: 44px !important;
+  font-size: 13px !important;
   box-sizing: border-box !important;
 }
 
