@@ -291,11 +291,37 @@ function getLieu(champ) {
    DETAIL ADRESSE
    ========================================================== */
 
+function texteAffichage(texte) {
+
+  let valeur = String(texte || "").trim();
+
+  if (!valeur) return "";
+
+  if (valeur === valeur.toLocaleUpperCase("fr-FR")) {
+
+    valeur = valeur
+      .toLocaleLowerCase("fr-FR")
+      .replace(
+        /(^|[\s-])([\p{L}])/gu,
+        (texteTrouve, separateur, lettre) =>
+          separateur + lettre.toLocaleUpperCase("fr-FR")
+      );
+
+  }
+
+  return valeur.replace(
+    /\b(De|Du|Des|Le|La|Les|Et|Sur|Sous|Au|Aux)\b/gu,
+    mot => mot.toLocaleLowerCase("fr-FR")
+  );
+
+}
+
+
 function detail(x) {
 
   if (!x) return "";
 
-  return `${x.adresse} — ${x.codePostal}`;
+  return `${texteAffichage(x.adresse)} — ${texteAffichage(x.codePostal)}`;
 
 }
 
@@ -961,7 +987,7 @@ if (allerTrajet) {
 
     if (trajetTexte) {
       trajetTexte.textContent =
-        `${d.lieu} → ${a.lieu}`;
+  `${texteAffichage(d.lieu)} → ${texteAffichage(a.lieu)}`;
     }
 
     allerTrajet.hidden = false;
@@ -990,8 +1016,8 @@ if (retourTrajet) {
   if (allerRetour && d && a) {
 
     if (trajetTexteRetour) {
-      trajetTexteRetour.textContent =
-        `${a.lieu} → ${d.lieu}`;
+     trajetTexteRetour.textContent =
+  `${texteAffichage(a.lieu)} → ${texteAffichage(d.lieu)}`;
     }
 
     retourTrajet.hidden = false;

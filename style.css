@@ -3882,7 +3882,6 @@ background-repeat: no-repeat;
 
 /* TEXTE DU TRAJET */
 
-
 .aller-bloc #allerTrajet .trajet-texte {
   display: block;
   width: 100%;
@@ -3891,6 +3890,7 @@ background-repeat: no-repeat;
   box-sizing: border-box;
   font-size: 10px;
   font-weight: 700;
+  text-transform: none;
 }
 
 #privateAgentsStatus {
