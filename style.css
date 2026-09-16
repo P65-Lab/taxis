@@ -3639,7 +3639,7 @@ background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 -4px 0;
+  margin: -4px 0 0 0;
   padding: 0;
 }
 
@@ -3663,7 +3663,7 @@ min-height: 32px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin: -4px 0 0 0 !important;
+  margin: -4px 0 -4px 0;
   padding: 0 0 3px 0 !important;
   border: 0 !important;
   border-radius: 50% !important;
