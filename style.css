@@ -1326,8 +1326,8 @@ button.primary {
 }
 .locations-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.90fr);
+  gap: 8px;
   align-items: start;
   margin-bottom: 8px;
 }
@@ -3843,7 +3843,7 @@ background-repeat: no-repeat;
 
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr);
-  column-gap: 2px;
+  column-gap: 8px;
   align-items: center;
 }
 
