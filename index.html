@@ -377,7 +377,7 @@
       
       <div class="field participants-field agents-picker-field">
         <div class="agents-picker-head">
-          <label>Agents</label>
+          
           <span id="agentsCountBadge" class="agents-count-badge">0 sélectionné</span>
         </div>
 
@@ -385,6 +385,7 @@
   type="button"
   id="chooseAgentsBtn"
   class="choose-agents-btn"
+  aria-label="Choisir les agents"
 >
   <span class="choose-agents-label">
     <span class="choose-agents-icon">👥</span>
@@ -404,16 +405,17 @@
 
 
 <div class="field message-field">
-  <label for="message">Message</label>
+  
 
   <div class="message-icon-wrap">
     <span class="message-icon">💬</span>
 
     <textarea
-      id="message"
-      rows="2"
-      placeholder="Informations complémentaires..."
-    ></textarea>
+  id="message"
+  rows="2"
+  aria-label="Informations complémentaires"
+  placeholder="Informations complémentaires..."
+></textarea>
   </div>
 </div>
 
