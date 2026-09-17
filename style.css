@@ -1697,8 +1697,8 @@ button.primary {
 
 @media (max-width: 480px) {
   .message-field textarea#message {
-    min-height: 50px !important;
-    height: 50px !important;
+    min-height: 56px !important;
+    height: 56px !important;
   }
 }
 
