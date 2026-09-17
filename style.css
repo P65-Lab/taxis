@@ -100,7 +100,7 @@ select:focus,input:focus,textarea:focus {
 /* Départ / Arrivée */
 #depart,
 #arrivee {
-  padding-left: 34px;
+  padding-left: 12px;
   padding-right: 8px;
 }
 
@@ -1307,13 +1307,15 @@ button.primary {
   margin-bottom: 8px !important;
 
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr);
-  column-gap: 10px;
+  grid-template-columns: 32px minmax(0, 1fr);
+  column-gap: 8px;
   align-items: center;
 }
 
 .compact-ville > label {
   margin: 0 !important;
+  text-align: center;
+  font-size: 18px;
 }
 
 .compact-ville > .search-wrap {
@@ -1689,10 +1691,9 @@ button.primary {
 
 .locations-row.depart-arrivee-row > .field {
   display: grid !important;
-  grid-template-columns: 82px minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  column-gap: 10px;
-  row-gap: 4px;
+  grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: center;
 
   width: 100% !important;
   min-width: 0 !important;
@@ -1701,22 +1702,24 @@ button.primary {
 
 .locations-row.depart-arrivee-row > .field > label {
   grid-column: 1;
-  grid-row: 1;
-  align-self: center;
   margin: 0 !important;
+  text-align: center;
+  font-size: 18px;
 }
 
 .locations-row.depart-arrivee-row > .field > .search-wrap {
   grid-column: 2;
-  grid-row: 1;
   width: 100%;
   min-width: 0;
 }
 
 .locations-row.depart-arrivee-row > .field > .detail {
-  grid-column: 2;
-  grid-row: 2;
-  margin-top: 0;
+  grid-column: 3;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  font-size: 9px;
+  line-height: 1.3;
 }
 
 .locations-row.depart-arrivee-row select {
