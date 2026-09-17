@@ -1708,45 +1708,45 @@ if (!heure.value) {
       return;
     }
 
-    const lignesMail = [
-      "Bonjour,",
-      "",
-      "Je souhaite effectuer une demande de taxi.",
-      "",
-      `VILLE : ${villeExacte}`,
-      allerRetour ? "ALLER / RETOUR" : "ALLER",
-      "",
-      `DÉPART : ${d.lieu}`,
-      `${d.adresse}    ${d.codePostal}`,
-      "",
-      `ARRIVÉE : ${a.lieu}`,
-      `${a.adresse}    ${a.codePostal}`,
-      "",
-      `DATE : ${frDate(dateEl.value)}`,
-      `HEURE : ${heure.value}`,
-      ""
-    ];
+   const lignesMail = [
+  "Je souhaite effectuer une demande de taxi.",
+  allerRetour ? "ALLER / RETOUR" : "ALLER SIMPLE",
+  "",
+  "",
+  "ALLER",
+  `VILLE : ${villeExacte}`,
+  `DÉPART : ${d.lieu}`,
+  `${d.adresse}`,
+  `${d.codePostal}`,
+  `ARRIVÉE : ${a.lieu}`,
+  `${a.adresse}`,
+  `${a.codePostal}`,
+  `DATE : ${frDate(dateEl.value)}`,
+  `HEURE : ${heure.value}`,
+  ""
+];
 
-    if (allerRetour) {
-      lignesMail.push(
-        "RETOUR",
-        "",
-        `DÉPART : ${a.lieu}`,
-        `${a.adresse}    ${a.codePostal}`,
-        "",
-        `ARRIVÉE : ${d.lieu}`,
-        `${d.adresse}    ${d.codePostal}`,
-        "",
-        `DATE : ${frDate(dateRetour.value)}`,
-        `HEURE : ${heureRetour.value}`,
-        ""
-      );
-    }
+if (allerRetour) {
+  lignesMail.push(
+    "",
+    "RETOUR",
+    `VILLE : ${villeExacte}`,
+    `DÉPART : ${a.lieu}`,
+    `${a.adresse}`,
+    `${a.codePostal}`,
+    `ARRIVÉE : ${d.lieu}`,
+    `${d.adresse}`,
+    `${d.codePostal}`,
+    `DATE : ${frDate(dateRetour.value)}`,
+    `HEURE : ${heureRetour.value}`,
+    ""
+  );
+}
 
-    lignesMail.push(
-      `${participants} ${participants > 1 ? "AGENTS" : "AGENT"}`,
-      ""
-    );
+lignesMail.push(
+  `${participants} ${participants > 1 ? "AGENTS" : "AGENT"}`,
+  ""
+);
 
     selected.forEach((ag, i) => {
 
