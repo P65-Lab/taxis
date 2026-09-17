@@ -101,8 +101,11 @@ select:focus,input:focus,textarea:focus {
 #ville,
 #depart,
 #arrivee {
-  padding-left: 6px !important;
-  padding-right: 8px !important;
+  width: 100% !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 6px 8px !important;
+  box-sizing: border-box !important;
   text-align: left !important;
 }
 
@@ -2151,20 +2154,25 @@ header.hero {
 
 .choose-agents-btn {
   width: 100%;
-min-width: 0;
- min-height: 38px;
+  min-width: 0;
+  height: 38px !important;
+  min-height: 38px !important;
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0 15px;
+  justify-content: center;
+
+  padding: 0 10px;
   border: 1px solid #d0d5dd;
   border-radius: 13px;
+
   background: #ffffff;
   color: #6b7280;
+
   font-size: 13px;
   font-weight: 800;
-  text-align: left;
+  text-align: center;
 }
 .agents-outside-icon {
   grid-column: 1;
