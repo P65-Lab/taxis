@@ -3849,6 +3849,7 @@ background-repeat: no-repeat;
 .date-heure-row > .field:first-child .date-time-icon-wrap {
   grid-template-columns: 32px minmax(0, 1fr);
   column-gap: 8px;
+  width: calc(100% - 4px);
 }
 
 /* HEURE : aucune marge entre l’horloge et le cadre */
