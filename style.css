@@ -1326,7 +1326,7 @@ button.primary {
 }
 .locations-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.90fr);
+  grid-template-columns: minmax(0, 1.20fr) minmax(0, 0.72fr);
   gap: 8px;
   align-items: start;
   margin-bottom: 8px;
