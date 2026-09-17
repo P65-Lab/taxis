@@ -98,9 +98,10 @@ select:focus,input:focus,textarea:focus {
 }
 
 /* Départ / Arrivée */
+#ville,
 #depart,
 #arrivee {
-  padding-left: 14px;
+  padding-left: 6px;
   padding-right: 8px;
   text-align: left;
 }

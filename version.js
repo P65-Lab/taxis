@@ -2,12 +2,13 @@
    VERSION DE L'APPLICATION TAXI
    ========================================================== */
 
-globalThis.TAXI_VERSION = "v1.4";
+globalThis.TAXI_VERSION = "v1.0";
 
 globalThis.TAXI_VERSION_DATE = "17/09/2026";
 
 globalThis.TAXI_UPDATE_NOTES = [
-  "Uniformisation de la taille des trajets Aller et Retour",
-  "Correction de la position et du sens des voitures",
-  "Amélioration de l’affichage des lieux et des adresses"
+  "Modifications des cadres ville, départ, arrivée",
+  "suppression des termes ville, départ, arrivée",
+  "Amélioration de l’affichage des lieux et des adresses",
+  "ajoutes d'énoticones"
 ];
