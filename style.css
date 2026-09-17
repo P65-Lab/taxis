@@ -100,8 +100,9 @@ select:focus,input:focus,textarea:focus {
 /* Départ / Arrivée */
 #depart,
 #arrivee {
-  padding-left: 12px;
+  padding-left: 14px;
   padding-right: 8px;
+  text-align: left;
 }
 
 .detail {
@@ -1691,7 +1692,7 @@ button.primary {
 
 .locations-row.depart-arrivee-row > .field {
   display: grid !important;
-  grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: 32px minmax(0, 1.25fr) minmax(0, .75fr);
   column-gap: 8px;
   align-items: center;
 
