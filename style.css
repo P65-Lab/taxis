@@ -3843,8 +3843,20 @@ background-repeat: no-repeat;
 
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr);
-  column-gap: 8px;
+  column-gap: 0;
   align-items: center;
+}
+
+/* DATE : alignement identique aux cadres des lieux */
+.date-heure-row > .field:first-child .date-time-icon-wrap {
+  grid-template-columns: 32px minmax(0, 1fr);
+  column-gap: 8px;
+}
+
+/* HEURE : aucune marge entre l’horloge et le cadre */
+.date-heure-row > .field:last-child .date-time-icon-wrap {
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: 0;
 }
 
 .field-icon {
