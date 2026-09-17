@@ -1381,8 +1381,8 @@ button.primary {
 
 @media (max-width: 430px) {
   .locations-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
+    grid-template-columns: minmax(0, 1.20fr) minmax(0, 0.72fr);
+    gap: 8px;
   }
 
   .locations-row select {
