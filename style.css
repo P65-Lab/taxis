@@ -1474,22 +1474,25 @@ button.primary {
 }
 
 .date-time-icon-wrap input {
+  grid-column: 2;
+
   width: 100% !important;
   min-width: 0 !important;
   max-width: 100% !important;
+
   height: 38px !important;
   min-height: 38px !important;
   line-height: 28px !important;
-  padding: 7px
-  6px
-  7px
-  40px !important;
-  
+
+  padding: 7px 6px !important;
+
   box-sizing: border-box !important;
   border: 1.5px solid #d7dee8 !important;
   border-radius: 12px !important;
+
   background: #ffffff !important;
   color: #111827 !important;
+
   font-size: 13px !important;
   font-weight: 800 !important;
 }
@@ -3807,10 +3810,19 @@ background-repeat: no-repeat;
    ========================================================== */
 
 .icon-input-wrap,
-.select-icon-wrap,
-.date-time-icon-wrap {
+.select-icon-wrap {
   position: relative;
   width: 100%;
+}
+
+.date-time-icon-wrap {
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: 2px;
+  align-items: center;
 }
 
 .field-icon {
@@ -3845,12 +3857,6 @@ background-repeat: no-repeat;
   padding-left: 44px !important;
   font-size: 13px !important;
   box-sizing: border-box !important;
-}
-
-/* Date / Heure */
-
-.date-time-icon-wrap input {
-  padding-left: 42px !important;
 }
 
 /* ==========================================================
@@ -3900,8 +3906,13 @@ background-repeat: no-repeat;
   box-sizing: border-box !important;
 }
 
-.aller-bloc .date-time-icon-wrap .field-icon {
-  left: 10px;
+.date-time-icon-wrap .field-icon {
+  position: static;
+  left: auto;
+  top: auto;
+  transform: none;
+  justify-self: center;
+  font-size: 18px;
 }
 
 #privateAgentsStatus {
