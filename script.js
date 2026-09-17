@@ -957,8 +957,8 @@ function update() {
       <span>Aller</span>
       <strong>
         ${d && a ? `${d.lieu} → ${a.lieu}` : "—"}<br>
-        ${frDate(dateEl.value) || "—"}
-        ${heure.value ? " à " + heure.value : ""}
+${frDate(dateEl.value).replace(/\/\d{2}(\d{2})$/, "/$1") || "—"}<br>
+${heure.value ? heure.value.replace(":", "H") : "—"}
       </strong>
     </div>
 
@@ -966,9 +966,9 @@ function update() {
     <div class="previewrow retour-preview">
       <span>Retour</span>
       <strong>
-        ${d && a ? `${a.lieu} → ${d.lieu}` : "—"}<br>
-        ${frDate(dateRetour.value) || "—"}
-        ${heureRetour.value ? " à " + heureRetour.value : ""}
+      ${d && a ? `${a.lieu} → ${d.lieu}` : "—"}<br>
+${frDate(dateRetour.value).replace(/\/\d{2}(\d{2})$/, "/$1") || "—"}<br>
+${heureRetour.value ? heureRetour.value.replace(":", "H") : "—"}
       </strong>
     </div>` : ""}
 

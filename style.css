@@ -3753,7 +3753,13 @@ background-repeat: no-repeat;
   line-height: 1 !important;
   cursor: pointer;
 }
-
+#closeTaxiRecapPopup {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  margin: 0 !important;
+  z-index: 5;
+}
 /* ==========================================================
    ANCIENS BOUTONS ALLER SIMPLE / ALLER RETOUR
    Masqués car le choix se fait sur la page d'accueil
