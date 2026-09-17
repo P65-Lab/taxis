@@ -1664,10 +1664,6 @@ button.primary {
   align-items: start;
 }
 
-
-
-
-
 .message-field textarea#message {
   grid-column: 2;
   width: 100% !important;
@@ -1689,7 +1685,14 @@ button.primary {
   filter: grayscale(1);
   opacity: .65;
 }
+/* Bouton VALIDER aligné sur le cadre Message */
 
+#taxiRequestPopup #validateTaxiRequest {
+  width: calc(100% - 40px) !important;
+  margin-left: 40px !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
 /* Mobile */
 
 @media (max-width: 480px) {
