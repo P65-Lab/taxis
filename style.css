@@ -1485,7 +1485,7 @@ button.primary {
    Même largeur que DATE + HEURE
    ---------------------------------------------------------- */
 
-.aller-bloc #allerTrajet {
+#allerTrajet {
   position: relative;
   width: 100% !important;
   min-height: 38px !important;
@@ -1503,7 +1503,7 @@ button.primary {
   color: #111827 !important;
 }
 
-.aller-bloc #allerTrajet .trajet-taxi {
+#allerTrajet .trajet-taxi {
   position: absolute;
   left: auto;
   right: 12px;
@@ -1513,7 +1513,7 @@ button.primary {
   line-height: 1;
 }
 
-.aller-bloc #allerTrajet .trajet-texte {
+#allerTrajet .trajet-texte {
   display: block;
   width: 100%;
   padding: 0;
@@ -1523,9 +1523,6 @@ button.primary {
   -webkit-text-size-adjust: none !important;
   text-size-adjust: none !important;
 }
-
-
-
 /* ----------------------------------------------------------
    RETOUR - MEME PRESENTATION QUE ALLER
    ---------------------------------------------------------- */
