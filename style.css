@@ -1693,7 +1693,7 @@ button.primary {
 
 .locations-row.depart-arrivee-row > .field {
   display: grid !important;
-  grid-template-columns: 32px minmax(0, 1.25fr) minmax(0, .75fr);
+grid-template-columns: 32px minmax(0, 1.1fr) minmax(0, .9fr);
   column-gap: 8px;
   align-items: center;
 
