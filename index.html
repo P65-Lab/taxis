@@ -375,48 +375,55 @@
 
 <div class="landscape-bottom-grid">
       
-      <div class="field participants-field agents-picker-field">
-        <div class="agents-picker-head">
-          
-          <span id="agentsCountBadge" class="agents-count-badge">0 sélectionné</span>
-        </div>
+<div class="field participants-field agents-picker-field">
 
-<button
-  type="button"
-  id="chooseAgentsBtn"
-  class="choose-agents-btn"
-  aria-label="Choisir les agents"
->
-  <span class="choose-agents-label">
-    <span class="choose-agents-icon">👥</span>
-    Choisir les agents...
+  <span class="agents-outside-icon" aria-hidden="true">👥</span>
+
+  <button
+    type="button"
+    id="chooseAgentsBtn"
+    class="choose-agents-btn"
+    aria-label="Choisir les agents"
+  >
+    <span class="choose-agents-label">
+      Choisir les agents...
+    </span>
+
+    <span class="choose-agents-arrow">›</span>
+  </button>
+
+  <span id="agentsCountBadge" class="agents-count-badge">
+    0 sélectionné
   </span>
 
-  <span class="choose-agents-arrow">›</span>
-</button>
+  <div
+    id="agentsSelectedSummary"
+    class="agents-selected-summary"
+    hidden
+  ></div>
 
-        <div id="agentsSelectedSummary" class="agents-selected-summary" hidden></div>
+  <div
+    id="agents"
+    class="agents agents-hidden-compat"
+    aria-hidden="true"
+  ></div>
 
-        <!-- Zone technique invisible :
-             elle conserve la compatibilité avec le mail, le SMS et les CC existants. -->
-        <div id="agents" class="agents agents-hidden-compat" aria-hidden="true"></div>
-        <strong id="nb" class="agents-hidden-compat">0</strong>
-      </div>
+  <strong id="nb" class="agents-hidden-compat">0</strong>
+
+</div>
 
 
 <div class="field message-field">
-  
 
-  <div class="message-icon-wrap">
-    <span class="message-icon">💬</span>
+  <span class="message-outside-icon" aria-hidden="true">💬</span>
 
-    <textarea
-  id="message"
-  rows="2"
-  aria-label="Informations complémentaires"
-  placeholder="Informations complémentaires..."
-></textarea>
-  </div>
+  <textarea
+    id="message"
+    rows="2"
+    aria-label="Informations complémentaires"
+    placeholder="Informations complémentaires..."
+  ></textarea>
+
 </div>
 
 <div class="taxi-form-actions">
