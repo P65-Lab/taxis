@@ -2229,7 +2229,12 @@ header.hero {
 }
 
 .agents-selected-summary {
-  display: none !important;
+  grid-column: 2 / 4;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
 }
 
 .selected-agent-row {
@@ -3743,7 +3748,7 @@ background-repeat: no-repeat;
   border-radius: 50% !important;
   background: #111827 !important;
   color: #ffffff !important;
-  font-size: 24px !important;
+  font-size: 18px !important;
   font-weight: 500 !important;
   line-height: 1 !important;
   cursor: pointer;
