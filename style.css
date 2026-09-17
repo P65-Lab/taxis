@@ -1485,19 +1485,21 @@ button.primary {
 
   height: 38px !important;
   min-height: 38px !important;
-  line-height: 28px !important;
+  max-height: 38px !important;
 
-  padding: 7px 6px !important;
-
+  margin: 0 !important;
+  padding: 6px 8px !important;
   box-sizing: border-box !important;
-  border: 1.5px solid #d7dee8 !important;
-  border-radius: 12px !important;
+
+  border: 1px solid #d1d5db !important;
+  border-radius: 14px !important;
 
   background: #ffffff !important;
   color: #111827 !important;
 
   font-size: 13px !important;
   font-weight: 800 !important;
+  line-height: normal !important;
 }
 
 .date-time-icon-wrap .field-icon {
@@ -1654,6 +1656,7 @@ button.primary {
 
 .message-field {
   margin-top: 0 !important;
+  margin-bottom: 8px !important;
 
   display: grid !important;
   grid-template-columns: 32px minmax(0, 1fr);
@@ -2223,11 +2226,7 @@ header.hero {
 }
 
 .agents-selected-summary {
-  margin-top: 9px;
-  border: 1px solid #dbe3ef;
-  border-radius: 13px;
-  overflow: hidden;
-  background: #ffffff;
+  display: none !important;
 }
 
 .selected-agent-row {
@@ -3754,15 +3753,6 @@ background-repeat: no-repeat;
 
 #taxiRequestPopup .trip-choice {
   display: none !important;
-}
-
-/* ==========================================================
-   FORMULAIRE TAXI - REMONTER LES BOUTONS
-   ========================================================== */
-
-#taxiRequestPopup .taxi-form-actions {
-  transform: translateY(-15px) !important;
-  margin-bottom: -15px !important;
 }
 
 /* ==========================================================
