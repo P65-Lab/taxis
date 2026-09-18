@@ -1212,7 +1212,10 @@ function rendreListeAgentsPicker() {
     );
 
 const tousAgents =
-  getAgentsTries();
+  getAgentsTries().filter(ag =>
+    !ownerAgentKey ||
+    cleAgent(ag) !== ownerAgentKey
+  );
 
 let liste;
 
