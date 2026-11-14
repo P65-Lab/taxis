@@ -4225,3 +4225,30 @@ background-repeat: no-repeat;
   font-size: 12px;
 }
 
+/* ==========================================================
+   CONTACT - SERVICE ET ADRESSE DANS UN MEME CADRE
+   ========================================================== */
+
+#tabDestinataires .contact-fields-box {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  background: var(--taxi-card, #ffffff);
+  box-sizing: border-box;
+}
+
+#tabDestinataires .contact-fields-box .field {
+  margin-bottom: 12px;
+}
+
+#tabDestinataires .contact-fields-box .field:last-child {
+  margin-bottom: 0;
+}
+
+#tabDestinataires .contact-fields-box input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
