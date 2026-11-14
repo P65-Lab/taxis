@@ -4252,41 +4252,24 @@ background-repeat: no-repeat;
   box-sizing: border-box;
 }
 
-
-
-/* ==========================================
-   TAXI - DEMI-FENETRE SUR PC
-   Téléphones inchangés
-   ========================================== */
-
+/* ==========================================================
+   ACCUEIL TAXI - PC UNIQUEMENT
+   Photo pleine largeur dans la fenêtre Edge
+   iPhone / Android inchangés
+   ========================================================== */
 @media (min-width: 540px) and (pointer: fine) {
-
   .taxi-home {
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url("images/Fond-taxi1.png?v=101");
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
   }
 
-  .taxi-home-actions {
-    gap: 12px;
-  }
-
+  .taxi-home-actions { gap: 12px; }
   .taxi-home-btn {
     width: min(100%, 340px);
     min-height: 56px;
     border-radius: 14px;
     font-size: 16px;
-  }
-}
-
-/* TAXI - PHOTO PLEINE FENETRE SUR PC */
-
-@media (min-width: 540px) and (pointer: fine) {
-  .taxi-home {
-    background-size: 100% 100% !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    width: 100% !important;
-    min-height: 100vh !important;
   }
 }
