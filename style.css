@@ -4278,3 +4278,15 @@ background-repeat: no-repeat;
     font-size: 16px;
   }
 }
+
+/* TAXI - PHOTO PLEINE FENETRE SUR PC */
+
+@media (min-width: 540px) and (pointer: fine) {
+  .taxi-home {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+}
