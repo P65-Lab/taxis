@@ -1923,7 +1923,46 @@ if (estIOS) {
     { once: true }
   );
 
+  
+if (estIOS) {
+
+  const messagerie =
+    localStorage.getItem("taxiMessagerieChoisie") || "outlook";
+
+  if (messagerie === "mail") {
+    window.location.href = mailtoUrl;
+    return;
+  }
+
+  if (messagerie === "gmail") {
+    const url =
+      "https://mail.google.com/mail/?view=cm&fs=1" +
+      "&to=" + encodeURIComponent(emailDestinataire) +
+      "&cc=" + ccEncode +
+      "&su=" + sujet +
+      "&body=" + corpsEncode;
+
+    window.location.href = url;
+    return;
+  }
+
+  if (messagerie === "outlookweb") {
+    const url =
+      "https://outlook.live.com/mail/0/deeplink/compose" +
+      "?to=" + encodeURIComponent(emailDestinataire) +
+      "&cc=" + ccEncode +
+      "&subject=" + sujet +
+      "&body=" + corpsEncode;
+
+    window.location.href = url;
+    return;
+  }
+
+  // Outlook installé
   window.location.href = outlookUrl;
+  return;
+}
+
 
   setTimeout(() => {
     if (
