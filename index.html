@@ -1051,10 +1051,26 @@
 <div id="appVersion" class="app-version"></div>
 
 
+<style>
+/* Fenêtre configuration : croix blanche dans un rond noir sur tous les appareils */
+#taxiSetupOverlay .taxi-setup-card { position:relative; padding-top:56px !important; }
+#taxiSetupClose {
+  position:absolute !important; top:10px !important; right:14px !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  width:32px !important; height:32px !important; min-width:32px !important;
+  min-height:32px !important; padding:0 !important; margin:0 !important;
+  border:0 !important; border-radius:50% !important;
+  background:#111827 !important; color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  font:700 19px/1 Arial,sans-serif !important; cursor:pointer !important;
+  float:none !important; z-index:2;
+}
+</style>
+
 <!-- CONFIGURATION INITIALE TAXI : les anciennes données restent conservées -->
 <section id="taxiSetupOverlay" hidden aria-label="Configuration initiale TAXI" style="position:fixed;inset:0;z-index:29000;background:rgba(17,24,39,.65);padding:12px;overflow-y:auto;box-sizing:border-box;">
-  <div style="max-width:470px;margin:16px auto;background:#fff;color:#111827;border-radius:20px;padding:20px;font-family:Arial,sans-serif;box-sizing:border-box;">
-    <button type="button" id="taxiSetupClose" style="float:right;background:transparent;border:0;font-size:22px;padding:0 4px" aria-label="Fermer">×</button>
+  <div class="taxi-setup-card" style="max-width:470px;margin:16px auto;background:#fff;color:#111827;border-radius:20px;padding:20px;font-family:Arial,sans-serif;box-sizing:border-box;">
+    <button type="button" id="taxiSetupClose" aria-label="Fermer la configuration">×</button>
     <h2 style="margin:0 0 8px">⚙️ Configuration TAXI</h2>
     <p style="line-height:1.5">À compléter avant votre première demande. Vos données déjà enregistrées sont conservées.</p>
     <div style="border:1px solid #d1d5db;border-radius:12px;padding:14px;margin-bottom:12px">

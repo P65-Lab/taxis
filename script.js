@@ -5338,10 +5338,8 @@ function initialiserConfigurationTaxi() {
     ouvrirAdministrationSur(type);
   };
   document.getElementById("taxiSetupClose").addEventListener("click", () => {
-    if (!taxiConfigurationComplete()) {
-      document.getElementById("taxiSetupError").textContent = "Terminez la configuration pour accéder aux demandes.";
-      return;
-    }
+    // La croix ferme la configuration même si elle reste incomplète.
+    // Le contrôle obligatoire demeure à l'ouverture d'une demande.
     overlay.hidden = true;
     overlay.style.display = "none";
     document.getElementById("taxiHome").hidden = false;
