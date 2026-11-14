@@ -5304,6 +5304,13 @@ function actualiserConfigurationTaxi() {
   const a = document.getElementById("taxiSetupAgentsStatus");
   const l = document.getElementById("taxiSetupLieuxStatus");
   if (a) a.textContent = `${allAgents().length} agent(s) • Propriétaire : ${allAgents().some(x => cleAgent(x) === ownerAgentKey) ? "enregistré" : "à choisir"}`;
+  const select = document.getElementById("taxiSetupOwnerSelect");
+  if (select) {
+    const valeur = select.value || ownerAgentKey;
+    select.replaceChildren(new Option("Choisir un agent...", ""));
+    getAgentsTries().forEach(agent => select.add(new Option(agent.nom, cleAgent(agent))));
+    select.value = allAgents().some(agent => cleAgent(agent) === valeur) ? valeur : "";
+  }
   if (l) l.textContent = `${allLieux().length} lieu(x) disponible(s)`;
 }
 
@@ -5347,7 +5354,16 @@ function initialiserConfigurationTaxi() {
   document.getElementById("taxiSetupAgents").addEventListener("click", () => {
     document.getElementById("importAgentsFile")?.click();
   });
-  document.getElementById("taxiSetupOwner").addEventListener("click", () => ouvrirSection("contacts"));
+  document.getElementById("taxiSetupOwnerSelect").addEventListener("change", () => {
+    const choix = document.getElementById("taxiSetupOwnerSelect").value;
+    if (!choix) return;
+    ownerAgentKey = choix;
+    localStorage.setItem(LS_OWNER_AGENT, ownerAgentKey);
+    const selectExistant = document.getElementById("ownerAgent");
+    if (selectExistant) selectExistant.value = encodeURIComponent(ownerAgentKey);
+    renderAgents();
+    actualiserConfigurationTaxi();
+  });
   document.getElementById("taxiSetupLieux").addEventListener("click", () => {
     document.getElementById("importLieuxFile")?.click();
   });
