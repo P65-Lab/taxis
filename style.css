@@ -4253,9 +4253,10 @@ background-repeat: no-repeat;
 }
 
 
+
 /* ==========================================
-   TAXI - ACCUEIL PC
-   iPhone et Android inchangés
+   TAXI - DEMI-FENETRE SUR PC
+   Téléphones inchangés
    ========================================== */
 
 @media (min-width: 540px) and (pointer: fine) {
@@ -4277,4 +4278,3 @@ background-repeat: no-repeat;
     font-size: 16px;
   }
 }
-
