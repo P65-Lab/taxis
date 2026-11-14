@@ -1839,7 +1839,7 @@ if (estAndroid) {
 const messagerie =
   localStorage.getItem(LS_TAXI_MESSAGERIE) || "outlook";
 
-if (messagerie === "gmail") {
+if (messagerie === "gmailweb") {
   const url =
     "https://mail.google.com/mail/?view=cm&fs=1" +
     "&to=" + encodeURIComponent(emailDestinataire) +
@@ -1863,7 +1863,7 @@ if (messagerie === "outlookweb") {
   return;
 }
 
-if (messagerie === "mail") {
+if (messagerie === "mail" || messagerie === "gmail" || messagerie === "default") {
   window.location.href = mailtoUrl;
   return;
 }
@@ -1929,12 +1929,12 @@ if (estIOS) {
   const messagerie =
     localStorage.getItem("taxiMessagerieChoisie") || "outlook";
 
-  if (messagerie === "mail") {
+  if (messagerie === "mail" || messagerie === "gmail" || messagerie === "default") {
     window.location.href = mailtoUrl;
     return;
   }
 
-  if (messagerie === "gmail") {
+  if (messagerie === "gmailweb") {
     const url =
       "https://mail.google.com/mail/?view=cm&fs=1" +
       "&to=" + encodeURIComponent(emailDestinataire) +
@@ -5160,8 +5160,10 @@ function ouvrirChoixMessagerie() {
         <select id="taxiMessagerieSelect"
           style="width:100%;padding:12px;font-size:16px">
           <option value="outlook">Outlook installé</option>
-          <option value="mail">Mail Apple / messagerie par défaut</option>
-          <option value="gmail">Gmail dans le navigateur</option>
+          <option value="mail">Apple Mail (iPhone)</option>
+          <option value="gmail">Gmail installé (iPhone / Android)</option>
+          <option value="default">Messagerie par défaut du téléphone</option>
+          <option value="gmailweb">Gmail dans le navigateur</option>
           <option value="outlookweb">Outlook dans le navigateur</option>
         </select>
 
