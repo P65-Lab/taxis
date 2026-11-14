@@ -5161,6 +5161,33 @@ function ouvrirChoixMessagerie() {
           <option value="outlookweb">Outlook dans le navigateur</option>
         </select>
 
+<div style="border:1px solid #d1d5db;
+  border-radius:12px;padding:14px;margin-top:18px;">
+
+  <strong style="display:block;margin-bottom:12px">
+    Contact destinataire
+  </strong>
+
+  <label for="taxiContactService">Service</label>
+  <input
+    id="taxiContactService"
+    type="text"
+    placeholder="Ex. TAXI TOULOUSE"
+    style="width:100%;padding:12px;margin:8px 0 12px;
+    box-sizing:border-box;border:1px solid #d1d5db;
+    border-radius:8px;font-size:16px;">
+
+  <label for="taxiContactEmail">Adresse e-mail</label>
+  <input
+    id="taxiContactEmail"
+    type="email"
+    placeholder="taxi@entreprise.fr"
+    style="width:100%;padding:12px;margin-top:8px;
+    box-sizing:border-box;border:1px solid #d1d5db;
+    border-radius:8px;font-size:16px;">
+
+</div>
+
         <button type="button" id="taxiSaveMessagerie"
           style="
             width:100%;
@@ -5185,13 +5212,45 @@ function ouvrirChoixMessagerie() {
           "taxiMessagerieSelect"
         ).value;
 
-        localStorage.setItem(LS_TAXI_MESSAGERIE, choix);
+        
+const nom = document
+  .getElementById("taxiContactService")
+  .value.trim();
+
+const email = document
+  .getElementById("taxiContactEmail")
+  .value.trim();
+
+if (!nom || !email) {
+  alert("Renseignez le service et l'adresse e-mail.");
+  return;
+}
+
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  alert("Adresse e-mail invalide.");
+  return;
+}
+
+destinataires = [{ nom, email }];
+
+saveLocalArray(LS_DESTINATAIRES, destinataires);
+renderDestinataires();
+clearDestForm();
+
+localStorage.setItem(LS_TAXI_MESSAGERIE, choix);
+
         fenetre.style.display = "none";
       });
   }
 
   document.getElementById("taxiMessagerieSelect").value =
     localStorage.getItem(LS_TAXI_MESSAGERIE) || "outlook";
+
+document.getElementById("taxiContactService").value =
+  destinataires[0]?.nom || "";
+
+document.getElementById("taxiContactEmail").value =
+  destinataires[0]?.email || "";
 
   fenetre.style.display = "flex";
 }
