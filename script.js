@@ -5344,8 +5344,19 @@ function initialiserConfigurationTaxi() {
     quickAddMenu.hidden = true;
     afficherConfigurationTaxi();
   });
-  document.getElementById("taxiSetupAgents").addEventListener("click", () => ouvrirSection("contacts"));
-  document.getElementById("taxiSetupLieux").addEventListener("click", () => ouvrirSection("lieu"));
+  document.getElementById("taxiSetupAgents").addEventListener("click", () => {
+    document.getElementById("importAgentsFile")?.click();
+  });
+  document.getElementById("taxiSetupOwner").addEventListener("click", () => ouvrirSection("contacts"));
+  document.getElementById("taxiSetupLieux").addEventListener("click", () => {
+    document.getElementById("importLieuxFile")?.click();
+  });
+  document.getElementById("importAgentsFile")?.addEventListener("change", () => {
+    setTimeout(actualiserConfigurationTaxi, 250);
+  });
+  document.getElementById("importLieuxFile")?.addEventListener("change", () => {
+    setTimeout(actualiserConfigurationTaxi, 250);
+  });
   document.querySelectorAll("[data-close-popup]").forEach(btn => {
     btn.addEventListener("click", () => {
       if (!taxiConfigurationComplete()) {
