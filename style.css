@@ -4252,31 +4252,22 @@ background-repeat: no-repeat;
   box-sizing: border-box;
 }
 
+
 /* ==========================================
-   TAXI - ACCUEIL COMPACT SUR PC
-   iPhone / Android inchangés
+   TAXI - ACCUEIL PC
+   iPhone et Android inchangés
    ========================================== */
 
 @media (min-width: 540px) and (pointer: fine) {
 
   .taxi-home {
-    background-size: auto 100%;
+    background-size: 100% 100%;
     background-position: center;
-    background-color: #f4e5c8;
-    padding: 12px 18px 24px;
-  }
-
-  .taxi-home-header {
-    min-height: 50px;
-  }
-
-  .taxi-home-header h1 {
-    font-size: 24px;
+    background-repeat: no-repeat;
   }
 
   .taxi-home-actions {
     gap: 12px;
-    padding-bottom: 32px;
   }
 
   .taxi-home-btn {
