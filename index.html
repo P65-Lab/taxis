@@ -31,6 +31,11 @@
       ✕
     </button>
 
+    <button type="button" id="quickAddConfiguration" class="quick-choice">
+      <span class="quick-icon">⚙️</span>
+      <span><strong>Configuration TAXI</strong><small>Agents, lieux, messagerie et contact</small></span>
+    </button>
+
     <button
       type="button"
       id="quickAddLieu"
@@ -1044,6 +1049,43 @@
 </div>
 
 <div id="appVersion" class="app-version"></div>
+
+
+<!-- CONFIGURATION INITIALE TAXI : les anciennes données restent conservées -->
+<section id="taxiSetupOverlay" hidden aria-label="Configuration initiale TAXI" style="position:fixed;inset:0;z-index:29000;background:rgba(17,24,39,.65);padding:12px;overflow-y:auto;box-sizing:border-box;">
+  <div style="max-width:470px;margin:16px auto;background:#fff;color:#111827;border-radius:20px;padding:20px;font-family:Arial,sans-serif;box-sizing:border-box;">
+    <button type="button" id="taxiSetupClose" style="float:right;background:transparent;border:0;font-size:22px;padding:0 4px" aria-label="Fermer">×</button>
+    <h2 style="margin:0 0 8px">⚙️ Configuration TAXI</h2>
+    <p style="line-height:1.5">À compléter avant votre première demande. Vos données déjà enregistrées sont conservées.</p>
+    <div style="border:1px solid #d1d5db;border-radius:12px;padding:14px;margin-bottom:12px">
+      <strong>👥 Personnel et propriétaire</strong>
+      <p id="taxiSetupAgentsStatus" style="font-size:13px"></p>
+      <button type="button" id="taxiSetupAgents" style="width:100%;padding:12px">Importer les agents / choisir le propriétaire</button>
+    </div>
+    <div style="border:1px solid #d1d5db;border-radius:12px;padding:14px;margin-bottom:12px">
+      <strong>📍 Mes lieux</strong>
+      <p id="taxiSetupLieuxStatus" style="font-size:13px"></p>
+      <button type="button" id="taxiSetupLieux" style="width:100%;padding:12px">Importer les lieux</button>
+    </div>
+    <div style="border:1px solid #d1d5db;border-radius:12px;padding:14px;margin-bottom:12px">
+      <strong>📧 Messagerie et contact</strong>
+      <label for="taxiSetupMail" style="display:block;margin:12px 0 5px">Application de messagerie</label>
+      <select id="taxiSetupMail" style="width:100%;padding:12px;font-size:16px;box-sizing:border-box">
+        <option value="">Choisir une messagerie...</option>
+        <option value="outlook">Outlook installé</option>
+        <option value="mail">Mail Apple / messagerie par défaut</option>
+        <option value="gmail">Gmail dans le navigateur</option>
+        <option value="outlookweb">Outlook dans le navigateur</option>
+      </select>
+      <label for="taxiSetupService" style="display:block;margin:12px 0 5px">Service</label>
+      <input id="taxiSetupService" type="text" placeholder="Ex. TAXI TOULOUSE" style="width:100%;padding:12px;font-size:16px;box-sizing:border-box">
+      <label for="taxiSetupEmail" style="display:block;margin:12px 0 5px">Adresse e-mail</label>
+      <input id="taxiSetupEmail" type="email" placeholder="taxi@entreprise.fr" style="width:100%;padding:12px;font-size:16px;box-sizing:border-box">
+    </div>
+    <p id="taxiSetupError" role="alert" style="color:#b91c1c;font-size:13px"></p>
+    <button type="button" id="taxiSetupSave" style="width:100%;background:#111827;color:#fff;border:0;border-radius:10px;padding:15px;font-weight:bold;font-size:16px">💾 Enregistrer la configuration</button>
+  </div>
+</section>
 
 <script src="database.js"></script>
 <script src="version.js"></script>

@@ -4957,6 +4957,10 @@ const taxiRequestTitle =
   document.getElementById("taxiRequestTitle");
 
 function ouvrirSaisieTaxi(modeRetour) {
+  if (!taxiConfigurationComplete()) {
+    afficherConfigurationTaxi();
+    return;
+  }
 
   setAllerRetour(modeRetour);
 
@@ -5270,9 +5274,7 @@ function initialiserChoixMessagerie() {
     contact.insertBefore(bouton, contact.children[1] || null);
   }
 
-  if (!localStorage.getItem(LS_TAXI_MESSAGERIE)) {
-    ouvrirChoixMessagerie();
-  }
+  // La configuration initiale centralise désormais ce choix.
 }
 
 if (document.readyState === "loading") {
@@ -5283,4 +5285,112 @@ if (document.readyState === "loading") {
   );
 } else {
   initialiserChoixMessagerie();
+}
+
+/* ==========================================================
+   TAXI - CONFIGURATION OBLIGATOIRE AU PREMIER LANCEMENT
+   Réutilise les imports et la sélection du propriétaire existants.
+   ========================================================== */
+function taxiConfigurationComplete() {
+  return allAgents().length > 0 &&
+    allLieux().length > 0 &&
+    !!ownerAgentKey && allAgents().some(a => cleAgent(a) === ownerAgentKey) &&
+    !!localStorage.getItem(LS_TAXI_MESSAGERIE) &&
+    !!destinataires[0]?.nom?.trim() &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(destinataires[0]?.email || "");
+}
+
+function actualiserConfigurationTaxi() {
+  const a = document.getElementById("taxiSetupAgentsStatus");
+  const l = document.getElementById("taxiSetupLieuxStatus");
+  if (a) a.textContent = `${allAgents().length} agent(s) • Propriétaire : ${allAgents().some(x => cleAgent(x) === ownerAgentKey) ? "enregistré" : "à choisir"}`;
+  if (l) l.textContent = `${allLieux().length} lieu(x) disponible(s)`;
+}
+
+function afficherConfigurationTaxi() {
+  const overlay = document.getElementById("taxiSetupOverlay");
+  if (!overlay) return;
+  const mail = document.getElementById("taxiSetupMail");
+  const service = document.getElementById("taxiSetupService");
+  const email = document.getElementById("taxiSetupEmail");
+  mail.value = localStorage.getItem(LS_TAXI_MESSAGERIE) || "";
+  service.value = destinataires[0]?.nom || "";
+  email.value = destinataires[0]?.email || "";
+  actualiserConfigurationTaxi();
+  overlay.hidden = false;
+  overlay.style.display = "block";
+  document.getElementById("taxiHome").hidden = true;
+}
+
+function initialiserConfigurationTaxi() {
+  const overlay = document.getElementById("taxiSetupOverlay");
+  if (!overlay) return;
+  const ouvrirSection = type => {
+    overlay.style.display = "none";
+    overlay.hidden = true;
+    ouvrirAdministrationSur(type);
+  };
+  document.getElementById("taxiSetupClose").addEventListener("click", () => {
+    if (!taxiConfigurationComplete()) {
+      document.getElementById("taxiSetupError").textContent = "Terminez la configuration pour accéder aux demandes.";
+      return;
+    }
+    overlay.hidden = true;
+    overlay.style.display = "none";
+    document.getElementById("taxiHome").hidden = false;
+    document.body.style.overflow = "";
+  });
+  document.getElementById("quickAddConfiguration")?.addEventListener("click", () => {
+    quickAddMenu.hidden = true;
+    afficherConfigurationTaxi();
+  });
+  document.getElementById("taxiSetupAgents").addEventListener("click", () => ouvrirSection("contacts"));
+  document.getElementById("taxiSetupLieux").addEventListener("click", () => ouvrirSection("lieu"));
+  document.querySelectorAll("[data-close-popup]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (!taxiConfigurationComplete()) {
+        // Laisser la fermeture de la popup se terminer avant le retour à la configuration.
+        queueMicrotask(() => {
+          quickAddMenu.hidden = true;
+          afficherConfigurationTaxi();
+        });
+      }
+    });
+  });
+  document.getElementById("taxiSetupSave").addEventListener("click", () => {
+    const choix = document.getElementById("taxiSetupMail").value;
+    const nom = document.getElementById("taxiSetupService").value.trim();
+    const email = document.getElementById("taxiSetupEmail").value.trim();
+    const erreurs = [];
+    if (!allAgents().length) erreurs.push("Importez les agents.");
+    if (!allAgents().some(a => cleAgent(a) === ownerAgentKey)) erreurs.push("Choisissez et validez le propriétaire.");
+    if (!allLieux().length) erreurs.push("Importez les lieux.");
+    if (!choix) erreurs.push("Choisissez la messagerie.");
+    if (!nom) erreurs.push("Renseignez le service.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) erreurs.push("Renseignez une adresse e-mail valide.");
+    const errorEl = document.getElementById("taxiSetupError");
+    errorEl.textContent = erreurs.join(" ");
+    if (erreurs.length) return;
+    try {
+      localStorage.setItem(LS_TAXI_MESSAGERIE, choix);
+      destinataires = [{ nom, email }];
+      saveLocalArray(LS_DESTINATAIRES, destinataires);
+      renderDestinataires();
+    } catch (e) {
+      errorEl.textContent = "Enregistrement impossible sur cet appareil.";
+      return;
+    }
+    overlay.hidden = true;
+    overlay.style.display = "none";
+    document.getElementById("quickAddMenu").hidden = true;
+    document.getElementById("taxiHome").hidden = false;
+    document.body.style.overflow = "";
+  });
+  if (!taxiConfigurationComplete()) afficherConfigurationTaxi();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialiserConfigurationTaxi, { once: true });
+} else {
+  initialiserConfigurationTaxi();
 }
