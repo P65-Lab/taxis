@@ -3,7 +3,7 @@
    VERSION DE L'APPLICATION TAXI
    ========================================================== */
 
-globalThis.TAXI_VERSION = "v1.5";
+globalThis.TAXI_VERSION = "v1.6";
 
 globalThis.TAXI_VERSION_DATE = "14/11/2026";
 
