@@ -1831,7 +1831,74 @@ const mailtoUrl =
    ========================================================== */
 
 if (estAndroid) {
+  
+/* ==========================================================
+   OUVERTURE SELON LA MESSAGERIE CHOISIE
+   ========================================================== */
+
+const messagerie =
+  localStorage.getItem(LS_TAXI_MESSAGERIE) || "outlook";
+
+if (messagerie === "gmail") {
+  const url =
+    "https://mail.google.com/mail/?view=cm&fs=1" +
+    "&to=" + encodeURIComponent(emailDestinataire) +
+    "&cc=" + ccEncode +
+    "&su=" + sujet +
+    "&body=" + corpsEncode;
+
+  window.open(url, "_blank");
+  return;
+}
+
+if (messagerie === "outlookweb") {
+  const url =
+    "https://outlook.live.com/mail/0/deeplink/compose" +
+    "?to=" + encodeURIComponent(emailDestinataire) +
+    "&cc=" + ccEncode +
+    "&subject=" + sujet +
+    "&body=" + corpsEncode;
+
+  window.open(url, "_blank");
+  return;
+}
+
+if (messagerie === "mail") {
   window.location.href = mailtoUrl;
+  return;
+}
+
+// Outlook installé : fonctionnement actuel conservé.
+if (estIOS) {
+  let pageMasquee = false;
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.visibilityState === "hidden") {
+        pageMasquee = true;
+      }
+    },
+    { once: true }
+  );
+
+  window.location.href = outlookUrl;
+
+  setTimeout(() => {
+    if (
+      !pageMasquee &&
+      document.visibilityState === "visible"
+    ) {
+      window.location.href = mailtoUrl;
+    }
+  }, 1200);
+
+  return;
+}
+
+window.location.href =
+  estAndroid ? mailtoUrl : mailtoUrl;
+
   return;
 }
 
@@ -3423,9 +3490,15 @@ if (
           "1";
       }
 
+      
       // Après validation,
       // remettre le sélecteur à zéro
       ownerAgent.value = "";
+
+      // Actualiser les agents de la demande
+      proprietaireRetireDemande = false;
+      renderAgents();
+
 
     }
   );
@@ -3639,22 +3712,60 @@ function clearDestForm() {
   adminEmailDest.value = "";
 }
 
+
 function renderDestinataires() {
   countDest.textContent = destinataires.length;
+
   if (!destinataires.length) {
-  listeDestAdmin.innerHTML = "";
-  return;
-}
-  listeDestAdmin.innerHTML = destinataires.map((x,i) => `
+    listeDestAdmin.innerHTML = "";
+    return;
+  }
+
+  listeDestAdmin.innerHTML = destinataires.map((x, i) => `
     <div class="admin-item">
       <div class="admin-item-main">
         <strong>${x.nom}</strong>
         <span>${x.email}</span>
-        ${i === 0 ? '<span class="origine-item">Utilisé automatiquement pour Outlook</span>' : ''}
+        ${i === 0
+          ? '<span class="origine-item">Destinataire principal des demandes de taxi</span>'
+          : ''}
+      </div>
+      <div class="admin-item-actions">
+        <button type="button" data-modifier-dest="${i}">
+          ✏️ Modifier
+        </button>
+        <button type="button" data-supprimer-dest="${i}">
+          🗑️ Supprimer
+        </button>
       </div>
     </div>
   `).join("");
+
+  listeDestAdmin.querySelectorAll("[data-modifier-dest]")
+    .forEach(btn => {
+      btn.addEventListener("click", () => {
+        const x = destinataires[Number(btn.dataset.modifierDest)];
+        if (!x) return;
+
+        adminNomDest.value = x.nom;
+        adminEmailDest.value = x.email;
+        adminNomDest.focus();
+      });
+    });
+
+  listeDestAdmin.querySelectorAll("[data-supprimer-dest]")
+    .forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!confirm("Supprimer cette adresse de contact ?")) return;
+
+        destinataires.splice(Number(btn.dataset.supprimerDest), 1);
+        saveLocalArray(LS_DESTINATAIRES, destinataires);
+        clearDestForm();
+        renderDestinataires();
+      });
+    });
 }
+
 
 saveDestBtn.addEventListener("click", () => {
   const nom = adminNomDest.value.trim();
@@ -4965,3 +5076,113 @@ closeTaxiRecapPopup.addEventListener(
   "click",
   fermerRecapTaxi
 );
+
+/* ==========================================================
+   TAXI - CHOIX DE LA MESSAGERIE
+   ========================================================== */
+
+const LS_TAXI_MESSAGERIE = "taxiMessagerieChoisie";
+
+function ouvrirChoixMessagerie() {
+  let fenetre = document.getElementById("choixMessagerieTaxi");
+
+  if (!fenetre) {
+    fenetre = document.createElement("div");
+    fenetre.id = "choixMessagerieTaxi";
+
+    fenetre.style.cssText = `
+      position:fixed;
+      inset:0;
+      z-index:30000;
+      background:rgba(0,0,0,.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    `;
+
+    fenetre.innerHTML = `
+      <div style="
+        background:white;
+        color:#111827;
+        border-radius:16px;
+        padding:22px;
+        width:100%;
+        max-width:380px;
+        font-family:Arial,sans-serif;
+      ">
+        <h2 style="margin-top:0">📧 Messagerie</h2>
+        <p>Choisissez comment ouvrir vos demandes de taxi.</p>
+
+        <select id="taxiMessagerieSelect"
+          style="width:100%;padding:12px;font-size:16px">
+          <option value="outlook">Outlook installé</option>
+          <option value="mail">Mail Apple / messagerie par défaut</option>
+          <option value="gmail">Gmail dans le navigateur</option>
+          <option value="outlookweb">Outlook dans le navigateur</option>
+        </select>
+
+        <button type="button" id="taxiSaveMessagerie"
+          style="
+            width:100%;
+            margin-top:18px;
+            padding:13px;
+            border:0;
+            border-radius:10px;
+            background:#111827;
+            color:white;
+            font-weight:bold;
+          ">
+          Enregistrer
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(fenetre);
+
+    document.getElementById("taxiSaveMessagerie")
+      .addEventListener("click", () => {
+        const choix = document.getElementById(
+          "taxiMessagerieSelect"
+        ).value;
+
+        localStorage.setItem(LS_TAXI_MESSAGERIE, choix);
+        fenetre.style.display = "none";
+      });
+  }
+
+  document.getElementById("taxiMessagerieSelect").value =
+    localStorage.getItem(LS_TAXI_MESSAGERIE) || "outlook";
+
+  fenetre.style.display = "flex";
+}
+
+function initialiserChoixMessagerie() {
+  const contact = document.getElementById("tabDestinataires");
+
+  if (contact && !document.getElementById("modifierMessagerieTaxi")) {
+    const bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.id = "modifierMessagerieTaxi";
+    bouton.className = "secondary small";
+    bouton.textContent = "📧 Choisir la messagerie";
+    bouton.style.marginBottom = "12px";
+    bouton.addEventListener("click", ouvrirChoixMessagerie);
+
+    contact.insertBefore(bouton, contact.children[1] || null);
+  }
+
+  if (!localStorage.getItem(LS_TAXI_MESSAGERIE)) {
+    ouvrirChoixMessagerie();
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener(
+    "DOMContentLoaded",
+    initialiserChoixMessagerie,
+    { once: true }
+  );
+} else {
+  initialiserChoixMessagerie();
+}
